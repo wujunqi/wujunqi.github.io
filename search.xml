@@ -9,6 +9,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[markdown教程]]></title>
+    <url>%2F2017%2F07%2F28%2Fmarkdown_study%2F</url>
+    <content type="text"><![CDATA[0.目录1.标题代码1234# 一级标题## 二级标题### 三级标题#### 四级标题 显示效果： 二级标题三级标题四级标题五级标题 2.加粗、斜体代码1234*斜体***粗体*****加粗斜体***~~~删除线~~~ 显示效果： 我爱你中国 我爱你中国 我爱你中国 ~我爱你中国~ 3.链接3.1行列式代码:12欢迎来到[番茄技术小栈](http://fanqieto.top/)欢迎来到[番茄技术小栈](http://fanqieto.top/ "番茄技术小栈") 鼠标在上显示title 显示效果： 欢迎来到番茄技术小栈 欢迎来到番茄技术小栈 3.2 自动链接代码12&lt;http://example.com/&gt;&lt;http://example.com&gt; 显示效果: http://fanqieto.top/ http://fanqieto.top 4.列表4.1 无序列表代码123* 无序列表一* 无序列表二* 无序列表三 显示效果 无序列表一 无序列表二 无序列表三 4.2 有序列表代码12341. 有序列表12. 有序列表23. 有序列表34. 有序列表4 显示效果 有序列表1 有序列表2 有序列表3 有序列表4 5. 引用代码12345&gt;&gt;&gt; 小芳：怎么做饭？&gt;&gt; 军旗：自己看教程！&gt; 小芳：教程在哪里？ 显示效果 小芳：怎么做饭？ 军旗：自己看教程！ 小芳：教程在哪里？ 6. 图片代码123456![图片Alt](图片地址 “图片Title”)![漂亮的花朵](http://otwbgbfg8.bkt.clouddn.com/15014192615303gbsghkc.png?imageView/2/w/250/q/90 "漂亮的花朵")七牛云参数：2：代表pc端的缩略图w: 代表宽度q: 代表质量 显示效果 7.分割线代码1234567891011121314***---``` **显示效果*****---# 8. 插入代码## 8.1 行内式**代码**``` php 今天学习php中的`echo` 显示效果今天学习php中的echo 8.2 块代码代码123/`/`/` php echo "hello world"; /`/`/` 1echo "hello world"; 8.3 插入html代码代码12345678910111213&lt;table&gt; &lt;tr&gt; &lt;th rowspan="2"&gt;值班人员&lt;/th&gt; &lt;th&gt;星期一&lt;/th&gt; &lt;th&gt;星期二&lt;/th&gt; &lt;th&gt;星期三&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;李强&lt;/td&gt; &lt;td&gt;张明&lt;/td&gt; &lt;td&gt;王平&lt;/td&gt; &lt;/tr&gt;&lt;/table&gt; 显示效果 值班人员 星期一 星期二 星期三 李强 张明 王平]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[我的第一篇文章]]></title>
     <url>%2F2017%2F07%2F28%2F%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%2F</url>
     <content type="text"><![CDATA[123&lt;?php echo "hello world"?&gt;]]></content>
@@ -19,17 +30,6 @@
       <tags>
         <tag>成长</tag>
         <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[markdown教程]]></title>
-    <url>%2F2017%2F07%2F28%2Fmarkdown_study%2F</url>
-    <content type="text"><![CDATA[1.标题代码1234# 一级标题 ## 二级标题 ### 三级标题 #### 四级标题 显示效果： 二级标题三级标题四级标题五级标题 2.加粗、斜体代码1234*斜体* **粗体** ***加粗斜体*** ~~~删除线~~~ 显示效果： 我爱你中国 我爱你中国 我爱你中国 ~我爱你中国~ 3.链接代码:12欢迎来到[番茄技术小栈](http://fanqieto.top/)欢迎来到[番茄技术小栈](http://fanqieto.top/ &quot;番茄技术小栈&quot;) 鼠标在上显示title 实现效果： 欢迎来到番茄技术小栈 欢迎来到番茄技术小栈 3.层次 第一章 第二章 2.2 2.3 语法1添加 * 和空格 4.图片]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
       </tags>
   </entry>
 </search>
