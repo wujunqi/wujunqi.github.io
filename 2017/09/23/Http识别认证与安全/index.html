@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15061881058404sce9yc2.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506189389584vfgisvbb.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506193200126oe5pkb4f.png?imageslim">
-<meta property="og:updated_time" content="2017-09-23T19:00:14.000Z">
+<meta property="og:updated_time" content="2017-09-23T19:04:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http识别、认证与安全">
 <meta name="twitter:description" content="很久以前就开始接触http了，记得当时是为了面试，看完了《图解http》，初略的了解了http是什么东西，后来实习的时候，老大丢给我一般砖头大的书，就是这本《http权威指南》，老大当时说你看完这本书后你自己就可以写一个浏览器了，当时挺兴奋的。那会儿还在学校，每天在地铁和公司班车上的时间大概有两个钟头，在地铁上大概把这本书看了一半（人们永远不会厌恶在公共场合学习的人，这是我在地铁上两个月学习的经验">
@@ -590,7 +590,8 @@
 <li>酷虎的向服务器发送一个小的TCP分组(通常是40-60字节)。这个分组中设置了一个特殊的SYN标记，说明这是一个连接请求。</li>
 <li>如果服务器接收了连接，就会对一些连接参数进行计算，并向客户端回送一个TCP分组，这个分组中的SYN和ACK标记都被置位了，说明连接请求已经被接收了。</li>
 <li>最后，客户端向服务器回送一条确认信息，通知它连接已成功建立。现代的TCP栈都允许客户端在这个确认分组中发送数据。</li>
-<li>如果连接只用来传送少量的数据，这些交换过程就会严重降低HTTP的性能。小的HTTP事务可能会在TCP建立上花费50%或者更多的时间。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506185282166b9pm540b.png?imageslim" alt="paste image"><ul>
+<li><p>如果连接只用来传送少量的数据，这些交换过程就会严重降低HTTP的性能。小的HTTP事务可能会在TCP建立上花费50%或者更多的时间。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506185282166b9pm540b.png?imageslim" alt="paste image"></p>
+<ul>
 <li>SYN:表示连接请求</li>
 <li>SYN/ACK:表示请求接受</li>
 <li>连接只用来传送少量数据、这些交换过程会严重降低http的性能，小的http事务可能在tcp建立上花费50%或更多时间</li>
@@ -621,6 +622,7 @@
 <li><strong>管道化连接</strong>, 通过共享的TCP连接发起并发的HTTP请求:<br>  允许在持久连接上可选的使用请求管道，这是相对于keep-alive连接的又一性能优化。在响应到达之前，可以将多条请求放入队列。当第一条请求通过网络流向地球另一端的服务器时，第二条和第三条请求也可以开始发送了。在高时延网络条件下，这样做可以降低网络的环回时间。</li>
 <li>复用的连接 交替传送请求和响应报文 (实验阶段)</li>
 </ul>
+<hr>
 <h1 id="HTTP结构"><a href="#HTTP结构" class="headerlink" title="HTTP结构"></a>HTTP结构</h1><p>http的结构主要有HTTP服务器，代理，缓存，网关和机器人应用程序，这些都是Web系统架构的构造模块。</p>
 <h2 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h2><p>Web服务器会对HTTP请求进行处理并提供响应。术语”web服务器”可以用来表示Web服务器的软件，也可以用来表示提供Web页面的特定设备或计算机。</p>
 <p>实际的Web服务器会做些什么</p>
@@ -798,10 +800,10 @@
 <p>可以笼统的分为:会话cookie和持久cookie。会话cookie和持久cookie的唯一区别就是他们的过期时间。 如果设置了Discard参数，或者没有设置Expires或Max-Age参数来说明扩展的过期时间，这个cookie就是一个会话cookie。</p>
 <p>不同的站点使用不同的cookie</p>
 <p><strong> cookie的域属性</strong><br>产生cookie的服务器可以向Set-Cookie响应首部添加一个Domain属性来控制哪些站点开业看到那个cookie。</p>
-<ul>
-<li><figure class="highlight plain"><figcaption><span>user="wilson";domain="wilsonliu.cn"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">则用户访问的任何以wilsonliu.cn结尾的站点都会讲此cookie发布出去。</div><div class="line"></div><div class="line">** cookie的路径属性**</div><div class="line">cookie规范甚至允许用户将cookie与部分web站点关联起来。可以通过Path属性来实现这一功能。</div><div class="line"></div><div class="line">* ```Set-cookie: year=&quot;21&quot;;domain=&quot;wilsonliu.cn&quot;;path=/year/</div></pre></td></tr></table></figure>
-</li>
-</ul>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Set-cookie: user=&quot;wilson&quot;;domain=&quot;wilsonliu.cn&quot;</div></pre></td></tr></table></figure>
+<p>则用户访问的任何以wilsonliu.cn结尾的站点都会讲此cookie发布出去。</p>
+<p><strong> cookie的路径属性</strong><br>cookie规范甚至允许用户将cookie与部分web站点关联起来。可以通过Path属性来实现这一功能。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Set-cookie: year=&quot;21&quot;;domain=&quot;wilsonliu.cn&quot;;path=/year/</div></pre></td></tr></table></figure>
 <p>则只会在/year/下的站点时才会发布此cookie。</p>
 <h3 id="cookie成分"><a href="#cookie成分" class="headerlink" title="cookie成分"></a>cookie成分</h3><h4 id="cookie版本0-Netscape"><a href="#cookie版本0-Netscape" class="headerlink" title="cookie版本0 (Netscape)"></a>cookie版本0 (Netscape)</h4><p><strong> Set-Cookie首部</strong></p>
 <ul>
@@ -822,9 +824,10 @@
 <li>Max-Age</li>
 <li>Path</li>
 <li>Port</li>
-<li>Secure<br><strong> cookie首部</strong><br>版本1的cookie会带回与传输的每个cookie相关的附加信息，用来描述每个cookie途径的过滤器。每个匹配的cookie都必须包含来自相应的Set-Cookie2首部的所有Domain,Port和Path属性。</li>
+<li>Secure</li>
 </ul>
-<h2 id="基本认证机制"><a href="#基本认证机制" class="headerlink" title="基本认证机制"></a>基本认证机制</h2><p><strong> 基本认证质询首部</strong><br><figure class="highlight plain"><figcaption><span>401 Unauthorized</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WWW-Authenticate: Basic realm=quoted-realm</div></pre></td></tr></table></figure></p>
+<p><strong> cookie首部</strong><br>版本1的cookie会带回与传输的每个cookie相关的附加信息，用来描述每个cookie途径的过滤器。每个匹配的cookie都必须包含来自相应的Set-Cookie2首部的所有Domain,Port和Path属性。</p>
+<h2 id="基本认证机制"><a href="#基本认证机制" class="headerlink" title="基本认证机制"></a>基本认证机制</h2><p><strong> 基本认证质询首部</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HTTP/1.0 401 Unauthorized</div><div class="line">WWW-Authenticate: Basic realm=quoted-realm</div></pre></td></tr></table></figure></p>
 <p>响应首部(通过base64编码传输)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Authorization:Basic base64-username-and-password</div></pre></td></tr></table></figure></p>
 <h2 id="摘要认证"><a href="#摘要认证" class="headerlink" title="摘要认证"></a>摘要认证</h2><p>基本认证便捷灵活，但极不安全。用户名与密码明文传输，也没有采取任何措施防止对报文的篡改。安全使用基本认证的唯一方式就是将其与SSL配合使用。</p>
 <p>摘要认证与基本认证兼容。但却更为安全。</p>
