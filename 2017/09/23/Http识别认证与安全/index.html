@@ -101,10 +101,16 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="希望可以讲清楚http识别、认证与安全的相关知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T12:01:47.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506170191981j0g72wx9.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506170274691ssubc929.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15061704191173zfw0zc0.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506170610338q2c95w2h.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506182268151zihbke5f.png?imageslim">
+<meta property="og:updated_time" content="2017-09-23T16:20:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http识别、认证与安全">
 <meta name="twitter:description" content="希望可以讲清楚http识别、认证与安全的相关知识">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1506170191981j0g72wx9.png?imageslim">
 
 
 
@@ -414,7 +420,105 @@
 
       
         <p>希望可以讲清楚http识别、认证与安全的相关知识<br><a id="more"></a></p>
-<h2 id="abcc"><a href="#abcc" class="headerlink" title="abcc"></a>abcc</h2>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不说工作方面的东西，就说活业余时间都做了什么：首先把<a href="https://book.douban.com/subject/10746113/" target="_blank" rel="external">《http权威指南》</a>差不多看完了，看完之后在网上找了一些http相关的扩展知识，下面会做http识别、认证与安全相关的总结。再说点其他的，这周问客户端拿来了微博电影Android的所有代码，做后台业务的时候总是有一些疑惑，问同事感觉效果也不是很好，现在有一种强烈的学Android的冲动，目前打算用国庆的时间去学Android，希望到时候可以把代码跑起来。</p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="B-S-结构定义"><a href="#B-S-结构定义" class="headerlink" title="B/S 结构定义"></a>B/S 结构定义</h3><blockquote>
+<p>浏览器-服务器（Browser/Server）结构，简称B/S结构，与C/S结构不同，其客户端不需要安装专门的软件，只需要浏览器即可，浏览器通过Web服务器与数据库进行交互，可以方便的在不同平台下工作；服务器端可采用高性能计算机，并安装Oracle、Sybase、Informix等大型数据库。B/S结构简化了客户端的工作，它是随着Internet技术兴起而产生的，对C/S技术的改进，但该结构下服务器端的工作较重，对服务器的性能要求更高。</p>
+</blockquote>
+<h2 id="URI-统一资源标志符"><a href="#URI-统一资源标志符" class="headerlink" title="URI (统一资源标志符)"></a>URI (统一资源标志符)</h2><blockquote>
+<p>在电脑术语中，统一资源标识符（英语：Uniform Resource Identifier，或URI)是一个用于标识某一互联网资源名称的字符串。 该种标识允许用户对网络中（一般指万维网）的资源通过特定的协议进行交互操作。URI的最常见的形式是统一资源定位符（URL），经常指定为非正式的网址。更罕见的用法是统一资源名称（URN），其目的是通过提供一种途径。用于在特定的命名空间资源的标识，以补充网址。</p>
+</blockquote>
+<h2 id="URI-文法"><a href="#URI-文法" class="headerlink" title="URI 文法"></a>URI 文法</h2><blockquote>
+<p>URI文法由URI协议名（例如“http”，“ftp”，“mailto”或“file”），一个冒号，和协议对应的内容所构成。特定的协议定义了协议内容的语法和语义，而所有的协议都必须遵循一定的URI文法通用规则，亦即为某些专门目的保留部分特殊字符。</p>
+</blockquote>
+<p>一个uri的例子<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506170191981j0g72wx9.png?imageslim" alt="paste image"></p>
+<h2 id="MIME"><a href="#MIME" class="headerlink" title="MIME"></a>MIME</h2><blockquote>
+<p>MIME(Multipurpose Internet Mail Extensions)多用途互联网邮件扩展类型。是设定某种扩展名的文件用一种应用程序来打开的方式类型，当该扩展名文件被访问的时候，浏览器会自动使用指定应用程序来打开。多用于指定一些客户端自定义的文件名，以及一些媒体文件打开方式</p>
+</blockquote>
+<p>常见的 MIME 类型有：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506170274691ssubc929.png?imageslim" alt="paste image"></p>
+<h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><blockquote>
+<p>超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是互联网上应用最为广泛的一种网络协议。设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（Uniform Resource Identifiers，URI）来标识。</p>
+</blockquote>
+<p>HTTP 协议是基于请求与响应，具体如下图所示：<br><img src="http://otwbgbfg8.bkt.clouddn.com/15061704191173zfw0zc0.png?imageslim" alt="paste image"></p>
+<h2 id="HTTP-协议主要特点"><a href="#HTTP-协议主要特点" class="headerlink" title="HTTP 协议主要特点"></a>HTTP 协议主要特点</h2><ul>
+<li>简单快速：当客户端向服务器端发送请求时，只是简单的填写请求路径和请求方法即可，然后就可以通过浏览器或其他方式将该请求发送就行了</li>
+<li>灵活：HTTP 协议允许客户端和服务器端传输任意类型任意格式的数据对象</li>
+<li>无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接，采用这种方式可以节省传输时间。(当今多数服务器支持Keep-Alive功能，使用服务器支持长连接，解决无连接的问题)</li>
+<li>无状态：无状态是指协议对于事务处理没有记忆能力，服务器不知道客户端是什么状态。即客户端发送HTTP请求后，服务器根据请求，会给我们发送数据，发送完后，不会记录信息。(使用 cookie 机制可以保持 session，解决无状态的问题)</li>
+</ul>
+<h2 id="HTTP-请求报文"><a href="#HTTP-请求报文" class="headerlink" title="HTTP 请求报文"></a>HTTP 请求报文</h2><p>HTTP 请求报文由请求行、请求头、空行 和 请求体(请求数据) 4 个部分组成<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506170610338q2c95w2h.png?imageslim" alt="paste image"></p>
+<h3 id="请求实例"><a href="#请求实例" class="headerlink" title="请求实例"></a>请求实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">GET / HTTP/1.1</div><div class="line">Host: www.baidu.com</div><div class="line">Connection: keep-alive</div><div class="line">Cache-Control: max-age=0</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div><div class="line">Accept-Encoding: gzip, deflate, sdch, br</div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en;q=0.6,id;q=0.4</div><div class="line">Cookie: PSTM=1490844191; BIDUPSID=2145FF54639208435F60E1E165379255; BAIDUID=CFA344942EE2E0EE081D8B13B5C847F9:FG=1;</div></pre></td></tr></table></figure>
+<h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><p>请求头由 key-value 对组成，每行一对，key (键) 和 value (值)用英文冒号 : 分隔。请求头通知服务器有关于客户端请求的信息，典型的请求头有：</p>
+<ul>
+<li>User-Agent：用户代理信息 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 …</li>
+<li>Accept：客户端可识别的内容类型列表 - text/html,application/xhtml+xml,application/xml</li>
+<li>Accept-Language：客户端可接受的自然语言 - zh-CN,zh;q=0.8,en;q=0.6,id;q=0.4</li>
+<li>Accept-Encoding：客户端可接受的编码压缩格式 - gzip, deflate, sdch, br</li>
+<li>Host：请求的主机名，允许多个域名同处一个IP地址，即虚拟主机 - www.baidu.com</li>
+<li>connection：连接方式</li>
+<li>close：告诉WEB服务器或代理服务器，在完成本次请求的响应后，断开连接</li>
+<li>keep-alive：告诉WEB服务器或代理服务器。在完成本次请求的响应后，保持连接，以等待后续请求</li>
+<li>Cookie：存储于客户端扩展字段，向同一域名的服务端发送属于该域的cookie - PSTM=1490844191; BIDUPSID=2145FF54639208435F60E1E165379255;</li>
+</ul>
+<h3 id="空行"><a href="#空行" class="headerlink" title="空行"></a>空行</h3><p>最后一个请求头之后是一个空行，发送回车符和换行符，通知服务器以下不再有请求头。</p>
+<h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3><p>请求数据不在 GET 方法中使用，而是在 POST 方法中使用。与请求数据相关的最常使用的请求头是 Content-Type和 Content-Length。</p>
+<h2 id="HTTP-响应报文"><a href="#HTTP-响应报文" class="headerlink" title="HTTP 响应报文"></a>HTTP 响应报文</h2><p>HTTP响应报文由状态行、响应头、空行和响应体4 个部分组成，如下图所示：</p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1506182268151zihbke5f.png?imageslim" alt="paste image"></p>
+<h3 id="响应报文示例"><a href="#响应报文示例" class="headerlink" title="响应报文示例"></a>响应报文示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Server: bfe/1.0.8.18</div><div class="line">Date: Thu, 30 Mar 2017 12:28:00 GMT</div><div class="line">Content-Type: text/html; charset=utf-8</div><div class="line">Connection: keep-alive</div><div class="line">Cache-Control: private</div><div class="line">Expires: Thu, 30 Mar 2017 12:27:43 GMT</div><div class="line">Set-Cookie: BDSVRTM=0; path=/</div></pre></td></tr></table></figure>
+<h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><p>状态行格式： HTTP-Version Status-Code Reason-Phrase CRLF</p>
+<ul>
+<li>HTTP-Version - HTTP 协议版本</li>
+<li>Status-Code - 状态码</li>
+<li>Reason-Phrase - 状态码描述</li>
+<li>CRLF - 回车/换行符</li>
+</ul>
+<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><p>响应头由 key-value 对组成，每行一对，key (键) 和 value (值)用英文冒号 : 分隔。响应头域允许服务器传递不能放在状态行的附加信息，这些域主要描述服务器的信息和Request-URI进一步的信息，典型的响应头有：</p>
+<ul>
+<li>Server：包含处理请求的原始服务器的软件信息</li>
+<li>Date：服务器日期</li>
+<li>Content-Type：返回的资源类型 (MIME)</li>
+<li>Connection：连接方式<ul>
+<li>close：连接已经关闭</li>
+<li>keep-alive：连接已保持，在等待本次连接的后续请求</li>
+</ul>
+</li>
+<li>Cache-Control：缓存控制</li>
+<li>Expires：设置过期时间</li>
+<li>Set-Cookie：设置 Cookie 信息</li>
+</ul>
+<h3 id="空行-1"><a href="#空行-1" class="headerlink" title="空行"></a>空行</h3><p>最后一个响应头之后是一个空行，发送回车符和换行符，通知浏览器以下不再有响应头。</p>
+<h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><p>服务器返回给浏览器的响应信息，下面是百度首页的响应体片段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;!--STATUS OK--&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;</div><div class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=Edge&quot;&gt;</div><div class="line">    &lt;link rel=&quot;icon&quot; sizes=&quot;any&quot; mask href=&quot;//www.baidu.com/img/baidu.svg&quot;&gt;</div><div class="line">    &lt;title&gt;百度一下，你就知道&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  ...</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="HTTP-Methods"><a href="#HTTP-Methods" class="headerlink" title="HTTP Methods"></a>HTTP Methods</h3><p>HTTP 协议的请求方法有：GET、POST、HEAD、PUT、DELETE、OPTIONS、TRACE、CONNECT、PATCH、HEAD</p>
+<p>HTTP 常用的请求方法：</p>
+<ul>
+<li>GET - 获取资源，使用 URL 方式传递参数，大小为 2KB<br><code>http://www.example.com/users</code> - 获取所有用户</li>
+<li>POST - 传输资源，HTTP Body, 大小默认8M<br><code>http://www.example.com/users/a-unique-id</code> - 新增用户</li>
+<li>PUT - 资源更新<br><code>http://www.example.com/users/a-unique-id</code> - 更新用户</li>
+<li>DELETE - 删除资源<br><code>http://www.example.com/users/a-unique-id</code> - 删除用户</li>
+</ul>
+<h3 id="HTTP-Status-Code"><a href="#HTTP-Status-Code" class="headerlink" title="HTTP Status Code"></a>HTTP Status Code</h3><p>状态代码由三位数字组成，第一个数字定义了响应的类别，且有五种可能取值：</p>
+<ul>
+<li>1xx：指示信息 – 表示请求已接收，继续处理</li>
+<li>2xx：成功 – 表示请求已被成功接收</li>
+<li>3xx：重定向 – 要完成请求必须进行更进一步的操作</li>
+<li>4xx：客户端错误 – 请求有语法错误或请求无法实现</li>
+<li><p>5xx：服务器错误 – 服务器未能实现合法的请求<br>常见状态代码、状态描述的说明如下：</p>
+</li>
+<li><p>200 OK：客户端请求成功</p>
+</li>
+<li>204 No Content：没有新文档，浏览器应该继续显示原来的文档</li>
+<li>206 Partial Content：客户发送了一个带有Range头的GET请求，服务器完成了它</li>
+<li>301 Moved Permanently：所请求的页面已经转移至新的url</li>
+<li>302 Found：所请求的页面已经临时转移至新的url</li>
+<li>304 Not Modified：客户端有缓冲的文档并发出了一个条件性的请求，服务器告诉客户，原来缓冲的文档还可以继续使用。</li>
+<li>400 Bad Request：客户端请求有语法错误，不能被服务器所理解</li>
+<li>401 Unauthorized：请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用</li>
+<li>403 Forbidden：对被请求页面的访问被禁止</li>
+<li>404 Not Found：请求资源不存在</li>
+<li>500 Internal Server Error：服务器发生不可预期的错误</li>
+<li>503 Server Unavailable：请求未完成，服务器临时过载或当机，一段时间后可能恢复正常</li>
+</ul>
+
       
     </div>
 
@@ -692,7 +796,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#abcc"><span class="nav-number">1.</span> <span class="nav-text">abcc</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-S-结构定义"><span class="nav-number">2.1.</span> <span class="nav-text">B/S 结构定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URI-统一资源标志符"><span class="nav-number">3.</span> <span class="nav-text">URI (统一资源标志符)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URI-文法"><span class="nav-number">4.</span> <span class="nav-text">URI 文法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIME"><span class="nav-number">5.</span> <span class="nav-text">MIME</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议"><span class="nav-number">6.</span> <span class="nav-text">HTTP 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议主要特点"><span class="nav-number">7.</span> <span class="nav-text">HTTP 协议主要特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-请求报文"><span class="nav-number">8.</span> <span class="nav-text">HTTP 请求报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求实例"><span class="nav-number">8.1.</span> <span class="nav-text">请求实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头"><span class="nav-number">8.2.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空行"><span class="nav-number">8.3.</span> <span class="nav-text">空行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求体"><span class="nav-number">8.4.</span> <span class="nav-text">请求体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-响应报文"><span class="nav-number">9.</span> <span class="nav-text">HTTP 响应报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应报文示例"><span class="nav-number">9.1.</span> <span class="nav-text">响应报文示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态行"><span class="nav-number">9.2.</span> <span class="nav-text">状态行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应头"><span class="nav-number">9.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空行-1"><span class="nav-number">9.4.</span> <span class="nav-text">空行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应体"><span class="nav-number">9.5.</span> <span class="nav-text">响应体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Methods"><span class="nav-number">9.6.</span> <span class="nav-text">HTTP Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Status-Code"><span class="nav-number">9.7.</span> <span class="nav-text">HTTP Status Code</span></a></li></ol></li></ol></div>
             
 
           </div>
