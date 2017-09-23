@@ -110,7 +110,8 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506187678554nmdwgmip.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15061881058404sce9yc2.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506189389584vfgisvbb.png?imageslim">
-<meta property="og:updated_time" content="2017-09-23T18:54:16.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506193200126oe5pkb4f.png?imageslim">
+<meta property="og:updated_time" content="2017-09-23T19:00:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http识别、认证与安全">
 <meta name="twitter:description" content="很久以前就开始接触http了，记得当时是为了面试，看完了《图解http》，初略的了解了http是什么东西，后来实习的时候，老大丢给我一般砖头大的书，就是这本《http权威指南》，老大当时说你看完这本书后你自己就可以写一个浏览器了，当时挺兴奋的。那会儿还在学校，每天在地铁和公司班车上的时间大概有两个钟头，在地铁上大概把这本书看了一半（人们永远不会厌恶在公共场合学习的人，这是我在地铁上两个月学习的经验">
@@ -779,9 +780,7 @@
 <li>cookie，一种功能强大且高效的持久身份识别技术</li>
 </ul>
 <p><strong> HTTP首部</strong> </p>
-<p>下表给出了7种常见的用来承载用户相关信息的HTTP请求首部。后面3个首部是扩展类型的请求首部。</p>
-<table><br>  <tr><br>    <th> 首部名称</th><br>    <th> 描述</th><br>  </tr><br>  <tr><br>    <td>From</td><br>    <td>用户的E-mail地址</td><br>  </tr><br>  <tr><br>    <td>User-Agent</td><br>    <td>用户的浏览器软件</td><br>  </tr><br>  <tr><br>    <td>Referer</td><br>    <td>用户是从这个页面上依照链接跳转过来的</td><br>  </tr><br>  <tr><br>    <td>Authorization</td><br>    <td>用户名和密码</td><br>  </tr><br>  <tr><br>    <td>Client-IP</td><br>    <td>客户端的IP地址</td><br>  </tr><br>  <tr><br>    <td>X-Forwarded-For</td><br>    <td>客户端的IP地址</td><br>  </tr><br>  <tr><br>    <td>Cookie</td><br>    <td>服务器产生的ID标签</td><br>  </tr><br></table>
-
+<p>下表给出了7种常见的用来承载用户相关信息的HTTP请求首部。后面3个首部是扩展类型的请求首部。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506193200126oe5pkb4f.png?imageslim" alt="paste image"></p>
 <h2 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h2><p>为了使web站点的登录更加简便，HTTP中包含了一种内建机制，可以用WWW-Authenticate首部和Authorization首部向web站点传送用户的相关信息。一旦登录，浏览器就可以不断地在每条发往这个站点的请求中发送这个登录信息了。</p>
 <p>缺点：保密性不强，不能跨站点，不同的站点需要重新输入账户密码。</p>
 <h2 id="胖URL"><a href="#胖URL" class="headerlink" title="胖URL"></a>胖URL</h2><p>可以通过胖URL将服务器上若干个独立的HTTP事务捆绑成一个”会话”或”访问”。用户首次访问这个web站点时，会生成一个唯一的ID，用服务器可以识别的方式将这个ID添加到URL中，然后服务器就会将客户端重新导向这个胖URL。</p>
