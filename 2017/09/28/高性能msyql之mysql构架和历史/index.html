@@ -93,20 +93,21 @@
 
 
 
-<meta name="description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式">
+<meta name="description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式 Mysql 逻辑架构下图是mysql各组件之间如何协同工作的架构图。  最上层处理类似：连接处理、授权认证、安全等等。 第二层mysq">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高性能msyql之mysql构架和历史">
 <meta property="og:url" content="http://yoursite.com/2017/09/28/高性能msyql之mysql构架和历史/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式">
+<meta property="og:description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式 Mysql 逻辑架构下图是mysql各组件之间如何协同工作的架构图。  最上层处理类似：连接处理、授权认证、安全等等。 第二层mysq">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506604041692uo2dlix2.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506608822826r2r76gdf.png?imageslim">
-<meta property="og:updated_time" content="2017-09-28T14:45:50.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15066532685295gjt3o99.png?imageslim">
+<meta property="og:updated_time" content="2017-09-29T02:57:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能msyql之mysql构架和历史">
-<meta name="twitter:description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式">
+<meta name="twitter:description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式 Mysql 逻辑架构下图是mysql各组件之间如何协同工作的架构图。  最上层处理类似：连接处理、授权认证、安全等等。 第二层mysq">
 <meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1506604041692uo2dlix2.png?imageslim">
 
 
@@ -416,7 +417,7 @@
       
 
       
-        <p>mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将<strong>查询处理</strong>(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式<br><a id="more"></a></p>
+        <p>mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将<strong>查询处理</strong>(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式</p>
 <h1 id="Mysql-逻辑架构"><a href="#Mysql-逻辑架构" class="headerlink" title="Mysql 逻辑架构"></a>Mysql 逻辑架构</h1><p>下图是mysql各组件之间如何协同工作的架构图。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506604041692uo2dlix2.png?imageslim" alt="paste image"></p>
 <ul>
 <li>最上层处理类似：连接处理、授权认证、安全等等。</li>
@@ -461,6 +462,11 @@
 <h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>死锁是指两个或者多个事务在同一资源上相互占用，并请求锁定对方占用的资源，从而导致恶性循环的现象。</p>
 <p>将持有最少行级排它锁的事务进行回滚，只是相对比较简单的死锁回滚算法。</p>
 <h2 id="mysql中的事务"><a href="#mysql中的事务" class="headerlink" title="mysql中的事务"></a>mysql中的事务</h2><p>mysql默认采用自动提交（autocommit）模式，即，如果不是显示地开始一个事务，则每个查询都被当做一个事务执行提交操作。</p>
+<h2 id="mysql的存储引擎"><a href="#mysql的存储引擎" class="headerlink" title="mysql的存储引擎"></a>mysql的存储引擎</h2><p>在文件系统中，mysql将每个数据库（schema)保存为数据目录下的一个子目录。创建表时，msyql会在数据库子目录下创建一个和表同名的.frm文件保存表的定义。<br>可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show table status like &apos;表名&apos;</div></pre></td></tr></table></figure>
+<p>来显示表的相关信息<br><img src="http://otwbgbfg8.bkt.clouddn.com/15066532685295gjt3o99.png?imageslim" alt="paste image"></p>
+<h3 id="innodb存储引擎"><a href="#innodb存储引擎" class="headerlink" title="innodb存储引擎"></a>innodb存储引擎</h3><p>innode是mysql的默认事务型引擎，也是最重要、使用最广泛的存储引擎。它被设计用来处理大量的短期（short-lived）事务。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>msyql拥有分层的架构。上层是服务器层的服务和查询执行引擎，下层是存储引擎。虽然有很多不同作用的插件API，但存储引擎api还是最重要的。如果能理解mysql在存储引擎和服务层之间处理查询时如何通过api来回交互，就能抓住mysql的核心基础架构的精髓。</p>
 
       
     </div>
@@ -739,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql-逻辑架构"><span class="nav-number">1.</span> <span class="nav-text">Mysql 逻辑架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连接管理与安全性"><span class="nav-number">1.1.</span> <span class="nav-text">连接管理与安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化和执行"><span class="nav-number">1.2.</span> <span class="nav-text">优化和执行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发控制"><span class="nav-number">2.</span> <span class="nav-text">并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#读写锁"><span class="nav-number">2.1.</span> <span class="nav-text">读写锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁粒度"><span class="nav-number">2.2.</span> <span class="nav-text">锁粒度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">3.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隔离级别"><span class="nav-number">3.1.</span> <span class="nav-text">隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">3.2.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql中的事务"><span class="nav-number">3.3.</span> <span class="nav-text">mysql中的事务</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql-逻辑架构"><span class="nav-number">1.</span> <span class="nav-text">Mysql 逻辑架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连接管理与安全性"><span class="nav-number">1.1.</span> <span class="nav-text">连接管理与安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化和执行"><span class="nav-number">1.2.</span> <span class="nav-text">优化和执行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发控制"><span class="nav-number">2.</span> <span class="nav-text">并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#读写锁"><span class="nav-number">2.1.</span> <span class="nav-text">读写锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁粒度"><span class="nav-number">2.2.</span> <span class="nav-text">锁粒度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">3.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隔离级别"><span class="nav-number">3.1.</span> <span class="nav-text">隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">3.2.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql中的事务"><span class="nav-number">3.3.</span> <span class="nav-text">mysql中的事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql的存储引擎"><span class="nav-number">3.4.</span> <span class="nav-text">mysql的存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#innodb存储引擎"><span class="nav-number">3.4.1.</span> <span class="nav-text">innodb存储引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>
