@@ -104,7 +104,8 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim">
-<meta property="og:updated_time" content="2017-10-07T16:32:00.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim">
+<meta property="og:updated_time" content="2017-10-07T16:39:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用docker搭建yaf">
 <meta name="twitter:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
@@ -457,49 +458,82 @@
 <h1 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h1><ul>
 <li>获取镜像：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">	docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</div><div class="line">    </div><div class="line">```	</div><div class="line"></div><div class="line"></div><div class="line">* 列出镜像</div></pre></td></tr></table></figure>
-<pre><code>docker images
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 利用 commit 理解镜像构成</div></pre></td></tr></table></figure>
-<pre><code>docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 删除本地镜像</div></pre></td></tr></table></figure>
-<pre><code>docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 启动容器</div></pre></td></tr></table></figure>
-<p>docker run -d -p 8002:8001 -p 8000:8000 -p 80:80 –name lnmp_yaf lnmp/yaf:v1 /sbin/init</p>
-<p>docker exec -it lnmp_yaf /bin/bash # 进入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 终止容器</div></pre></td></tr></table></figure></p>
-<p>docker stop [容器ID或容器名]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 进入容器</div></pre></td></tr></table></figure></p>
-<p>docker attach [容器ID或容器名]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 删除容器</div></pre></td></tr></table></figure></p>
-<pre><code>docker rm [容器ID或容器名]
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"># 数据管理</div><div class="line"></div><div class="line">## 数据卷</div><div class="line">数据卷是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：</div><div class="line"></div><div class="line">数据卷可以在容器之间共享和重用</div><div class="line">对数据卷的修改会立马生效</div><div class="line">对数据卷的更新，不会影响镜像</div><div class="line">数据卷默认会一直存在，即使容器被删除</div><div class="line">*注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷。</div><div class="line"></div><div class="line"></div><div class="line">## 挂载一个主机目录作为数据卷</div></pre></td></tr></table></figure>
-<p>docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 –name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init<br>docker exec -it lnmp_yaf /bin/bash # 进入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># docker下lnmp配置</div><div class="line"></div><div class="line"></div><div class="line">* 首先安装centos：</div></pre></td></tr></table></figure></p>
-<p> docker pull centeros</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 启动镜像并进入</div></pre></td></tr></table></figure>
-<p> docker run -it centos:latest bash # -it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 执行一键安装lnmp（需要大概84分钟）</div></pre></td></tr></table></figure></p>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz" target="_blank" rel="external">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可以需要用yum install 安装wget</div><div class="line"></div><div class="line"></div><div class="line"># 安装yaf扩展</div><div class="line"></div><div class="line"></div><div class="line">* yaf 扩展安装</div></pre></td></tr></table></figure></p>
-<p> cd ~<br> wget <a href="http://pecl.php.net/get/yaf-3.0.5.tgz" target="_blank" rel="external">http://pecl.php.net/get/yaf-3.0.5.tgz</a><br> tar zxvf yaf-3.0.5.tgz<br> cd yaf-3.0.5<br> phpize # 生成匹配文件<br> ./configure –with-php-config=/usr/local/php/bin/php-config # php-config存放php的一些配置信息，比如路径等。它会结合本地的php-config配置信息进行前期的编译准备<br> make #开始编译<br> make test<br> make install # 将module下的yaf.so放在/usr/local/php/lib/php/extensions/no-debug-non-zts-20160303/yaf.so下面</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line">* 修改php.ini</div><div class="line"></div><div class="line">打开php.ini（/usr/local/php/etc/php.ini）,加入下面三行</div></pre></td></tr></table></figure>
-<p>[Yaf]<br>extension=yaf.so<br>yaf.environ=”product”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 添加vhost</div></pre></td></tr></table></figure></p>
-<p>lnmp vhost add</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 修改vhost配置文件</div><div class="line"></div><div class="line">打开/usr/local/nginx/conf/vhost/imooc.com.conf, 修改为下面的代码</div></pre></td></tr></table></figure>
-<p>server<br>    {<br>        listen 80;<br>        server_name imooc.com n;<br>        index index.php;<br>        root  /home/work/imooc;</p>
-<pre><code>    include enable-php.conf;
-
-    if (!-e $request_filename) {
-        rewrite ^/(.*) /index.php?$1 last;
-    }
-
-    access_log  /home/work/logs/imooc.com.log;
-}
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">* 添加yaf项目</div></pre></td></tr></table></figure>
-<pre><code>cd /home/work/imooc/
-mkdir tmp
-wget https://github.com/laruence/yaf/archive/master.zip
-unzip master.zip 
-cd yaf-master/tools/cg/
-./yaf_cg imooc
-cp -rf tmp/yaf-master/tools/cg/output/imooc/* ./ (在imooc目录下）
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">最后的代码项目结果为：</div><div class="line">![paste image](http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim)</div><div class="line"></div><div class="line"></div><div class="line">* 今后在这个基础上编写代码：</div><div class="line"></div><div class="line">可以使用sublime 直接编写啦！</div></pre></td></tr></table></figure>
-<p>docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 –name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init<br>```</p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>获取镜像：</li>
+</ul>
+<ul>
+<li>列出镜像</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure>
+<ul>
+<li>利用 commit 理解镜像构成</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</div></pre></td></tr></table></figure>
+<ul>
+<li>删除本地镜像</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</div></pre></td></tr></table></figure>
+<ul>
+<li>启动容器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8002:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf lnmp/yaf:v1 /sbin/init</div><div class="line"></div><div class="line">docker exec -it lnmp_yaf /bin/bash # 进入</div></pre></td></tr></table></figure>
+<ul>
+<li>终止容器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stop [容器ID或容器名]</div></pre></td></tr></table></figure>
+<ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker attach [容器ID或容器名]</div></pre></td></tr></table></figure>
+<ul>
+<li>删除容器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm [容器ID或容器名]</div></pre></td></tr></table></figure>
+<h1 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h1><h2 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h2><p>数据卷是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：</p>
+<p>数据卷可以在容器之间共享和重用<br>对数据卷的修改会立马生效<br>对数据卷的更新，不会影响镜像<br>数据卷默认会一直存在，即使容器被删除<br>*注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷。</p>
+<h2 id="挂载一个主机目录作为数据卷"><a href="#挂载一个主机目录作为数据卷" class="headerlink" title="挂载一个主机目录作为数据卷"></a>挂载一个主机目录作为数据卷</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init</div><div class="line">docker exec -it lnmp_yaf /bin/bash # 进入</div></pre></td></tr></table></figure>
+<h1 id="docker下lnmp配置"><a href="#docker下lnmp配置" class="headerlink" title="docker下lnmp配置"></a>docker下lnmp配置</h1><ul>
+<li>首先安装centos：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull centeros</div></pre></td></tr></table></figure>
+<ul>
+<li>启动镜像并进入</li>
+</ul>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it centos:latest bash # -it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端</div></pre></td></tr></table></figure>
+<ul>
+<li>执行一键安装lnmp（需要大概84分钟）</li>
+</ul>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -c http://soft.vpser.net/lnmp/lnmp1.4.tar.gz &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp</div></pre></td></tr></table></figure>
+<p> 可以需要用yum install 安装wget</p>
+<h1 id="安装yaf扩展"><a href="#安装yaf扩展" class="headerlink" title="安装yaf扩展"></a>安装yaf扩展</h1><ul>
+<li>yaf 扩展安装</li>
+</ul>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd ~</div><div class="line">wget http://pecl.php.net/get/yaf-3.0.5.tgz</div><div class="line">tar zxvf yaf-3.0.5.tgz</div><div class="line">cd yaf-3.0.5</div><div class="line">phpize # 生成匹配文件</div><div class="line">./configure --with-php-config=/usr/local/php/bin/php-config # php-config存放php的一些配置信息，比如路径等。它会结合本地的php-config配置信息进行前期的编译准备</div><div class="line">make #开始编译</div><div class="line">make test</div><div class="line">make install # 将module下的yaf.so放在/usr/local/php/lib/php/extensions/no-debug-non-zts-20160303/yaf.so下面</div></pre></td></tr></table></figure>
+<ul>
+<li>修改php.ini</li>
+</ul>
+<p>打开php.ini（/usr/local/php/etc/php.ini）,加入下面三行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[Yaf]</div><div class="line">extension=yaf.so</div><div class="line">yaf.environ=&quot;product&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>添加vhost</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lnmp vhost add</div></pre></td></tr></table></figure>
+<ul>
+<li>修改vhost配置文件</li>
+</ul>
+<p>打开/usr/local/nginx/conf/vhost/imooc.com.conf, 修改为下面的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">server</div><div class="line">    &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name imooc.com n;</div><div class="line">        index index.php;</div><div class="line">        root  /home/work/imooc;</div><div class="line"></div><div class="line">        include enable-php.conf;</div><div class="line"></div><div class="line">        if (!-e $request_filename) &#123;</div><div class="line">            rewrite ^/(.*) /index.php?$1 last;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        access_log  /home/work/logs/imooc.com.log;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>添加yaf项目</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /home/work/imooc/</div><div class="line">mkdir tmp</div><div class="line">wget https://github.com/laruence/yaf/archive/master.zip</div><div class="line">unzip master.zip </div><div class="line">cd yaf-master/tools/cg/</div><div class="line">./yaf_cg imooc</div><div class="line">cp -rf tmp/yaf-master/tools/cg/output/imooc/* ./ (在imooc目录下）</div></pre></td></tr></table></figure>
+<p>最后的代码项目结果为：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim" alt="paste image"></p>
+<ul>
+<li>今后在这个基础上编写代码：</li>
+</ul>
+<p>可以使用sublime 直接编写啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -777,7 +811,7 @@ cp -rf tmp/yaf-master/tools/cg/output/imooc/* ./ (在imooc目录下）
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是docker？"><span class="nav-number">2.</span> <span class="nav-text">什么是docker？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类比："><span class="nav-number">2.2.</span> <span class="nav-text">类比：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VM-vs-Docker"><span class="nav-number">2.3.</span> <span class="nav-text">VM vs Docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-安装"><span class="nav-number">3.</span> <span class="nav-text">docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for-mac"><span class="nav-number">3.1.</span> <span class="nav-text">for mac</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-基本概念"><span class="nav-number">4.</span> <span class="nav-text">docker 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像"><span class="nav-number">4.1.</span> <span class="nav-text">Docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-容器"><span class="nav-number">4.2.</span> <span class="nav-text">Docker 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Registry"><span class="nav-number">4.3.</span> <span class="nav-text">Docker Registry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker常用命令"><span class="nav-number">5.</span> <span class="nav-text">docker常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是docker？"><span class="nav-number">2.</span> <span class="nav-text">什么是docker？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类比："><span class="nav-number">2.2.</span> <span class="nav-text">类比：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VM-vs-Docker"><span class="nav-number">2.3.</span> <span class="nav-text">VM vs Docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-安装"><span class="nav-number">3.</span> <span class="nav-text">docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for-mac"><span class="nav-number">3.1.</span> <span class="nav-text">for mac</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-基本概念"><span class="nav-number">4.</span> <span class="nav-text">docker 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像"><span class="nav-number">4.1.</span> <span class="nav-text">Docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-容器"><span class="nav-number">4.2.</span> <span class="nav-text">Docker 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Registry"><span class="nav-number">4.3.</span> <span class="nav-text">Docker Registry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker常用命令"><span class="nav-number">5.</span> <span class="nav-text">docker常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据管理"><span class="nav-number">6.</span> <span class="nav-text">数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据卷"><span class="nav-number">6.1.</span> <span class="nav-text">数据卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载一个主机目录作为数据卷"><span class="nav-number">6.2.</span> <span class="nav-text">挂载一个主机目录作为数据卷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker下lnmp配置"><span class="nav-number">7.</span> <span class="nav-text">docker下lnmp配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装yaf扩展"><span class="nav-number">8.</span> <span class="nav-text">安装yaf扩展</span></a></li></ol></div>
             
 
           </div>
