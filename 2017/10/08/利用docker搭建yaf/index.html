@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="yaf," />
 
 
 
@@ -93,22 +93,22 @@
 
 
 
-<meta name="description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式 Mysql 逻辑架构下图是mysql各组件之间如何协同工作的架构图。  最上层处理类似：连接处理、授权认证、安全等等。 第二层mysq">
-<meta name="keywords" content="mysql">
+<meta name="description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
+<meta name="keywords" content="yaf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高性能msyql之mysql构架和历史">
-<meta property="og:url" content="http://yoursite.com/2017/09/28/高性能msyql之mysql构架和历史/index.html">
+<meta property="og:title" content="利用docker搭建yaf">
+<meta property="og:url" content="http://yoursite.com/2017/10/08/利用docker搭建yaf/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式 Mysql 逻辑架构下图是mysql各组件之间如何协同工作的架构图。  最上层处理类似：连接处理、授权认证、安全等等。 第二层mysq">
+<meta property="og:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506604041692uo2dlix2.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506608822826r2r76gdf.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15066532685295gjt3o99.png?imageslim">
-<meta property="og:updated_time" content="2017-09-29T02:57:24.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim">
+<meta property="og:updated_time" content="2017-10-07T16:23:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高性能msyql之mysql构架和历史">
-<meta name="twitter:description" content="mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式 Mysql 逻辑架构下图是mysql各组件之间如何协同工作的架构图。  最上层处理类似：连接处理、授权认证、安全等等。 第二层mysq">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1506604041692uo2dlix2.png?imageslim">
+<meta name="twitter:title" content="利用docker搭建yaf">
+<meta name="twitter:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/28/高性能msyql之mysql构架和历史/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/08/利用docker搭建yaf/"/>
 
 
 
 
 
-  <title>高性能msyql之mysql构架和历史 | 番茄技术小栈</title>
+  <title>利用docker搭建yaf | 番茄技术小栈</title>
   
 
 
@@ -315,7 +315,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/28/高性能msyql之mysql构架和历史/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/08/利用docker搭建yaf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wujunqi">
@@ -332,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">高性能msyql之mysql构架和历史</h1>
+          <h1 class="post-title" itemprop="name headline">利用docker搭建yaf</h1>
         
 
         <div class="post-meta">
@@ -344,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-28T21:07:00+08:00">
-                2017-09-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-08T00:23:00+08:00">
+                2017-10-08
               </time>
             
 
@@ -367,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -384,7 +384,7 @@
 
           
           
-             <span id="/2017/09/28/高性能msyql之mysql构架和历史/" class="leancloud_visitors" data-flag-title="高性能msyql之mysql构架和历史">
+             <span id="/2017/10/08/利用docker搭建yaf/" class="leancloud_visitors" data-flag-title="利用docker搭建yaf">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -417,56 +417,88 @@
       
 
       
-        <p>mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将<strong>查询处理</strong>(query processing)及其他系统任务（server task)和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性、以及其他需求来选择数据存储的方式</p>
-<h1 id="Mysql-逻辑架构"><a href="#Mysql-逻辑架构" class="headerlink" title="Mysql 逻辑架构"></a>Mysql 逻辑架构</h1><p>下图是mysql各组件之间如何协同工作的架构图。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506604041692uo2dlix2.png?imageslim" alt="paste image"></p>
-<ul>
-<li>最上层处理类似：连接处理、授权认证、安全等等。</li>
-<li>第二层mysql核心服务功能都在这一层，包括查询解析、分析、优化、缓存以及所有的内置函数。</li>
-<li>第三层包含了存储引擎。存储引擎负责mysql中数据的存储和提取。</li>
+        <p>下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。</p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。</p>
+<h1 id="什么是docker？"><a href="#什么是docker？" class="headerlink" title="什么是docker？"></a>什么是docker？</h1><h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><blockquote>
+<p>Docker:an open source project to pack,ship and run any application as a lightweight container.</p>
+</blockquote>
+<p>这个docker官方的解释：将任何应用以轻量级的容器的形式来进行<strong>打包</strong>，<strong>发布</strong>和运行。</p>
+<blockquote>
+<p>Node.js: allows to package an application with all of its dependencies into a standardized unit。</p>
+</blockquote>
+<p>这是node.js的解释：docker允许一个应用程序及其所有依赖以一种标准的单位来进行打包。</p>
+<p>wiki的定义：</p>
+<blockquote>
+<p>Docker是一个开放源代码软件项目，让应用程序布署在软件容器下的工作可以自动化进行，借此在Linux操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制[1]。Docker利用Linux核心中的资源分脱机制，例如cgroups，以及Linux核心名字空间（name space），来创建独立的软件容器（containers）。这可以在单一Linux实体下运作，避免引导一个虚拟机造成的额外负担[2]。Linux核心对名字空间的支持完全隔离了工作环境中应用程序的视野，包括进程树、网络、用户ID与挂载文件系统，而核心的cgroup提供资源隔离，包括CPU、内存、block I/O与网络。从0.9版本起，Dockers在使用抽象虚拟是经由libvirt的 LXC与systemd - nspawn提供界面的基础上，开始包括libcontainer库做为以自己的方式开始直接使用由Linux核心提供的虚拟化的设施，<br>依据行业分析公司“451研究”：“Dockers是有能力打包应用程序及其虚拟容器，可以在任何Linux服务器上运行的依赖性工具，这有助于实现灵活性和便携性，应用程序在任何地方都可以运行，无论是公有云、私有云、单机等。”</p>
+</blockquote>
+<h2 id="类比："><a href="#类比：" class="headerlink" title="类比："></a>类比：</h2><ul>
+<li>可以粗略的理解为轻量级的虚拟机</li>
+<li>开挂的chroot</li>
 </ul>
-<h2 id="连接管理与安全性"><a href="#连接管理与安全性" class="headerlink" title="连接管理与安全性"></a>连接管理与安全性</h2><p>当客户端（应用）连接到msyql服务器时，服务器需要对其进行认证。认证基于用户名、原始主机信息和密码。一旦客户端连接成功，服务器会继续验证该客户端是否具有执行某个特定查询的权限。</p>
-<h2 id="优化和执行"><a href="#优化和执行" class="headerlink" title="优化和执行"></a>优化和执行</h2><p>mysql会解析查询，并创建内部数据结构（解析树），然后对其进行各种优化，包括重写查询、决定表的顺序，以及选择合适的索引等。</p>
-<p>对于select语句，在解析查询之前，服务器会先检查查询缓存（query cache），如果能够在其中找到对应的查询，服务器就不必执行查询解析、优化和执行的整个过程，而是直接返回查询缓存的结果集。</p>
-<h1 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h1><p>无论何时，只要有多个查询需要在同一时刻修改数据，都会产生并发控制的问题。</p>
-<h2 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h2><ul>
-<li>读锁（共享锁）：读锁是共享的，或者说互相不阻塞的。多个客户在同一时刻可以同时读取同一个资源，而互不干扰。</li>
-<li>写锁（排它锁）：它是排他的，也就是说一个写锁会阻塞其他的写锁和读锁这是出于安全的策略考虑，只有这样，才能确保在给定的时间里，只有一个用户能执行写入，并防止其他用户读取正在写入的同一资源。</li>
+<h2 id="VM-vs-Docker"><a href="#VM-vs-Docker" class="headerlink" title="VM vs Docker"></a>VM vs Docker</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim" alt="paste image"></p>
+<h1 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h1><h2 id="for-mac"><a href="#for-mac" class="headerlink" title="for mac"></a>for mac</h2><p>首先在<a href="docker for mac">https://store.docker.com/editions/community/docker-ce-desktop-mac</a>官网进行下载，安装和安装普通mac软件一样。<br>安装完毕后在右上角有一个小船的标示。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim" alt="paste image"></p>
+<p>当然可以在命令行中输入：<code>docder info</code>显示<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim" alt="paste image"></p>
+<p>表示安装成功！</p>
+<h1 id="docker-基本概念"><a href="#docker-基本概念" class="headerlink" title="docker 基本概念"></a>docker 基本概念</h1><h2 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h2><p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:14.04 就包含了完整的一套 Ubuntu 14.04 最小系统的 root 文件系统。</p>
+<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
+<h2 id="Docker-容器"><a href="#Docker-容器" class="headerlink" title="Docker 容器"></a>Docker 容器</h2><p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
+<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会把容器和虚拟机搞混。</p>
+<p>前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为容器存储层。</p>
+<p>容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。</p>
+<p>按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</p>
+<p>数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器可以随意删除、重新 run，数据却不会丢失。</p>
+<h2 id="Docker-Registry"><a href="#Docker-Registry" class="headerlink" title="Docker Registry"></a>Docker Registry</h2><p>镜像构建完成后，可以很容易的在当前宿主上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。</p>
+<p>一个 Docker Registry 中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。</p>
+<p>通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 &lt;仓库名&gt;:&lt;标签&gt; 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 latest 作为默认标签。</p>
+<p>以 Ubuntu 镜像 为例，ubuntu 是仓库的名字，其内包含有不同的版本标签，如，14.04, 16.04。我们可以通过 ubuntu:14.04，或者 ubuntu:16.04 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 ubuntu，那将视为 ubuntu:latest。</p>
+<p>仓库名经常以 两段式路径 形式出现，比如 jwilder/nginx-proxy，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。</p>
+<p>最常使用的 Registry 公开服务是官方的 Docker Hub，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 CoreOS 的 Quay.io，CoreOS 相关的镜像存储在这里；Google 的 Google Container Registry，Kubernetes 的镜像使用的就是这个服务。</p>
+<h1 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h1><ul>
+<li>获取镜像：</li>
 </ul>
-<h2 id="锁粒度"><a href="#锁粒度" class="headerlink" title="锁粒度"></a>锁粒度</h2><p>一种提高共享资源并发性的方式就是让锁定对象更有选择性，尽量只锁定需要修改的部分数据，而不是所有资源。任何时候，在给定的资源上，锁定的数据量越少，则系统的并发程度越高，只要互相之间不发生冲突即可。但是，加锁也需要消耗资源。所谓锁策略，就是在锁的开销和数据的安全性之间寻求平衡，这种平衡当然会影响到性能。</p>
-<ul>
-<li><strong>表锁</strong></li>
-</ul>
-<p>表锁是msyql中最基本的锁策略，并且是开销最小的策略：它会锁定整张表。一个用户在对表进行写操作（插入、删除、更新）前，需要先获得写锁，这会阻塞其他用户对该表的所有读写操作。只有没有写锁是，其他读取的用户才能获得读锁，读锁之间是不相互阻塞的。</p>
-<ul>
-<li><strong>行级锁</strong></li>
-</ul>
-<p>行级锁可以最大程度地支持并发处理（同时也带来了最大的锁开销）。行级锁只在存储引擎层实现，而mysql服务器层没有实现。</p>
-<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>事务就是一组原子性的sql查询， 或者说一个独立的工作单元。事务内的语句，要么全部执行成功，要么全部执行失败</p>
-<ul>
-<li><strong>原子性（atomicity）</strong>：一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，要么全部失败回滚，对于一个事务来说，不可能只执行其中的一部分。</li>
-<li><strong>一致性(consistency)</strong>:数据库总是从一个一致性的状态转换到另外一个一致性的状态。如果事务最终没有提交，所有事务中所做的修改也不会保存到数据库中。</li>
-<li><strong>隔离性（isolation)</strong>:通常来说，一个事务所做的修改在最终提交以前，对其他事务是不可见的。</li>
-<li><strong>持久性（durability)</strong> 一点事务提交，则其所做的修改就会永久保存到数据库中。</li>
-</ul>
-<p>一个实现了ACID的数据库，相比没有实现ACID的数据库，通常会需要更强的cpu处理能力、更大的内存和更多的磁盘空间。</p>
-<h2 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h2><ul>
-<li><strong>未提交读(Read Uncommitted)</strong>：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据，脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。</li>
-<li><strong>提交读(Read Committed)</strong>：只能读取到已经提交的数据。Oracle等多数数据库默认都是该级别 (不重复读)，是指在一个事务内，多次读同一数据。在这个事务还没有结束时，另外一个事务也访问该同一数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改，那么第一个事务两次读到的的数据可能是不一样的。这样就发生了在一个事务内两次读到的数据是不一样的，因此称为是不可重复读。</li>
-<li><strong>可重复读(Repeated Read)</strong>：可重复读。在同一个事务内的查询都是事务开始时刻一致的，InnoDB默认级别。在SQL标准中，该隔离级别消除了不可重复读，但是还存在幻象读<ul>
-<li>幻读：第一个事务对一个表中的数据进行了修改，这种修改涉及到表中的全部数据行。同时，第二个事务也修改这个表中的数据，这种修改是向表中插入一行新数据。那么，以后就会发生操作第一个事务的用户发现表中还有没有修改的数据行，就好象发生了幻觉一样。</li>
-</ul>
-</li>
-<li><strong>串行读(Serializable)</strong>：完全串行化的读，每次读都需要获得表级共享锁，读写相互都会阻塞</li>
-</ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1506608822826r2r76gdf.png?imageslim" alt="paste image"></p>
-<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>死锁是指两个或者多个事务在同一资源上相互占用，并请求锁定对方占用的资源，从而导致恶性循环的现象。</p>
-<p>将持有最少行级排它锁的事务进行回滚，只是相对比较简单的死锁回滚算法。</p>
-<h2 id="mysql中的事务"><a href="#mysql中的事务" class="headerlink" title="mysql中的事务"></a>mysql中的事务</h2><p>mysql默认采用自动提交（autocommit）模式，即，如果不是显示地开始一个事务，则每个查询都被当做一个事务执行提交操作。</p>
-<h2 id="mysql的存储引擎"><a href="#mysql的存储引擎" class="headerlink" title="mysql的存储引擎"></a>mysql的存储引擎</h2><p>在文件系统中，mysql将每个数据库（schema)保存为数据目录下的一个子目录。创建表时，msyql会在数据库子目录下创建一个和表同名的.frm文件保存表的定义。<br>可以使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show table status like &apos;表名&apos;</div></pre></td></tr></table></figure>
-<p>来显示表的相关信息<br><img src="http://otwbgbfg8.bkt.clouddn.com/15066532685295gjt3o99.png?imageslim" alt="paste image"></p>
-<h3 id="innodb存储引擎"><a href="#innodb存储引擎" class="headerlink" title="innodb存储引擎"></a>innodb存储引擎</h3><p>innode是mysql的默认事务型引擎，也是最重要、使用最广泛的存储引擎。它被设计用来处理大量的短期（short-lived）事务。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>msyql拥有分层的架构。上层是服务器层的服务和查询执行引擎，下层是存储引擎。虽然有很多不同作用的插件API，但存储引擎api还是最重要的。如果能理解mysql在存储引擎和服务层之间处理查询时如何通过api来回交互，就能抓住mysql的核心基础架构的精髓。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">	docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</div><div class="line">```	</div><div class="line"></div><div class="line">* 列出镜像</div></pre></td></tr></table></figure>
+<pre><code>docker images
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 利用 commit 理解镜像构成</div></pre></td></tr></table></figure>
+<pre><code>docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 删除本地镜像</div></pre></td></tr></table></figure>
+<pre><code>docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 启动容器</div></pre></td></tr></table></figure>
+<p>docker run -d -p 8002:8001 -p 8000:8000 -p 80:80 –name lnmp_yaf lnmp/yaf:v1 /sbin/init</p>
+<p>docker exec -it lnmp_yaf /bin/bash # 进入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 终止容器</div></pre></td></tr></table></figure></p>
+<p>docker stop [容器ID或容器名]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 进入容器</div></pre></td></tr></table></figure></p>
+<p>docker attach [容器ID或容器名]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 删除容器</div></pre></td></tr></table></figure></p>
+<pre><code>docker rm [容器ID或容器名]
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 数据管理</div><div class="line">## 数据卷</div><div class="line">数据卷是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：</div><div class="line"></div><div class="line">数据卷可以在容器之间共享和重用</div><div class="line">对数据卷的修改会立马生效</div><div class="line">对数据卷的更新，不会影响镜像</div><div class="line">数据卷默认会一直存在，即使容器被删除</div><div class="line">*注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷。</div><div class="line"></div><div class="line">## 挂载一个主机目录作为数据卷</div></pre></td></tr></table></figure>
+<p>docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 –name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init<br>docker exec -it lnmp_yaf /bin/bash # 进入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"># docker下lnmp配置</div><div class="line">* 首先安装centos：</div></pre></td></tr></table></figure></p>
+<p> docker pull centeros</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* 启动镜像并进入</div></pre></td></tr></table></figure>
+<p> docker run -it centos:latest bash # -it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 执行一键安装lnmp（需要大概84分钟）</div></pre></td></tr></table></figure></p>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz" target="_blank" rel="external">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">可以需要用yum install 安装wget</div><div class="line"></div><div class="line"># 安装yaf扩展</div><div class="line"></div><div class="line">* yaf 扩展安装</div></pre></td></tr></table></figure></p>
+<p> cd ~<br> wget <a href="http://pecl.php.net/get/yaf-3.0.5.tgz" target="_blank" rel="external">http://pecl.php.net/get/yaf-3.0.5.tgz</a><br> tar zxvf yaf-3.0.5.tgz<br> cd yaf-3.0.5<br> phpize # 生成匹配文件<br> ./configure –with-php-config=/usr/local/php/bin/php-config # php-config存放php的一些配置信息，比如路径等。它会结合本地的php-config配置信息进行前期的编译准备<br> make #开始编译<br> make test<br> make install # 将module下的yaf.so放在/usr/local/php/lib/php/extensions/no-debug-non-zts-20160303/yaf.so下面</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 修改php.ini</div><div class="line">打开php.ini（/usr/local/php/etc/php.ini）,加入下面三行</div></pre></td></tr></table></figure>
+<p>[Yaf]<br>extension=yaf.so<br>yaf.environ=”product”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 添加vhost</div></pre></td></tr></table></figure></p>
+<p>lnmp vhost add</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 修改vhost配置文件</div><div class="line"></div><div class="line">打开/usr/local/nginx/conf/vhost/imooc.com.conf, 修改为下面的代码</div></pre></td></tr></table></figure>
+<p>server<br>    {<br>        listen 80;<br>        server_name imooc.com n;<br>        index index.php;<br>        root  /home/work/imooc;</p>
+<pre><code>    include enable-php.conf;
+
+    if (!-e $request_filename) {
+        rewrite ^/(.*) /index.php?$1 last;
+    }
+
+    access_log  /home/work/logs/imooc.com.log;
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 添加yaf项目</div></pre></td></tr></table></figure>
+<pre><code>cd /home/work/imooc/
+mkdir tmp
+wget https://github.com/laruence/yaf/archive/master.zip
+unzip master.zip 
+cd yaf-master/tools/cg/
+./yaf_cg imooc
+cp -rf tmp/yaf-master/tools/cg/output/imooc/* ./ (在imooc目录下）
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">最后的代码项目结果为：</div><div class="line">![paste image](http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim)</div><div class="line"></div><div class="line"></div><div class="line">* 今后在这个基础上编写代码：</div><div class="line"></div><div class="line">可以使用sublime 直接编写啦！</div></pre></td></tr></table></figure>
+<p>docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 –name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init<br>```</p>
 
       
     </div>
@@ -517,7 +549,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/yaf/" rel="tag"># yaf</a>
           
         </div>
       
@@ -530,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/23/全面解读http/" rel="next" title="全面解读Http">
-                <i class="fa fa-chevron-left"></i> 全面解读Http
+              <a href="/2017/09/28/高性能msyql之mysql构架和历史/" rel="next" title="高性能msyql之mysql构架和历史">
+                <i class="fa fa-chevron-left"></i> 高性能msyql之mysql构架和历史
               </a>
             
           </div>
@@ -539,10 +571,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/08/利用docker搭建yaf/" rel="prev" title="利用docker搭建yaf">
-                利用docker搭建yaf <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -749,7 +777,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql-逻辑架构"><span class="nav-number">1.</span> <span class="nav-text">Mysql 逻辑架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连接管理与安全性"><span class="nav-number">1.1.</span> <span class="nav-text">连接管理与安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化和执行"><span class="nav-number">1.2.</span> <span class="nav-text">优化和执行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发控制"><span class="nav-number">2.</span> <span class="nav-text">并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#读写锁"><span class="nav-number">2.1.</span> <span class="nav-text">读写锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁粒度"><span class="nav-number">2.2.</span> <span class="nav-text">锁粒度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">3.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隔离级别"><span class="nav-number">3.1.</span> <span class="nav-text">隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">3.2.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql中的事务"><span class="nav-number">3.3.</span> <span class="nav-text">mysql中的事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql的存储引擎"><span class="nav-number">3.4.</span> <span class="nav-text">mysql的存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#innodb存储引擎"><span class="nav-number">3.4.1.</span> <span class="nav-text">innodb存储引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是docker？"><span class="nav-number">2.</span> <span class="nav-text">什么是docker？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类比："><span class="nav-number">2.2.</span> <span class="nav-text">类比：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VM-vs-Docker"><span class="nav-number">2.3.</span> <span class="nav-text">VM vs Docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-安装"><span class="nav-number">3.</span> <span class="nav-text">docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for-mac"><span class="nav-number">3.1.</span> <span class="nav-text">for mac</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-基本概念"><span class="nav-number">4.</span> <span class="nav-text">docker 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像"><span class="nav-number">4.1.</span> <span class="nav-text">Docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-容器"><span class="nav-number">4.2.</span> <span class="nav-text">Docker 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Registry"><span class="nav-number">4.3.</span> <span class="nav-text">Docker Registry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker常用命令"><span class="nav-number">5.</span> <span class="nav-text">docker常用命令</span></a></li></ol></div>
             
 
           </div>
