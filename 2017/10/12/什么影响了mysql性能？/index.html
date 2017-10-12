@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -93,16 +93,25 @@
 
 
 
-<meta name="description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="番茄技术小栈">
-<meta property="og:url" content="http://yoursite.com/tags/mysql/index.html">
+<meta name="description" content="影响性能的几个方面 服务器硬件 服务器系统 数据库存储引擎（插件式存储引擎） MyISAM：不支持事务，表级锁 InnoDB：事务级存储引擎，完美支持行级锁，事务ACID特性   数据库参数配置 数据库结构设计和sql语句  服务器硬件cpu资源和可用内存大小 mysql不支持多cpu对同一sql并发处理  磁盘的配置和选择使用传统机器磁盘 特点： 存储空间大，读写慢、价格低、使用最多 传统机器硬">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么影响了mysql性能？">
+<meta property="og:url" content="http://yoursite.com/2017/10/12/什么影响了mysql性能？/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
+<meta property="og:description" content="影响性能的几个方面 服务器硬件 服务器系统 数据库存储引擎（插件式存储引擎） MyISAM：不支持事务，表级锁 InnoDB：事务级存储引擎，完美支持行级锁，事务ACID特性   数据库参数配置 数据库结构设计和sql语句  服务器硬件cpu资源和可用内存大小 mysql不支持多cpu对同一sql并发处理  磁盘的配置和选择使用传统机器磁盘 特点： 存储空间大，读写慢、价格低、使用最多 传统机器硬">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507820882686jxsj2njv.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507821154792dw6y9vmi.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/150782136019151phpx17.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507821503076irwo78ez.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15078222354762ynjdytn.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507821926697t2jpfupf.png?imageslim">
+<meta property="og:updated_time" content="2017-10-12T15:51:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="番茄技术小栈">
-<meta name="twitter:description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
+<meta name="twitter:title" content="什么影响了mysql性能？">
+<meta name="twitter:description" content="影响性能的几个方面 服务器硬件 服务器系统 数据库存储引擎（插件式存储引擎） MyISAM：不支持事务，表级锁 InnoDB：事务级存储引擎，完美支持行级锁，事务ACID特性   数据库参数配置 数据库结构设计和sql语句  服务器硬件cpu资源和可用内存大小 mysql不支持多cpu对同一sql并发处理  磁盘的配置和选择使用传统机器磁盘 特点： 存储空间大，读写慢、价格低、使用最多 传统机器硬">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1507820882686jxsj2njv.png?imageslim">
 
 
 
@@ -130,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/mysql/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/12/什么影响了mysql性能？/"/>
 
 
 
 
 
-  <title>标签: mysql | 番茄技术小栈</title>
+  <title>什么影响了mysql性能？ | 番茄技术小栈</title>
   
 
 
@@ -161,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -299,100 +308,314 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>mysql<small>标签</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/12/什么影响了mysql性能？/" itemprop="url">
-              
-                <span itemprop="name">什么影响了mysql性能？</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-12T22:35:00+08:00"
-              content="2017-10-12" >
-          10-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/12/高并发下给数据库性能有哪些影响/" itemprop="url">
-              
-                <span itemprop="name">高并发下给数据库性能有哪些影响？</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-12T21:19:00+08:00"
-              content="2017-10-12" >
-          10-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/28/高性能msyql之mysql构架和历史/" itemprop="url">
-              
-                <span itemprop="name">高性能msyql之mysql构架和历史</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-28T21:07:00+08:00"
-              content="2017-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/什么影响了mysql性能？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">什么影响了mysql性能？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T22:35:00+08:00">
+                2017-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/12/什么影响了mysql性能？/" class="leancloud_visitors" data-flag-title="什么影响了mysql性能？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="影响性能的几个方面"><a href="#影响性能的几个方面" class="headerlink" title="影响性能的几个方面"></a>影响性能的几个方面</h1><ul>
+<li>服务器硬件</li>
+<li>服务器系统</li>
+<li>数据库存储引擎（插件式存储引擎）<ul>
+<li>MyISAM：不支持事务，表级锁</li>
+<li>InnoDB：事务级存储引擎，完美支持行级锁，事务ACID特性</li>
+</ul>
+</li>
+<li>数据库参数配置</li>
+<li>数据库结构设计和sql语句</li>
+</ul>
+<h1 id="服务器硬件"><a href="#服务器硬件" class="headerlink" title="服务器硬件"></a>服务器硬件</h1><h2 id="cpu资源和可用内存大小"><a href="#cpu资源和可用内存大小" class="headerlink" title="cpu资源和可用内存大小"></a>cpu资源和可用内存大小</h2><ul>
+<li>mysql不支持多cpu对同一sql并发处理</li>
+</ul>
+<h2 id="磁盘的配置和选择"><a href="#磁盘的配置和选择" class="headerlink" title="磁盘的配置和选择"></a>磁盘的配置和选择</h2><h3 id="使用传统机器磁盘"><a href="#使用传统机器磁盘" class="headerlink" title="使用传统机器磁盘"></a>使用传统机器磁盘</h3><ul>
+<li>特点：<ul>
+<li>存储空间大，读写慢、价格低、使用最多</li>
+<li>传统机器硬盘读取数据的过程</li>
+<li>移动磁头到磁盘表面上的正确位置</li>
+<li>等待磁盘旋转，使得所需的数据在磁头之下</li>
+<li>等待磁盘旋转过去，所有所需的数据都被磁头读出</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用RAID增强传统机器硬盘的性能"><a href="#使用RAID增强传统机器硬盘的性能" class="headerlink" title="使用RAID增强传统机器硬盘的性能"></a>使用RAID增强传统机器硬盘的性能</h3><ul>
+<li>什么是RAID(Redundant Array of Independent Disks，独立磁盘冗余阵列)<blockquote>
+<p>RAID是一种把多块独立的硬盘（物理硬盘）按不同的方式组合起来形成一个硬盘组（逻辑硬盘），从而提供比单个硬盘更高的存储性能和提供数据备份技术。组成磁盘阵列的不同方式成为RAID的不同级别（RAID Levels）。组成的磁盘组就像是一个硬盘，用户可以对它进行分区，格式化等，用户对磁盘阵列的操作与对单个硬盘的操作并无二致。</p>
+</blockquote>
+</li>
+<li>RAID 0 定义：<blockquote>
+<p>RAID 0又称为Stripe或Striping，它代表了所有RAID级别中最高的存储性能。RAID 0提高存储性能的原理是把连续的数据分散到多个磁盘上存取，这样，系统有数据请求就可以被多个磁盘并行的执行，每个磁盘执行属于它自己的那部分数据请求。这种数据上的并行操作可以充分利用总线的带宽，显著提高磁盘整体存取性能;RAID 0 并不是真正的RAID结构，没有数据冗余，没有数据校验的磁盘陈列。实现RAID 0至少需要两块以上的硬盘，它将两块以上的硬盘合并成一块，数据连续地分割在每块盘上。 因为带宽加倍，所以读/写速度加倍， 但RAID 0在提高性能的同时，并没有提供数据保护功能，只要任何一块硬盘损坏就会丢失所有数据。因此RAID 0 不可应用于需要数据高可用性的关键领域。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1507820882686jxsj2njv.png?imageslim" alt="paste image"></p>
+<ul>
+<li>RAID 1 定义：<blockquote>
+<p>两组以上的N个磁盘相互作镜像，在一些多线程操作系统中能有很好的读取速度，理论上读取速度等于硬盘数量的倍数，与RAID 0相同。另外写入速度有微小的降低。只要一个磁盘正常即可维持运作，可靠性最高。其原理为在主硬盘上存放数据的同时也在镜像硬盘上写一样的数据。当主硬盘（物理）损坏时，镜像硬盘则代替主硬盘的工作。因为有镜像硬盘做数据备份，所以RAID 1的数据安全性在所有的RAID级别上来说是最好的。但无论用多少磁盘做RAID 1，仅算一个磁盘的容量，是所有RAID中磁盘利用率最低的一个级别。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1507821154792dw6y9vmi.png?imageslim" alt="paste image"></p>
+<ul>
+<li><p>READ 5 定义</p>
+<blockquote>
+<p>RAID Level 5是一种储存性能、数据安全和存储成本兼顾的存储解决方案。它使用的是Disk Striping（硬盘分区）技术。RAID 5至少需要三块硬盘，RAID 5不是对存储的数据进行备份，而是把数据和相对应的奇偶校验信息存储到组成RAID5的各个磁盘上，并且奇偶校验信息和相对应的数据分别存储于不同的磁盘上。当RAID5的一个磁盘数据发生损坏后，可以利用剩下的数据和相应的奇偶校验信息去恢复被损坏的数据。RAID 5可以理解为是RAID 0和RAID 1的折衷方案。RAID 5可以为系统提供数据安全保障，但保障程度要比镜像低而磁盘空间利用率要比镜像高。RAID 5具有和RAID 0相近似的数据读取速度，只是因为多了一个奇偶校验信息，写入数据的速度相对单独写入一块硬盘的速度略慢，若使用“回写缓存”可以让性能改善不少。同时由于多个数据对应一个奇偶校验信息，RAID 5的磁盘空间利用率要比RAID 1高，存储成本相对较便宜。</p>
+</blockquote>
+<p>  <img src="http://otwbgbfg8.bkt.clouddn.com/150782136019151phpx17.png?imageslim" alt="paste image"></p>
+</li>
+<li><p>READ 10</p>
+<blockquote>
+<p>RAID 10是先镜射再分区数据，再将所有硬盘分为两组，视为是RAID 0的最低组合，然后将这两组各自视为RAID 1运作。当RAID 10有一个硬盘受损，其余硬盘会继续运作。RAID 01只要有一个硬盘受损，同组RAID 0的所有硬盘都会停止运作，只剩下其他组的硬盘运作，可靠性较低。如果以六个硬盘建RAID 01，镜射再用三个建RAID 0，那么坏一个硬盘便会有三个硬盘离线。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1507821503076irwo78ez.png?imageslim" alt="paste image"></p>
+<ul>
+<li>对比</li>
+</ul>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/15078222354762ynjdytn.png?imageslim" alt="paste image"></p>
+<h3 id="使用固态存储SSD和PCIe卡"><a href="#使用固态存储SSD和PCIe卡" class="headerlink" title="使用固态存储SSD和PCIe卡"></a>使用固态存储SSD和PCIe卡</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1507821926697t2jpfupf.png?imageslim" alt="paste image"></p>
+<ul>
+<li>特点相对于机械磁盘<ul>
+<li>相比相比机械磁盘固态磁盘更容易损坏（每次写操作，都要对写入的单元进行擦除操作）</li>
+<li>相比机械磁盘固态磁盘有更好的随机读写性能</li>
+<li>相比机械磁盘固态磁盘能更好的支持并发</li>
+</ul>
+</li>
+</ul>
+<h4 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h4><ul>
+<li>特点<ul>
+<li>使用SATA接口：可以替换传统磁盘而不需要任何改变</li>
+<li>SATA接口的SSD同样支持RAID技术</li>
+</ul>
+</li>
+</ul>
+<h4 id="PCI-E-SSD"><a href="#PCI-E-SSD" class="headerlink" title="PCI-E SSD"></a>PCI-E SSD</h4><ul>
+<li>特点<ul>
+<li>无法使用SATA接口：需要独特的驱动和配置</li>
+<li>价格相对于SSD要贵，但性能比SSD更好</li>
+</ul>
+</li>
+</ul>
+<h4 id="固态存储的使用场景"><a href="#固态存储的使用场景" class="headerlink" title="固态存储的使用场景"></a>固态存储的使用场景</h4><pre><code>* 使用于存在大量随机I/O的场景
+* 使用于解决单线程负载的I/O瓶颈
+</code></pre><h3 id="使用网络存储NAS和SAN"><a href="#使用网络存储NAS和SAN" class="headerlink" title="使用网络存储NAS和SAN"></a>使用网络存储NAS和SAN</h3><h1 id="服务器系统"><a href="#服务器系统" class="headerlink" title="服务器系统"></a>服务器系统</h1><h1 id="数据库存储引擎"><a href="#数据库存储引擎" class="headerlink" title="数据库存储引擎"></a>数据库存储引擎</h1><h1 id="数据库参数配置"><a href="#数据库参数配置" class="headerlink" title="数据库参数配置"></a>数据库参数配置</h1><h1 id="数据库结构设计和sql语句"><a href="#数据库结构设计和sql语句" class="headerlink" title="数据库结构设计和sql语句"></a>数据库结构设计和sql语句</h1>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/高并发下给数据库性能有哪些影响/" rel="next" title="高并发下给数据库性能有哪些影响？">
+                <i class="fa fa-chevron-left"></i> 高并发下给数据库性能有哪些影响？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -400,6 +623,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
 
         </div>
         
@@ -420,8 +649,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -535,6 +773,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#影响性能的几个方面"><span class="nav-number">1.</span> <span class="nav-text">影响性能的几个方面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器硬件"><span class="nav-number">2.</span> <span class="nav-text">服务器硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu资源和可用内存大小"><span class="nav-number">2.1.</span> <span class="nav-text">cpu资源和可用内存大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的配置和选择"><span class="nav-number">2.2.</span> <span class="nav-text">磁盘的配置和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用传统机器磁盘"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用传统机器磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RAID增强传统机器硬盘的性能"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用RAID增强传统机器硬盘的性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用固态存储SSD和PCIe卡"><span class="nav-number">2.2.3.</span> <span class="nav-text">使用固态存储SSD和PCIe卡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSD"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCI-E-SSD"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">PCI-E SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固态存储的使用场景"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">固态存储的使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用网络存储NAS和SAN"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用网络存储NAS和SAN</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器系统"><span class="nav-number">3.</span> <span class="nav-text">服务器系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库存储引擎"><span class="nav-number">4.</span> <span class="nav-text">数据库存储引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库参数配置"><span class="nav-number">5.</span> <span class="nav-text">数据库参数配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库结构设计和sql语句"><span class="nav-number">6.</span> <span class="nav-text">数据库结构设计和sql语句</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -655,10 +909,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -684,6 +938,10 @@
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140241"></script>
+      <!-- UY END -->
     
   
 
