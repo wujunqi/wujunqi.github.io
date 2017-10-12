@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="yaf,接口,php," />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -93,20 +93,18 @@
 
 
 
-<meta name="description" content="接口编写完成之后，接口的测试非常重要，之前一直没有意识到，今天学习了接口自测脚本的编写。">
-<meta name="keywords" content="yaf,接口,php">
+<meta name="description" content="基本概念 并发量：同一时间处理的请求的数量  同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。  QPS:每秒钟处理的查询量；每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。  TPS: Transa">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高性能的PHP API 接口开发之API自测脚本">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/高性能的PHP-API-接口开发之API自测脚本/index.html">
+<meta property="og:title" content="高并发下给数据库性能有哪些影响？">
+<meta property="og:url" content="http://yoursite.com/2017/10/12/高并发下给数据库性能有哪些影响/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="接口编写完成之后，接口的测试非常重要，之前一直没有意识到，今天学习了接口自测脚本的编写。">
+<meta property="og:description" content="基本概念 并发量：同一时间处理的请求的数量  同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。  QPS:每秒钟处理的查询量；每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。  TPS: Transa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507560252287i5j5k264.png?imageslim">
-<meta property="og:updated_time" content="2017-10-09T14:45:49.000Z">
+<meta property="og:updated_time" content="2017-10-12T14:25:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高性能的PHP API 接口开发之API自测脚本">
-<meta name="twitter:description" content="接口编写完成之后，接口的测试非常重要，之前一直没有意识到，今天学习了接口自测脚本的编写。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1507560252287i5j5k264.png?imageslim">
+<meta name="twitter:title" content="高并发下给数据库性能有哪些影响？">
+<meta name="twitter:description" content="基本概念 并发量：同一时间处理的请求的数量  同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。  QPS:每秒钟处理的查询量；每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。  TPS: Transa">
 
 
 
@@ -134,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/09/高性能的PHP-API-接口开发之API自测脚本/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/12/高并发下给数据库性能有哪些影响/"/>
 
 
 
 
 
-  <title>高性能的PHP API 接口开发之API自测脚本 | 番茄技术小栈</title>
+  <title>高并发下给数据库性能有哪些影响？ | 番茄技术小栈</title>
   
 
 
@@ -313,7 +311,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/高性能的PHP-API-接口开发之API自测脚本/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/高并发下给数据库性能有哪些影响/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wujunqi">
@@ -330,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">高性能的PHP API 接口开发之API自测脚本</h1>
+          <h1 class="post-title" itemprop="name headline">高并发下给数据库性能有哪些影响？</h1>
         
 
         <div class="post-meta">
@@ -342,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T22:38:00+08:00">
-                2017-10-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:19:00+08:00">
+                2017-10-12
               </time>
             
 
@@ -365,30 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/yaf/" itemprop="url" rel="index">
-                    <span itemprop="name">yaf</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/yaf/接口/" itemprop="url" rel="index">
-                    <span itemprop="name">接口</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -404,7 +380,7 @@
 
           
           
-             <span id="/2017/10/09/高性能的PHP-API-接口开发之API自测脚本/" class="leancloud_visitors" data-flag-title="高性能的PHP API 接口开发之API自测脚本">
+             <span id="/2017/10/12/高并发下给数据库性能有哪些影响/" class="leancloud_visitors" data-flag-title="高并发下给数据库性能有哪些影响？">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -437,20 +413,143 @@
       
 
       
-        <p>接口编写完成之后，接口的测试非常重要，之前一直没有意识到，今天学习了接口自测脚本的编写。<br><a id="more"></a></p>
-<h1 id="APi自测脚本"><a href="#APi自测脚本" class="headerlink" title="APi自测脚本"></a>APi自测脚本</h1><h2 id="api脚本测试的作用"><a href="#api脚本测试的作用" class="headerlink" title="api脚本测试的作用"></a>api脚本测试的作用</h2><ul>
-<li>上线后代码调整的验证</li>
-<li>了解接口作用、功能的好方法</li>
-</ul>
-<h2 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写"></a>代码编写</h2><ul>
-<li><p>首先要安装curl通过http访问自己的接口地址</p>
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><ul>
+<li><p>并发量：同一时间处理的请求的数量</p>
 </li>
-<li><p>代码：</p>
+<li><p>同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。</p>
+</li>
+<li><p>QPS:每秒钟处理的查询量；每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。</p>
+</li>
+<li><p>TPS: Transactions Per Second（每秒传输的事物处理个数），即服务器每秒处理的事务数。TPS包括一条消息入和一条消息出，加上一次用户数据库访问。（业务TPS = CAPS × 每个呼叫平均TPS）</p>
 </li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">	<span class="keyword">require_once</span> <span class="keyword">__DIR__</span> .<span class="string">"/../vendor/autoload.php"</span>;</div><div class="line"></div><div class="line">	<span class="keyword">use</span> \<span class="title">Curl</span>\<span class="title">Curl</span>;</div><div class="line"></div><div class="line">	$host = <span class="string">"http://imooc.com"</span>;</div><div class="line">	$curl = <span class="keyword">new</span> Curl();</div><div class="line">	$uname = <span class="string">'wujunqi_uname_'</span>.rand();</div><div class="line">	$pwd   = <span class="string">'wujunqi_pwd_'</span>.rand();</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 注册接口验证</span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	$curl-&gt;post($host.<span class="string">"/user/register"</span>, <span class="keyword">array</span>(<span class="string">"uname"</span> =&gt; $uname, <span class="string">"pwd"</span> =&gt; $pwd));</div><div class="line">	<span class="comment">// var_dump($curl);die;</span></div><div class="line">	<span class="keyword">if</span> ($curl-&gt;error) &#123;</div><div class="line">		<span class="keyword">die</span>(<span class="string">"Error:"</span> . $curl-&gt;error_code. <span class="string">":"</span> . $curl-&gt;error_message . <span class="string">"\n"</span>);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		$rep = json_decode($curl-&gt;response, <span class="keyword">true</span>);</div><div class="line">		<span class="keyword">if</span> ($rep[<span class="string">'errno'</span>] != <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">die</span>(<span class="string">"Error:注册用户失败，注册接口异常。错误信息："</span> . $rep[<span class="string">'errmsg'</span>].<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">echo</span> <span class="string">"注册用户接口测试成功，注册新用户："</span>.$unmae.<span class="string">"\n"</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 登录接口验证</span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	$curl-&gt;post($host.<span class="string">"/user/login?submit=1"</span>, <span class="keyword">array</span>(<span class="string">"uname"</span> =&gt; $uname, <span class="string">"pwd"</span> =&gt; $pwd));</div><div class="line">	<span class="keyword">if</span> ($curl-&gt;error) &#123;</div><div class="line">		<span class="keyword">die</span>(<span class="string">"Error:"</span> . $curl-&gt;error_code. <span class="string">":"</span> . $curl-&gt;error_message . <span class="string">"\n"</span>);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		$rep = json_decode($curl-&gt;response, <span class="keyword">true</span>);</div><div class="line">		<span class="keyword">if</span> ($rep[<span class="string">'errno'</span>] != <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">die</span>(<span class="string">"Error:登录失败，登录接口异常。错误信息："</span> . $rep[<span class="string">'errmsg'</span>].<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">echo</span> <span class="string">"登录接口测试成功，登录用户：$uname, 密码： $pwd \n"</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">echo</span> <span class="string">"check done"</span>;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1507560252287i5j5k264.png?imageslim" alt="paste image"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>接口测试脚本一定要写，一劳永逸！</p>
+<h1 id="影响数据库的因素"><a href="#影响数据库的因素" class="headerlink" title="影响数据库的因素"></a>影响数据库的因素</h1><ul>
+<li><p>sql查询速度</p>
+</li>
+<li><p>网卡流量</p>
+</li>
+<li><p>服务器硬件</p>
+</li>
+<li><p>磁盘IO</p>
+</li>
+</ul>
+<h2 id="超高的QPS和TPS"><a href="#超高的QPS和TPS" class="headerlink" title="超高的QPS和TPS"></a>超高的QPS和TPS</h2><ul>
+<li>风险：效率低下的sql</li>
+</ul>
+<h2 id="大量的并发和超高的CPU使用率"><a href="#大量的并发和超高的CPU使用率" class="headerlink" title="大量的并发和超高的CPU使用率"></a>大量的并发和超高的CPU使用率</h2><ul>
+<li>风险：<ul>
+<li>大量的并发：数据库的连接数被占满 （max_connections 默认100）</li>
+<li>超高的CPU使用率： 因cpu资源耗尽而出现宕机</li>
+</ul>
+</li>
+</ul>
+<h2 id="磁盘IO"><a href="#磁盘IO" class="headerlink" title="磁盘IO"></a>磁盘IO</h2><ul>
+<li>风险：磁盘IO性能突然下降（其他大量消耗磁盘性能的计划任务，调整计划任务，做好磁盘维护）</li>
+</ul>
+<h2 id="网卡流量"><a href="#网卡流量" class="headerlink" title="网卡流量"></a>网卡流量</h2><ul>
+<li><p>风险： 网卡IO被占满（1000Mb/8 ~= 100MB)</p>
+</li>
+<li><p>解决方法：</p>
+<ul>
+<li>减少从服务器的数量</li>
+<li>进行分级缓存</li>
+<li>避免使用 <strong> select * </strong> 进行查询</li>
+<li>分离业务网络和服务器网络</li>
+</ul>
+</li>
+</ul>
+<h2 id="大表带来的问题"><a href="#大表带来的问题" class="headerlink" title="大表带来的问题"></a>大表带来的问题</h2><h2 id="大表"><a href="#大表" class="headerlink" title="大表"></a>大表</h2><ul>
+<li>记录行数巨大，单表超过千万行</li>
+<li>表数据文件巨大，表数据文件超过10G</li>
+</ul>
+<h2 id="大表对查询的影响："><a href="#大表对查询的影响：" class="headerlink" title="大表对查询的影响："></a>大表对查询的影响：</h2><ul>
+<li>慢查询：很难再一定得时间内过滤出所需要的数据</li>
+</ul>
+<h2 id="大表对DDL操作的影响"><a href="#大表对DDL操作的影响" class="headerlink" title="大表对DDL操作的影响"></a>大表对DDL操作的影响</h2><ul>
+<li><p>建立索引需要很长的时间</p>
+<ul>
+<li>风险<ul>
+<li>Mysql版本&lt;5.5建立索引会锁表</li>
+<li>Mysql版本&gt;=5.5 虽然不会锁表但会引起主从延迟</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改表结果需要长时间锁表</p>
+<ul>
+<li>风险<ul>
+<li>会造成长时间的主从延迟</li>
+<li>影响正常的数据操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何处理大表"><a href="#如何处理大表" class="headerlink" title="如何处理大表"></a>如何处理大表</h3><ul>
+<li><p>分库分表：把一张大表分成多个小表</p>
+<ul>
+<li>难点：<ul>
+<li>分表主键的选择</li>
+<li>分表后跨分区数据的查询和统计</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>大表的历史数据归档：减少对前后端业务的影响</p>
+<ul>
+<li>难点：<ul>
+<li>归档时间点的选择</li>
+<li>如何进行归档操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="大事务带来的问题"><a href="#大事务带来的问题" class="headerlink" title="大事务带来的问题"></a>大事务带来的问题</h2><h3 id="什么是事务"><a href="#什么是事务" class="headerlink" title="什么是事务"></a>什么是事务</h3><ul>
+<li><p>定义</p>
+<blockquote>
+<p>事务是数据库系统区别与其他一切文件系统的重要特性之一；事务是一组具有原子性的sql语句，或是一个独立的工作单元；符合原子性、一致性、隔离性、持久性。</p>
+</blockquote>
+</li>
+<li><p>原子性（atomicity）：</p>
+<blockquote>
+<p>一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，要么全部失败回滚，对于一个事务来说，不可能只执行其中的一部分。</p>
+</blockquote>
+</li>
+<li><p>一致性(consistency):</p>
+<blockquote>
+<p>数据库总是从一个一致性的状态转换到另外一个一致性的状态。如果事务最终没有提交，所有事务中所做的修改也不会保存到数据库中。(<strong>转账之前与转账以后金额的总和不变</strong>）</p>
+</blockquote>
+</li>
+<li><p>隔离性（isolation):</p>
+<blockquote>
+<p>通常来说，一个事务所做的修改在最终提交以前，对其他事务是不可见的。（<strong>转账未提交之前，别的用户看到的金额仍然是之前的金额</strong>）</p>
+</blockquote>
+</li>
+<li><p>持久性（durability) </p>
+<blockquote>
+<p>一点事务提交，则其所做的修改就会永久保存到数据库中。即使系统崩溃，已经提交的修改数据也不会丢失。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="什么大事务"><a href="#什么大事务" class="headerlink" title="什么大事务"></a>什么大事务</h3><ul>
+<li><p>定义</p>
+<blockquote>
+<p>运行时间比较长，操作的数据比较多的事务</p>
+</blockquote>
+</li>
+<li><p>风险：</p>
+<ul>
+<li>锁定太多的数据，造成大量的阻塞和锁超时。</li>
+<li>回滚时所需时间比较长</li>
+<li>执行时间长，容易造成主从延迟</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何处理大事务"><a href="#如何处理大事务" class="headerlink" title="如何处理大事务"></a>如何处理大事务</h3><ul>
+<li>避免一次处理太多的数据</li>
+<li>移出不必要在事务中的select操作</li>
+</ul>
 
       
     </div>
@@ -501,11 +600,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/yaf/" rel="tag"># yaf</a>
-          
-            <a href="/tags/接口/" rel="tag"># 接口</a>
-          
-            <a href="/tags/php/" rel="tag"># php</a>
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -518,8 +613,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/09/高性能的PHP-API-接口开发之结合第三方扩展接口/" rel="next" title="高性能的PHP API 接口开发之结合第三方扩展接口">
-                <i class="fa fa-chevron-left"></i> 高性能的PHP API 接口开发之结合第三方扩展接口
+              <a href="/2017/10/09/高性能的PHP-API-接口开发之API自测脚本/" rel="next" title="高性能的PHP API 接口开发之API自测脚本">
+                <i class="fa fa-chevron-left"></i> 高性能的PHP API 接口开发之API自测脚本
               </a>
             
           </div>
@@ -527,10 +622,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/12/高并发下给数据库性能有哪些影响/" rel="prev" title="高并发下给数据库性能有哪些影响？">
-                高并发下给数据库性能有哪些影响？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -737,7 +828,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#APi自测脚本"><span class="nav-number">1.</span> <span class="nav-text">APi自测脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#api脚本测试的作用"><span class="nav-number">1.1.</span> <span class="nav-text">api脚本测试的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码编写"><span class="nav-number">1.2.</span> <span class="nav-text">代码编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试结果"><span class="nav-number">1.3.</span> <span class="nav-text">测试结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#影响数据库的因素"><span class="nav-number">2.</span> <span class="nav-text">影响数据库的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#超高的QPS和TPS"><span class="nav-number">2.1.</span> <span class="nav-text">超高的QPS和TPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大量的并发和超高的CPU使用率"><span class="nav-number">2.2.</span> <span class="nav-text">大量的并发和超高的CPU使用率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘IO"><span class="nav-number">2.3.</span> <span class="nav-text">磁盘IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网卡流量"><span class="nav-number">2.4.</span> <span class="nav-text">网卡流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大表带来的问题"><span class="nav-number">2.5.</span> <span class="nav-text">大表带来的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大表"><span class="nav-number">2.6.</span> <span class="nav-text">大表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大表对查询的影响："><span class="nav-number">2.7.</span> <span class="nav-text">大表对查询的影响：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大表对DDL操作的影响"><span class="nav-number">2.8.</span> <span class="nav-text">大表对DDL操作的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何处理大表"><span class="nav-number">2.8.1.</span> <span class="nav-text">如何处理大表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大事务带来的问题"><span class="nav-number">2.9.</span> <span class="nav-text">大事务带来的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事务"><span class="nav-number">2.9.1.</span> <span class="nav-text">什么是事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么大事务"><span class="nav-number">2.9.2.</span> <span class="nav-text">什么大事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何处理大事务"><span class="nav-number">2.9.3.</span> <span class="nav-text">如何处理大事务</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
