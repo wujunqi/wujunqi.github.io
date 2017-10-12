@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="基本概念 并发量：同一时间处理的请求的数量  同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。  QPS:每秒钟处理的查询量；每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。  TPS: Transa">
+<meta name="description" content="简单了解数据库在繁忙时的系统状态；以及对性能有影响的一些因素">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高并发下给数据库性能有哪些影响？">
 <meta property="og:url" content="http://yoursite.com/2017/10/12/高并发下给数据库性能有哪些影响/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="基本概念 并发量：同一时间处理的请求的数量  同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。  QPS:每秒钟处理的查询量；每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。  TPS: Transa">
+<meta property="og:description" content="简单了解数据库在繁忙时的系统状态；以及对性能有影响的一些因素">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T14:25:35.000Z">
+<meta property="og:updated_time" content="2017-10-12T14:27:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高并发下给数据库性能有哪些影响？">
-<meta name="twitter:description" content="基本概念 并发量：同一时间处理的请求的数量  同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。  QPS:每秒钟处理的查询量；每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。对应fetches/sec，即每秒的响应请求数，也即是最大吞吐能力。  TPS: Transa">
+<meta name="twitter:description" content="简单了解数据库在繁忙时的系统状态；以及对性能有影响的一些因素">
 
 
 
@@ -413,7 +413,9 @@
       
 
       
-        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><ul>
+        <p>简单了解数据库在繁忙时的系统状态；以及对性能有影响的一些因素</p>
+<a id="more"></a>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><ul>
 <li><p>并发量：同一时间处理的请求的数量</p>
 </li>
 <li><p>同时连接数：同一连接数一般比同一处理的请求书要高，因为有很多连接处于sleep状态。</p>
