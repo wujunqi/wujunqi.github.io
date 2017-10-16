@@ -111,8 +111,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507828846732glbnb1bw.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507878673777hhqu8tsc.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507899669527a6cc6c2z.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507903084187ga1yzfxh.png?imageslim">
-<meta property="og:updated_time" content="2017-10-13T15:17:57.000Z">
+<meta property="og:updated_time" content="2017-10-13T17:02:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么影响了mysql性能？">
 <meta name="twitter:description" content="介绍服务器硬件、服务器系统、数据库存储引擎（插件式存储引擎）、数据库参数配置、数据库结构设计和sql语句对数据库的影响">
@@ -666,77 +665,12 @@
 <li>独占锁（也称写锁）<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507899669527a6cc6c2z.png?imageslim" alt="paste image"></li>
 </ul>
 <h4 id="锁的粒度"><a href="#锁的粒度" class="headerlink" title="锁的粒度"></a>锁的粒度</h4><ul>
-<li>表级锁 （<code>lock table youTableName; unlock table youTableName</code>)</li>
-<li>行级锁</li>
+<li>表级锁 （<figure class="highlight plain"><figcaption><span>table youTableName; unlock table youTableName```)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line">* 行级锁</div><div class="line"></div><div class="line">#### 阻塞和死锁</div><div class="line">* 什么是阻塞？</div><div class="line">&gt;阻塞是由于资源不足引起的排队等待现象。</div><div class="line">* 什么死锁？</div><div class="line">&gt;死锁是由于两个对象在拥有一份资源的情况下申请另一份资源，而另一份资源恰好又是这两对象正持有的，导致两对象无法完成操作，且所持资源无法释放。</div><div class="line"></div><div class="line">#### 使用场景</div><div class="line">* innodb适用大多数OLTP应用</div><div class="line"></div><div class="line">## mysql常用存储引擎之CSV</div><div class="line"></div><div class="line">### 文件存储特点</div><div class="line">* 数据以文本方式存储在文件中</div><div class="line">* .csv 文件存储表的内容</div><div class="line">* .CSM文件存储表的元数据如表状态和数据量</div><div class="line">* .frm文件存储表结构信息</div><div class="line">    </div><div class="line">### CSV引擎的特点</div><div class="line">* 以CSV格式进行数据存储</div><div class="line">* 所有列必须都是不能为NULL的</div><div class="line">* 不支持索引</div><div class="line">* 可以对数据文件直接编辑，保存文本文件内容</div><div class="line">    </div><div class="line">### 适用场景</div><div class="line">* 适合做为数据交换的中间表</div><div class="line">![paste image](http://otwbgbfg8.bkt.clouddn.com/1507903084187ga1yzfxh.png?imageslim)</div><div class="line"></div><div class="line">## mysql常用存储引擎之Arichive</div><div class="line"></div><div class="line">### 文件系统存储特点</div><div class="line"></div><div class="line">* 以zlib对表数据进行压缩，磁盘i/0更少</div><div class="line">* 数据存储在ARZ为后缀的文件中</div><div class="line">    </div><div class="line">### Archive存储引擎的特点</div><div class="line">* 只支持insert和select操作</div><div class="line">* 只循序在自增id列上加索引</div><div class="line"></div><div class="line">### 适用场景</div><div class="line">* 日志和数据采集应用</div><div class="line"></div><div class="line">## mysql常用存储引擎之Memory</div><div class="line"></div><div class="line">### 文件系统存储特点</div><div class="line">* 也称HEAP存储引擎，所以数据保存在内存中</div><div class="line"></div><div class="line">### 功能特点</div><div class="line">* 支持HASH（等值查找）索引和BTree（范围查找）索引</div><div class="line">* 所有字段都为固定长度 varchar(10)=char(10)</div><div class="line">* 不支持blog和text等大字段</div><div class="line">* memory存储引擎使用表级锁</div><div class="line">* 最大大小由max_heap_table_size参数决定</div><div class="line"></div><div class="line">### 容易混淆的概念</div><div class="line">* memory存储引擎表</div><div class="line">* 临时表</div><div class="line">	* 系统使用的临时表</div><div class="line">    	* 超过限制使用myisam临时表</div><div class="line">        * 未超过限制使用memory表</div><div class="line">    * create temporary table 建立的临时表</div><div class="line"></div><div class="line">### 使用场景</div><div class="line">* 用于查找或者映射表，例如邮编和地区的对应表</div><div class="line">* 用于保存数据分析中产生的中间表</div><div class="line">* 用于缓存周期性聚合数据的结果表</div><div class="line"></div><div class="line">注意：Memory数据容易丢失，所以要求数据可再生。</div><div class="line"></div><div class="line">## mysql常用存储引擎之Federated</div><div class="line"></div><div class="line">### 特点</div><div class="line">* 提供了访问远程Mysql服务器上表的方法</div><div class="line">* 本地不存储数据，数据全部放到远程服务器上</div><div class="line">* 本地需要保存表结构和远程服务器的连接信息</div><div class="line"></div><div class="line">### 如何使用</div><div class="line">* 默认禁止，启用需要在启动时增加federated参数</div><div class="line">* ```mysql://user_name[:password]@host_name:[:port_num]/db_name/tbl_name</div></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="阻塞和死锁"><a href="#阻塞和死锁" class="headerlink" title="阻塞和死锁"></a>阻塞和死锁</h4><ul>
-<li>什么是阻塞？<blockquote>
-<p>阻塞是由于资源不足引起的排队等待现象。</p>
-</blockquote>
-</li>
-<li>什么死锁？<blockquote>
-<p>死锁是由于两个对象在拥有一份资源的情况下申请另一份资源，而另一份资源恰好又是这两对象正持有的，导致两对象无法完成操作，且所持资源无法释放。</p>
-</blockquote>
-</li>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>偶尔的统计分析及手工查询</li>
 </ul>
-<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
-<li>innodb适用大多数OLTP应用</li>
-</ul>
-<h2 id="mysql常用存储引擎之CSV"><a href="#mysql常用存储引擎之CSV" class="headerlink" title="mysql常用存储引擎之CSV"></a>mysql常用存储引擎之CSV</h2><h3 id="文件存储特点"><a href="#文件存储特点" class="headerlink" title="文件存储特点"></a>文件存储特点</h3><ul>
-<li>数据以文本方式存储在文件中</li>
-<li>.csv 文件存储表的内容</li>
-<li>.CSM文件存储表的元数据如表状态和数据量</li>
-<li>.frm文件存储表结构信息</li>
-</ul>
-<h3 id="CSV引擎的特点"><a href="#CSV引擎的特点" class="headerlink" title="CSV引擎的特点"></a>CSV引擎的特点</h3><ul>
-<li>以CSV格式进行数据存储</li>
-<li>所有列必须都是不能为NULL的</li>
-<li>不支持索引</li>
-<li>可以对数据文件直接编辑，保存文本文件内容</li>
-</ul>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
-<li>适合做为数据交换的中间表<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507903084187ga1yzfxh.png?imageslim" alt="paste image"></li>
-</ul>
-<h2 id="mysql常用存储引擎之Arichive"><a href="#mysql常用存储引擎之Arichive" class="headerlink" title="mysql常用存储引擎之Arichive"></a>mysql常用存储引擎之Arichive</h2><h3 id="文件系统存储特点"><a href="#文件系统存储特点" class="headerlink" title="文件系统存储特点"></a>文件系统存储特点</h3><ul>
-<li>以zlib对表数据进行压缩，磁盘i/0更少</li>
-<li>数据存储在ARZ为后缀的文件中</li>
-</ul>
-<h3 id="Archive存储引擎的特点"><a href="#Archive存储引擎的特点" class="headerlink" title="Archive存储引擎的特点"></a>Archive存储引擎的特点</h3><ul>
-<li>只支持insert和select操作</li>
-<li>只循序在自增id列上加索引</li>
-</ul>
-<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
-<li>日志和数据采集应用</li>
-</ul>
-<h2 id="mysql常用存储引擎之Memory"><a href="#mysql常用存储引擎之Memory" class="headerlink" title="mysql常用存储引擎之Memory"></a>mysql常用存储引擎之Memory</h2><h3 id="文件系统存储特点-1"><a href="#文件系统存储特点-1" class="headerlink" title="文件系统存储特点"></a>文件系统存储特点</h3><ul>
-<li>也称HEAP存储引擎，所以数据保存在内存中</li>
-</ul>
-<h3 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h3><ul>
-<li>支持HASH（等值查找）索引和BTree（范围查找）索引</li>
-<li>所有字段都为固定长度 varchar(10)=char(10)</li>
-<li>不支持blog和text等大字段</li>
-<li>memory存储引擎使用表级锁</li>
-<li>最大大小由max_heap_table_size参数决定</li>
-</ul>
-<h3 id="容易混淆的概念"><a href="#容易混淆的概念" class="headerlink" title="容易混淆的概念"></a>容易混淆的概念</h3><ul>
-<li>memory存储引擎表</li>
-<li>临时表<ul>
-<li>系统使用的临时表<ul>
-<li>超过限制使用myisam临时表</li>
-<li>未超过限制使用memory表</li>
-</ul>
-</li>
-<li>create temporary table 建立的临时表</li>
-</ul>
-</li>
-</ul>
-<h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
-<li>用于查找或者映射表，例如邮编和地区的对应表</li>
-<li>用于保存数据分析中产生的中间表</li>
-<li>用于缓存周期性聚合数据的结果表</li>
-</ul>
-<p>注意：Memory数据容易丢失，所以要求数据可再生。</p>
-<h2 id="mysql常用存储引擎之Federated"><a href="#mysql常用存储引擎之Federated" class="headerlink" title="mysql常用存储引擎之Federated"></a>mysql常用存储引擎之Federated</h2><h1 id="数据库参数配置"><a href="#数据库参数配置" class="headerlink" title="数据库参数配置"></a>数据库参数配置</h1><h1 id="数据库结构设计和sql语句"><a href="#数据库结构设计和sql语句" class="headerlink" title="数据库结构设计和sql语句"></a>数据库结构设计和sql语句</h1>
+<h1 id="数据库参数配置"><a href="#数据库参数配置" class="headerlink" title="数据库参数配置"></a>数据库参数配置</h1><h1 id="数据库结构设计和sql语句"><a href="#数据库结构设计和sql语句" class="headerlink" title="数据库结构设计和sql语句"></a>数据库结构设计和sql语句</h1>
       
     </div>
 
@@ -909,7 +843,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -920,7 +854,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -931,7 +865,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1018,7 +952,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#影响性能的几个方面"><span class="nav-number">1.</span> <span class="nav-text">影响性能的几个方面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器硬件"><span class="nav-number">2.</span> <span class="nav-text">服务器硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu资源和可用内存大小"><span class="nav-number">2.1.</span> <span class="nav-text">cpu资源和可用内存大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的配置和选择"><span class="nav-number">2.2.</span> <span class="nav-text">磁盘的配置和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用传统机器磁盘"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用传统机器磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RAID增强传统机器硬盘的性能"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用RAID增强传统机器硬盘的性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用固态存储SSD和PCIe卡"><span class="nav-number">2.2.3.</span> <span class="nav-text">使用固态存储SSD和PCIe卡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSD"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCI-E-SSD"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">PCI-E SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固态存储的使用场景"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">固态存储的使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用网络存储NAS和SAN"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用网络存储NAS和SAN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络对性能的影响"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">网络对性能的影响</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器系统"><span class="nav-number">3.</span> <span class="nav-text">服务器系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统对性能的影响"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统对性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOs系统参数优化"><span class="nav-number">3.2.</span> <span class="nav-text">CentOs系统参数优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统对性能的影响"><span class="nav-number">3.3.</span> <span class="nav-text">文件系统对性能的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库存储引擎"><span class="nav-number">4.</span> <span class="nav-text">数据库存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql体系结构"><span class="nav-number">4.1.</span> <span class="nav-text">mysql体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之MyISAM"><span class="nav-number">4.2.</span> <span class="nav-text">mysql常用存储引擎之MyISAM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之Innodb"><span class="nav-number">4.3.</span> <span class="nav-text">mysql常用存储引擎之Innodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Innodb存储引擎的特性"><span class="nav-number">4.3.1.</span> <span class="nav-text">Innodb存储引擎的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是锁"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">什么是锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的类型"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">锁的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的粒度"><span class="nav-number">4.3.1.3.</span> <span class="nav-text">锁的粒度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阻塞和死锁"><span class="nav-number">4.3.1.4.</span> <span class="nav-text">阻塞和死锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用场景"><span class="nav-number">4.3.1.5.</span> <span class="nav-text">使用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之CSV"><span class="nav-number">4.4.</span> <span class="nav-text">mysql常用存储引擎之CSV</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件存储特点"><span class="nav-number">4.4.1.</span> <span class="nav-text">文件存储特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSV引擎的特点"><span class="nav-number">4.4.2.</span> <span class="nav-text">CSV引擎的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适用场景"><span class="nav-number">4.4.3.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之Arichive"><span class="nav-number">4.5.</span> <span class="nav-text">mysql常用存储引擎之Arichive</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统存储特点"><span class="nav-number">4.5.1.</span> <span class="nav-text">文件系统存储特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Archive存储引擎的特点"><span class="nav-number">4.5.2.</span> <span class="nav-text">Archive存储引擎的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适用场景-1"><span class="nav-number">4.5.3.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之Memory"><span class="nav-number">4.6.</span> <span class="nav-text">mysql常用存储引擎之Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统存储特点-1"><span class="nav-number">4.6.1.</span> <span class="nav-text">文件系统存储特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能特点"><span class="nav-number">4.6.2.</span> <span class="nav-text">功能特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容易混淆的概念"><span class="nav-number">4.6.3.</span> <span class="nav-text">容易混淆的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景-1"><span class="nav-number">4.6.4.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之Federated"><span class="nav-number">4.7.</span> <span class="nav-text">mysql常用存储引擎之Federated</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库参数配置"><span class="nav-number">5.</span> <span class="nav-text">数据库参数配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库结构设计和sql语句"><span class="nav-number">6.</span> <span class="nav-text">数据库结构设计和sql语句</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#影响性能的几个方面"><span class="nav-number">1.</span> <span class="nav-text">影响性能的几个方面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器硬件"><span class="nav-number">2.</span> <span class="nav-text">服务器硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu资源和可用内存大小"><span class="nav-number">2.1.</span> <span class="nav-text">cpu资源和可用内存大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的配置和选择"><span class="nav-number">2.2.</span> <span class="nav-text">磁盘的配置和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用传统机器磁盘"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用传统机器磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RAID增强传统机器硬盘的性能"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用RAID增强传统机器硬盘的性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用固态存储SSD和PCIe卡"><span class="nav-number">2.2.3.</span> <span class="nav-text">使用固态存储SSD和PCIe卡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSD"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCI-E-SSD"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">PCI-E SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固态存储的使用场景"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">固态存储的使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用网络存储NAS和SAN"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用网络存储NAS和SAN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络对性能的影响"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">网络对性能的影响</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器系统"><span class="nav-number">3.</span> <span class="nav-text">服务器系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统对性能的影响"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统对性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOs系统参数优化"><span class="nav-number">3.2.</span> <span class="nav-text">CentOs系统参数优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统对性能的影响"><span class="nav-number">3.3.</span> <span class="nav-text">文件系统对性能的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库存储引擎"><span class="nav-number">4.</span> <span class="nav-text">数据库存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql体系结构"><span class="nav-number">4.1.</span> <span class="nav-text">mysql体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之MyISAM"><span class="nav-number">4.2.</span> <span class="nav-text">mysql常用存储引擎之MyISAM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之Innodb"><span class="nav-number">4.3.</span> <span class="nav-text">mysql常用存储引擎之Innodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Innodb存储引擎的特性"><span class="nav-number">4.3.1.</span> <span class="nav-text">Innodb存储引擎的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是锁"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">什么是锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的类型"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">锁的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的粒度"><span class="nav-number">4.3.1.3.</span> <span class="nav-text">锁的粒度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库参数配置"><span class="nav-number">5.</span> <span class="nav-text">数据库参数配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库结构设计和sql语句"><span class="nav-number">6.</span> <span class="nav-text">数据库结构设计和sql语句</span></a></li></ol></div>
             
 
           </div>
