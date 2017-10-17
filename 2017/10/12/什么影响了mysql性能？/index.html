@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507828846732glbnb1bw.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507878673777hhqu8tsc.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507899669527a6cc6c2z.png?imageslim">
-<meta property="og:updated_time" content="2017-10-13T17:02:49.000Z">
+<meta property="og:updated_time" content="2017-10-17T14:43:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么影响了mysql性能？">
 <meta name="twitter:description" content="介绍服务器硬件、服务器系统、数据库存储引擎（插件式存储引擎）、数据库参数配置、数据库结构设计和sql语句对数据库的影响">
@@ -670,7 +670,105 @@
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
 <li>偶尔的统计分析及手工查询</li>
 </ul>
-<h1 id="数据库参数配置"><a href="#数据库参数配置" class="headerlink" title="数据库参数配置"></a>数据库参数配置</h1><h1 id="数据库结构设计和sql语句"><a href="#数据库结构设计和sql语句" class="headerlink" title="数据库结构设计和sql语句"></a>数据库结构设计和sql语句</h1>
+<h2 id="如何选择存储引擎"><a href="#如何选择存储引擎" class="headerlink" title="如何选择存储引擎"></a>如何选择存储引擎</h2><h3 id="参考条件"><a href="#参考条件" class="headerlink" title="参考条件"></a>参考条件</h3><ul>
+<li>事务</li>
+<li>备份</li>
+<li>崩溃恢复</li>
+<li>存储引擎的特有特性</li>
+<li>不要混合使用存储引擎</li>
+</ul>
+<h1 id="数据库参数配置"><a href="#数据库参数配置" class="headerlink" title="数据库参数配置"></a>数据库参数配置</h1><h2 id="mysql服务器参数"><a href="#mysql服务器参数" class="headerlink" title="mysql服务器参数"></a>mysql服务器参数</h2><ul>
+<li>命令行参数<ul>
+<li>mysqld_safe –datadir=/data/sql_data</li>
+</ul>
+</li>
+<li>配置文件<ul>
+<li>/etc/my.cnf</li>
+<li>/etc/mysql/my.cnf</li>
+<li>/home/mysql/my.cnf</li>
+<li>~/.my.cnf</li>
+</ul>
+</li>
+</ul>
+<h3 id="mysql配置参数的作用域"><a href="#mysql配置参数的作用域" class="headerlink" title="mysql配置参数的作用域"></a>mysql配置参数的作用域</h3><ul>
+<li><p>全局参数</p>
+<ul>
+<li>set global 参数名=参数值;</li>
+<li>set @@global.参数名 := 参数值</li>
+</ul>
+</li>
+<li><p>会话参数</p>
+<ul>
+<li>set [session] 参数名=参数值 </li>
+</ul>
+</li>
+</ul>
+<h2 id="内存配置相关参数"><a href="#内存配置相关参数" class="headerlink" title="内存配置相关参数"></a>内存配置相关参数</h2><ul>
+<li>确定可以使用的内存上限</li>
+<li>确定mysql的每个连接使用的内存<ul>
+<li>下面的配置都是针对线程</li>
+<li>sort_buffer_size:排序缓存区的大小</li>
+<li>join_buffer_size:连接缓存的大小</li>
+<li>read_buffer_size: 全表查询读的缓冲区大小（4k倍数）</li>
+<li>read_rnd_buffer_size:索引</li>
+</ul>
+</li>
+<li>需要为系统保留多少内存</li>
+<li>如何为缓存池分配内存<ul>
+<li>Innode_buffer_pool_size<ul>
+<li>总内存-（线程连接所需要的内存 * 连接数 ） - 系统保留内存</li>
+<li>key_buffer_size:针对MyISAM</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="io相关配置参数"><a href="#io相关配置参数" class="headerlink" title="io相关配置参数"></a>io相关配置参数</h2><h3 id="innodb-i-0-相关配置"><a href="#innodb-i-0-相关配置" class="headerlink" title="innodb i/0 相关配置"></a>innodb i/0 相关配置</h3><ul>
+<li>先写事务日志，后刷新数据到io</li>
+<li>innodb_log_file_size</li>
+<li>innodb_log_files_in_group</li>
+<li>事务日志总大小 = innodb_log_files_in_group * innodb_log_file_size</li>
+<li>innodb_log_buffer_size</li>
+<li>innodb_flush_log_at_trx_commit</li>
+</ul>
+<h2 id="安全相关配置参数"><a href="#安全相关配置参数" class="headerlink" title="安全相关配置参数"></a>安全相关配置参数</h2><ul>
+<li>expire_logs_days 指定自动清理binglog的天数</li>
+<li>max_allowed_packet: 控制mysql可以接受的包的大小</li>
+<li>skip_name_resolve 禁用dns查找</li>
+<li>sysdate_is_now 确保sysdate()返回确定性日期</li>
+<li>read_only 进制非super权限的用户写权限</li>
+<li>skip_slave_start禁用slave自动复制</li>
+<li>sql_mode 设置mysql所使用的sql模式<ul>
+<li>strict_trans_tables</li>
+<li>no_engine_subtitution</li>
+<li>no_zero_date</li>
+<li>no_zero_in_date</li>
+<li>only_full_group_by：聚合函数中的列必须列出</li>
+</ul>
+</li>
+</ul>
+<h2 id="其他常用配置参数"><a href="#其他常用配置参数" class="headerlink" title="其他常用配置参数"></a>其他常用配置参数</h2><ul>
+<li>sync_binlog 控制msyql如何向磁盘刷新binglog</li>
+<li>tmp_table_size</li>
+<li>max_heap_table_size: 控制内存临时表</li>
+<li>max_conections 控制允许的最大连接数</li>
+</ul>
+<h1 id="数据库结构设计和sql语句"><a href="#数据库结构设计和sql语句" class="headerlink" title="数据库结构设计和sql语句"></a>数据库结构设计和sql语句</h1><h2 id="数据库设计对性能的影响"><a href="#数据库设计对性能的影响" class="headerlink" title="数据库设计对性能的影响"></a>数据库设计对性能的影响</h2><ul>
+<li>过分的反范式化为表建立太多的列</li>
+<li>过分的范式化造成太多的表关联</li>
+<li>OLTP环境中使用不恰当的分区表</li>
+<li>使用外键保证数据的完整性</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>性能优化顺序<ul>
+<li>数据库结构设计和sql语句</li>
+<li>数据库存储引擎的选择和参数配置</li>
+<li>系统选择及优化</li>
+<li>硬件升级</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -952,7 +1050,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#影响性能的几个方面"><span class="nav-number">1.</span> <span class="nav-text">影响性能的几个方面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器硬件"><span class="nav-number">2.</span> <span class="nav-text">服务器硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu资源和可用内存大小"><span class="nav-number">2.1.</span> <span class="nav-text">cpu资源和可用内存大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的配置和选择"><span class="nav-number">2.2.</span> <span class="nav-text">磁盘的配置和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用传统机器磁盘"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用传统机器磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RAID增强传统机器硬盘的性能"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用RAID增强传统机器硬盘的性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用固态存储SSD和PCIe卡"><span class="nav-number">2.2.3.</span> <span class="nav-text">使用固态存储SSD和PCIe卡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSD"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCI-E-SSD"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">PCI-E SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固态存储的使用场景"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">固态存储的使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用网络存储NAS和SAN"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用网络存储NAS和SAN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络对性能的影响"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">网络对性能的影响</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器系统"><span class="nav-number">3.</span> <span class="nav-text">服务器系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统对性能的影响"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统对性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOs系统参数优化"><span class="nav-number">3.2.</span> <span class="nav-text">CentOs系统参数优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统对性能的影响"><span class="nav-number">3.3.</span> <span class="nav-text">文件系统对性能的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库存储引擎"><span class="nav-number">4.</span> <span class="nav-text">数据库存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql体系结构"><span class="nav-number">4.1.</span> <span class="nav-text">mysql体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之MyISAM"><span class="nav-number">4.2.</span> <span class="nav-text">mysql常用存储引擎之MyISAM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之Innodb"><span class="nav-number">4.3.</span> <span class="nav-text">mysql常用存储引擎之Innodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Innodb存储引擎的特性"><span class="nav-number">4.3.1.</span> <span class="nav-text">Innodb存储引擎的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是锁"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">什么是锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的类型"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">锁的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的粒度"><span class="nav-number">4.3.1.3.</span> <span class="nav-text">锁的粒度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库参数配置"><span class="nav-number">5.</span> <span class="nav-text">数据库参数配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库结构设计和sql语句"><span class="nav-number">6.</span> <span class="nav-text">数据库结构设计和sql语句</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#影响性能的几个方面"><span class="nav-number">1.</span> <span class="nav-text">影响性能的几个方面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器硬件"><span class="nav-number">2.</span> <span class="nav-text">服务器硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu资源和可用内存大小"><span class="nav-number">2.1.</span> <span class="nav-text">cpu资源和可用内存大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的配置和选择"><span class="nav-number">2.2.</span> <span class="nav-text">磁盘的配置和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用传统机器磁盘"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用传统机器磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RAID增强传统机器硬盘的性能"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用RAID增强传统机器硬盘的性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用固态存储SSD和PCIe卡"><span class="nav-number">2.2.3.</span> <span class="nav-text">使用固态存储SSD和PCIe卡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSD"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCI-E-SSD"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">PCI-E SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固态存储的使用场景"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">固态存储的使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用网络存储NAS和SAN"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用网络存储NAS和SAN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络对性能的影响"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">网络对性能的影响</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器系统"><span class="nav-number">3.</span> <span class="nav-text">服务器系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统对性能的影响"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统对性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOs系统参数优化"><span class="nav-number">3.2.</span> <span class="nav-text">CentOs系统参数优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统对性能的影响"><span class="nav-number">3.3.</span> <span class="nav-text">文件系统对性能的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库存储引擎"><span class="nav-number">4.</span> <span class="nav-text">数据库存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql体系结构"><span class="nav-number">4.1.</span> <span class="nav-text">mysql体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之MyISAM"><span class="nav-number">4.2.</span> <span class="nav-text">mysql常用存储引擎之MyISAM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql常用存储引擎之Innodb"><span class="nav-number">4.3.</span> <span class="nav-text">mysql常用存储引擎之Innodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Innodb存储引擎的特性"><span class="nav-number">4.3.1.</span> <span class="nav-text">Innodb存储引擎的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是锁"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">什么是锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的类型"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">锁的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的粒度"><span class="nav-number">4.3.1.3.</span> <span class="nav-text">锁的粒度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何选择存储引擎"><span class="nav-number">4.4.</span> <span class="nav-text">如何选择存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考条件"><span class="nav-number">4.4.1.</span> <span class="nav-text">参考条件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库参数配置"><span class="nav-number">5.</span> <span class="nav-text">数据库参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql服务器参数"><span class="nav-number">5.1.</span> <span class="nav-text">mysql服务器参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql配置参数的作用域"><span class="nav-number">5.1.1.</span> <span class="nav-text">mysql配置参数的作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存配置相关参数"><span class="nav-number">5.2.</span> <span class="nav-text">内存配置相关参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io相关配置参数"><span class="nav-number">5.3.</span> <span class="nav-text">io相关配置参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#innodb-i-0-相关配置"><span class="nav-number">5.3.1.</span> <span class="nav-text">innodb i/0 相关配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全相关配置参数"><span class="nav-number">5.4.</span> <span class="nav-text">安全相关配置参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他常用配置参数"><span class="nav-number">5.5.</span> <span class="nav-text">其他常用配置参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库结构设计和sql语句"><span class="nav-number">6.</span> <span class="nav-text">数据库结构设计和sql语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计对性能的影响"><span class="nav-number">6.1.</span> <span class="nav-text">数据库设计对性能的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
