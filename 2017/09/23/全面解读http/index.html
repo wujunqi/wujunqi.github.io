@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506189389584vfgisvbb.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506193200126oe5pkb4f.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506268131495437aidh7.png?imageslim">
-<meta property="og:updated_time" content="2017-09-24T17:37:43.000Z">
+<meta property="og:updated_time" content="2017-10-25T14:02:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全面解读Http">
 <meta name="twitter:description" content="HTTP协议是因特网的多媒体信使。HTTP可以从遍布世界的Web服务器上将这些信息快迅速，便捷，可靠地搬移到人们桌面上的Web浏览器上去。HTTP协议主要分Web客户端和服务器。其中Web服务器是Web资源的宿主。Web资源可以包含任意媒体类型内容，HTTP协议为了标识各种媒体类型，会给通过Web传输的对象都打上MIME类型的数据标签格式。">
@@ -587,7 +587,7 @@
 </ul>
 <h3 id="TCP连接建立握手"><a href="#TCP连接建立握手" class="headerlink" title="TCP连接建立握手"></a>TCP连接建立握手</h3><p>TCP连接握手需要经过一下几个步骤</p>
 <ul>
-<li>酷虎的向服务器发送一个小的TCP分组(通常是40-60字节)。这个分组中设置了一个特殊的SYN标记，说明这是一个连接请求。</li>
+<li>客户端的向服务器发送一个小的TCP分组(通常是40-60字节)。这个分组中设置了一个特殊的SYN标记，说明这是一个连接请求。</li>
 <li>如果服务器接收了连接，就会对一些连接参数进行计算，并向客户端回送一个TCP分组，这个分组中的SYN和ACK标记都被置位了，说明连接请求已经被接收了。</li>
 <li>最后，客户端向服务器回送一条确认信息，通知它连接已成功建立。现代的TCP栈都允许客户端在这个确认分组中发送数据。</li>
 <li><p>如果连接只用来传送少量的数据，这些交换过程就会严重降低HTTP的性能。小的HTTP事务可能会在TCP建立上花费50%或者更多的时间。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1506185282166b9pm540b.png?imageslim" alt="paste image"></p>
