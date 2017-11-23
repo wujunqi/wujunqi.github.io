@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506189389584vfgisvbb.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506193200126oe5pkb4f.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1506268131495437aidh7.png?imageslim">
-<meta property="og:updated_time" content="2017-10-25T14:02:14.000Z">
+<meta property="og:updated_time" content="2017-11-01T03:50:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全面解读Http">
 <meta name="twitter:description" content="HTTP协议是因特网的多媒体信使。HTTP可以从遍布世界的Web服务器上将这些信息快迅速，便捷，可靠地搬移到人们桌面上的Web浏览器上去。HTTP协议主要分Web客户端和服务器。其中Web服务器是Web资源的宿主。Web资源可以包含任意媒体类型内容，HTTP协议为了标识各种媒体类型，会给通过Web传输的对象都打上MIME类型的数据标签格式。">
@@ -563,8 +563,8 @@
 <h3 id="HTTP事务的时延"><a href="#HTTP事务的时延" class="headerlink" title="HTTP事务的时延"></a>HTTP事务的时延</h3><p>与建立TCP连接，以及传输请求和响应报文的时间相比，事务处理时间可能是很短的。除非客户端或服务器超载，或正在处理复杂的动态资源，否则HTTP时延就是由TCP网络时延构成的。</p>
 <p>HTTP事务时延的有以下几种主要原因</p>
 <ul>
-<li>客户端首先需要根据URI确定Web服务器的IP地址和端口号。其中IP地址需要通过DNS解析URL中的主机名获得，这可能花费数十秒的时间。</li>
-<li>客户端向服务器发送TCP连接请求，即著名的”三次握手”。这个值通常最多只有一两秒钟，但如果有数百个HTTP事务的话，这个值就会快速叠加上去。</li>
+<li>客户端首先需要根据URI确定Web服务器的IP地址和端口号。其中IP地址需要通过DNS解析URL中的主机名获得，这需要花费时间。</li>
+<li>客户端向服务器发送TCP连接请求，即著名的”三次握手”。这个值通常很短，但如果有数百个HTTP事务的话，这个值就会快速叠加上去。</li>
 <li>因特网传输报文，以及服务器处理请求报文都需要花费时间。</li>
 <li>web服务器回送HTTP响应也需要时间。<br>这些TCP网络时延取决于硬件速度，网络和服务器的负载，请求和响应报文的尺寸，以及客户端和服务器之间的距离。TCP协议的技术复杂性也会对时延产生巨大的影响。</li>
 </ul>
