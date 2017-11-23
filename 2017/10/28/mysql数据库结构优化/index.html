@@ -93,21 +93,21 @@
 
 
 
-<meta name="description" content="数据库结构优化介绍良好的数据库逻辑设计和物理设计是数据库获得高性能的基础 数据库结构优化的目的 减少冗余 尽量避免数据库中出现更新、插入和删除异常 插入异常：如果表中的某个实体随着另一个实体而存在 更新异常：如果更新表中的某个实体的单独属性时，需要对多行进行更新 删除异常：如果删除表中的某一实体则会导致其他实体的消失   节约存储空间 提高查询效率  数据库结构设计数据库结构设计的步骤 需求分析">
+<meta name="description" content="主要包括数据库结构方面优化的介绍：数据库范式设计，物理设计介绍，数据结构类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql数据库结构优化">
 <meta property="og:url" content="http://yoursite.com/2017/10/28/mysql数据库结构优化/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="数据库结构优化介绍良好的数据库逻辑设计和物理设计是数据库获得高性能的基础 数据库结构优化的目的 减少冗余 尽量避免数据库中出现更新、插入和删除异常 插入异常：如果表中的某个实体随着另一个实体而存在 更新异常：如果更新表中的某个实体的单独属性时，需要对多行进行更新 删除异常：如果删除表中的某一实体则会导致其他实体的消失   节约存储空间 提高查询效率  数据库结构设计数据库结构设计的步骤 需求分析">
+<meta property="og:description" content="主要包括数据库结构方面优化的介绍：数据库范式设计，物理设计介绍，数据结构类型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511393434674u094apw3.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15114001101666zpnp57i.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511393864104o46wp7gs.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/151139456431016i8rr2m.png?imageslim">
-<meta property="og:updated_time" content="2017-11-23T01:17:23.000Z">
+<meta property="og:updated_time" content="2017-11-23T01:21:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql数据库结构优化">
-<meta name="twitter:description" content="数据库结构优化介绍良好的数据库逻辑设计和物理设计是数据库获得高性能的基础 数据库结构优化的目的 减少冗余 尽量避免数据库中出现更新、插入和删除异常 插入异常：如果表中的某个实体随着另一个实体而存在 更新异常：如果更新表中的某个实体的单独属性时，需要对多行进行更新 删除异常：如果删除表中的某一实体则会导致其他实体的消失   节约存储空间 提高查询效率  数据库结构设计数据库结构设计的步骤 需求分析">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1511393434674u094apw3.png?imageslim">
+<meta name="twitter:description" content="主要包括数据库结构方面优化的介绍：数据库范式设计，物理设计介绍，数据结构类型">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/15114001101666zpnp57i.png?imageslim">
 
 
 
@@ -394,7 +394,9 @@
       
 
       
-        <h1 id="数据库结构优化介绍"><a href="#数据库结构优化介绍" class="headerlink" title="数据库结构优化介绍"></a>数据库结构优化介绍</h1><p>良好的数据库逻辑设计和物理设计是数据库获得高性能的基础</p>
+        <p>主要包括数据库结构方面优化的介绍：数据库范式设计，物理设计介绍，数据结构类型</p>
+<a id="more"></a>
+<h1 id="数据库结构优化介绍"><a href="#数据库结构优化介绍" class="headerlink" title="数据库结构优化介绍"></a>数据库结构优化介绍</h1><p>良好的数据库逻辑设计和物理设计是数据库获得高性能的基础</p>
 <h2 id="数据库结构优化的目的"><a href="#数据库结构优化的目的" class="headerlink" title="数据库结构优化的目的"></a>数据库结构优化的目的</h2><ul>
 <li>减少冗余</li>
 <li>尽量避免数据库中出现更新、插入和删除异常<ul>
@@ -486,7 +488,7 @@
 <li>表意性原则</li>
 <li>长名原则</li>
 </ul>
-<h2 id="选择合适的存储引擎"><a href="#选择合适的存储引擎" class="headerlink" title="选择合适的存储引擎"></a>选择合适的存储引擎</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1511393434674u094apw3.png?imageslim" alt="paste image"></p>
+<h2 id="选择合适的存储引擎"><a href="#选择合适的存储引擎" class="headerlink" title="选择合适的存储引擎"></a>选择合适的存储引擎</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/15114001101666zpnp57i.png?imageslim" alt="paste image"></p>
 <h2 id="数据类型的选择"><a href="#数据类型的选择" class="headerlink" title="数据类型的选择"></a>数据类型的选择</h2><h3 id="为表中的字段选择合适的数据类型"><a href="#为表中的字段选择合适的数据类型" class="headerlink" title="为表中的字段选择合适的数据类型"></a>为表中的字段选择合适的数据类型</h3><blockquote>
 <p>当一个列可以选择多种数据类型时，应优先考虑数字类型，其次是日期或二进制类型，最后是字符类型。对于相同级别的数据类型，应该优先选择占用空间小的数据类型</p>
 </blockquote>
