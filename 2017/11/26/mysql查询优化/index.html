@@ -93,21 +93,21 @@
 
 
 
-<meta name="description" content="如何获取有性能问题的sql 通过用户反馈获取存在性能的sql 通过慢查询日志获取存在性能问题的sql 实时获取存在性能问题的sql  慢查询日志介绍使用慢查询日志获取有性能的sql slow_qu ery_log 启动停止记录慢查日志 slow_query_log_file 指定慢查日志的存储路径及文件 long_query_time 指定记录慢查日志sql执行时间的阈值 long_queries">
+<meta name="description" content="主要介绍慢查询日志介绍、sql的解析预处理及生成执行计划、查询各个阶段所消耗的时间等">
 <meta name="keywords" content="sql查询优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql查询优化">
 <meta property="og:url" content="http://yoursite.com/2017/11/26/mysql查询优化/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="如何获取有性能问题的sql 通过用户反馈获取存在性能的sql 通过慢查询日志获取存在性能问题的sql 实时获取存在性能问题的sql  慢查询日志介绍使用慢查询日志获取有性能的sql slow_qu ery_log 启动停止记录慢查日志 slow_query_log_file 指定慢查日志的存储路径及文件 long_query_time 指定记录慢查日志sql执行时间的阈值 long_queries">
+<meta property="og:description" content="主要介绍慢查询日志介绍、sql的解析预处理及生成执行计划、查询各个阶段所消耗的时间等">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701019185ycjzyufo.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701731834c4po6pwf.png?imageslim">
-<meta property="og:updated_time" content="2017-11-26T14:23:55.000Z">
+<meta property="og:updated_time" content="2017-11-26T14:25:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql查询优化">
-<meta name="twitter:description" content="如何获取有性能问题的sql 通过用户反馈获取存在性能的sql 通过慢查询日志获取存在性能问题的sql 实时获取存在性能问题的sql  慢查询日志介绍使用慢查询日志获取有性能的sql slow_qu ery_log 启动停止记录慢查日志 slow_query_log_file 指定慢查日志的存储路径及文件 long_query_time 指定记录慢查日志sql执行时间的阈值 long_queries">
+<meta name="twitter:description" content="主要介绍慢查询日志介绍、sql的解析预处理及生成执行计划、查询各个阶段所消耗的时间等">
 <meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim">
 
 
@@ -417,7 +417,9 @@
       
 
       
-        <h1 id="如何获取有性能问题的sql"><a href="#如何获取有性能问题的sql" class="headerlink" title="如何获取有性能问题的sql"></a>如何获取有性能问题的sql</h1><ul>
+        <p>主要介绍慢查询日志介绍、sql的解析预处理及生成执行计划、查询各个阶段所消耗的时间等</p>
+<a id="more"></a>
+<h1 id="如何获取有性能问题的sql"><a href="#如何获取有性能问题的sql" class="headerlink" title="如何获取有性能问题的sql"></a>如何获取有性能问题的sql</h1><ul>
 <li>通过用户反馈获取存在性能的sql</li>
 <li>通过慢查询日志获取存在性能问题的sql</li>
 <li>实时获取存在性能问题的sql</li>
