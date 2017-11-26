@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="yaf," />
+  <meta name="keywords" content="sql查询优化," />
 
 
 
@@ -93,23 +93,22 @@
 
 
 
-<meta name="description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
-<meta name="keywords" content="yaf">
+<meta name="description" content="如何获取有性能问题的sql 通过用户反馈获取存在性能的sql 通过慢查询日志获取存在性能问题的sql 实时获取存在性能问题的sql  慢查询日志介绍使用慢查询日志获取有性能的sql slow_qu ery_log 启动停止记录慢查日志 slow_query_log_file 指定慢查日志的存储路径及文件 long_query_time 指定记录慢查日志sql执行时间的阈值 long_queries">
+<meta name="keywords" content="sql查询优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用docker搭建yaf">
-<meta property="og:url" content="http://yoursite.com/2017/10/08/利用docker搭建yaf/index.html">
+<meta property="og:title" content="mysql查询优化">
+<meta property="og:url" content="http://yoursite.com/2017/11/26/mysql查询优化/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
+<meta property="og:description" content="如何获取有性能问题的sql 通过用户反馈获取存在性能的sql 通过慢查询日志获取存在性能问题的sql 实时获取存在性能问题的sql  慢查询日志介绍使用慢查询日志获取有性能的sql slow_qu ery_log 启动停止记录慢查日志 slow_query_log_file 指定慢查日志的存储路径及文件 long_query_time 指定记录慢查日志sql执行时间的阈值 long_queries">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim">
-<meta property="og:updated_time" content="2017-10-07T16:39:27.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701019185ycjzyufo.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701731834c4po6pwf.png?imageslim">
+<meta property="og:updated_time" content="2017-11-26T14:23:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用docker搭建yaf">
-<meta name="twitter:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
+<meta name="twitter:title" content="mysql查询优化">
+<meta name="twitter:description" content="如何获取有性能问题的sql 通过用户反馈获取存在性能的sql 通过慢查询日志获取存在性能问题的sql 实时获取存在性能问题的sql  慢查询日志介绍使用慢查询日志获取有性能的sql slow_qu ery_log 启动停止记录慢查日志 slow_query_log_file 指定慢查日志的存储路径及文件 long_query_time 指定记录慢查日志sql执行时间的阈值 long_queries">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim">
 
 
 
@@ -137,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/08/利用docker搭建yaf/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/26/mysql查询优化/"/>
 
 
 
 
 
-  <title>利用docker搭建yaf | 番茄技术小栈</title>
+  <title>mysql查询优化 | 番茄技术小栈</title>
   
 
 
@@ -316,7 +315,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/08/利用docker搭建yaf/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/26/mysql查询优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wujunqi">
@@ -333,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">利用docker搭建yaf</h1>
+          <h1 class="post-title" itemprop="name headline">mysql查询优化</h1>
         
 
         <div class="post-meta">
@@ -345,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-08T00:23:00+08:00">
-                2017-10-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-26T20:25:00+08:00">
+                2017-11-26
               </time>
             
 
@@ -368,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -385,7 +384,7 @@
 
           
           
-             <span id="/2017/10/08/利用docker搭建yaf/" class="leancloud_visitors" data-flag-title="利用docker搭建yaf">
+             <span id="/2017/11/26/mysql查询优化/" class="leancloud_visitors" data-flag-title="mysql查询优化">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,122 +417,68 @@
       
 
       
-        <p>下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。</p>
-<a id="more"></a>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。</p>
-<h1 id="什么是docker？"><a href="#什么是docker？" class="headerlink" title="什么是docker？"></a>什么是docker？</h1><h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><blockquote>
-<p>Docker:an open source project to pack,ship and run any application as a lightweight container.</p>
-</blockquote>
-<p>这个docker官方的解释：将任何应用以轻量级的容器的形式来进行<strong>打包</strong>，<strong>发布</strong>和运行。</p>
-<blockquote>
-<p>Node.js: allows to package an application with all of its dependencies into a standardized unit。</p>
-</blockquote>
-<p>这是node.js的解释：docker允许一个应用程序及其所有依赖以一种标准的单位来进行打包。</p>
-<p>wiki的定义：</p>
-<blockquote>
-<p>Docker是一个开放源代码软件项目，让应用程序布署在软件容器下的工作可以自动化进行，借此在Linux操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制[1]。Docker利用Linux核心中的资源分脱机制，例如cgroups，以及Linux核心名字空间（name space），来创建独立的软件容器（containers）。这可以在单一Linux实体下运作，避免引导一个虚拟机造成的额外负担[2]。Linux核心对名字空间的支持完全隔离了工作环境中应用程序的视野，包括进程树、网络、用户ID与挂载文件系统，而核心的cgroup提供资源隔离，包括CPU、内存、block I/O与网络。从0.9版本起，Dockers在使用抽象虚拟是经由libvirt的 LXC与systemd - nspawn提供界面的基础上，开始包括libcontainer库做为以自己的方式开始直接使用由Linux核心提供的虚拟化的设施，<br>依据行业分析公司“451研究”：“Dockers是有能力打包应用程序及其虚拟容器，可以在任何Linux服务器上运行的依赖性工具，这有助于实现灵活性和便携性，应用程序在任何地方都可以运行，无论是公有云、私有云、单机等。”</p>
-</blockquote>
-<h2 id="类比："><a href="#类比：" class="headerlink" title="类比："></a>类比：</h2><ul>
-<li>可以粗略的理解为轻量级的虚拟机</li>
-<li>开挂的chroot</li>
+        <h1 id="如何获取有性能问题的sql"><a href="#如何获取有性能问题的sql" class="headerlink" title="如何获取有性能问题的sql"></a>如何获取有性能问题的sql</h1><ul>
+<li>通过用户反馈获取存在性能的sql</li>
+<li>通过慢查询日志获取存在性能问题的sql</li>
+<li>实时获取存在性能问题的sql</li>
 </ul>
-<h2 id="VM-vs-Docker"><a href="#VM-vs-Docker" class="headerlink" title="VM vs Docker"></a>VM vs Docker</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim" alt="paste image"></p>
-<h1 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h1><h2 id="for-mac"><a href="#for-mac" class="headerlink" title="for mac"></a>for mac</h2><p>首先在<a href="docker for mac">https://store.docker.com/editions/community/docker-ce-desktop-mac</a>官网进行下载，安装和安装普通mac软件一样。<br>安装完毕后在右上角有一个小船的标示。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim" alt="paste image"></p>
-<p>当然可以在命令行中输入：<code>docder info</code>显示<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim" alt="paste image"></p>
-<p>表示安装成功！</p>
-<h1 id="docker-基本概念"><a href="#docker-基本概念" class="headerlink" title="docker 基本概念"></a>docker 基本概念</h1><h2 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h2><p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:14.04 就包含了完整的一套 Ubuntu 14.04 最小系统的 root 文件系统。</p>
-<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
-<h2 id="Docker-容器"><a href="#Docker-容器" class="headerlink" title="Docker 容器"></a>Docker 容器</h2><p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
-<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会把容器和虚拟机搞混。</p>
-<p>前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为容器存储层。</p>
-<p>容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。</p>
-<p>按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</p>
-<p>数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器可以随意删除、重新 run，数据却不会丢失。</p>
-<h2 id="Docker-Registry"><a href="#Docker-Registry" class="headerlink" title="Docker Registry"></a>Docker Registry</h2><p>镜像构建完成后，可以很容易的在当前宿主上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。</p>
-<p>一个 Docker Registry 中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。</p>
-<p>通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 &lt;仓库名&gt;:&lt;标签&gt; 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 latest 作为默认标签。</p>
-<p>以 Ubuntu 镜像 为例，ubuntu 是仓库的名字，其内包含有不同的版本标签，如，14.04, 16.04。我们可以通过 ubuntu:14.04，或者 ubuntu:16.04 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 ubuntu，那将视为 ubuntu:latest。</p>
-<p>仓库名经常以 两段式路径 形式出现，比如 jwilder/nginx-proxy，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。</p>
-<p>最常使用的 Registry 公开服务是官方的 Docker Hub，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 CoreOS 的 Quay.io，CoreOS 相关的镜像存储在这里；Google 的 Google Container Registry，Kubernetes 的镜像使用的就是这个服务。</p>
-<h1 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h1><ul>
-<li>获取镜像：</li>
+<h1 id="慢查询日志介绍"><a href="#慢查询日志介绍" class="headerlink" title="慢查询日志介绍"></a>慢查询日志介绍</h1><h2 id="使用慢查询日志获取有性能的sql"><a href="#使用慢查询日志获取有性能的sql" class="headerlink" title="使用慢查询日志获取有性能的sql"></a>使用慢查询日志获取有性能的sql</h2><ul>
+<li>slow_qu ery_log 启动停止记录慢查日志</li>
+<li>slow_query_log_file 指定慢查日志的存储路径及文件</li>
+<li>long_query_time 指定记录慢查日志sql执行时间的阈值</li>
+<li>long_queries_not_using_indexes 是否记录未使用索引的sql</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</div></pre></td></tr></table></figure>
+<p><strong>慢查日志中记录的内容</strong></p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim" alt="paste image"></p>
+<h2 id="常用的慢查日志分析工具（mysqldumpslow"><a href="#常用的慢查日志分析工具（mysqldumpslow" class="headerlink" title="常用的慢查日志分析工具（mysqldumpslow)"></a>常用的慢查日志分析工具（mysqldumpslow)</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1511701019185ycjzyufo.png?imageslim" alt="paste image"></p>
+<p>-t(top): 指定取前几条作为结果输出</p>
+<h2 id="如何实时获取有性能问题的sql"><a href="#如何实时获取有性能问题的sql" class="headerlink" title="如何实时获取有性能问题的sql"></a>如何实时获取有性能问题的sql</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1511701731834c4po6pwf.png?imageslim" alt="paste image"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="string">`user`</span>,<span class="string">`host`</span>,DB,comman,<span class="string">`time`</span>,<span class="string">`state`</span>,info <span class="keyword">from</span> information_schema.PROCESSLIST <span class="keyword">where</span> <span class="keyword">time</span>&gt;=<span class="number">60</span>;</div></pre></td></tr></table></figure>
+<h1 id="sql的解析预处理及生成执行计划"><a href="#sql的解析预处理及生成执行计划" class="headerlink" title="sql的解析预处理及生成执行计划"></a>sql的解析预处理及生成执行计划</h1><h2 id="mysql服务器处理查询请求的整个过程"><a href="#mysql服务器处理查询请求的整个过程" class="headerlink" title="mysql服务器处理查询请求的整个过程"></a>mysql服务器处理查询请求的整个过程</h2><ul>
+<li>客户端发送sql请求给服务器</li>
+<li>服务器检查是否可以在查询缓存中命中该sql</li>
+<li>服务器端进行sql解析、预处理、再由优化器生成对应的执行计划</li>
+<li>根据执行计划，调用存储引擎api来查询数据</li>
+<li>将结果返回给客户端</li>
+</ul>
+<h2 id="查询缓存对sql性能的影响"><a href="#查询缓存对sql性能的影响" class="headerlink" title="查询缓存对sql性能的影响"></a>查询缓存对sql性能的影响</h2><p><strong>注意</strong><br>每一次检查查询缓存是否可用的时候，都会锁定缓存。对于一个读写频繁的系统使用查询缓存很可能会降低查询处理的效率，所以在这种情况下建议大家不要使用查询缓存。</p>
+<p><strong>查询缓存的设置</strong></p>
 <ul>
-<li>获取镜像：</li>
+<li>query_cache_type:设置查询缓存是否可用</li>
+<li>query_cache_size:设置查询缓存的内存大小</li>
+<li>query_cache_limit 设置查询缓存可用存储的最大值</li>
+<li>query_cache_wlock_invalidate:设置数据表被锁后是否返回缓存中的数据</li>
+<li>query_cache_min_res_unit:设置查询缓存分配的内存块最小单位</li>
 </ul>
+<h2 id="将sql语句转化成一个执行计划"><a href="#将sql语句转化成一个执行计划" class="headerlink" title="将sql语句转化成一个执行计划"></a>将sql语句转化成一个执行计划</h2><p>mysql依照这个执行计划和存储引擎进行交互，这个阶段包括了多个字过程：</p>
 <ul>
-<li>列出镜像</li>
+<li>包括检查语法是否使用了正确的关键字</li>
+<li>关键字的顺序是否正确等</li>
+<li>预处理阶段是根据mysql规则进一步解析树是否合法</li>
+<li>检查查询中所涉及的表和数据列是否存在及名字或别名是否存在歧义等等</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure>
-<ul>
-<li>利用 commit 理解镜像构成</li>
+<p>语法检查都通过了，查询优化器就可以生成查询计划了。</p>
+<h2 id="造成mysql生成错误的执行计划的原因"><a href="#造成mysql生成错误的执行计划的原因" class="headerlink" title="造成mysql生成错误的执行计划的原因"></a>造成mysql生成错误的执行计划的原因</h2><ul>
+<li>统计信息不准确</li>
+<li>执行计划中的成本估算不等同于实际的执行计划的成本</li>
+<li>mysql优化器所认为的最优可能与你所认为的最优不一样（<strong>基于其成本模型选择最优的执行计划</strong>）</li>
+<li>mysql从不考虑其他并发的查询，这可能会影响当前查询的速度</li>
+<li>mysql有时候也会基于一些固定的规则来生成执行计划</li>
+<li>msyql不会考虑不收其控制的成本</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</div></pre></td></tr></table></figure>
-<ul>
-<li>删除本地镜像</li>
+<h2 id="mysql优化器可优化的sql类型"><a href="#mysql优化器可优化的sql类型" class="headerlink" title="mysql优化器可优化的sql类型"></a>mysql优化器可优化的sql类型</h2><ul>
+<li>重新定义表的关联顺序</li>
+<li>将外连接转化成内连接</li>
+<li>使用等价变换规则（5=5 and a &gt; 5)将改写为a&gt;5</li>
+<li>优化count()、min()和max()</li>
+<li>将一个表达式转化为常数表达式</li>
+<li>使用等价变换规则</li>
+<li>子查询优化</li>
+<li>提前终止查询</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</div></pre></td></tr></table></figure>
-<ul>
-<li>启动容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8002:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf lnmp/yaf:v1 /sbin/init</div><div class="line"></div><div class="line">docker exec -it lnmp_yaf /bin/bash # 进入</div></pre></td></tr></table></figure>
-<ul>
-<li>终止容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stop [容器ID或容器名]</div></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker attach [容器ID或容器名]</div></pre></td></tr></table></figure>
-<ul>
-<li>删除容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm [容器ID或容器名]</div></pre></td></tr></table></figure>
-<h1 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h1><h2 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h2><p>数据卷是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：</p>
-<p>数据卷可以在容器之间共享和重用<br>对数据卷的修改会立马生效<br>对数据卷的更新，不会影响镜像<br>数据卷默认会一直存在，即使容器被删除<br>*注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷。</p>
-<h2 id="挂载一个主机目录作为数据卷"><a href="#挂载一个主机目录作为数据卷" class="headerlink" title="挂载一个主机目录作为数据卷"></a>挂载一个主机目录作为数据卷</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init</div><div class="line">docker exec -it lnmp_yaf /bin/bash # 进入</div></pre></td></tr></table></figure>
-<h1 id="docker下lnmp配置"><a href="#docker下lnmp配置" class="headerlink" title="docker下lnmp配置"></a>docker下lnmp配置</h1><ul>
-<li>首先安装centos：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull centeros</div></pre></td></tr></table></figure>
-<ul>
-<li>启动镜像并进入</li>
-</ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it centos:latest bash # -it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端</div></pre></td></tr></table></figure>
-<ul>
-<li>执行一键安装lnmp（需要大概84分钟）</li>
-</ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -c http://soft.vpser.net/lnmp/lnmp1.4.tar.gz &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp</div></pre></td></tr></table></figure>
-<p> 可以需要用yum install 安装wget</p>
-<h1 id="安装yaf扩展"><a href="#安装yaf扩展" class="headerlink" title="安装yaf扩展"></a>安装yaf扩展</h1><ul>
-<li>yaf 扩展安装</li>
-</ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd ~</div><div class="line">wget http://pecl.php.net/get/yaf-3.0.5.tgz</div><div class="line">tar zxvf yaf-3.0.5.tgz</div><div class="line">cd yaf-3.0.5</div><div class="line">phpize # 生成匹配文件</div><div class="line">./configure --with-php-config=/usr/local/php/bin/php-config # php-config存放php的一些配置信息，比如路径等。它会结合本地的php-config配置信息进行前期的编译准备</div><div class="line">make #开始编译</div><div class="line">make test</div><div class="line">make install # 将module下的yaf.so放在/usr/local/php/lib/php/extensions/no-debug-non-zts-20160303/yaf.so下面</div></pre></td></tr></table></figure>
-<ul>
-<li>修改php.ini</li>
-</ul>
-<p>打开php.ini（/usr/local/php/etc/php.ini）,加入下面三行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[Yaf]</div><div class="line">extension=yaf.so</div><div class="line">yaf.environ=&quot;product&quot;</div></pre></td></tr></table></figure>
-<ul>
-<li>添加vhost</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lnmp vhost add</div></pre></td></tr></table></figure>
-<ul>
-<li>修改vhost配置文件</li>
-</ul>
-<p>打开/usr/local/nginx/conf/vhost/imooc.com.conf, 修改为下面的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">server</div><div class="line">    &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name imooc.com n;</div><div class="line">        index index.php;</div><div class="line">        root  /home/work/imooc;</div><div class="line"></div><div class="line">        include enable-php.conf;</div><div class="line"></div><div class="line">        if (!-e $request_filename) &#123;</div><div class="line">            rewrite ^/(.*) /index.php?$1 last;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        access_log  /home/work/logs/imooc.com.log;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>添加yaf项目</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /home/work/imooc/</div><div class="line">mkdir tmp</div><div class="line">wget https://github.com/laruence/yaf/archive/master.zip</div><div class="line">unzip master.zip </div><div class="line">cd yaf-master/tools/cg/</div><div class="line">./yaf_cg imooc</div><div class="line">cp -rf tmp/yaf-master/tools/cg/output/imooc/* ./ (在imooc目录下）</div></pre></td></tr></table></figure>
-<p>最后的代码项目结果为：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim" alt="paste image"></p>
-<ul>
-<li>今后在这个基础上编写代码：</li>
-</ul>
-<p>可以使用sublime 直接编写啦！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init</div></pre></td></tr></table></figure>
+<h1 id="如何确定查询各个阶段所消耗的时间"><a href="#如何确定查询各个阶段所消耗的时间" class="headerlink" title="如何确定查询各个阶段所消耗的时间"></a>如何确定查询各个阶段所消耗的时间</h1><p><strong>使用profile</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> profiling = <span class="number">1</span>;启动profile,这是一个session级的配置</div><div class="line">执行查询</div><div class="line"><span class="keyword">show</span> <span class="keyword">profiles</span>:查看每一个查询所消耗的时间</div><div class="line"></div><div class="line"><span class="keyword">show</span> profile <span class="keyword">for</span> <span class="keyword">query</span> N;</div></pre></td></tr></table></figure>
+<h1 id="特定sql的查询优化"><a href="#特定sql的查询优化" class="headerlink" title="特定sql的查询优化"></a>特定sql的查询优化</h1>
       
     </div>
 
@@ -583,7 +528,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/yaf/" rel="tag"># yaf</a>
+            <a href="/tags/sql查询优化/" rel="tag"># sql查询优化</a>
           
         </div>
       
@@ -596,8 +541,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/28/高性能msyql之mysql构架和历史/" rel="next" title="高性能msyql之mysql构架和历史">
-                <i class="fa fa-chevron-left"></i> 高性能msyql之mysql构架和历史
+              <a href="/2017/11/26/数据库索引优化/" rel="next" title="数据库索引优化">
+                <i class="fa fa-chevron-left"></i> 数据库索引优化
               </a>
             
           </div>
@@ -605,10 +550,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/08/高性能的-PHP-API-接口开发之用户类登录、注册接口/" rel="prev" title="高性能的PHP API 接口开发之用户类接口">
-                高性能的PHP API 接口开发之用户类接口 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -815,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是docker？"><span class="nav-number">2.</span> <span class="nav-text">什么是docker？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类比："><span class="nav-number">2.2.</span> <span class="nav-text">类比：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VM-vs-Docker"><span class="nav-number">2.3.</span> <span class="nav-text">VM vs Docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-安装"><span class="nav-number">3.</span> <span class="nav-text">docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for-mac"><span class="nav-number">3.1.</span> <span class="nav-text">for mac</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-基本概念"><span class="nav-number">4.</span> <span class="nav-text">docker 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像"><span class="nav-number">4.1.</span> <span class="nav-text">Docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-容器"><span class="nav-number">4.2.</span> <span class="nav-text">Docker 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Registry"><span class="nav-number">4.3.</span> <span class="nav-text">Docker Registry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker常用命令"><span class="nav-number">5.</span> <span class="nav-text">docker常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据管理"><span class="nav-number">6.</span> <span class="nav-text">数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据卷"><span class="nav-number">6.1.</span> <span class="nav-text">数据卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载一个主机目录作为数据卷"><span class="nav-number">6.2.</span> <span class="nav-text">挂载一个主机目录作为数据卷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker下lnmp配置"><span class="nav-number">7.</span> <span class="nav-text">docker下lnmp配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装yaf扩展"><span class="nav-number">8.</span> <span class="nav-text">安装yaf扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何获取有性能问题的sql"><span class="nav-number">1.</span> <span class="nav-text">如何获取有性能问题的sql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#慢查询日志介绍"><span class="nav-number">2.</span> <span class="nav-text">慢查询日志介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用慢查询日志获取有性能的sql"><span class="nav-number">2.1.</span> <span class="nav-text">使用慢查询日志获取有性能的sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的慢查日志分析工具（mysqldumpslow"><span class="nav-number">2.2.</span> <span class="nav-text">常用的慢查日志分析工具（mysqldumpslow)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实时获取有性能问题的sql"><span class="nav-number">2.3.</span> <span class="nav-text">如何实时获取有性能问题的sql</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql的解析预处理及生成执行计划"><span class="nav-number">3.</span> <span class="nav-text">sql的解析预处理及生成执行计划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql服务器处理查询请求的整个过程"><span class="nav-number">3.1.</span> <span class="nav-text">mysql服务器处理查询请求的整个过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询缓存对sql性能的影响"><span class="nav-number">3.2.</span> <span class="nav-text">查询缓存对sql性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将sql语句转化成一个执行计划"><span class="nav-number">3.3.</span> <span class="nav-text">将sql语句转化成一个执行计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#造成mysql生成错误的执行计划的原因"><span class="nav-number">3.4.</span> <span class="nav-text">造成mysql生成错误的执行计划的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql优化器可优化的sql类型"><span class="nav-number">3.5.</span> <span class="nav-text">mysql优化器可优化的sql类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何确定查询各个阶段所消耗的时间"><span class="nav-number">4.</span> <span class="nav-text">如何确定查询各个阶段所消耗的时间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特定sql的查询优化"><span class="nav-number">5.</span> <span class="nav-text">特定sql的查询优化</span></a></li></ol></div>
             
 
           </div>
