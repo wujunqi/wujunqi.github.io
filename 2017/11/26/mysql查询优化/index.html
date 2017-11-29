@@ -101,16 +101,16 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="主要介绍慢查询日志介绍、sql的解析预处理及生成执行计划、查询各个阶段所消耗的时间等">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701019185ycjzyufo.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701731834c4po6pwf.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageView/2/w/600/q/90">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701019185ycjzyufo.png?imageView/2/w/600/q/90">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511701731834c4po6pwf.png?imageView/2/w/600/q/90">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/151173903888683t4xerm.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511739186835vgj8vibb.png?imageslim">
-<meta property="og:updated_time" content="2017-11-26T23:48:19.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1511739186835vgj8vibb.png?imageView/2/w/600/q/90">
+<meta property="og:updated_time" content="2017-11-29T23:25:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql查询优化">
 <meta name="twitter:description" content="主要介绍慢查询日志介绍、sql的解析预处理及生成执行计划、查询各个阶段所消耗的时间等">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageView/2/w/600/q/90">
 
 
 
@@ -433,10 +433,10 @@
 <li>long_queries_not_using_indexes 是否记录未使用索引的sql</li>
 </ul>
 <p><strong>慢查日志中记录的内容</strong></p>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageslim" alt="paste image"></p>
-<h2 id="常用的慢查日志分析工具（mysqldumpslow"><a href="#常用的慢查日志分析工具（mysqldumpslow" class="headerlink" title="常用的慢查日志分析工具（mysqldumpslow)"></a>常用的慢查日志分析工具（mysqldumpslow)</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1511701019185ycjzyufo.png?imageslim" alt="paste image"></p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1511700882045j903ry29.png?imageView/2/w/600/q/90" alt="paste image"></p>
+<h2 id="常用的慢查日志分析工具（mysqldumpslow"><a href="#常用的慢查日志分析工具（mysqldumpslow" class="headerlink" title="常用的慢查日志分析工具（mysqldumpslow)"></a>常用的慢查日志分析工具（mysqldumpslow)</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1511701019185ycjzyufo.png?imageView/2/w/600/q/90" alt="paste image"></p>
 <p>-t(top): 指定取前几条作为结果输出</p>
-<h2 id="如何实时获取有性能问题的sql"><a href="#如何实时获取有性能问题的sql" class="headerlink" title="如何实时获取有性能问题的sql"></a>如何实时获取有性能问题的sql</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1511701731834c4po6pwf.png?imageslim" alt="paste image"></p>
+<h2 id="如何实时获取有性能问题的sql"><a href="#如何实时获取有性能问题的sql" class="headerlink" title="如何实时获取有性能问题的sql"></a>如何实时获取有性能问题的sql</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1511701731834c4po6pwf.png?imageView/2/w/600/q/90" alt="paste image"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="string">`user`</span>,<span class="string">`host`</span>,DB,comman,<span class="string">`time`</span>,<span class="string">`state`</span>,info <span class="keyword">from</span> information_schema.PROCESSLIST <span class="keyword">where</span> <span class="keyword">time</span>&gt;=<span class="number">60</span>;</div></pre></td></tr></table></figure>
 <h1 id="sql的解析预处理及生成执行计划"><a href="#sql的解析预处理及生成执行计划" class="headerlink" title="sql的解析预处理及生成执行计划"></a>sql的解析预处理及生成执行计划</h1><h2 id="mysql服务器处理查询请求的整个过程"><a href="#mysql服务器处理查询请求的整个过程" class="headerlink" title="mysql服务器处理查询请求的整个过程"></a>mysql服务器处理查询请求的整个过程</h2><ul>
 <li>客户端发送sql请求给服务器</li>
@@ -493,7 +493,7 @@
 <ul>
 <li>先新建一个表格，然后将旧表的数据同步给新表，然后删除旧表</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1511739186835vgj8vibb.png?imageslim" alt="paste image"></p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1511739186835vgj8vibb.png?imageView/2/w/600/q/90" alt="paste image"></p>
 <p><strong>代码实现</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pt-online-schema-<span class="keyword">change</span> \</div><div class="line"><span class="comment">--alter = "modify c varchar(150) not null default " \</span></div><div class="line"><span class="comment">--user=root --password=password D = wujunqi, t = sbtest4 \</span></div><div class="line"><span class="comment">--charset = utf8 --execute</span></div></pre></td></tr></table></figure>
 <h2 id="如何优化not-in-和-lt-gt-查询"><a href="#如何优化not-in-和-lt-gt-查询" class="headerlink" title="如何优化not in 和&lt;&gt;查询"></a>如何优化not in 和&lt;&gt;查询</h2><p><strong>例子</strong></p>
@@ -678,7 +678,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
