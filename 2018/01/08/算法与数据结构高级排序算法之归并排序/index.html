@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="归并排序," />
 
 
 
@@ -94,6 +94,7 @@
 
 
 <meta name="description" content="定义(wiki) 归并排序（英语：Merge sort，或mergesort），是创建在归并操作上的一种有效的排序算法，效率为 {\displaystyle O(n\log n)} {\displaystyle O(n\log n)}（大O符号）。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。  演">
+<meta name="keywords" content="归并排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法与数据结构高级排序算法之归并排序">
 <meta property="og:url" content="http://yoursite.com/2018/01/08/算法与数据结构高级排序算法之归并排序/index.html">
@@ -105,7 +106,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374096162vzhpwkqx.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374114159fvwypu9m.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374131467deo1aet9.png?imageView/2/w/600/q/100">
-<meta property="og:updated_time" content="2018-01-08T01:34:41.000Z">
+<meta property="og:updated_time" content="2018-01-08T02:02:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构高级排序算法之归并排序">
 <meta name="twitter:description" content="定义(wiki) 归并排序（英语：Merge sort，或mergesort），是创建在归并操作上的一种有效的排序算法，效率为 {\displaystyle O(n\log n)} {\displaystyle O(n\log n)}（大O符号）。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。  演">
@@ -345,7 +346,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T09:08:30+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T09:08:00+08:00">
                 2018-01-08
               </time>
             
@@ -355,6 +356,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -433,6 +467,11 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSortCom</span><span class="params">(&amp;$arr, $l, $r)</span></span>&#123;</div><div class="line">   <span class="keyword">for</span> ($i=$l+<span class="number">1</span>; $i &lt;= $r; $i++) &#123;</div><div class="line">        <span class="comment">//采用复制的方式</span></div><div class="line">        $tmp = $arr[$i];</div><div class="line">        <span class="keyword">for</span> ($j=$i; $j &gt; $l &amp;&amp; $tmp &lt; $arr[$j<span class="number">-1</span>]; $j--) &#123;</div><div class="line">            $arr[$j] = $arr[$j<span class="number">-1</span>];</div><div class="line">        &#125;</div><div class="line">        $arr[$j] = $tmp;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__mergeSort</span><span class="params">(&amp;$arr, $l, $r)</span></span>&#123;</div><div class="line">	<span class="comment">//此时为一个元素，不需要进行归并</span></div><div class="line">	<span class="comment">// if ($l &gt;= $r) &#123;</span></div><div class="line">	<span class="comment">// 	return;</span></div><div class="line">	<span class="comment">// &#125;</span></div><div class="line"></div><div class="line">	<span class="comment">//优化点2:对小规模数组直接使用插入排序</span></div><div class="line">	<span class="keyword">if</span>($r - $l &lt; <span class="number">15</span> )&#123;</div><div class="line">		insertSortCom($arr, $l, $r);</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	$mid = (int)(($l + $r) / <span class="number">2</span>);</div><div class="line">	<span class="comment">// print_r($arr);var_dump($l, $mid, $r);die;</span></div><div class="line">	<span class="comment">//对[l, mid]数组进行归并</span></div><div class="line">	__mergeSort($arr, $l, $mid);</div><div class="line">	<span class="comment">//对[mid+1, $r]数组进行归并</span></div><div class="line">	__mergeSort($arr, $mid+<span class="number">1</span>, $r);</div><div class="line"></div><div class="line">	<span class="comment">// 优化点1</span></div><div class="line">	<span class="keyword">if</span> ($arr[$mid] &gt; $arr[$mid+<span class="number">1</span>]) &#123;</div><div class="line">		merge($arr, $l, $mid, $r);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>运行时间</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mergeSort运行的时间为：<span class="number">0.012771844863892</span>s</div><div class="line">insertSortSeo运行的时间为：<span class="number">0.050396919250488</span>s</div></pre></td></tr></table></figure>
+<h2 id="自底向上的方法（迭代法）"><a href="#自底向上的方法（迭代法）" class="headerlink" title="自底向上的方法（迭代法）"></a>自底向上的方法（迭代法）</h2><p>我们知道递归是可以用迭代代替的，我们尝试改为迭代的方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//迭代法(自底向上)</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSortBU</span><span class="params">(&amp;$arr, $n)</span></span>&#123;</div><div class="line">	<span class="comment">//先是1、1合并，然后是2、2合并，再是4、4合并</span></div><div class="line">	<span class="keyword">for</span> ($sz=<span class="number">1</span>; $sz &lt; $n; $sz += $sz) &#123;</div><div class="line">		<span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; $n; $i+=<span class="number">2</span>*$sz)&#123;</div><div class="line">			merge($arr, $i, $i+$sz<span class="number">-1</span>, min($i+<span class="number">2</span>*$sz<span class="number">-1</span>, $n<span class="number">-1</span>));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>运行结果</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// //main</span></div><div class="line">$n = <span class="number">1000</span>;</div><div class="line">$arr = generateRandomArray($n, <span class="number">0</span>, $n);</div><div class="line"><span class="comment">// $arr = generateNearlyOrderedArray($n, 100);</span></div><div class="line">$copy_arr = $arr;</div><div class="line">testSort(<span class="string">"mergeSort"</span>, <span class="string">"mergeSort"</span>, $arr, $n);</div><div class="line">testSort(<span class="string">"mergeSortBU"</span>, <span class="string">"mergeSortBU"</span>, $arr, $n);</div><div class="line">testSort(<span class="string">"insertSortSeo"</span>, <span class="string">"insertSortSeo"</span>, $copy_arr, $n);</div></pre></td></tr></table></figure>
+<p><strong>结果对比</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mergeSort运行的时间为：<span class="number">0.0013480186462402</span>s</div><div class="line">mergeSortBU运行的时间为：<span class="number">0.0033299922943115</span>s</div><div class="line">insertSortSeo运行的时间为：<span class="number">0.022433042526245</span>s</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -480,6 +519,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/归并排序/" rel="tag"># 归并排序</a>
+          
+        </div>
       
 
       
@@ -607,7 +652,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -618,7 +663,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -705,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-wiki"><span class="nav-number">1.</span> <span class="nav-text">定义(wiki)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#演示"><span class="nav-number">2.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化点1："><span class="nav-number">3.1.</span> <span class="nav-text">优化点1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化点2："><span class="nav-number">3.2.</span> <span class="nav-text">优化点2：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-wiki"><span class="nav-number">1.</span> <span class="nav-text">定义(wiki)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#演示"><span class="nav-number">2.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化点1："><span class="nav-number">3.1.</span> <span class="nav-text">优化点1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化点2："><span class="nav-number">3.2.</span> <span class="nav-text">优化点2：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自底向上的方法（迭代法）"><span class="nav-number">4.</span> <span class="nav-text">自底向上的方法（迭代法）</span></a></li></ol></div>
             
 
           </div>
