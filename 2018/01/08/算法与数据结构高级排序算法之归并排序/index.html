@@ -93,23 +93,23 @@
 
 
 
-<meta name="description" content="定义(wiki) 归并排序（英语：Merge sort，或mergesort），是创建在归并操作上的一种有效的排序算法，效率为 {\displaystyle O(n\log n)} {\displaystyle O(n\log n)}（大O符号）。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。  演">
+<meta name="description" content="主要是关于归并排序算法，以及一些优化">
 <meta name="keywords" content="归并排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法与数据结构高级排序算法之归并排序">
 <meta property="og:url" content="http://yoursite.com/2018/01/08/算法与数据结构高级排序算法之归并排序/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="定义(wiki) 归并排序（英语：Merge sort，或mergesort），是创建在归并操作上的一种有效的排序算法，效率为 {\displaystyle O(n\log n)} {\displaystyle O(n\log n)}（大O符号）。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。  演">
+<meta property="og:description" content="主要是关于归并排序算法，以及一些优化">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515373992335os3txamp.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374072648rlc1m5fh.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374096162vzhpwkqx.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374114159fvwypu9m.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374131467deo1aet9.png?imageView/2/w/600/q/100">
-<meta property="og:updated_time" content="2018-01-08T02:02:49.000Z">
+<meta property="og:updated_time" content="2018-01-08T02:04:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构高级排序算法之归并排序">
-<meta name="twitter:description" content="定义(wiki) 归并排序（英语：Merge sort，或mergesort），是创建在归并操作上的一种有效的排序算法，效率为 {\displaystyle O(n\log n)} {\displaystyle O(n\log n)}（大O符号）。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。  演">
+<meta name="twitter:description" content="主要是关于归并排序算法，以及一些优化">
 <meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1515373992335os3txamp.png?imageView/2/w/600/q/100">
 
 
@@ -430,7 +430,9 @@
       
 
       
-        <h2 id="定义-wiki"><a href="#定义-wiki" class="headerlink" title="定义(wiki)"></a>定义(wiki)</h2><blockquote>
+        <p>主要是关于归并排序算法，以及一些优化</p>
+<a id="more"></a>
+<h2 id="定义-wiki"><a href="#定义-wiki" class="headerlink" title="定义(wiki)"></a>定义(wiki)</h2><blockquote>
 <p>归并排序（英语：Merge sort，或mergesort），是创建在归并操作上的一种有效的排序算法，效率为 {\displaystyle O(n\log n)} {\displaystyle O(n\log n)}（大O符号）。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。</p>
 </blockquote>
 <h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>首先将数据分为两部分，对这两部分的数据进行行排序，然后将两部分排序好的数组进行归并（有一种O(N)时间复杂度的方法可以实现）</p>
