@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="堆,优先队列," />
 
 
 
@@ -93,16 +93,22 @@
 
 
 
-<meta name="description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="番茄技术小栈">
-<meta property="og:url" content="http://yoursite.com/categories/yaf/php/接口/index.html">
+<meta name="description" content="主要介绍优先队列，通过优先队列引出堆， 然后写了一个类（php代码）实现了大根堆">
+<meta name="keywords" content="堆,优先队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法与数据结构堆和堆排序之堆的实现">
+<meta property="og:url" content="http://yoursite.com/2018/01/11/算法与数据结构堆和堆排序之堆的实现/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
+<meta property="og:description" content="主要介绍优先队列，通过优先队列引出堆， 然后写了一个类（php代码）实现了大根堆">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515637887363v5r0p46s.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515638040688q3zy8r85.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15156381317218u5rxpdo.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-01-11T02:39:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="番茄技术小栈">
-<meta name="twitter:description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
+<meta name="twitter:title" content="算法与数据结构堆和堆排序之堆的实现">
+<meta name="twitter:description" content="主要介绍优先队列，通过优先队列引出堆， 然后写了一个类（php代码）实现了大根堆">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1515637887363v5r0p46s.png?imageView/2/w/600/q/100">
 
 
 
@@ -130,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/yaf/php/接口/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/11/算法与数据结构堆和堆排序之堆的实现/"/>
 
 
 
 
 
-  <title>分类: 接口 | 番茄技术小栈</title>
+  <title>算法与数据结构堆和堆排序之堆的实现 | 番茄技术小栈</title>
   
 
 
@@ -161,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -299,45 +305,278 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>接口<small>分类</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/08/高性能的PHP-API-接口开发之邮件发送接口类/" itemprop="url">
-              
-                <span itemprop="name">高性能的PHP API 接口开发之邮件发送接口类</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-08T17:13:00+08:00"
-              content="2017-10-08" >
-          10-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/算法与数据结构堆和堆排序之堆的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法与数据结构堆和堆排序之堆的实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T10:14:00+08:00">
+                2018-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/11/算法与数据结构堆和堆排序之堆的实现/" class="leancloud_visitors" data-flag-title="算法与数据结构堆和堆排序之堆的实现">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>主要介绍优先队列，通过优先队列引出堆， 然后写了一个类（php代码）实现了大根堆</p>
+<a id="more"></a>
+<h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>优先队列是计算机科学中的一类抽象数据类型。优先队列中的每个元素都有各自的优先级，优先级最高的元素最先得到服务；优先级相同的元素按照其在优先队列中的顺序得到服务。优先队列往往用堆来实现。</p>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>普通队列：先进先出，后进后出</li>
+<li>优先队列：出队顺序和入队顺序无关，和优先级相关</li>
+</ul>
+<h3 id="现实用途"><a href="#现实用途" class="headerlink" title="现实用途"></a>现实用途</h3><ul>
+<li>动态任务处理中心（操作系统）</li>
+</ul>
+<h3 id="为什么使用优先队列"><a href="#为什么使用优先队列" class="headerlink" title="为什么使用优先队列"></a>为什么使用优先队列</h3><p><strong>问题</strong></p>
+<ul>
+<li>在1000000个元素中选出前100名</li>
+<li>在N个元素中选出前M个元素</li>
+</ul>
+<p><strong>解决方法</strong></p>
+<ul>
+<li>排序，时间复杂度O(NlogN)</li>
+<li>使用优先队列：时间复杂度（NlogM)</li>
+</ul>
+<h3 id="优先队列的实现对比"><a href="#优先队列的实现对比" class="headerlink" title="优先队列的实现对比"></a>优先队列的实现对比</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1515637887363v5r0p46s.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>堆的实现通过构造二叉堆（binary heap），实为二叉树的一种；由于其应用的普遍性，当不加限定时，均指该数据结构的这种实现。这种数据结构具有以下性质。</p>
+</blockquote>
+<ul>
+<li>任意节点小于（或大于）它的所有后裔，最小元（或最大元）在堆的根上（堆序性）。</li>
+<li>堆总是一棵完全树。即除了最底层，其他层的节点都被元素填满，且最底层尽可能地从左到右填入。</li>
+<li>将根节点最大的堆叫做最大堆或大根堆，根节点最小的堆叫做最小堆或小根堆。常见的堆有二叉堆、斐波那契堆等。</li>
+</ul>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1515638040688q3zy8r85.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h3 id="用数组存储二叉堆"><a href="#用数组存储二叉堆" class="headerlink" title="用数组存储二叉堆"></a>用数组存储二叉堆</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15156381317218u5rxpdo.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require</span>(<span class="string">'../Library/SortTestHelper.php'</span>);</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 最大堆</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxHeap</span></span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="keyword">private</span> $data;</div><div class="line">	<span class="keyword">private</span> $count;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;data = <span class="keyword">array</span>();</div><div class="line">		<span class="keyword">$this</span>-&gt;count = <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="comment">// public function __construct($arr)&#123;</span></div><div class="line">	<span class="comment">// &#125;</span></div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">insert</span><span class="params">($item)</span></span>&#123;</div><div class="line"></div><div class="line">		<span class="comment">//从1开始</span></div><div class="line">        <span class="keyword">$this</span>-&gt;data[<span class="keyword">$this</span>-&gt;count + <span class="number">1</span>] = $item;</div><div class="line">        <span class="keyword">$this</span>-&gt;_shiftUp(<span class="keyword">$this</span>-&gt;count+<span class="number">1</span>);</div><div class="line">        <span class="keyword">$this</span>-&gt;count++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span>  <span class="title">extractMax</span><span class="params">()</span></span>&#123;</div><div class="line">        $ret = <span class="keyword">$this</span>-&gt;data[<span class="number">1</span>];</div><div class="line">        swap( <span class="keyword">$this</span>-&gt;data, <span class="number">1</span> , <span class="keyword">$this</span>-&gt;count);</div><div class="line">        <span class="keyword">$this</span>-&gt;count--;</div><div class="line">        <span class="keyword">$this</span>-&gt;_shiftDown(<span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> $ret;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getMax</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;data[<span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;count == <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span><span class="params">()</span></span>&#123;</div><div class="line">    	<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;data;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * [_shiftUp 新加入到堆中的元素直接放在数组后面，再与父元素比较后交换位置，直到根节点]</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span>  [type] $k [description]</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span> [type]    [description]</span></div><div class="line"><span class="comment">     */</span></div><div class="line">	<span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">_shiftUp</span><span class="params">($k)</span></span>&#123;</div><div class="line">		<span class="comment">//如果叶子节点的值比父元素大交换位置，并更新k的值</span></div><div class="line">        <span class="keyword">while</span>( $k &gt; <span class="number">1</span> &amp;&amp; <span class="keyword">$this</span>-&gt;data[(int)($k/<span class="number">2</span>)] &lt; <span class="keyword">$this</span>-&gt;data[$k] )&#123;</div><div class="line">            <span class="comment">// swap( $this-&gt;data[(int)($k/2)], $this-&gt;data[$k] );</span></div><div class="line">            swap( <span class="keyword">$this</span>-&gt;data, (int)($k/<span class="number">2</span>) , $k);</div><div class="line">            $k = (int)($k/<span class="number">2</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * [_shiftDown 元素出堆的时候，需要维护此时的堆依然是一个大根堆， 此时将数组元素的最后一个值与第一个值交换，后从上往下维护堆的性质]</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span>  [type] $k [description]</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span> [type]    [description]</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">_shiftDown</span><span class="params">($k)</span></span>&#123;</div><div class="line">    	<span class="comment">//2k代表该节点的左子节点</span></div><div class="line">        <span class="keyword">while</span>( <span class="number">2</span>*$k &lt;= <span class="keyword">$this</span>-&gt;count )&#123;</div><div class="line">            $j = <span class="number">2</span>*$k;</div><div class="line">            <span class="comment">//判断右节点是否存在，并且右节点大于左节点</span></div><div class="line">            <span class="keyword">if</span>( $j+<span class="number">1</span> &lt;= <span class="keyword">$this</span>-&gt;count &amp;&amp; <span class="keyword">$this</span>-&gt;data[$j+<span class="number">1</span>] &gt; <span class="keyword">$this</span>-&gt;data[$j] ) $j ++;</div><div class="line">            <span class="keyword">if</span>( <span class="keyword">$this</span>-&gt;data[$k] &gt;= <span class="keyword">$this</span>-&gt;data[$j] ) <span class="keyword">break</span>;</div><div class="line">            <span class="comment">// swap( $this-&gt;data[$k] , $this-&gt;data[$j] );</span></div><div class="line">            swap( <span class="keyword">$this</span>-&gt;data, $k , $j );</div><div class="line">            $k = $j;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$head_obj = <span class="keyword">new</span> MaxHeap();</div><div class="line">$n = <span class="number">10</span>;</div><div class="line"><span class="keyword">for</span> ($i=<span class="number">0</span>; $i &lt; $n; $i++) &#123;</div><div class="line">	$head_obj -&gt; insert(rand(<span class="number">0</span>, <span class="number">1000</span>));</div><div class="line">&#125;</div><div class="line"></div><div class="line">print_r($head_obj -&gt; getData());</div><div class="line"></div><div class="line"><span class="keyword">while</span> (!$head_obj -&gt; isEmpty()) &#123;</div><div class="line">	<span class="keyword">echo</span> $head_obj -&gt; extractMax().<span class="string">"\n"</span>;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">生成的堆为：</div><div class="line"><span class="keyword">Array</span></div><div class="line">(</div><div class="line">    [<span class="number">1</span>] =&gt; <span class="number">916</span></div><div class="line">    [<span class="number">2</span>] =&gt; <span class="number">776</span></div><div class="line">    [<span class="number">3</span>] =&gt; <span class="number">590</span></div><div class="line">    [<span class="number">4</span>] =&gt; <span class="number">615</span></div><div class="line">    [<span class="number">5</span>] =&gt; <span class="number">764</span></div><div class="line">    [<span class="number">6</span>] =&gt; <span class="number">539</span></div><div class="line">    [<span class="number">7</span>] =&gt; <span class="number">95</span></div><div class="line">    [<span class="number">8</span>] =&gt; <span class="number">167</span></div><div class="line">    [<span class="number">9</span>] =&gt; <span class="number">23</span></div><div class="line">    [<span class="number">10</span>] =&gt; <span class="number">374</span></div><div class="line">)</div><div class="line">打印大根堆为：</div><div class="line"><span class="number">916</span></div><div class="line"><span class="number">776</span></div><div class="line"><span class="number">764</span></div><div class="line"><span class="number">615</span></div><div class="line"><span class="number">590</span></div><div class="line"><span class="number">539</span></div><div class="line"><span class="number">374</span></div><div class="line"><span class="number">167</span></div><div class="line"><span class="number">95</span></div><div class="line"><span class="number">23</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/堆/" rel="tag"># 堆</a>
+          
+            <a href="/tags/优先队列/" rel="tag"># 优先队列</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/10/归并和快速排序思想的延伸/" rel="next" title="归并和快速排序思想的延伸">
+                <i class="fa fa-chevron-left"></i> 归并和快速排序思想的延伸
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -345,6 +584,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
 
         </div>
         
@@ -365,8 +610,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -480,6 +734,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优先队列"><span class="nav-number">1.</span> <span class="nav-text">优先队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现实用途"><span class="nav-number">1.3.</span> <span class="nav-text">现实用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用优先队列"><span class="nav-number">1.4.</span> <span class="nav-text">为什么使用优先队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先队列的实现对比"><span class="nav-number">1.5.</span> <span class="nav-text">优先队列的实现对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆"><span class="nav-number">2.</span> <span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用数组存储二叉堆"><span class="nav-number">2.2.</span> <span class="nav-text">用数组存储二叉堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -600,10 +870,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -629,6 +899,10 @@
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140241"></script>
+      <!-- UY END -->
     
   
 
