@@ -109,7 +109,11 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517541165154tbge7c2p.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15175411874314qwzpl3t.png?imageslim">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517541232653n5g1t1fs.png?imageslim">
-<meta property="og:updated_time" content="2018-02-22T02:57:32.000Z">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519272192254a4qajvcv.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15192861789472kud6sj8.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519286305521soha77jk.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519286740970ia4kjjyz.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-02-22T12:18:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis从入门到高可用，分布式实践">
 <meta name="twitter:description" content="花一周左右，全面的学习redis的知识，并记录学习笔记">
@@ -496,7 +500,321 @@
 <li>社交网络</li>
 <li>实时系统</li>
 </ul>
-<h2 id="redis三种启动方式"><a href="#redis三种启动方式" class="headerlink" title="redis三种启动方式"></a>redis三种启动方式</h2><h2 id="redis常用配置"><a href="#redis常用配置" class="headerlink" title="redis常用配置"></a>redis常用配置</h2><h2 id="redis安装启动"><a href="#redis安装启动" class="headerlink" title="redis安装启动"></a>redis安装启动</h2><h1 id="API的理解和使用"><a href="#API的理解和使用" class="headerlink" title="API的理解和使用"></a>API的理解和使用</h1><h1 id="redis客户端的使用"><a href="#redis客户端的使用" class="headerlink" title="redis客户端的使用"></a>redis客户端的使用</h1><h1 id="redis的其他功能"><a href="#redis的其他功能" class="headerlink" title="redis的其他功能"></a>redis的其他功能</h1><h1 id="redis持久化的取舍和选择"><a href="#redis持久化的取舍和选择" class="headerlink" title="redis持久化的取舍和选择"></a>redis持久化的取舍和选择</h1><h1 id="常见的持久化开发运维问题"><a href="#常见的持久化开发运维问题" class="headerlink" title="常见的持久化开发运维问题"></a>常见的持久化开发运维问题</h1><h1 id="redis复制的原理和优化"><a href="#redis复制的原理和优化" class="headerlink" title="redis复制的原理和优化"></a>redis复制的原理和优化</h1><h1 id="redis-Sentinel"><a href="#redis-Sentinel" class="headerlink" title="redis Sentinel"></a>redis Sentinel</h1><h1 id="redis云平台CacheCloud"><a href="#redis云平台CacheCloud" class="headerlink" title="redis云平台CacheCloud"></a>redis云平台CacheCloud</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+<h2 id="redis三种启动方式"><a href="#redis三种启动方式" class="headerlink" title="redis三种启动方式"></a>redis三种启动方式</h2><h3 id="redis安装（mac-amp-linux）"><a href="#redis安装（mac-amp-linux）" class="headerlink" title="redis安装（mac&amp;linux）"></a>redis安装（mac&amp;linux）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget http://download.redis.io/releases/redis-4.0.8.tar.gz</div><div class="line">$ tar xzf redis-4.0.8.tar.gz</div><div class="line">$ cd redis-4.0.8</div><div class="line">$ make</div></pre></td></tr></table></figure>
+<h3 id="redis可执行文件说明"><a href="#redis可执行文件说明" class="headerlink" title="redis可执行文件说明"></a>redis可执行文件说明</h3><table>
+<thead>
+<tr>
+<th>命令名</th>
+<th>命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>redis-server</td>
+<td>redis服务器</td>
+</tr>
+<tr>
+<td>redis-cli</td>
+<td>redis命令行客户端</td>
+</tr>
+<tr>
+<td>redis-benchmark</td>
+<td>redis性能测试工具</td>
+</tr>
+<tr>
+<td>redis-check-aof</td>
+<td>aof文件修复工具</td>
+</tr>
+<tr>
+<td>redis-check-dump</td>
+<td>RDB文件检查工具</td>
+</tr>
+<tr>
+<td>redis-sentinel</td>
+<td>sentinel服务器（2.8以后）</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1519272192254a4qajvcv.png?imageslim" alt="paste image"></p>
+<h3 id="reids三种启动方法"><a href="#reids三种启动方法" class="headerlink" title="reids三种启动方法"></a>reids三种启动方法</h3><ul>
+<li>最简启动(采用默认配置文件启动）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>验证</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | grep redis</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 127.0.0.1 -p 6379 ping</div></pre></td></tr></table></figure>
+<ul>
+<li>配置文件启动 (将需要配置的参数写入文件）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server configPath</div></pre></td></tr></table></figure>
+<ul>
+<li>动态参数启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server --port 6380</div></pre></td></tr></table></figure>
+<p><strong>三种启动方式比较</strong></p>
+<ul>
+<li>生产环境选择配置启动</li>
+<li>单机多实例配置文件可以用端口区分开</li>
+</ul>
+<h3 id="redis客户端连接"><a href="#redis客户端连接" class="headerlink" title="redis客户端连接"></a>redis客户端连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 127.0.0.1 -p 6379</div></pre></td></tr></table></figure>
+<h3 id="redis客户端返回值"><a href="#redis客户端返回值" class="headerlink" title="redis客户端返回值"></a>redis客户端返回值</h3><table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>返回值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态回复</td>
+<td>ping -&gt; pong</td>
+</tr>
+<tr>
+<td>错误回复</td>
+<td>hget hello field -&gt; (error) ERR wrong number of arguments for ‘hget’ command</td>
+</tr>
+<tr>
+<td>整数回复</td>
+<td>incr hello -&gt; (integer) 1</td>
+</tr>
+<tr>
+<td>字符串回复</td>
+<td>get hello -&gt; “1”</td>
+</tr>
+<tr>
+<td>多行字符串回复</td>
+<td>mget hello foo -&gt; 1) “1” 2) (nil)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="redis常用配置"><a href="#redis常用配置" class="headerlink" title="redis常用配置"></a>redis常用配置</h2><table>
+<thead>
+<tr>
+<th>配置名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>daemonize</td>
+<td>是否是守护进程（no</td>
+<td>yes)</td>
+</tr>
+<tr>
+<td>port</td>
+<td>redis对外端口号</td>
+</tr>
+<tr>
+<td>logfile</td>
+<td>redis系统日志</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>redis工作目录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="redis安装启动（配置文件方式）"><a href="#redis安装启动（配置文件方式）" class="headerlink" title="redis安装启动（配置文件方式）"></a>redis安装启动（配置文件方式）</h2><p><strong>配置方式</strong></p>
+<ul>
+<li>配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vim redis-6382.conf</div><div class="line"></div><div class="line">port 6382</div><div class="line">daemonize yes</div><div class="line">logfile &quot;6382.log&quot;</div><div class="line">dir ./workdata/</div></pre></td></tr></table></figure>
+<ul>
+<li><p>启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server redis-6382.conf</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -aux | grep -v redis-server | grep 6382</div></pre></td></tr></table></figure>
+</li>
+<li><p>日志文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim workdata/6382.log</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="API的理解和使用"><a href="#API的理解和使用" class="headerlink" title="API的理解和使用"></a>API的理解和使用</h1><h2 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keys [pattern]</td>
+<td>遍历所有key</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>dbsize</td>
+<td>遍历所有key</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>exists</td>
+<td>检查key是否存在</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>del key</td>
+<td>删除指定的key-value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>expire key seconds</td>
+<td>key在seconds秒后过期</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>ttl key</td>
+<td>查看key剩余的过期时间</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>persist key</td>
+<td>去掉key的过期时间</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>type key</td>
+<td>返回key的类型</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong><br>keys命令一般不再生产环境使用</p>
+<p><strong> 演示</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">➜  redis-4.0.8 redis-cli -h 127.0.0.1 -p 6382</div><div class="line">127.0.0.1:6382&gt; set hello word</div><div class="line">OK</div><div class="line">127.0.0.1:6382&gt; set php good</div><div class="line">OK</div><div class="line">127.0.0.1:6382&gt; set java best</div><div class="line">OK</div><div class="line">127.0.0.1:6382&gt; keys *</div><div class="line">1) &quot;java&quot;</div><div class="line">2) &quot;hello&quot;</div><div class="line">3) &quot;php&quot;</div><div class="line">127.0.0.1:6382&gt; dbsize</div><div class="line">(integer) 3</div><div class="line">127.0.0.1:6382&gt; exists php</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6382&gt; del php java</div><div class="line">(integer) 2</div><div class="line">127.0.0.1:6382&gt; keys *</div><div class="line">1) &quot;hello&quot;</div><div class="line">127.0.0.1:6382&gt; expire hello 20</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6382&gt; ttl hello</div><div class="line">(integer) 16</div><div class="line">127.0.0.1:6382&gt; ttl hello</div><div class="line">(integer) 12</div><div class="line">127.0.0.1:6382&gt; persist hello</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6382&gt; ttl hello</div><div class="line">(integer) -1</div><div class="line">127.0.0.1:6382&gt; type hello</div><div class="line">string</div></pre></td></tr></table></figure>
+<h2 id="数据结构和内部编码"><a href="#数据结构和内部编码" class="headerlink" title="数据结构和内部编码"></a>数据结构和内部编码</h2><h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15192861789472kud6sj8.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h3 id="reidsObject"><a href="#reidsObject" class="headerlink" title="reidsObject"></a>reidsObject</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1519286305521soha77jk.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1519286740970ia4kjjyz.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h3 id="单线程为什么这么快"><a href="#单线程为什么这么快" class="headerlink" title="单线程为什么这么快"></a>单线程为什么这么快</h3><ul>
+<li>纯内存</li>
+<li>非阻塞IO</li>
+<li>避免线程切换和竞态消耗</li>
+</ul>
+<h3 id="使用单线程要注意什么"><a href="#使用单线程要注意什么" class="headerlink" title="使用单线程要注意什么"></a>使用单线程要注意什么</h3><ul>
+<li>一次只能运行一条命令</li>
+<li>拒绝长（慢）命令<ul>
+<li>keys</li>
+<li>flushall</li>
+<li>flushdb</li>
+<li>slow lua script</li>
+<li>mutil/exec</li>
+<li>operate big value(collection)</li>
+</ul>
+</li>
+</ul>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hello</td>
+<td>world</td>
+</tr>
+<tr>
+<td>counter</td>
+<td>1</td>
+</tr>
+<tr>
+<td>bits</td>
+<td></td>
+<td>101111101110</td>
+</tr>
+</tbody>
+</table>
+<p>可以是字符串（json);数字，以及二进制</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>缓存</li>
+<li>计数器</li>
+<li>分布式锁</li>
+</ul>
+<h3 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get key</td>
+<td>获取key对应的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>set key value</td>
+<td>设置key value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>del key</td>
+<td>删除key-value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>incr</td>
+<td>key自增1， 如果key不存在，自增后get(key) = 1</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>decr</td>
+<td>key自减1， 如果key不存在，自增后get(key) = -1</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>incrby key k</td>
+<td>key自增k， 如果key不存在，自增后get(key) = k</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>decr key k</td>
+<td>key自减k， 如果key不存在，自增后get(key) = -k</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取key对应的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取key对应的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取key对应的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取key对应的value</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取key对应的value</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><ul>
+<li><p>记录网站每个用户个人主页的访问量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">incr userid: pageview (**主要的是：单线程，所以无竞争）**）</div></pre></td></tr></table></figure>
+</li>
+<li><p>缓存视频的基本信息（数据源在mysql中)伪代码</p>
+</li>
+</ul>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h2 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h2><h1 id="redis客户端的使用"><a href="#redis客户端的使用" class="headerlink" title="redis客户端的使用"></a>redis客户端的使用</h1><h1 id="redis的其他功能"><a href="#redis的其他功能" class="headerlink" title="redis的其他功能"></a>redis的其他功能</h1><h1 id="redis持久化的取舍和选择"><a href="#redis持久化的取舍和选择" class="headerlink" title="redis持久化的取舍和选择"></a>redis持久化的取舍和选择</h1><h1 id="常见的持久化开发运维问题"><a href="#常见的持久化开发运维问题" class="headerlink" title="常见的持久化开发运维问题"></a>常见的持久化开发运维问题</h1><h1 id="redis复制的原理和优化"><a href="#redis复制的原理和优化" class="headerlink" title="redis复制的原理和优化"></a>redis复制的原理和优化</h1><h1 id="redis-Sentinel"><a href="#redis-Sentinel" class="headerlink" title="redis Sentinel"></a>redis Sentinel</h1><h1 id="redis云平台CacheCloud"><a href="#redis云平台CacheCloud" class="headerlink" title="redis云平台CacheCloud"></a>redis云平台CacheCloud</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
       
     </div>
 
@@ -659,7 +977,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -768,7 +1086,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis初识"><span class="nav-number">1.</span> <span class="nav-text">redis初识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导学"><span class="nav-number">1.1.</span> <span class="nav-text">导学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#盛赞redis"><span class="nav-number">1.1.1.</span> <span class="nav-text">盛赞redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis初识-1"><span class="nav-number">1.2.</span> <span class="nav-text">redis初识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.2.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis的前世今生"><span class="nav-number">1.2.3.</span> <span class="nav-text">redis的前世今生</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谁在使用redis"><span class="nav-number">1.3.</span> <span class="nav-text">谁在使用redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis特性目录"><span class="nav-number">1.4.</span> <span class="nav-text">redis特性目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性1：速度快"><span class="nav-number">1.4.1.</span> <span class="nav-text">特性1：速度快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性2：持久化"><span class="nav-number">1.4.2.</span> <span class="nav-text">特性2：持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性3：数据结构"><span class="nav-number">1.4.3.</span> <span class="nav-text">特性3：数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性4：多语言客户端"><span class="nav-number">1.4.4.</span> <span class="nav-text">特性4：多语言客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性5：功能丰富"><span class="nav-number">1.4.5.</span> <span class="nav-text">特性5：功能丰富</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性6：简单"><span class="nav-number">1.4.6.</span> <span class="nav-text">特性6：简单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性7：复制"><span class="nav-number">1.4.7.</span> <span class="nav-text">特性7：复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性8：-高可用"><span class="nav-number">1.4.8.</span> <span class="nav-text">特性8： 高可用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis典型使用场景"><span class="nav-number">1.5.</span> <span class="nav-text">redis典型使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis三种启动方式"><span class="nav-number">1.6.</span> <span class="nav-text">redis三种启动方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis常用配置"><span class="nav-number">1.7.</span> <span class="nav-text">redis常用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis安装启动"><span class="nav-number">1.8.</span> <span class="nav-text">redis安装启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API的理解和使用"><span class="nav-number">2.</span> <span class="nav-text">API的理解和使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis客户端的使用"><span class="nav-number">3.</span> <span class="nav-text">redis客户端的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis的其他功能"><span class="nav-number">4.</span> <span class="nav-text">redis的其他功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis持久化的取舍和选择"><span class="nav-number">5.</span> <span class="nav-text">redis持久化的取舍和选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的持久化开发运维问题"><span class="nav-number">6.</span> <span class="nav-text">常见的持久化开发运维问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis复制的原理和优化"><span class="nav-number">7.</span> <span class="nav-text">redis复制的原理和优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-Sentinel"><span class="nav-number">8.</span> <span class="nav-text">redis Sentinel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis云平台CacheCloud"><span class="nav-number">9.</span> <span class="nav-text">redis云平台CacheCloud</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis初识"><span class="nav-number">1.</span> <span class="nav-text">redis初识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导学"><span class="nav-number">1.1.</span> <span class="nav-text">导学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#盛赞redis"><span class="nav-number">1.1.1.</span> <span class="nav-text">盛赞redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis初识-1"><span class="nav-number">1.2.</span> <span class="nav-text">redis初识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.2.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis的前世今生"><span class="nav-number">1.2.3.</span> <span class="nav-text">redis的前世今生</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谁在使用redis"><span class="nav-number">1.3.</span> <span class="nav-text">谁在使用redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis特性目录"><span class="nav-number">1.4.</span> <span class="nav-text">redis特性目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性1：速度快"><span class="nav-number">1.4.1.</span> <span class="nav-text">特性1：速度快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性2：持久化"><span class="nav-number">1.4.2.</span> <span class="nav-text">特性2：持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性3：数据结构"><span class="nav-number">1.4.3.</span> <span class="nav-text">特性3：数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性4：多语言客户端"><span class="nav-number">1.4.4.</span> <span class="nav-text">特性4：多语言客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性5：功能丰富"><span class="nav-number">1.4.5.</span> <span class="nav-text">特性5：功能丰富</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性6：简单"><span class="nav-number">1.4.6.</span> <span class="nav-text">特性6：简单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性7：复制"><span class="nav-number">1.4.7.</span> <span class="nav-text">特性7：复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性8：-高可用"><span class="nav-number">1.4.8.</span> <span class="nav-text">特性8： 高可用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis典型使用场景"><span class="nav-number">1.5.</span> <span class="nav-text">redis典型使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis三种启动方式"><span class="nav-number">1.6.</span> <span class="nav-text">redis三种启动方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis安装（mac-amp-linux）"><span class="nav-number">1.6.1.</span> <span class="nav-text">redis安装（mac&linux）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis可执行文件说明"><span class="nav-number">1.6.2.</span> <span class="nav-text">redis可执行文件说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reids三种启动方法"><span class="nav-number">1.6.3.</span> <span class="nav-text">reids三种启动方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis客户端连接"><span class="nav-number">1.6.4.</span> <span class="nav-text">redis客户端连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis客户端返回值"><span class="nav-number">1.6.5.</span> <span class="nav-text">redis客户端返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis常用配置"><span class="nav-number">1.7.</span> <span class="nav-text">redis常用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis安装启动（配置文件方式）"><span class="nav-number">1.8.</span> <span class="nav-text">redis安装启动（配置文件方式）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API的理解和使用"><span class="nav-number">2.</span> <span class="nav-text">API的理解和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通用命令"><span class="nav-number">2.1.</span> <span class="nav-text">通用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构和内部编码"><span class="nav-number">2.2.</span> <span class="nav-text">数据结构和内部编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示"><span class="nav-number">2.2.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reidsObject"><span class="nav-number">2.2.2.</span> <span class="nav-text">reidsObject</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单线程"><span class="nav-number">2.3.</span> <span class="nav-text">单线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单线程为什么这么快"><span class="nav-number">2.3.2.</span> <span class="nav-text">单线程为什么这么快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用单线程要注意什么"><span class="nav-number">2.3.3.</span> <span class="nav-text">使用单线程要注意什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">2.4.</span> <span class="nav-text">string</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">2.4.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">2.4.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作命令"><span class="nav-number">2.4.3.</span> <span class="nav-text">操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实战"><span class="nav-number">2.4.4.</span> <span class="nav-text">实战</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">2.5.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">2.6.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">2.7.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zset"><span class="nav-number">2.8.</span> <span class="nav-text">zset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis客户端的使用"><span class="nav-number">3.</span> <span class="nav-text">redis客户端的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis的其他功能"><span class="nav-number">4.</span> <span class="nav-text">redis的其他功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis持久化的取舍和选择"><span class="nav-number">5.</span> <span class="nav-text">redis持久化的取舍和选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的持久化开发运维问题"><span class="nav-number">6.</span> <span class="nav-text">常见的持久化开发运维问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis复制的原理和优化"><span class="nav-number">7.</span> <span class="nav-text">redis复制的原理和优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-Sentinel"><span class="nav-number">8.</span> <span class="nav-text">redis Sentinel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis云平台CacheCloud"><span class="nav-number">9.</span> <span class="nav-text">redis云平台CacheCloud</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
