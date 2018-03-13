@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="系统的学习linux，主要包括linux简介，linux命令，远程连接ssh, webserver、数据库服务、缓存服务、git服务的安装与配置，以及java、python运行环境的安装等。">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux从入门到实践">
+<meta property="og:url" content="http://yoursite.com/2018/02/27/linux从入门到实践/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="系统的学习linux，主要包括linux简介，linux命令，远程连接ssh, webserver、数据库服务、缓存服务、git服务的安装与配置，以及java、python运行环境的安装等。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519871109398pzk2l7gx.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15199143446022lnrkg0h.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-03-09T09:19:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux从入门到实践">
+<meta name="twitter:description" content="系统的学习linux，主要包括linux简介，linux命令，远程连接ssh, webserver、数据库服务、缓存服务、git服务的安装与配置，以及java、python运行环境的安装等。">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1519871109398pzk2l7gx.png?imageView/2/w/600/q/100">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/27/linux从入门到实践/"/>
+
+
+
+
+
+  <title>linux从入门到实践 | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/27/linux从入门到实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux从入门到实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T10:22:00+08:00">
+                2018-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/27/linux从入门到实践/" class="leancloud_visitors" data-flag-title="linux从入门到实践">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>系统的学习linux，主要包括linux简介，linux命令，远程连接ssh, webserver、数据库服务、缓存服务、git服务的安装与配置，以及java、python运行环境的安装等。<br><a id="more"></a></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="mac安装docker"><a href="#mac安装docker" class="headerlink" title="mac安装docker"></a>mac安装docker</h3><p>具体参考之前的这篇博客<a href="http://fanqieto.top/2017/10/08/%E5%88%A9%E7%94%A8docker%E6%90%AD%E5%BB%BAyaf/" target="_blank" rel="external">利用docker搭建yaf</a></p>
+<h3 id="启动centos"><a href="#启动centos" class="headerlink" title="启动centos"></a>启动centos</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name centos_mysql_new --privileged=true -v /Users/junqi1/centos_mysql:/home/work -v /sys/fs/cgroup:/sys/fs/cgroup centos:latest /sbin/init</div><div class="line">docker exec -it centos_mysql_new /bin/bash</div></pre></td></tr></table></figure>
+<h4 id="解决进入容器后无法使用-service-命令"><a href="#解决进入容器后无法使用-service-命令" class="headerlink" title="解决进入容器后无法使用 service 命令"></a>解决进入容器后无法使用 service 命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@3f3838ae0cda /]# service</div><div class="line">bash: service: command not found</div></pre></td></tr></table></figure>
+<p>一般原因是没有将/sbin/service 加到 path 中,但在 docker 的官方 centos 容器中,到/sbin 目录下也没有找到 service 命令.<br><strong>解决</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install initscripts.x86_64</div></pre></td></tr></table></figure></p>
+<h4 id="解决-CentOS7-容器-Failed-to-get-D-Bus-connection-Operation-not-permitted"><a href="#解决-CentOS7-容器-Failed-to-get-D-Bus-connection-Operation-not-permitted" class="headerlink" title="解决 CentOS7 容器 Failed to get D-Bus connection: Operation not permitted"></a>解决 CentOS7 容器 Failed to get D-Bus connection: Operation not permitted</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -e "container=docker" --privileged=true -v /sys/fs/cgroup:/sys/fs/cgroup --name centos7 centos /usr/sbin/init</div></pre></td></tr></table></figure>
+<h3 id="安装ifconfig"><a href="#安装ifconfig" class="headerlink" title="安装ifconfig"></a>安装ifconfig</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install net-tools</div></pre></td></tr></table></figure>
+<h3 id="更换centos的镜像源"><a href="#更换centos的镜像源" class="headerlink" title="更换centos的镜像源"></a>更换centos的镜像源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">yum install wget</div><div class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</div><div class="line">cd /etc/yum.repos.d/       </div><div class="line">wget http://mirrors.163.com/.help/CentOS7-Base-163.repo</div><div class="line">yum clean all</div><div class="line">yum makecache</div></pre></td></tr></table></figure>
+<h2 id="远程连接ssh专题"><a href="#远程连接ssh专题" class="headerlink" title="远程连接ssh专题"></a>远程连接ssh专题</h2><h3 id="认识SSH"><a href="#认识SSH" class="headerlink" title="认识SSH"></a>认识SSH</h3><p><strong>SSH是什么</strong></p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1519871109398pzk2l7gx.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<ul>
+<li>SSH：Secure shell 安全外壳协议</li>
+<li>建立在应用层基础上的安全协议</li>
+<li>可靠，专为远程登录会话和其他网络服务提供安全性的协议</li>
+<li>有效防止远程管理过程中的信息泄露问题</li>
+<li>SSH客户端适用于多种平台</li>
+<li>SSH服务端几乎支持所有UNIX平台</li>
+</ul>
+<h3 id="服务器安装SSH服务"><a href="#服务器安装SSH服务" class="headerlink" title="服务器安装SSH服务"></a>服务器安装SSH服务</h3><ul>
+<li><p>安装ssh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install openssh-server</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动ssh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service sshd start</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置开机启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chkconfig sshd on</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查ssh是否启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep ssh</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="客户端安装SSH服务"><a href="#客户端安装SSH服务" class="headerlink" title="客户端安装SSH服务"></a>客户端安装SSH服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install openssh-clients</div></pre></td></tr></table></figure>
+<h3 id="客户端连接SSH服务"><a href="#客户端连接SSH服务" class="headerlink" title="客户端连接SSH服务"></a>客户端连接SSH服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -p 26 junqi1@ip</div></pre></td></tr></table></figure>
+<h3 id="SSH-config命令讲解"><a href="#SSH-config命令讲解" class="headerlink" title="SSH config命令讲解"></a>SSH config命令讲解</h3><ul>
+<li><p>config为了方便我们批量管理多个ssh</p>
+</li>
+<li><p>config存放在~/.ssh/config</p>
+</li>
+</ul>
+<h4 id="config配置语法"><a href="#config配置语法" class="headerlink" title="config配置语法"></a>config配置语法</h4><table>
+<thead>
+<tr>
+<th>配置名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>别名</td>
+</tr>
+<tr>
+<td>HostName</td>
+<td>主机名</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>端口</td>
+</tr>
+<tr>
+<td>User</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>IdentityFile</td>
+<td>密钥文件的路径</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">host "83"</div><div class="line">	HostName your ip</div><div class="line">	User junqi1</div><div class="line">	Port 26</div></pre></td></tr></table></figure>
+<p><strong>配置完成登录</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh 83</div></pre></td></tr></table></figure>
+<h3 id="SSH免密登录"><a href="#SSH免密登录" class="headerlink" title="SSH免密登录"></a>SSH免密登录</h3><ul>
+<li>ssh key 使用非对称加密方式生成公钥和私钥</li>
+<li>私钥存放在本地~/.ssh目录</li>
+<li>公钥可以对外访问，放在服务器的~/.ssh/authorized_keys</li>
+</ul>
+<h3 id="SSH安全端口"><a href="#SSH安全端口" class="headerlink" title="SSH安全端口"></a>SSH安全端口</h3><ul>
+<li>端口安全指的是尽量避免服务器的远程连接端口被不法分子知道，为此而改变默认服务端口号的操作</li>
+<li>如何改变SSH服务端口<br>  修改/etc/ssh/sshd_config配置</li>
+</ul>
+<h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h3 id="软件操作命令"><a href="#软件操作命令" class="headerlink" title="软件操作命令"></a>软件操作命令</h3><ul>
+<li>软件包管理：yum</li>
+<li>安装软件：yum install xxx</li>
+<li>卸载软件：yum remove xxx</li>
+<li>搜索软件：yum serach xxx</li>
+<li>清理软件：yum clean packages</li>
+<li>列出已安装：yum list</li>
+<li>软件包信息： yum info xxx</li>
+</ul>
+<h3 id="服务器硬件资源信息"><a href="#服务器硬件资源信息" class="headerlink" title="服务器硬件资源信息"></a>服务器硬件资源信息</h3><ul>
+<li>内存：free-m<br>  -m: 以兆的单位进行显示</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@cb02fd06938e ~]# free -m</div><div class="line">              total        used        free      shared  buff/cache   available</div><div class="line">Mem:           1999          76        1360         172         561        1588</div><div class="line">Swap:          1023           0        1023</div></pre></td></tr></table></figure>
+<ul>
+<li>硬盘：df-h<br>  -h: human,以人类可读的方式展示</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@cb02fd06938e ~]# df -h</div><div class="line">Filesystem      Size  Used Avail Use% Mounted on</div><div class="line">overlay          63G  7.1G   53G  12% /</div><div class="line">tmpfs            64M     0   64M   0% /dev</div><div class="line">osxfs           220G  168G   52G  77% /home/work</div><div class="line">/dev/sda1        63G  7.1G   53G  12% /etc/hosts</div><div class="line">shm              64M     0   64M   0% /dev/shm</div><div class="line">cgroup_root      10M     0   10M   0% /sys/fs/cgroup</div><div class="line">tmpfs          1000M  8.3M  992M   1% /run</div></pre></td></tr></table></figure>
+<ul>
+<li>负载：w/top<br>  load average: 0.06, 0.02, 0.00 #分别表示最近1分钟，5分钟，15分钟的负载</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@cb02fd06938e ~]# w</div><div class="line"> 13:48:04 up 4 days, 21:45,  0 users,  load average: 0.00, 0.00, 0.00</div><div class="line">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</div><div class="line">[root@cb02fd06938e ~]# top</div><div class="line"></div><div class="line">top - 13:48:24 up 4 days, 21:45,  0 users,  load average: 0.06, 0.02, 0.00</div><div class="line">Tasks:   9 total,   1 running,   8 sleeping,   0 stopped,   0 zombie</div><div class="line"><span class="meta">%</span>Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</div><div class="line">KiB Mem :  2047032 total,  1393340 free,    78504 used,   575188 buff/cache</div><div class="line">KiB Swap:  1048572 total,  1048572 free,        0 used.  1626416 avail Mem </div><div class="line"></div><div class="line">  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND      </div><div class="line">  334 root      20   0   51928   3656   3160 R   6.7  0.2   0:00.01 top</div></pre></td></tr></table></figure>
+<ul>
+<li>cpu个数和核数</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[root@cb02fd06938e ~]# cat /proc/cpuinfo </div><div class="line">processor	: 0</div><div class="line">vendor_id	: GenuineIntel</div><div class="line">cpu family	: 6</div><div class="line">model		: 78</div><div class="line">model name	: Intel(R) Core(TM) i5-6360U CPU @ 2.00GHz</div><div class="line">stepping	: 3</div><div class="line">cpu MHz		: 2000.000</div><div class="line">cache size	: 4096 KB</div><div class="line">physical id	: 0</div><div class="line">siblings	: 1</div><div class="line">core id		: 0</div><div class="line">cpu cores	: 1</div><div class="line">apicid		: 0</div><div class="line">initial apicid	: 0</div><div class="line">fpu		: yes</div><div class="line">fpu_exception	: yes</div><div class="line">cpuid level	: 22</div><div class="line">wp		: yes</div></pre></td></tr></table></figure>
+<h3 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h3><p>具体参考<a href="http://www.runoob.com/linux/linux-command-manual.html" target="_blank" rel="external">linux命令大全</a></p>
+<h4 id="linux文件的目录结构"><a href="#linux文件的目录结构" class="headerlink" title="linux文件的目录结构"></a>linux文件的目录结构</h4><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>根目录</td>
+<td>/</td>
+</tr>
+<tr>
+<td>家目录</td>
+<td>/home</td>
+</tr>
+<tr>
+<td>临时目录</td>
+<td>/tmp</td>
+</tr>
+<tr>
+<td>配置目录</td>
+<td>/etc</td>
+</tr>
+<tr>
+<td>用户程序目录</td>
+<td>/usr</td>
+</tr>
+</tbody>
+</table>
+<h4 id="文件基本操作"><a href="#文件基本操作" class="headerlink" title="文件基本操作"></a>文件基本操作</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td>查看目录下的文件</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>新建文件</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>新建文件夹</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>删除文件和目录</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>移动</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>显示目录</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>进入目录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注</strong></p>
+<ul>
+<li>循环建立目录<br>  mkdir -p wjq/test1/test2</li>
+<li>强制循环删除目录<br>  rm -rf </li>
+</ul>
+<h4 id="文本编辑神器Vim"><a href="#文本编辑神器Vim" class="headerlink" title="文本编辑神器Vim"></a>文本编辑神器Vim</h4><ul>
+<li>文件行首 gg</li>
+<li>文件行尾 G</li>
+<li>删除：dd</li>
+<li>恢复：u</li>
+<li>复制：yy</li>
+<li>粘贴：p</li>
+</ul>
+<h4 id="文件权限421"><a href="#文件权限421" class="headerlink" title="文件权限421"></a>文件权限421</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/15199143446022lnrkg0h.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h4 id="文件搜索、查找、读取"><a href="#文件搜索、查找、读取" class="headerlink" title="文件搜索、查找、读取"></a>文件搜索、查找、读取</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tail</td>
+<td>从文件尾部开始读</td>
+</tr>
+<tr>
+<td>head</td>
+<td>从文件头部读</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>读取整个文件</td>
+</tr>
+<tr>
+<td>more</td>
+<td>分页读取</td>
+</tr>
+<tr>
+<td>less</td>
+<td>可控分页</td>
+</tr>
+<tr>
+<td>grep 、grep -n</td>
+<td>搜索关键字</td>
+</tr>
+<tr>
+<td>find</td>
+<td>查找文件</td>
+</tr>
+<tr>
+<td>wc wc -l</td>
+<td>统计个数</td>
+</tr>
+</tbody>
+</table>
+<p>具体参考<a href="http://www.runoob.com/linux/linux-command-manual.html" target="_blank" rel="external">linux命令大全</a></p>
+<h4 id="文件压缩与解压"><a href="#文件压缩与解压" class="headerlink" title="文件压缩与解压"></a>文件压缩与解压</h4><ul>
+<li>zip/unzip</li>
+</ul>
+<p><strong>压缩</strong><br>将 /home/html/ 这个目录下所有文件和文件夹打包为当前目录下的 html.zip：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zip -q -r html.zip /home/html</div></pre></td></tr></table></figure></p>
+<p>如果在我们在 /home/html 目录下，可以执行以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zip -q -r html.zip *</div></pre></td></tr></table></figure></p>
+<p>从压缩文件 cp.zip 中删除文件 a.c<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zip -dv cp.zip a.c</div></pre></td></tr></table></figure></p>
+<p><strong>解压缩</strong><br>将压缩文件text.zip在当前目录下解压缩。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip test.zip</div></pre></td></tr></table></figure></p>
+<p>将压缩文件text.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令不覆盖原先的文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip -n test.zip -d /tmp</div></pre></td></tr></table></figure></p>
+<p>查看压缩文件目录，但不解压。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip -v test.zip</div></pre></td></tr></table></figure></p>
+<p>将压缩文件test.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令覆盖原先的文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip -o test.zip -d tmp/</div></pre></td></tr></table></figure></p>
+<ul>
+<li>tar</li>
+</ul>
+<h3 id="系统用户操作命令"><a href="#系统用户操作命令" class="headerlink" title="系统用户操作命令"></a>系统用户操作命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>useradd</td>
+<td>添加用户</td>
+</tr>
+<tr>
+<td>adduser</td>
+<td>添加用户</td>
+</tr>
+<tr>
+<td>userdel</td>
+<td>删除用户</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>设置密码</td>
+</tr>
+<tr>
+<td>useradd</td>
+<td>添加用户</td>
+</tr>
+</tbody>
+</table>
+<h3 id="防火墙的设置"><a href="#防火墙的设置" class="headerlink" title="防火墙的设置"></a>防火墙的设置</h3><p>作用：保护服务器安全</p>
+<h4 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h4><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install firewalld</div></pre></td></tr></table></figure>
+<ul>
+<li><p>启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service firewalld start</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service firewalld status</div></pre></td></tr></table></figure>
+</li>
+<li><p>关闭或禁用防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service firewalld stop/disable</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>练习</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div></pre></td><td class="code"><pre><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --version</div><div class="line">0.4.4.4</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --state</div><div class="line">running</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --get-zones</div><div class="line">block dmz drop external home internal public trusted work</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --get-default-zone</div><div class="line">public</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --list-all-zone</div><div class="line">block</div><div class="line">  target: %%REJECT%%</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: </div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">dmz</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">drop</div><div class="line">  target: DROP</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: </div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">external</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: yes</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">home</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh mdns samba-client dhcpv6-client</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">internal</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh mdns samba-client dhcpv6-client</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">public</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh dhcpv6-client</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">trusted</div><div class="line">  target: ACCEPT</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: </div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">work</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh dhcpv6-client</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">[root@cb02fd06938e tmp]# firewall -cmd --zone=public</div><div class="line">bash: firewall: command not found</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --zone=public</div><div class="line">usage: see firewall-cmd man page</div><div class="line">No option specified.</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --list-ports</div><div class="line"></div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --query-service=ssh</div><div class="line">yes</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --remove-service=ssh</div><div class="line">success</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --add-service=ssh</div><div class="line">success</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --list-service</div><div class="line">dhcpv6-client ssh</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --query-port=22/tcp</div><div class="line">no</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --list-ports</div><div class="line"></div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --list-service</div><div class="line">dhcpv6-client ssh</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --add-port=22/tcp</div><div class="line">success</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --list-ports</div><div class="line">22/tcp</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --zone=public</div><div class="line">usage: see firewall-cmd man page</div><div class="line">No option specified.</div><div class="line">[root@cb02fd06938e tmp]# firewall-cmd --list-all-zone</div><div class="line">block</div><div class="line">  target: %%REJECT%%</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: </div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">dmz</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">drop</div><div class="line">  target: DROP</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: </div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">external</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: yes</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">home</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh mdns samba-client dhcpv6-client</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">internal</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh mdns samba-client dhcpv6-client</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">public</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: dhcpv6-client ssh</div><div class="line">  ports: 22/tcp</div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">trusted</div><div class="line">  target: ACCEPT</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: </div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules: </div><div class="line">	</div><div class="line"></div><div class="line">work</div><div class="line">  target: default</div><div class="line">  icmp-block-inversion: no</div><div class="line">  interfaces: </div><div class="line">  sources: </div><div class="line">  services: ssh dhcpv6-client</div><div class="line">  ports: </div><div class="line">  protocols: </div><div class="line">  masquerade: no</div><div class="line">  forward-ports: </div><div class="line">  source-ports: </div><div class="line">  icmp-blocks: </div><div class="line">  rich rules:</div></pre></td></tr></table></figure></p>
+<h3 id="提权和文件上传下载的操作"><a href="#提权和文件上传下载的操作" class="headerlink" title="提权和文件上传下载的操作"></a>提权和文件上传下载的操作</h3><h4 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h4><p><strong>问题：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">junqi1 is not in the sudoers file.  This incident will be reported.</div></pre></td></tr></table></figure></p>
+<p><strong>解决</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo visudo</div></pre></td></tr></table></figure></p>
+<h4 id="上传下载"><a href="#上传下载" class="headerlink" title="上传下载"></a>上传下载</h4><h5 id="服务器下载"><a href="#服务器下载" class="headerlink" title="服务器下载"></a>服务器下载</h5><ul>
+<li>wget curl</li>
+<li>curl -o filename url</li>
+</ul>
+<p><strong>练习</strong><br>wget curl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">wget http://www.baidu.com</div><div class="line">--2018-03-02 01:56:35--  http://www.baidu.com/</div><div class="line">Resolving www.baidu.com (www.baidu.com)... 61.135.169.125, 61.135.169.121</div><div class="line">Connecting to www.baidu.com (www.baidu.com)|61.135.169.125|:80... connected.</div><div class="line">HTTP request sent, awaiting response... 200 OK</div><div class="line">Length: 2381 (2.3K) [text/html]</div><div class="line">Saving to: &apos;index.html&apos;</div><div class="line"></div><div class="line">100%[================================================================================================================================================================&gt;] 2,381       --.-K/s   in 0s      </div><div class="line"></div><div class="line">2018-03-02 01:56:35 (47.8 MB/s) - &apos;index.html&apos; saved [2381/2381]</div><div class="line"></div><div class="line">[root@cb02fd06938e tmp]# ls</div><div class="line">imooc  index.html  ks-script-q6TWGF  yum.log</div></pre></td></tr></table></figure>
+<p>curl -o filename url</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@cb02fd06938e tmp]# curl -o baidu.html http://www.baidu.com</div><div class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</div><div class="line">                                 Dload  Upload   Total   Spent    Left  Speed</div><div class="line">100  2381  100  2381    0     0  85956      0 --:--:-- --:--:-- --:--:-- 88185</div><div class="line">[root@cb02fd06938e tmp]# ls</div><div class="line">baidu.html  imooc  index.html  ks-script-q6TWGF  yum.log</div></pre></td></tr></table></figure>
+<h4 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h4><ul>
+<li>1、从本地复制到远程</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp local_file remote_username@remote_ip:remote_file</div></pre></td></tr></table></figure>
+<p><strong>练习</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">scp test.txt junqi@10.210.70.85:/log_net/wjq/split </div><div class="line">test.txt                                        100%   31     4.3KB/s   00:00    </div><div class="line">➜  code scp test.txt 83:/log_net/wjq/split</div><div class="line">junqi1@10.210.230.83's password: </div><div class="line">➜  code scp test.txt 85:/log_net/wjq/split</div><div class="line">test.txt                                        100%   31     4.4KB/s   00:00    </div><div class="line">➜  code ls</div><div class="line">sina_ssh_launcher.launcher ssh_auto_login             test.txt</div><div class="line">➜  code vi test1.txt</div><div class="line">➜  code scp test1.txt 85:/log_net/wjq/split</div><div class="line">test1.txt                                       100%   83    16.4KB/s   00:00</div></pre></td></tr></table></figure></p>
+<p><strong>注</strong><br>其中包含了免密码操作</p>
+<ul>
+<li>2、从远程复制到本地</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp root@www.runoob.com:/home/root/others/music /home/space/music/1.mp3</div></pre></td></tr></table></figure>
+<p><strong>练习</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜  code scp 85:/log_net/wjq/split/test1.txt ./</div><div class="line">test1.txt                                       100%   95    39.9KB/s   00:00    </div><div class="line"></div><div class="line">scp 85:/log_net/wjq/split/*.txt ./</div></pre></td></tr></table></figure>
+<p><strong>注</strong><br>其中包含了通配符的操作</p>
+<h2 id="webserver安装和配置讲解"><a href="#webserver安装和配置讲解" class="headerlink" title="webserver安装和配置讲解"></a>webserver安装和配置讲解</h2><h3 id="Apache的安装"><a href="#Apache的安装" class="headerlink" title="Apache的安装"></a>Apache的安装</h3><p><strong>注意apache在centos上叫做httpd</strong></p>
+<table>
+<thead>
+<tr>
+<th>解释</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装</td>
+<td>yum install httpd</td>
+</tr>
+<tr>
+<td>启动</td>
+<td>service httpd start</td>
+</tr>
+<tr>
+<td>停止</td>
+<td>service httpd stop</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo netstat -anpl | grep "httpd"</div><div class="line"></div><div class="line">网络统计</div></pre></td></tr></table></figure>
+<h3 id="Apache的虚拟主机配置及伪静态操作"><a href="#Apache的虚拟主机配置及伪静态操作" class="headerlink" title="Apache的虚拟主机配置及伪静态操作"></a>Apache的虚拟主机配置及伪静态操作</h3><h3 id="Nginx的基本操作"><a href="#Nginx的基本操作" class="headerlink" title="Nginx的基本操作"></a>Nginx的基本操作</h3><h3 id="Nginx伪静态的实现"><a href="#Nginx伪静态的实现" class="headerlink" title="Nginx伪静态的实现"></a>Nginx伪静态的实现</h3><h3 id="实例演示反向代理和负载均衡"><a href="#实例演示反向代理和负载均衡" class="headerlink" title="实例演示反向代理和负载均衡"></a>实例演示反向代理和负载均衡</h3><h2 id="数据库服务"><a href="#数据库服务" class="headerlink" title="数据库服务"></a>数据库服务</h2><h2 id="缓存服务"><a href="#缓存服务" class="headerlink" title="缓存服务"></a>缓存服务</h2><h2 id="git安装与使用"><a href="#git安装与使用" class="headerlink" title="git安装与使用"></a>git安装与使用</h2><h2 id="php框架tp5-lavaral-yii2-0环境配置"><a href="#php框架tp5-lavaral-yii2-0环境配置" class="headerlink" title="php框架tp5, lavaral yii2.0环境配置"></a>php框架tp5, lavaral yii2.0环境配置</h2><h2 id="java运行环境配置"><a href="#java运行环境配置" class="headerlink" title="java运行环境配置"></a>java运行环境配置</h2><h2 id="python运行环境而配置"><a href="#python运行环境而配置" class="headerlink" title="python运行环境而配置"></a>python运行环境而配置</h2><h2 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h2><h2 id="监控神器zabbix"><a href="#监控神器zabbix" class="headerlink" title="监控神器zabbix"></a>监控神器zabbix</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/01/Redis从入门到高可用，分布式实践/" rel="next" title="Redis从入门到实践">
+                <i class="fa fa-chevron-left"></i> Redis从入门到实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/02/UI设计入门与实战/" rel="prev" title="UI设计入门与实战">
+                UI设计入门与实战 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mac安装docker"><span class="nav-number">1.1.</span> <span class="nav-text">mac安装docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动centos"><span class="nav-number">1.2.</span> <span class="nav-text">启动centos</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决进入容器后无法使用-service-命令"><span class="nav-number">1.2.1.</span> <span class="nav-text">解决进入容器后无法使用 service 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决-CentOS7-容器-Failed-to-get-D-Bus-connection-Operation-not-permitted"><span class="nav-number">1.2.2.</span> <span class="nav-text">解决 CentOS7 容器 Failed to get D-Bus connection: Operation not permitted</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装ifconfig"><span class="nav-number">1.3.</span> <span class="nav-text">安装ifconfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换centos的镜像源"><span class="nav-number">1.4.</span> <span class="nav-text">更换centos的镜像源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程连接ssh专题"><span class="nav-number">2.</span> <span class="nav-text">远程连接ssh专题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#认识SSH"><span class="nav-number">2.1.</span> <span class="nav-text">认识SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器安装SSH服务"><span class="nav-number">2.2.</span> <span class="nav-text">服务器安装SSH服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端安装SSH服务"><span class="nav-number">2.3.</span> <span class="nav-text">客户端安装SSH服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端连接SSH服务"><span class="nav-number">2.4.</span> <span class="nav-text">客户端连接SSH服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-config命令讲解"><span class="nav-number">2.5.</span> <span class="nav-text">SSH config命令讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#config配置语法"><span class="nav-number">2.5.1.</span> <span class="nav-text">config配置语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH免密登录"><span class="nav-number">2.6.</span> <span class="nav-text">SSH免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH安全端口"><span class="nav-number">2.7.</span> <span class="nav-text">SSH安全端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux常用命令"><span class="nav-number">3.</span> <span class="nav-text">linux常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件操作命令"><span class="nav-number">3.1.</span> <span class="nav-text">软件操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器硬件资源信息"><span class="nav-number">3.2.</span> <span class="nav-text">服务器硬件资源信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件操作命令"><span class="nav-number">3.3.</span> <span class="nav-text">文件操作命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#linux文件的目录结构"><span class="nav-number">3.3.1.</span> <span class="nav-text">linux文件的目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件基本操作"><span class="nav-number">3.3.2.</span> <span class="nav-text">文件基本操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本编辑神器Vim"><span class="nav-number">3.3.3.</span> <span class="nav-text">文本编辑神器Vim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件权限421"><span class="nav-number">3.3.4.</span> <span class="nav-text">文件权限421</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件搜索、查找、读取"><span class="nav-number">3.3.5.</span> <span class="nav-text">文件搜索、查找、读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件压缩与解压"><span class="nav-number">3.3.6.</span> <span class="nav-text">文件压缩与解压</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统用户操作命令"><span class="nav-number">3.4.</span> <span class="nav-text">系统用户操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙的设置"><span class="nav-number">3.5.</span> <span class="nav-text">防火墙的设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置防火墙"><span class="nav-number">3.5.1.</span> <span class="nav-text">设置防火墙</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提权和文件上传下载的操作"><span class="nav-number">3.6.</span> <span class="nav-text">提权和文件上传下载的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sudo"><span class="nav-number">3.6.1.</span> <span class="nav-text">sudo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上传下载"><span class="nav-number">3.6.2.</span> <span class="nav-text">上传下载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#服务器下载"><span class="nav-number">3.6.2.1.</span> <span class="nav-text">服务器下载</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scp"><span class="nav-number">3.6.3.</span> <span class="nav-text">scp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webserver安装和配置讲解"><span class="nav-number">4.</span> <span class="nav-text">webserver安装和配置讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache的安装"><span class="nav-number">4.1.</span> <span class="nav-text">Apache的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache的虚拟主机配置及伪静态操作"><span class="nav-number">4.2.</span> <span class="nav-text">Apache的虚拟主机配置及伪静态操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx的基本操作"><span class="nav-number">4.3.</span> <span class="nav-text">Nginx的基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx伪静态的实现"><span class="nav-number">4.4.</span> <span class="nav-text">Nginx伪静态的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例演示反向代理和负载均衡"><span class="nav-number">4.5.</span> <span class="nav-text">实例演示反向代理和负载均衡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库服务"><span class="nav-number">5.</span> <span class="nav-text">数据库服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存服务"><span class="nav-number">6.</span> <span class="nav-text">缓存服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git安装与使用"><span class="nav-number">7.</span> <span class="nav-text">git安装与使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php框架tp5-lavaral-yii2-0环境配置"><span class="nav-number">8.</span> <span class="nav-text">php框架tp5, lavaral yii2.0环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java运行环境配置"><span class="nav-number">9.</span> <span class="nav-text">java运行环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python运行环境而配置"><span class="nav-number">10.</span> <span class="nav-text">python运行环境而配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务管理"><span class="nav-number">11.</span> <span class="nav-text">服务管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控神器zabbix"><span class="nav-number">12.</span> <span class="nav-text">监控神器zabbix</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140241"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

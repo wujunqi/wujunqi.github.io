@@ -119,7 +119,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515457019893ks9mxudq.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515457098643n780gnhf.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515457187317g9bpesie.png?imageView/2/w/600/q/100">
-<meta property="og:updated_time" content="2018-01-09T01:10:46.000Z">
+<meta property="og:updated_time" content="2018-02-27T06:43:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构高级排序算法之快速排序">
 <meta name="twitter:description" content="主要介绍快速排序，和3个快排的优化，最后引出三路快速排序。">
@@ -482,7 +482,9 @@
 <p><strong>归并排序和快速排序算法的时间对比</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mergeSort运行的时间为：<span class="number">0.32358503341675</span>s</div><div class="line">quickSort运行的时间为：<span class="number">18.838504076004</span>s</div></pre></td></tr></table></figure></p>
 <h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>当数组近乎有序的情况下，快速排序每次划分的数列极其不平衡，几乎退化成O(N*N)时间复杂度的算法<br><img src="http://otwbgbfg8.bkt.clouddn.com/1515423739515lxva1ou3.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <p>有没有解决方法，有的！只要每次随机的选取“基准数“即可。</p>
-<h3 id="问题解决（代码实现）"><a href="#问题解决（代码实现）" class="headerlink" title="问题解决（代码实现）"></a>问题解决（代码实现）</h3><p>只需要在partition代码中加入<figure class="highlight plain"><figcaption><span>$l, rand($l, $r));```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```php</div><div class="line">function partition(&amp;$arr, $l, $r)&#123;</div><div class="line"></div><div class="line">	swap($arr, $l, rand($l, $r));</div><div class="line"></div><div class="line">	$v = $arr[$l];</div><div class="line">	$j = $l;</div><div class="line"></div><div class="line">	for ($i=$l+1; $i &lt;= $r ; $i++) &#123; </div><div class="line">		if ($arr[$i] &lt; $v) &#123;</div><div class="line">			swap($arr, $j+1, $i);</div><div class="line">			$j++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	swap($arr, $l, $j);</div><div class="line">	return $j;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="问题解决（代码实现）"><a href="#问题解决（代码实现）" class="headerlink" title="问题解决（代码实现）"></a>问题解决（代码实现）</h3><p>只需要在partition代码中加入</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swap($arr, $l, rand($l, $r));</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span><span class="params">(&amp;$arr, $l, $r)</span></span>&#123;</div><div class="line"></div><div class="line">	swap($arr, $l, rand($l, $r));</div><div class="line"></div><div class="line">	$v = $arr[$l];</div><div class="line">	$j = $l;</div><div class="line"></div><div class="line">	<span class="keyword">for</span> ($i=$l+<span class="number">1</span>; $i &lt;= $r ; $i++) &#123; </div><div class="line">		<span class="keyword">if</span> ($arr[$i] &lt; $v) &#123;</div><div class="line">			swap($arr, $j+<span class="number">1</span>, $i);</div><div class="line">			$j++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	swap($arr, $l, $j);</div><div class="line">	<span class="keyword">return</span> $j;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>执行时间</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mergeSort运行的时间为：<span class="number">0.21585202217102</span>s</div><div class="line">quickSort运行的时间为：<span class="number">0.34276294708252</span>s</div></pre></td></tr></table></figure>
 <h2 id="优化点3"><a href="#优化点3" class="headerlink" title="优化点3"></a>优化点3</h2><h3 id="对于数列中有大量重复元素的情况"><a href="#对于数列中有大量重复元素的情况" class="headerlink" title="对于数列中有大量重复元素的情况"></a>对于数列中有大量重复元素的情况</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$n = <span class="number">100000</span>;</div><div class="line">$arr = generateRandomArray($n, <span class="number">0</span>, <span class="number">10</span>);</div><div class="line">$copy_arr = $arr;</div><div class="line">testSort(<span class="string">"mergeSort"</span>, <span class="string">"mergeSort"</span>, $copy_arr, $n);</div><div class="line">testSort(<span class="string">"quickSort"</span>, <span class="string">"quickSort"</span>, $arr, $n);</div></pre></td></tr></table></figure>
@@ -715,7 +717,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -726,7 +728,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -737,7 +739,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
