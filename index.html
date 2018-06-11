@@ -1,73 +1,11 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
-
-
-
-
-
-
-<meta name="description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
+  <title>番茄技术小栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="番茄技术小栈">
 <meta property="og:url" content="http://yoursite.com/index.html">
@@ -77,2141 +15,1008 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="番茄技术小栈">
 <meta name="twitter:description" content="仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/"/>
-
-
-
-
-
-  <title>番茄技术小栈</title>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <link rel="alternate" href="/atom.xml" title="番茄技术小栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">番茄技术小栈</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">成功来源于良好的自我管理和毅力</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-并查集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/10/并查集/" class="article-date">
+  <time datetime="2018-06-10T14:10:51.000Z" itemprop="datePublished">2018-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/10/并查集/">并查集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="并查集-Union-Find"><a href="#并查集-Union-Find" class="headerlink" title="并查集 Union Find"></a>并查集 Union Find</h2><blockquote>
+<ol>
+<li>图相关算法的实现。</li>
+</ol>
+</blockquote>
+<ol>
+<li>一种不一样的树形结构</li>
+</ol>
+<h4 id="连接问题-Connectivity-Problem"><a href="#连接问题-Connectivity-Problem" class="headerlink" title="连接问题 Connectivity Problem"></a>连接问题 Connectivity Problem</h4><p>可视化的来看连接问题：</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-96e607a7110848fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/199" alt="连接问题"></p>
+<p>左上右下是否是连接的呢？</p>
+<p>意义：实际应用中的作用</p>
+<ul>
+<li><p>网络中节点间的连接状态</p>
+<ul>
+<li>网络是个抽象的概念：用户之间形成的网络</li>
+</ul>
+</li>
+<li><p>社交网络：Facebook中用户a和b中的联系（好友关系）。是否能联系到。</p>
+</li>
+<li><p>音乐电影书籍，多媒体之间形成网络。</p>
+</li>
+<li><p>互联网网页之间形成的网络</p>
+</li>
+<li><p>路由器和路由器之间形成的也是网络</p>
+</li>
+<li><p>道理交通，航班调度都是网络</p>
+</li>
+</ul>
+<p>数学中的集合类实现</p>
+<blockquote>
+<p>并就是实现并集。&amp; 查询</p>
+</blockquote>
+<p><strong>连接问题 &amp; 路径问题</strong></p>
+<p>比路径问题要回答的问题少（路径是什么，连接问题只问有没有连）</p>
+<pre><code>- 和二分查找作比较：顺序查找法顺便回答了rank。和前面其他元素的位置
+- 和select作比较：排好序回答问题更多。快排思路select回答问题更少
+- 和堆作比较：只关心最大最小。
+</code></pre><p>除了回答问题本身之外是不是额外的回答了别的问题。很有可能就存在<br>更高效的算法。：因为高效算法不需要回答额外的问题。</p>
+<h3 id="实现一个最简单的并查集-Union-Find"><a href="#实现一个最简单的并查集-Union-Find" class="headerlink" title="实现一个最简单的并查集 Union Find"></a>实现一个最简单的并查集 Union Find</h3><p>对于一组数据，主要支持两个动作：</p>
+<pre><code>- union( p , q )
+- find( p )
+</code></pre><p>用来回答一个问题</p>
+<pre><code>- isConnected( p , q )
+</code></pre><p>最简单的表示方式；<br>数组。0,1.</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-553684d43fc6d5dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/291" alt=""></p>
+<p>0-4 5-9</p>
+<blockquote>
+<p>0-4是一组，5-9是一组。组内之间有联系</p>
+</blockquote>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-616091a9923ab35e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/362" alt=""></p>
+<p>奇偶</p>
+<blockquote>
+<p>奇数是一组，偶数是一组。</p>
+</blockquote>
+<pre><code>namespace UF1 {
+
+    class UnionFind {
+
+    private:
+        int *id;
+        int count;
+
+    public:
+        UnionFind(int n) {
+            count = n;
+            id = new int[n];
+            for (int i = 0; i &lt; n; i++)
+                id[i] = i;
+        }
+
+        ~UnionFind() {
+            delete[] id;
+        }
+//传入元素p，返回元素对应的id。
+        int find(int p) {
+            assert(p &gt;= 0 &amp;&amp; p &lt; count);
+            return id[p];
+        }
+
+        bool isConnected(int p, int q) {
+            return find(p) == find(q);
+        }
+
+        //传入两个元素，并
+        void unionElements(int p, int q) {
+
+            //找到两个元素的id
+            int pID = find(p);
+            int qID = find(q);
+
+            //比较id
+            if (pID == qID)
+                return;
+
+            for (int i = 0; i &lt; count; i++)
+                //从头到尾的扫描时间复杂度O(n)
+                if (id[i] == pID)
+                    id[i] = qID;
+        }
+    };
+}
+</code></pre><p>Testhelper.h:</p>
+<pre><code>namespace UnionFindTestHelper{
+
+    //n是数据量
+    void testUF1( int n ){
+
+        srand( time(NULL) );
+        UF1::UnionFind uf = UF1::UnionFind(n);
+
+        time_t startTime = clock();
+
+        for( int i = 0 ; i &lt; n ; i ++ ){
+            int a = rand()%n;
+            int b = rand()%n;
+            uf.unionElements(a,b);
+            //O(n）
+        }
+        for(int i = 0 ; i &lt; n ; i ++ ){
+            int a = rand()%n;
+            int b = rand()%n;
+            uf.isConnected(a,b);
+            //时间复杂度只有O(1)
+        }
+        time_t endTime = clock();
+
+        cout&lt;&lt;&quot;UF1, &quot;&lt;&lt;2*n&lt;&lt;&quot; ops, &quot;&lt;&lt;double(endTime-startTime)/CLOCKS_PER_SEC&lt;&lt;&quot; s&quot;&lt;&lt;endl;
+    }
+}
+</code></pre><p>main.cpp:</p>
+<pre><code>int main() {
+
+    int n = 100000;
+
+    UnionFindTestHelper::testUF1(n);
+
+    return 0;
+}
+</code></pre><p>运行结果：</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-305fa2754233b5fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/282" alt=""></p>
+<p>快速查找，并很慢</p>
+<blockquote>
+<p>quick find 查找时只需要O(1)级别。但是并确很慢</p>
+</blockquote>
+<h4 id="并查集的另一种实现思路"><a href="#并查集的另一种实现思路" class="headerlink" title="并查集的另一种实现思路"></a>并查集的另一种实现思路</h4><p>常规实现思路</p>
+<p>将每一个元素，看做是一个节点。</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-ce07f684db476e83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/354" alt=""></p>
+<p>元素节点</p>
+<p>每个元素拥有一个指向父节点的指针。然后最上面的父节点指针指向自己。</p>
+<p>Quick Union</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-5072594aaa7fb7db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/387" alt=""></p>
+<p>数组存放父亲</p>
+<p>parent(i) = i;</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-4205f07f0eef8ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/385" alt=""></p>
+<p>初始状态</p>
+<p>union 3 4</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-70eae2243958ea93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/384" alt=""></p>
+<p>union 3 4</p>
+<p>union 3 8</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-98752d88bc97ba28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/380" alt=""></p>
+<p>union 3 8</p>
+<p>union 6 5</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-32e9fdd4c1962f99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/387" alt=""></p>
+<p>union 6 5</p>
+<p>union 9 4</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-448afaaa46717251.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/384" alt=""></p>
+<p>union 9 4</p>
+<blockquote>
+<p>要将9连接到4的根节点8上去。数组中：4-3-8-8 8是4的根节点。9指向8.<br>4和9连接在一起：因为根相同。</p>
+</blockquote>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-155dcd4b01db6da9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/247" alt=""></p>
+<p>成果</p>
+<blockquote>
+<p>其中6和2连接是6的根0和2的根1选取了1将0挂上。</p>
+</blockquote>
+<pre><code>namespace UF2{
+
+    class UnionFind{
+
+    private:
+        int* parent;
+        int count;
+
+    public:
+        UnionFind(int count){
+            parent = new int[count];
+            this-&gt;count = count;
+            for( int i = 0 ; i &lt; count ; i ++ )
+                parent[i] = i;
+        }
+
+        ~UnionFind(){
+            delete[] parent;
+        }
+
+        //不断向上找父亲
+        int find(int p){
+            assert( p &gt;= 0 &amp;&amp; p &lt; count );
+            while( p != parent[p] )
+                p = parent[p];
+            return p;
+        }
+
+        //看是否能找到同样的根
+        bool isConnected( int p , int q ){
+            return find(p) == find(q);
+        }
+
+        //找到p的根，和q的根
+        void unionElements(int p, int q){
+
+            int pRoot = find(p);
+            int qRoot = find(q);
+
+            if( pRoot == qRoot )
+                return;
+        //把根挂到另一个的根
+            parent[pRoot] = qRoot;
+        }
+    };
+}
+</code></pre><p>运行结果：</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-1e969773ba884349.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/366" alt=""></p>
+<p>运行结果</p>
+<blockquote>
+<p>当n大的时候，方法1更优了。</p>
+</blockquote>
+<h4 id="并查集的优化"><a href="#并查集的优化" class="headerlink" title="并查集的优化"></a>并查集的优化</h4><p>问题：</p>
+<p>union 9,4 &amp; union 4 9</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-ebe24232c37b30dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/286" alt=""></p>
+<p>union 9 4</p>
+<p>9的元素少，将它指向4的根节点。形成的树层数低。</p>
+<pre><code>// 我们的第三版Union-Find
+namespace UF3{
+
+    class UnionFind{
+
+    private:
+        int* parent; // parent[i]表示第i个元素所指向的父节点
+        int* sz;     // sz[i]表示以i为根的集合中元素个数
+        int count;   // 数据个数
+
+    public:
+        // 构造函数
+        UnionFind(int count){
+            parent = new int[count];
+            sz = new int[count];
+            this-&gt;count = count;
+            for( int i = 0 ; i &lt; count ; i ++ ){
+                parent[i] = i;
+                sz[i] = 1;
+            }
+        }
+
+        // 析构函数
+        ~UnionFind(){
+            delete[] parent;
+            delete[] sz;
+        }
+
+        // 查找过程, 查找元素p所对应的集合编号
+        // O(h)复杂度, h为树的高度
+        int find(int p){
+            assert( p &gt;= 0 &amp;&amp; p &lt; count );
+            // 不断去查询自己的父亲节点, 直到到达根节点
+            // 根节点的特点: parent[p] == p
+            while( p != parent[p] )
+                p = parent[p];
+            return p;
+        }
+
+        // 查看元素p和元素q是否所属一个集合
+        // O(h)复杂度, h为树的高度
+        bool isConnected( int p , int q ){
+            return find(p) == find(q);
+        }
+
+        // 合并元素p和元素q所属的集合
+        // O(h)复杂度, h为树的高度
+        void unionElements(int p, int q){
+
+            int pRoot = find(p);
+            int qRoot = find(q);
+
+            if( pRoot == qRoot )
+                return;
+
+            // 根据两个元素所在树的元素个数不同判断合并方向
+            // 将元素个数少的集合合并到元素个数多的集合上
+            if( sz[pRoot] &lt; sz[qRoot] ){
+                parent[pRoot] = qRoot;
+                sz[qRoot] += sz[pRoot];
+            }
+            else{
+                parent[qRoot] = pRoot;
+                sz[pRoot] += sz[qRoot];
+            }
+        }
+    };
+}
+</code></pre><p>运行结果：</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-07513eb7b7864637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/335" alt=""></p>
+<p>运行结果</p>
+<blockquote>
+<p>优化相当明显。</p>
+</blockquote>
+<pre><code>int main() {
+
+    // 使用10000的数据规模
+    int n = 100000;
+
+    // 虽然isConnected只需要O(1)的时间, 但由于union操作需要O(n)的时间
+    // 总体测试过程的算法复杂度是O(n^2)的
+    UnionFindTestHelper::testUF1(n);
+
+    // 对于UF2来说, 其时间性能是O(n*h)的, h为并查集表达的树的最大高度
+    // 这里严格来讲, h和logn没有关系, 不过大家可以简单这么理解
+    // 我们后续内容会对h进行优化, 总体而言, 这个h是远小于n的
+    // 所以我们实现的UF2测试结果远远好于UF1, n越大越明显:)
+    UnionFindTestHelper::testUF2(n);
+
+    // 对于UF3来说, 其时间性能依然是O(n*h)的, h为并查集表达的树的最大高度
+    // 但由于UF3能更高概率的保证树的平衡, 所以性能更优
+    UnionFindTestHelper::testUF3(n);
+
+    return 0;
+}
+</code></pre><p>100万在1秒之内</p>
+<h4 id="union-4-2"><a href="#union-4-2" class="headerlink" title="union 4 2"></a>union 4 2</h4><p><img src="//upload-images.jianshu.io/upload_images/1779926-6a75c4a5b704e574.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/348" alt=""></p>
+<p>合并4和2</p>
+<blockquote>
+<p>依靠集合的size来决定谁指向谁并不完全合理。根据层数才最合理</p>
+</blockquote>
+<p>基于rank的优化</p>
+<ul>
+<li><p>rank[i] 表示根节点为i的树的高度</p>
+<p>namespace UF4{</p>
+<pre><code>class UnionFind{
+
+private:
+    int* rank;   // rank[i]表示以i为根的集合所表示的树的层数
+    int* parent; // parent[i]表示第i个元素所指向的父节点
+    int count;   // 数据个数
+
+public:
+    // 构造函数
+    UnionFind(int count){
+        parent = new int[count];
+        rank = new int[count];
+        this-&gt;count = count;
+        for( int i = 0 ; i &lt; count ; i ++ ){
+            parent[i] = i;
+            rank[i] = 1;
+        }
+    }
+
+    // 析构函数
+    ~UnionFind(){
+        delete[] parent;
+        delete[] rank;
+    }
+
+    // 查找过程, 查找元素p所对应的集合编号
+    // O(h)复杂度, h为树的高度
+    int find(int p){
+        assert( p &gt;= 0 &amp;&amp; p &lt; count );
+        // 不断去查询自己的父亲节点, 直到到达根节点
+        // 根节点的特点: parent[p] == p
+        while( p != parent[p] )
+            p = parent[p];
+        return p;
+    }
+
+    // 查看元素p和元素q是否所属一个集合
+    // O(h)复杂度, h为树的高度
+    bool isConnected( int p , int q ){
+        return find(p) == find(q);
+    }
+
+    // 合并元素p和元素q所属的集合
+    // O(h)复杂度, h为树的高度
+    void unionElements(int p, int q){
+
+        int pRoot = find(p);
+        int qRoot = find(q);
+
+        if( pRoot == qRoot )
+            return;
+
+        // 根据两个元素所在树的元素个数不同判断合并方向
+        // 将元素个数少的集合合并到元素个数多的集合上
+        if( rank[pRoot] &lt; rank[qRoot] ){
+            parent[pRoot] = qRoot;
+        }
+        else if( rank[qRoot] &lt; rank[pRoot]){
+            parent[qRoot] = pRoot;
+        }
+        else{ // rank[pRoot] == rank[qRoot]
+            parent[pRoot] = qRoot;
+            rank[qRoot] += 1;   // 此时, 我维护rank的值
+        }
+    }
+};
+</code></pre><p>}</p>
+</li>
+</ul>
+<pre><code>// 对于UF3来说, 其时间性能依然是O(n*h)的, h为并查集表达的树的最大高度
+    // 但由于UF3能更高概率的保证树的平衡, 所以性能更优
+    UnionFindTestHelper::testUF3(n);
+
+    // UF4虽然相对UF3进行有了优化, 但优化的地方出现的情况较少,
+    // 所以性能更优表现的不明显, 甚至在一些数据下性能会更差
+    UnionFindTestHelper::testUF4(n);
+</code></pre><p><img src="//upload-images.jianshu.io/upload_images/1779926-41d95ab9103b5d15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/354" alt=""></p>
+<p>运行结果</p>
+<h4 id="路径压缩（path-Compression）"><a href="#路径压缩（path-Compression）" class="headerlink" title="路径压缩（path Compression）"></a>路径压缩（path Compression）</h4><p>前面我们都在优化union。其实Find我们也可以进行优化。</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-5a356324b2e13910.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/242" alt=""></p>
+<p>1</p>
+<p>我们要find4</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-11b7a1684905641a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/237" alt=""></p>
+<p>4去连接它爷爷</p>
+<p>4去连接它爷爷。下面考查2.</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-ec7c686bfafe4177.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/217" alt=""></p>
+<p>2连接爷爷</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-083f7de703f72b36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/373" alt=""></p>
+<p>路径压缩</p>
+<pre><code>int find(int p){
+    assert( p &gt;= 0 &amp;&amp; p &lt; count );
+
+    // path compression 1
+    while( p != parent[p] ){
+        parent[p] = parent[parent[p]];
+        p = parent[p];
+    }
+}
+</code></pre><p><img src="//upload-images.jianshu.io/upload_images/1779926-57afce6c524f3a04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/360" alt=""></p>
+<p>最优的情况</p>
+<blockquote>
+<p>写一个递归的函数：调用findx，返回的就是x节点的根。让每个parentx指向findx的结果。findx的结果也是Findparentx的结果。找x的时候，将x的Findparent的结果，指向父亲的结果。</p>
+</blockquote>
+<p>代码：</p>
+<pre><code>//             path compression 2, 递归算法
+            if( p != parent[p] )
+                parent[p] = find( parent[p] );
+            return parent[p];
+</code></pre><p>优化情况并不明显。甚至因为递归的消耗，。所以理论最优不一定实际好。</p>
+<p>并查集的操作，时间复杂度近乎是O(1)的。<br>- 经过路径压缩：近乎1就能到根节点。</p>
+<p>解决图，网络连接。最短路径。路径是什么？都得使用图论。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/10/并查集/" data-id="cji9mwbye0000iz3umzk90lst" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
 
   
+    <article id="post-二分搜索树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/09/二分搜索树/" class="article-date">
+  <time datetime="2018-06-09T11:23:00.000Z" itemprop="datePublished">2018-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/二分搜索树/">二分搜索树</a>►<a class="article-category-link" href="/categories/二分搜索树/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/09/二分搜索树/">二分搜索树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/06/09/二分搜索树/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/09/二分搜索树/" data-id="cji8vfyl90000e7s68r9r32uh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-索引堆" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/09/索引堆/" class="article-date">
+  <time datetime="2018-06-09T09:58:34.000Z" itemprop="datePublished">2018-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/09/索引堆/">索引堆</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面的博文介绍了堆的实现<a href="http://fanqieto.top/2018/01/11/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0/" target="_blank" rel="external">堆的介绍</a>，今天主要主要介绍索引堆，以及索引堆的优化。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/06/09/索引堆/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/09/索引堆/" data-id="cji7av3s10000tms6pg0bwbh1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-算法与数据结构之排序算法总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/01/算法与数据结构之排序算法总结/" class="article-date">
+  <time datetime="2018-06-01T01:51:03.000Z" itemprop="datePublished">2018-06-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/01/算法与数据结构之排序算法总结/">算法与数据结构之排序算法总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>总结一下排序算法</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/06/01/算法与数据结构之排序算法总结/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/01/算法与数据结构之排序算法总结/" data-id="cjhvbaxbf0000583ub9j2x5kf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-算法与数据结构之原地堆" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/01/算法与数据结构之原地堆/" class="article-date">
+  <time datetime="2018-06-01T01:10:10.000Z" itemprop="datePublished">2018-06-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/01/算法与数据结构之原地堆/">算法与数据结构之原地堆排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做了太久的小程序，6月份之后开始去年的算法的学习，今天比较有感悟的是吴军老师《硅谷来信》的一句话：走完最后的1%，这很重要。主要介绍一下原地堆排序算法以及实现（PHP)</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/06/01/算法与数据结构之原地堆/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/01/算法与数据结构之原地堆/" data-id="cjhv9u77y00000x3uk1vsvtvj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue-cli安装步骤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/11/vue-cli安装步骤/" class="article-date">
+  <time datetime="2018-04-11T14:57:00.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>►<a class="article-category-link" href="/categories/vue/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/11/vue-cli安装步骤/">vue-cli安装步骤</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>vue-cli脚手架安装步骤<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/04/11/vue-cli安装步骤/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/11/vue-cli安装步骤/" data-id="cjfv7xf750000vls69lbb4fsu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vue-2-0-的建议学习顺序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/06/Vue-2-0-的建议学习顺序/" class="article-date">
+  <time datetime="2018-04-06T07:39:00.000Z" itemprop="datePublished">2018-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue/">vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/06/Vue-2-0-的建议学习顺序/">Vue 2.0 的建议学习顺序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="gt-起步"><a href="#gt-起步" class="headerlink" title="&gt;起步"></a>&gt;起步</h1><ol>
+<li><p>扎实的 JavaScript / HTML / CSS 基本功。这是前置条件。</p>
+</li>
+<li><p>通读官方教程 (guide) 的基础篇。不要用任何构建工具，就只用最简单的 script，把教程里的例子模仿一遍，理解用法。不推荐上来就直接用 vue-cli 构建项目，尤其是如果没有 Node/Webpack 基础。</p>
+</li>
+<li><p>照着官网上的示例，自己想一些类似的例子，模仿着实现来练手，加深理解。</p>
+</li>
+<li><p>阅读官方教程进阶篇的前半部分，到『自定义指令 (Custom Directive) 』为止。着重理解 Vue 的响应式机制和组件生命周期。『渲染函数（Render Function)』如果理解吃力可以先跳过。</p>
+</li>
+<li><p>阅读教程里关于路由和状态管理的章节，然后根据需要学习 vue-router 和 vuex。同样的，先不要管构建工具，以跟着文档里的例子理解用法为主。</p>
+</li>
+</ol>
+<ol>
+<li>走完基础文档后，如果你对于基于 Node 的前端工程化不熟悉，就需要补课了。下面这些严格来说并不是 Vue 本身的内容，也不涵盖所有的前端工程化知识，但对于大型的 Vue 工程是前置条件，也是合格的『前端工程师』应当具备的知识。</li>
+</ol>
+<h1 id="前端生态-工程化"><a href="#前端生态-工程化" class="headerlink" title="前端生态/工程化"></a>前端生态/工程化</h1><ol>
+<li><p>了解 JavaScript 背后的规范，ECMAScript 的历史和目前的规范制定方式。学习 ES2015/16 的新特性，理解 ES2015 modules，适当关注还未成为标准的提案。</p>
+</li>
+<li><p>学习命令行的使用。建议用 Mac。</p>
+</li>
+<li><p>学习 Node.js 基础。建议使用 nvm 这样的工具来管理机器上的 Node 版本，并且将 npm 的 registry 注册表配置为淘宝的镜像源。至少要了解 npm 的常用命令，npm scripts 如何使用，语义化版本号规则，CommonJS 模块规范（了解它和 ES2015 Modules 的异同），Node 包的解析规则，以及 Node 的常用 API。应当做到可以自己写一些基本的命令行程序。注意最新版本的 Node (6+) 已经支持绝大部分 ES2015 的特性，可以借此巩固 ES2015。</p>
+</li>
+<li><p>了解如何使用 / 配置 Babel 来将 ES2015 编译到 ES5 用于浏览器环境。</p>
+</li>
+<li><p>学习 Webpack。Webpack 是一个极其强大同时也复杂的工具，作为起步，理解它的『一切皆模块』的思想，并基本了解其常用配置选项和 loader 的概念/使用方法即可，比如如何搭配 Webpack 使用 Babel。学习 Webpack 的一个挑战在于其本身文档的混乱，建议多搜索搜索，应该还是有质量不错的第三方教程的。英文好的建议阅读 Webpack 2.0 的文档，比起 1.0 有极大的改善，但需要注意和 1.0 的不兼容之处。</p>
+</li>
+</ol>
+<h1 id="Vue-进阶"><a href="#Vue-进阶" class="headerlink" title="Vue 进阶"></a>Vue 进阶</h1><ol>
+<li><p>有了 Node 和 Webpack 的基础，可以通过 vue-cli 来搭建基于 Webpack ，并且支持单文件组件的项目了。建议用 webpack-simple 这个模板开始，并阅读官方教程进阶篇剩余的内容以及 vue-loader 的文档，了解一些进阶配置。有兴趣的可以自己亲手从零开始搭一个项目加深理解。</p>
+</li>
+<li><p>根据 例子 尝试在 Webpack 模板基础上整合 vue-router 和 vuex</p>
+</li>
+</ol>
+<ol>
+<li><p>深入理解 Virtual DOM 和『渲染函数 (Render Functions)』这一章节（可选择性使用 JSX)，理解模板和渲染函数之间的对应关系，了解其使用方法和适用场景。</p>
+</li>
+<li><p>（可选）根据需求，了解服务端渲染的使用（需要配合 Node 服务器开发的知识）。其实更重要的是理解它所解决的问题并搞清楚你是否需要它。</p>
+</li>
+</ol>
+<ol>
+<li><p>阅读开源的 Vue 应用、组件、插件源码，自己尝试编写开源的 Vue 组件、插件。</p>
+</li>
+<li><p>参考 贡献指南 阅读 Vue 的源码，理解内部实现细节。（需要了解 Flow）</p>
+</li>
+<li><p>参与 Vue GitHub issue 的定位 -&gt; 贡献 PR -&gt; 加入核心团队 -&gt; 升任 CTO -&gt; 迎娶白富美…</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/06/Vue-2-0-的建议学习顺序/" data-id="cjfrmconj0000z53u5hvm2rkk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS从入门到精通（float浮动）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/02/CSS从入门到精通（float浮动）/" class="article-date">
+  <time datetime="2018-04-02T07:20:00.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>►<a class="article-category-link" href="/categories/css/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/02/CSS从入门到精通（float浮动）/">CSS从入门到精通（float浮动）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>介绍一下css中的float<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/04/02/CSS从入门到精通（float浮动）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/02/CSS从入门到精通（float浮动）/" data-id="cjfhwo8yu000xob3ufxpo7qqf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/float/">float</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/前端/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/https/">https</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/msyql/">msyql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/mysql优化/">mysql优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/基准测试/">基准测试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/php/yaf/">yaf</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/php/yaf/api/">api</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/yaf/接口/">接口</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/接口/">接口</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vue/前端/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/yaf/">yaf</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/yaf/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/yaf/php/接口/">接口</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/二分搜索树/">二分搜索树</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/二分搜索树/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/css/">css</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端技术/">后端技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/听书/">听书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/听书/工作/">工作</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/听书/工作/商业/">商业</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作/">工作</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工作/听书/">听书</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/成长/">成长</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/成长/北京/">北京</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/接口/">接口</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/接口/yaf/">yaf</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程/">教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/nosql/">nosql</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/nosql/redis/">redis</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/排序/">排序</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序/">排序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/数据结构/">数据结构</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计/UI/">UI</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
   
-
-  <div class="container sidebar-position-left 
-   page-home 
- ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
     
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">番茄技术小栈</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css列表/">css列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/float/">float</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql复制/">mysql复制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql高可用/">mysql高可用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql查询优化/">sql查询优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优先队列/">优先队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分库分表/">分库分表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分支算法/">分支算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/听书/">听书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/商业/">商业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基准测试/">基准测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础算法/">基础算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/堆/">堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/堆排序/">堆排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作/">工作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/归并排序/">归并排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速排序/">快速排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成长/">成长</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/接口/">接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/查找/">查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/盒子模型/">盒子模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/索引/">索引</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/置顶/">置顶</a></li></ul>
     </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
 
 
-
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/css列表/" style="font-size: 10px;">css列表</a> <a href="/tags/float/" style="font-size: 10px;">float</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 20px;">mysql</a> <a href="/tags/mysql复制/" style="font-size: 10px;">mysql复制</a> <a href="/tags/mysql高可用/" style="font-size: 10px;">mysql高可用</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sql查询优化/" style="font-size: 10px;">sql查询优化</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/yaf/" style="font-size: 17.5px;">yaf</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/优先队列/" style="font-size: 10px;">优先队列</a> <a href="/tags/分库分表/" style="font-size: 10px;">分库分表</a> <a href="/tags/分支算法/" style="font-size: 10px;">分支算法</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/听书/" style="font-size: 12.5px;">听书</a> <a href="/tags/商业/" style="font-size: 10px;">商业</a> <a href="/tags/基准测试/" style="font-size: 10px;">基准测试</a> <a href="/tags/基础算法/" style="font-size: 10px;">基础算法</a> <a href="/tags/堆/" style="font-size: 12.5px;">堆</a> <a href="/tags/堆排序/" style="font-size: 10px;">堆排序</a> <a href="/tags/工作/" style="font-size: 12.5px;">工作</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/快速排序/" style="font-size: 10px;">快速排序</a> <a href="/tags/成长/" style="font-size: 10px;">成长</a> <a href="/tags/接口/" style="font-size: 15px;">接口</a> <a href="/tags/查找/" style="font-size: 10px;">查找</a> <a href="/tags/盒子模型/" style="font-size: 10px;">盒子模型</a> <a href="/tags/索引/" style="font-size: 10px;">索引</a> <a href="/tags/置顶/" style="font-size: 10px;">置顶</a>
     </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/10/并查集/">并查集</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/09/二分搜索树/">二分搜索树</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/09/索引堆/">索引堆</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/01/算法与数据结构之排序算法总结/">算法与数据结构之排序算法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/01/算法与数据结构之原地堆/">算法与数据结构之原地堆排序</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 wujunqi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/10/并查集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/10/并查集/" itemprop="url">并查集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-10T22:10:51+08:00">
-                2018-06-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/10/并查集/" class="leancloud_visitors" data-flag-title="并查集">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
 
-    <div class="post-body" itemprop="articleBody">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-      
-      
 
-      
-        
-          
-          并查集 Union Find
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-图相关算法的实现。
 
-
-
-一种不一样的树形结构
-
-连接问题 Connectivity Problem可视化的来看连接问题：
-
-左上右下是否是连接的呢？
-意义：实际应用中的作用
-
-网络中节点间的连接状态
-
-网络是个抽象的概念：用户之间形成的网络
-
-
-社交网络：Facebook中用户a和b中的联系（好友关系）。是否能联系到。
-
-音乐电影书籍，多媒体之间形成网络。
-
-互联网网页之间形成的网络
-
-路由器和路由器之间形成的也是网络
-
-道理交通，航班调度都是网络
-
-
-数学中的集合类实现
-
-并就是实现并集。&amp; 查询
-
-连接问题 &amp; 路径问题
-比路径问题要回答的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/10/并查集/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/二分搜索树/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/09/二分搜索树/" itemprop="url">二分搜索树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T19:23:00+08:00">
-                2018-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/二分搜索树/" itemprop="url" rel="index">
-                    <span itemprop="name">二分搜索树</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/二分搜索树/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/09/二分搜索树/" class="leancloud_visitors" data-flag-title="二分搜索树">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/09/二分搜索树/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/索引堆/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/09/索引堆/" itemprop="url">索引堆</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T17:58:34+08:00">
-                2018-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/09/索引堆/" class="leancloud_visitors" data-flag-title="索引堆">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前面的博文介绍了堆的实现<a href="http://fanqieto.top/2018/01/11/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0/" target="_blank" rel="external">堆的介绍</a>，今天主要主要介绍索引堆，以及索引堆的优化。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/09/索引堆/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/01/算法与数据结构之排序算法总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/01/算法与数据结构之排序算法总结/" itemprop="url">算法与数据结构之排序算法总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T09:51:03+08:00">
-                2018-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/01/算法与数据结构之排序算法总结/" class="leancloud_visitors" data-flag-title="算法与数据结构之排序算法总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>总结一下排序算法</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/01/算法与数据结构之排序算法总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/01/算法与数据结构之原地堆/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/01/算法与数据结构之原地堆/" itemprop="url">算法与数据结构之原地堆排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T09:10:10+08:00">
-                2018-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/01/算法与数据结构之原地堆/" class="leancloud_visitors" data-flag-title="算法与数据结构之原地堆排序">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>做了太久的小程序，6月份之后开始去年的算法的学习，今天比较有感悟的是吴军老师《硅谷来信》的一句话：走完最后的1%，这很重要。主要介绍一下原地堆排序算法以及实现（PHP)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/01/算法与数据结构之原地堆/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/vue-cli安装步骤/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/11/vue-cli安装步骤/" itemprop="url">vue-cli安装步骤</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T22:57:00+08:00">
-                2018-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/11/vue-cli安装步骤/" class="leancloud_visitors" data-flag-title="vue-cli安装步骤">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>vue-cli脚手架安装步骤<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/11/vue-cli安装步骤/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/06/Vue-2-0-的建议学习顺序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/06/Vue-2-0-的建议学习顺序/" itemprop="url">Vue 2.0 的建议学习顺序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-06T15:39:00+08:00">
-                2018-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/06/Vue-2-0-的建议学习顺序/" class="leancloud_visitors" data-flag-title="Vue 2.0 的建议学习顺序">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          &gt;起步
-扎实的 JavaScript / HTML / CSS 基本功。这是前置条件。
-
-通读官方教程 (guide) 的基础篇。不要用任何构建工具，就只用最简单的 script，把教程里的例子模仿一遍，理解用法。不推荐上来就直接用 vue-cli 构建项目，尤其是如果没有 Node/Webpack 基础。
-
-照着官网上的示例，自己想一些类似的例子，模仿着实现来练手，加深理解。
-
-阅读官方教程进阶篇的前半部分，到『自定义指令 (Custom Directive) 』为止。着重理解 Vue 的响应式机制和组件生命周期。『渲染函数（Render Function)』如果理解吃力可以先跳过。
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/06/Vue-2-0-的建议学习顺序/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/CSS从入门到精通（float浮动）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wujunqi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="番茄技术小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/CSS从入门到精通（float浮动）/" itemprop="url">CSS从入门到精通（float浮动）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T15:20:00+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/02/CSS从入门到精通（float浮动）/" class="leancloud_visitors" data-flag-title="CSS从入门到精通（float浮动）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>介绍一下css中的float<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/02/CSS从入门到精通（float浮动）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.png"
-               alt="wujunqi" />
-          <p class="site-author-name" itemprop="name">wujunqi</p>
-           
-              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">49</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">58</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">51</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  微博
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
-                  
-                    <i class="fa fa-fw fa-book"></i>
-                  
-                  豆瓣
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-question"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友情链接
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">wujunqi</span>
-</div>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      本站访客数
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人次
-    </span>
-  
-
-  
-    <span class="site-pv">
-      本站总访问量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次
-    </span>
-  
-</div>
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
+<script src="/js/script.js"></script>
 
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-    
-
-    
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
 </body>
 </html>
