@@ -1,113 +1,451 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>二分搜索树 | 番茄技术小栈</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。">
-<meta name="keywords" content="查找,二分">
-<meta property="og:type" content="article">
-<meta property="og:title" content="二分搜索树">
-<meta property="og:url" content="http://yoursite.com/2018/06/09/二分搜索树/index.html">
-<meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528631070764rlp9mazp.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528631938993eegpgk43.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528638066603r1gkahvc.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15286381109925y2xe47m.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15286356483658mleclh1.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15286356813290ii0x9ok.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528636859843gautmchc.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528637198728k2e2hk5n.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528637313408xlmppudn.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528637420514pdv9xvue.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528637504895r8n2861s.png?imageView/2/w/600/q/100">
-<meta property="og:updated_time" content="2018-06-10T13:43:34.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二分搜索树">
-<meta name="twitter:description" content="主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1528631070764rlp9mazp.png?imageView/2/w/400/q/100">
-  
-    <link rel="alternate" href="/atom.xml" title="番茄技术小栈" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
 
+    <!-- Title -->
+    
+    <title>
+        
+            二分搜索树 | 
+        
+        番茄技术小栈
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+        <link rel="dns-prefetch" href="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"/>
+    
+    
+        <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="wujunqi">
+    <meta name="description" itemprop="description" content="主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。">
+    <meta name="keywords" content=",查找,二分">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="番茄技术小栈">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="二分搜索树 | 番茄技术小栈">
+    <meta property="og:image" content="/img/favicon.png" />
+    <meta property="og:description" content="主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。">
+    <meta property="og:article:tag" content="查找"> <meta property="og:article:tag" content="二分"> 
+
+    
+        <meta property="article:published_time" content="Jun 09, 2018" />
+        <meta property="article:modified_time" content="Jun 10, 2018" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="二分搜索树 | 番茄技术小栈">
+    <meta name="twitter:description" content="主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。">
+    <meta name="twitter:image" content="/img/favicon.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="http://yoursite.com" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2018/06/09/二分搜索树/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "番茄技术小栈",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "wujunqi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "小龙虾"
+    },
+    "headline": "二分搜索树",
+    "url": "http://yoursite.com/2018/06/09/二分搜索树/index.html",
+    "datePublished": "Jun 09, 2018",
+    "dateModified": "Jun 10, 2018",
+    "description": "主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://yoursite.com"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+            <style id="/css/fontawesome.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("/css/fontawesome.min.css","/css/fontawesome.min.css?JpVQUwzBJ7aqWjWSWn3mzg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">番茄技术小栈</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">成功来源于良好的自我管理和毅力</a>
-        </h2>
-      
+
+    
+        <body id="scheme-Isolation" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+                    <!-- Isolation Header -->
+                    <header class="header">
+    <div class="header-wrapper">
+        <!-- Header Copyright -->
+        <div class="header-copyright">
+            <div class="header-site">
+                ©&nbsp;
+                <script type="text/javascript">
+                    var fd = new Date();
+                    document.write(fd.getFullYear());
+                </script>
+                &nbsp;番茄技术小栈
+            </div>
+            <!--
+            I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+            It will not impact the appearance and can give developers a lot of support :)
+
+            很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+            它不会影响美观并可以给开发者很大的支持。 :)
+            -->
+            <div>
+                Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a>
+                <br>
+                Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a>
+            </div>
+        </div>
+
+        <!-- Header Title -->
+        <span class="header-title header-item">
+            <a href="/" title="番茄技术小栈">
+                番茄技术小栈
+            </a>
+        </span>
+
+        <p class="header-slogan header-item">
+        
+            
+                小龙虾
+            
+        
+        </p>
+
+        <!-- Header Nav -->
+        <nav class="header-nav header-item">
+            <span class="header-nav-item">
+                <a href="/" title="Home">
+                    <span>Home</span>
+                </a>
+            </span>
+
+            <!-- Pages  -->
+            
+                <span class="header-nav-item">
+                    <a href="links" title="友情链接">
+                        <span>友情链接</span>
+                    </a>
+                </span>
+            
+                <span class="header-nav-item">
+                    <a href="tags" title="标签云">
+                        <span>标签云</span>
+                    </a>
+                </span>
+            
+                <span class="header-nav-item">
+                    <a href="timeline" title="时间线">
+                        <span>时间线</span>
+                    </a>
+                </span>
+            
+            
+        </nav>
+
+        <!-- Header SNS -->
+        <div class="header-item header-sns_list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/5396675870/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo" target="_blank">
+            <i class="fa fa-weibo fa-lg" aria-hidden="true"></i>
+        </a>
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/wujunqi" target="_blank">
+            <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+        </a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-二分搜索树" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/09/二分搜索树/" class="article-date">
-  <time datetime="2018-06-09T11:23:00.000Z" itemprop="datePublished">2018-06-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/二分搜索树/">二分搜索树</a>►<a class="article-category-link" href="/categories/二分搜索树/算法/">算法</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      二分搜索树
-    </h1>
-  
+                
 
-      </header>
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+
+                    <!-- Post TOC -->
+
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。</p>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+
+
+    <!-- Isolation Post Header -->
+    <!-- Post thumbnail -->
+    
+        <!-- Post Header Info -->
+        <div class="post-header_info without-thumbnail">
+            <!-- Author Avatar & Name -->
+            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="wujunqi's avatar">
+            <span class="name-span">wujunqi</span>
+        </div>
+
+        <!-- Null Thumbnail -->
+        <div class="post_thumbnail-null">
+    
+        </div>
+
+
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+
+    
+        <div class="post-content_wrapper">
+            <p class="post-title">
+                二分搜索树
+            </p>
+            <p>主要介绍：介绍一下二分搜索树相关的知识，有二分查找法、二分搜索树等。</p>
 <a id="more"></a>
 <h2 id="二分查找法"><a href="#二分查找法" class="headerlink" title="二分查找法"></a>二分查找法</h2><h3 id="wiki定义"><a href="#wiki定义" class="headerlink" title="wiki定义"></a>wiki定义</h3><blockquote>
 <p>是一种在有序数组中查找某一特定元素的搜索算法。搜索过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则搜索过程结束；如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜索范围缩小一半。</p>
@@ -220,145 +558,278 @@
 <li>哈夫曼树：给定n个权值作为n个叶子结点，构造一棵二叉树，若带权路径长度达到最小，称这样的二叉树为最优二叉树，也称为哈夫曼树(Huffman Tree)。哈夫曼树是带权路径长度最短的树，权值较大的结点离根较近。</li>
 </ul>
 <h2 id="最终代码封装"><a href="#最终代码封装" class="headerlink" title="最终代码封装"></a>最终代码封装</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Key, <span class="keyword">typename</span> Value&gt;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BST</span>&#123;</span></div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></div><div class="line">        Key key;</div><div class="line">        Value value;</div><div class="line">        Node *left;</div><div class="line">        Node *right;</div><div class="line"></div><div class="line">        Node(Key key, Value value)&#123;</div><div class="line">            <span class="keyword">this</span>-&gt;key = key;</div><div class="line">            <span class="keyword">this</span>-&gt;value = value;</div><div class="line">            <span class="keyword">this</span>-&gt;left = <span class="keyword">this</span>-&gt;right = <span class="literal">NULL</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Node(Node *node)&#123;</div><div class="line">            <span class="keyword">this</span>-&gt;key = node-&gt;key;</div><div class="line">            <span class="keyword">this</span>-&gt;value = node-&gt;value;</div><div class="line">            <span class="keyword">this</span>-&gt;left = node-&gt;left;</div><div class="line">            <span class="keyword">this</span>-&gt;right = node-&gt;right;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    Node *root;</div><div class="line">    <span class="keyword">int</span> count;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    BST()&#123;</div><div class="line">        root = <span class="literal">NULL</span>;</div><div class="line">        count = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    ~BST()&#123;</div><div class="line">        destroy( root );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> count;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> count == <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Key key, Value value)</span></span>&#123;</div><div class="line">        root = insert(root, key, value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">contain</span><span class="params">(Key key)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> contain(root, key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">Value* <span class="title">search</span><span class="params">(Key key)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> search( root , key );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 前序遍历</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">preOrder</span><span class="params">()</span></span>&#123;</div><div class="line">        preOrder(root);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 中序遍历</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inOrder</span><span class="params">()</span></span>&#123;</div><div class="line">        inOrder(root);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 后序遍历</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">()</span></span>&#123;</div><div class="line">        postOrder(root);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 层序遍历</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">levelOrder</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="built_in">queue</span>&lt;Node*&gt; q;</div><div class="line">        q.push(root);</div><div class="line">        <span class="keyword">while</span>( !q.empty() )&#123;</div><div class="line"></div><div class="line">            Node *node = q.front();</div><div class="line">            q.pop();</div><div class="line"></div><div class="line">            <span class="built_in">cout</span>&lt;&lt;node-&gt;key&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( node-&gt;left )</div><div class="line">                q.push( node-&gt;left );</div><div class="line">            <span class="keyword">if</span>( node-&gt;right )</div><div class="line">                q.push( node-&gt;right );</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 寻找最小的键值</span></div><div class="line">    <span class="function">Key <span class="title">minimum</span><span class="params">()</span></span>&#123;</div><div class="line">        assert( count != <span class="number">0</span> );</div><div class="line">        Node* minNode = minimum( root );</div><div class="line">        <span class="keyword">return</span> minNode-&gt;key;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 寻找最大的键值</span></div><div class="line">    <span class="function">Key <span class="title">maximum</span><span class="params">()</span></span>&#123;</div><div class="line">        assert( count != <span class="number">0</span> );</div><div class="line">        Node* maxNode = maximum(root);</div><div class="line">        <span class="keyword">return</span> maxNode-&gt;key;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 从二叉树中删除最小值所在节点</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeMin</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>( root )</div><div class="line">            root = removeMin( root );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 从二叉树中删除最大值所在节点</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeMax</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>( root )</div><div class="line">            root = removeMax( root );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 从二叉树中删除键值为key的节点</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">(Key key)</span></span>&#123;</div><div class="line">        root = remove(root, key);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="comment">// 向以node为根的二叉搜索树中,插入节点(key, value)</span></div><div class="line">    <span class="comment">// 返回插入新节点后的二叉搜索树的根</span></div><div class="line">    <span class="function">Node* <span class="title">insert</span><span class="params">(Node *node, Key key, Value value)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node == <span class="literal">NULL</span> )&#123;</div><div class="line">            count ++;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Node(key, value);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( key == node-&gt;key )</div><div class="line">            node-&gt;value = value;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>( key &lt; node-&gt;key )</div><div class="line">            node-&gt;left = insert( node-&gt;left , key, value);</div><div class="line">        <span class="keyword">else</span>    <span class="comment">// key &gt; node-&gt;key</span></div><div class="line">            node-&gt;right = insert( node-&gt;right, key, value);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 查看以node为根的二叉搜索树中是否包含键值为key的节点</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">contain</span><span class="params">(Node* node, Key key)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node == <span class="literal">NULL</span> )</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( key == node-&gt;key )</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>( key &lt; node-&gt;key )</div><div class="line">            <span class="keyword">return</span> contain( node-&gt;left , key );</div><div class="line">        <span class="keyword">else</span> <span class="comment">// key &gt; node-&gt;key</span></div><div class="line">            <span class="keyword">return</span> contain( node-&gt;right , key );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 在以node为根的二叉搜索树中查找key所对应的value</span></div><div class="line">    <span class="function">Value* <span class="title">search</span><span class="params">(Node* node, Key key)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node == <span class="literal">NULL</span> )</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( key == node-&gt;key )</div><div class="line">            <span class="keyword">return</span> &amp;(node-&gt;value);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>( key &lt; node-&gt;key )</div><div class="line">            <span class="keyword">return</span> search( node-&gt;left , key );</div><div class="line">        <span class="keyword">else</span> <span class="comment">// key &gt; node-&gt;key</span></div><div class="line">            <span class="keyword">return</span> search( node-&gt;right, key );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 对以node为根的二叉搜索树进行前序遍历</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">preOrder</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node != <span class="literal">NULL</span> )&#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;node-&gt;key&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">            preOrder(node-&gt;left);</div><div class="line">            preOrder(node-&gt;right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 对以node为根的二叉搜索树进行中序遍历</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inOrder</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node != <span class="literal">NULL</span> )&#123;</div><div class="line">            inOrder(node-&gt;left);</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;node-&gt;key&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">            inOrder(node-&gt;right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 对以node为根的二叉搜索树进行后序遍历</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node != <span class="literal">NULL</span> )&#123;</div><div class="line">            postOrder(node-&gt;left);</div><div class="line">            postOrder(node-&gt;right);</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;node-&gt;key&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node != <span class="literal">NULL</span> )&#123;</div><div class="line">            destroy( node-&gt;left );</div><div class="line">            destroy( node-&gt;right );</div><div class="line"></div><div class="line">            <span class="keyword">delete</span> node;</div><div class="line">            count --;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 在以node为根的二叉搜索树中,返回最小键值的节点</span></div><div class="line">    <span class="function">Node* <span class="title">minimum</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>( node-&gt;left == <span class="literal">NULL</span> )</div><div class="line">            <span class="keyword">return</span> node;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> minimum(node-&gt;left);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 在以node为根的二叉搜索树中,返回最大键值的节点</span></div><div class="line">    <span class="function">Node* <span class="title">maximum</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>( node-&gt;right == <span class="literal">NULL</span> )</div><div class="line">            <span class="keyword">return</span> node;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> maximum(node-&gt;right);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 删除掉以node为根的二分搜索树中的最小节点</span></div><div class="line">    <span class="comment">// 返回删除节点后新的二分搜索树的根</span></div><div class="line">    <span class="function">Node* <span class="title">removeMin</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node-&gt;left == <span class="literal">NULL</span> )&#123;</div><div class="line"></div><div class="line">            Node* rightNode = node-&gt;right;</div><div class="line">            <span class="keyword">delete</span> node;</div><div class="line">            count --;</div><div class="line">            <span class="keyword">return</span> rightNode;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        node-&gt;left = removeMin(node-&gt;left);</div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 删除掉以node为根的二分搜索树中的最大节点</span></div><div class="line">    <span class="comment">// 返回删除节点后新的二分搜索树的根</span></div><div class="line">    <span class="function">Node* <span class="title">removeMax</span><span class="params">(Node* node)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node-&gt;right == <span class="literal">NULL</span> )&#123;</div><div class="line"></div><div class="line">            Node* leftNode = node-&gt;left;</div><div class="line">            <span class="keyword">delete</span> node;</div><div class="line">            count --;</div><div class="line">            <span class="keyword">return</span> leftNode;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        node-&gt;right = removeMax(node-&gt;right);</div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 删除掉以node为根的二分搜索树中键值为key的节点</span></div><div class="line">    <span class="comment">// 返回删除节点后新的二分搜索树的根</span></div><div class="line">    <span class="function">Node* <span class="title">remove</span><span class="params">(Node* node, Key key)</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( node == <span class="literal">NULL</span> )</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( key &lt; node-&gt;key )&#123;</div><div class="line">            node-&gt;left = remove( node-&gt;left , key );</div><div class="line">            <span class="keyword">return</span> node;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>( key &gt; node-&gt;key )&#123;</div><div class="line">            node-&gt;right = remove( node-&gt;right, key );</div><div class="line">            <span class="keyword">return</span> node;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;   <span class="comment">// key == node-&gt;key</span></div><div class="line"></div><div class="line">            <span class="keyword">if</span>( node-&gt;left == <span class="literal">NULL</span> )&#123;</div><div class="line">                Node *rightNode = node-&gt;right;</div><div class="line">                <span class="keyword">delete</span> node;</div><div class="line">                count --;</div><div class="line">                <span class="keyword">return</span> rightNode;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( node-&gt;right == <span class="literal">NULL</span> )&#123;</div><div class="line">                Node *leftNode = node-&gt;left;</div><div class="line">                <span class="keyword">delete</span> node;</div><div class="line">                count--;</div><div class="line">                <span class="keyword">return</span> leftNode;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// node-&gt;left != NULL &amp;&amp; node-&gt;right != NULL</span></div><div class="line">            Node *successor = <span class="keyword">new</span> Node(minimum(node-&gt;right));</div><div class="line">            count ++;</div><div class="line"></div><div class="line">            successor-&gt;right = removeMin(node-&gt;right);</div><div class="line">            successor-&gt;left = node-&gt;left;</div><div class="line"></div><div class="line">            <span class="keyword">delete</span> node;</div><div class="line">            count --;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> successor;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">shuffle</span><span class="params">( <span class="keyword">int</span> arr[], <span class="keyword">int</span> n )</span></span>&#123;</div><div class="line"></div><div class="line">    srand( time(<span class="literal">NULL</span>) );</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = n<span class="number">-1</span> ; i &gt;= <span class="number">0</span> ; i -- )&#123;</div><div class="line">        <span class="keyword">int</span> x = rand()%(i+<span class="number">1</span>);</div><div class="line">        swap( arr[i] , arr[x] );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    srand(time(<span class="literal">NULL</span>));</div><div class="line">    BST&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; bst = BST&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;();</div><div class="line"></div><div class="line">    <span class="keyword">int</span> n = <span class="number">10000</span>;</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++ )&#123;</div><div class="line">        <span class="keyword">int</span> key = rand()%n;</div><div class="line">        <span class="comment">// 为了后续测试方便,这里value值取和key值一样</span></div><div class="line">        <span class="keyword">int</span> value = key;</div><div class="line">        <span class="comment">//cout&lt;&lt;key&lt;&lt;" ";</span></div><div class="line">        bst.insert(key,value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// test remove</span></div><div class="line">    <span class="comment">// remove elements in random order</span></div><div class="line">    <span class="keyword">int</span> order[n];</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++ )</div><div class="line">        order[i] = i;</div><div class="line">    shuffle( order , n );</div><div class="line"></div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++ )</div><div class="line">        <span class="keyword">if</span>( bst.contain( order[i] ))&#123;</div><div class="line">            bst.remove( order[i] );</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"After remove "</span>&lt;&lt;order[i]&lt;&lt;<span class="string">" size = "</span>&lt;&lt;bst.size()&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/09/二分搜索树/" data-id="cji8vfyl90000e7s68r9r32uh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查找/">查找</a></li></ul>
-
-    </footer>
-  </div>
-  
+        </div>
     
-<nav id="article-nav">
-  
-    <a href="/2018/06/10/并查集/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          并查集
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/06/09/索引堆/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">索引堆</div>
-    </a>
-  
+</div>
+
+
+                
+                    <!-- Paradox Post Info -->
+                    
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2018/06/09/二分搜索树/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyt8tJO8w';
+var conf = '036a00c56c28411a2b66a476c8babb86';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2018/06/10/并查集/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Neuren
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/06/09/索引堆/" id="post_nav-older" class="next-content">
+            Älteren
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
 </nav>
 
-  
-</article>
+        </div>
+    </div>
 
-</section>
-        
-          <aside id="sidebar">
-  
+
+
+                    
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/前端/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/https/">https</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/msyql/">msyql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/mysql优化/">mysql优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/基准测试/">基准测试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/php/yaf/">yaf</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/php/yaf/api/">api</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/yaf/接口/">接口</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/接口/">接口</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vue/前端/">前端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/yaf/">yaf</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/yaf/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/yaf/php/接口/">接口</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/二分搜索树/">二分搜索树</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/二分搜索树/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/css/">css</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端技术/">后端技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/听书/">听书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/听书/工作/">工作</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/听书/工作/商业/">商业</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作/">工作</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工作/听书/">听书</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/成长/">成长</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/成长/北京/">北京</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/接口/">接口</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/接口/yaf/">yaf</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程/">教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/nosql/">nosql</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/nosql/redis/">redis</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/排序/">排序</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序/">排序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/数据结构/">数据结构</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计/UI/">UI</a></li></ul></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css列表/">css列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/float/">float</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql复制/">mysql复制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql高可用/">mysql高可用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql查询优化/">sql查询优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-cli/">vue-cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优先队列/">优先队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分库分表/">分库分表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分支算法/">分支算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/听书/">听书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/商业/">商业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基准测试/">基准测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础算法/">基础算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/堆/">堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/堆排序/">堆排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作/">工作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/归并排序/">归并排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速排序/">快速排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/成长/">成长</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/接口/">接口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/查找/">查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/盒子模型/">盒子模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/索引/">索引</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/置顶/">置顶</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/css列表/" style="font-size: 10px;">css列表</a> <a href="/tags/float/" style="font-size: 10px;">float</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 20px;">mysql</a> <a href="/tags/mysql复制/" style="font-size: 10px;">mysql复制</a> <a href="/tags/mysql高可用/" style="font-size: 10px;">mysql高可用</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sql查询优化/" style="font-size: 10px;">sql查询优化</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/yaf/" style="font-size: 17.5px;">yaf</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/优先队列/" style="font-size: 10px;">优先队列</a> <a href="/tags/分库分表/" style="font-size: 10px;">分库分表</a> <a href="/tags/分支算法/" style="font-size: 10px;">分支算法</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/听书/" style="font-size: 12.5px;">听书</a> <a href="/tags/商业/" style="font-size: 10px;">商业</a> <a href="/tags/基准测试/" style="font-size: 10px;">基准测试</a> <a href="/tags/基础算法/" style="font-size: 10px;">基础算法</a> <a href="/tags/堆/" style="font-size: 12.5px;">堆</a> <a href="/tags/堆排序/" style="font-size: 10px;">堆排序</a> <a href="/tags/工作/" style="font-size: 12.5px;">工作</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/快速排序/" style="font-size: 10px;">快速排序</a> <a href="/tags/成长/" style="font-size: 10px;">成长</a> <a href="/tags/接口/" style="font-size: 15px;">接口</a> <a href="/tags/查找/" style="font-size: 10px;">查找</a> <a href="/tags/盒子模型/" style="font-size: 10px;">盒子模型</a> <a href="/tags/索引/" style="font-size: 10px;">索引</a> <a href="/tags/置顶/" style="font-size: 10px;">置顶</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/06/10/并查集/">并查集</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/09/二分搜索树/">二分搜索树</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/09/索引堆/">索引堆</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/01/算法与数据结构之排序算法总结/">算法与数据结构之排序算法总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/01/算法与数据结构之原地堆/">算法与数据结构之原地堆排序</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 wujunqi<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+    
+        <script>lsloader.load("js/smoothscroll.js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==")</script>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <!-- Leancloud -->
+    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+    <script>
+        AV.initialize('kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz', 'jB0xhP7Atray0YesbketdSat');
+    </script>
+    <script type="text/ls-javascript" id="leancloud-views-script">
+    function showTime(Counter) {
+        var query = new AV.Query(Counter);
+        $('.leancloud-views_num').each(function() {
+            var url = $(this).attr('id').trim();
+            query.equalTo('url', url);
+            query.find({
+                success: function(results) {
+                    if (results.length === 0) {
+                        var content = '0 ' + $(document.getElementById(url)).text();
+                        $(document.getElementById(url)).text(content);
+                        return;
+                    }
+                    for (var i = 0; i < results.length; i++) {
+                        var object = results[i];
+                        var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+                        $(document.getElementById(url)).text(content);
+                    }
+                },
+                error: function(object, error) {
+                    console.log('Error: ' + error.code + ' ' + error.message);
+                }
+            });
+        });
+    }
+
+    function addCount(Counter) {
+      var Counter = AV.Object.extend('Counter');
+      url = $('.leancloud-views_num').attr('id').trim();
+      title = $('.leancloud-views_num').attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+      query.equalTo('url', url);
+      query.find({
+          success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment('time');
+                counter.save(null, {
+                    success: function(counter) {
+                        var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+                        $(document.getElementById(url)).text(content);
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+              var newcounter = new Counter();
+              newcounter.set('title', title);
+              newcounter.set('url', url);
+              newcounter.set('time', 1);
+              newcounter.save(null, {
+                  success: function(newcounter) {
+                      console.log('newcounter.get(\'time\')='+newcounter.get('time'));
+                      var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+                      $(document.getElementById(url)).text(content);
+                  },
+                  error: function(newcounter, error) {
+                      console.log('Failed to create');
+                  }
+              });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + ' ' + error.message);
+        }
+      });
+    }
+    $(function() {
+        var Counter = AV.Object.extend('Counter');
+        if ($('.leancloud-views_num').length === 1) {
+            addCount(Counter);
+        } else if ($('.post-title-link').length > 1) {
+            showTime(Counter);
+        }
+    });
+</script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
-</body>
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 畅言公共 js 代码 start -->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyt8tJO8w">
+</script>
+<!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
 </html>
