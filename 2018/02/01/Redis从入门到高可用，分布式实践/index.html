@@ -1,451 +1,487 @@
 <!DOCTYPE html>
-<html style="display: none;" lang="zh">
-    <head>
-    <meta charset="utf-8">
-    <!--
-        © Material Theme
-        https://github.com/viosey/hexo-theme-material
-        Version: 1.4.0 -->
-    <script>window.materialVersion = "1.4.0"</script>
-
-    <!-- Title -->
-    
-    <title>
-        
-            Redis从入门到实践 | 
-        
-        番茄技术小栈
-    </title>
-
-    <!-- dns prefetch -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-    
-    
-        <link rel="dns-prefetch" href="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"/>
-    
-    
-        <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
-    
-    
-    
-    
-    
-        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
-    
-    
-    
-    
-
-    <!-- Meta & Info -->
-    <meta http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="theme-color" content="#0097A7">
-    <meta name="author" content="wujunqi">
-    <meta name="description" itemprop="description" content="花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本Redis开发与运维 上的知识。">
-    <meta name="keywords" content=",redis">
-
-    <!-- Site Verification -->
-    
-    
-
-    <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
-    <link rel="icon" sizes="192x192" href="/img/favicon.png">
-    <link rel="apple-touch-icon" href="/img/favicon.png">
-
-    <!--iOS -->
-    <meta name="apple-mobile-web-app-title" content="Title">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="480">
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="番茄技术小栈">
-
-    <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="Redis从入门到实践 | 番茄技术小栈">
-    <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本Redis开发与运维 上的知识。">
-    <meta property="og:article:tag" content="redis"> 
-
-    
-        <meta property="article:published_time" content="Feb 01, 2018" />
-        <meta property="article:modified_time" content="Feb 26, 2018" />
-    
-
-    <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="Redis从入门到实践 | 番茄技术小栈">
-    <meta name="twitter:description" content="花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本Redis开发与运维 上的知识。">
-    <meta name="twitter:image" content="/img/favicon.png">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="http://yoursite.com" />
-
-    <!-- Add canonical link for SEO -->
-    
-        <link rel="canonical" href="http://yoursite.com/2018/02/01/Redis从入门到高可用，分布式实践/index.html" />
-    
-
-    <!-- Structured-data for SEO -->
-    
-        
 
 
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "publisher": {
-        "@type": "Organization",
-        "name": "番茄技术小栈",
-        "logo": "/img/favicon.png"
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本Redis开发与运维 上的知识。">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis从入门到实践">
+<meta property="og:url" content="http://yoursite.com/2018/02/01/Redis从入门到高可用，分布式实践/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本Redis开发与运维 上的知识。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517456506059oj2squh5.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517457084770egwzypkw.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517457128233kxqp5fpf.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517539933997zpy76cp5.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517540194144kbbck77e.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517541148840bqpw5f0n.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517541165154tbge7c2p.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15175411874314qwzpl3t.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1517541232653n5g1t1fs.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519272192254a4qajvcv.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15192861789472kud6sj8.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519286305521soha77jk.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519286740970ia4kjjyz.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/151930442958323zs3m49.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519304472312z92ozg1d.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193020094213j55yzeu.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193020828739x1qn5ek.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519354872289zum7bhli.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519357810773rj4hqygz.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193620488135o7lx30j.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519361862336jj7012uh.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519361894417lomjxsl8.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193700355791bcpc3hj.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193701269606yqkg87z.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519370173495m8izacdm.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/151937094205616x39n4s.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519371001508fsw7qzuf.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519374241794h6s8wfqe.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519376686501ny57p0ek.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519376807039g3qs3bhf.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193769116114kauwp76.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519376961828b87pz07d.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519377100580ujlr9er1.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519378890524yg93no2l.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519378930527vr6see60.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519378974551twyeshmo.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519379013335zu011gz5.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193792396756f9u1ct7.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519379187067t0hcw8vj.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519388615427pkcxqs0t.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15193886557349qs2ba7w.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519388849984mzjmflkg.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519439659394h3v60nwo.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519439702090oezlv6ss.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15194403015772yj1o317.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519440324209ubchwmk9.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519441298946bp8kz057.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15194416553394j7h7i8x.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519442407352yt9m7hu0.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519442430022fy3voqza.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15194439857643bu0u7wx.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15194589143596qo5g44l.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519458995923rzgthf60.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519459084238pl0td0n6.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519459220409pihkwnnz.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15194591368021e8f210e.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461385120dhi0pwsb.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461414661kw8mu77z.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461455925ngr83dox.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461489784iuor4hs4.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461564709tjvd3rq9.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461600148r0zkq8m0.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461620206ldqttsxh.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15194616484751wkrkwav.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461686243txqe30lp.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461801340cskw3xir.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15194618199619bya6s0y.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461841361lhinj7bv.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461894260qff2y0q3.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519461928670e0qrg01t.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1519462330336tprq4v7b.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-02-26T02:48:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis从入门到实践">
+<meta name="twitter:description" content="花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本Redis开发与运维 上的知识。">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1517456506059oj2squh5.png?imageView/2/w/600/q/100">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
     },
-    "author": {
-        "@type": "Person",
-        "name": "wujunqi",
-        "image": {
-            "@type": "ImageObject",
-            "url": "/img/favicon.png"
-        },
-        "description": "小龙虾"
-    },
-    "headline": "Redis从入门到实践",
-    "url": "http://yoursite.com/2018/02/01/Redis从入门到高可用，分布式实践/index.html",
-    "datePublished": "Feb 01, 2018",
-    "dateModified": "Feb 26, 2018",
-    "description": "花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本Redis开发与运维 上的知识。",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://yoursite.com"
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
-}
+  };
 </script>
 
 
-    
 
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="/css/ie-blocker.css">
-
-        
-            <script src="/js/ie-blocker.en.js"></script>
-        
-    <![endif]-->
-
-    <!-- Import lsloader -->
-    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
-
-    <!-- Import CSS & jQuery -->
-    
-        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
-        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
-        
-            <style id="/css/fontawesome.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("/css/fontawesome.min.css","/css/fontawesome.min.css?JpVQUwzBJ7aqWjWSWn3mzg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
-        
-        
-        <!-- Config CSS -->
-
-<!-- Other Styles -->
-<style>
-  body, html {
-    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-  }
-
-  a {
-    color: #00838F;
-  }
-
-  .mdl-card__media,
-  #search-label,
-  #search-form-label:after,
-  #scheme-Paradox .hot_tags-count,
-  #scheme-Paradox .sidebar_archives-count,
-  #scheme-Paradox .sidebar-colored .sidebar-header,
-  #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
-  }
-
-  /* Sidebar User Drop Down Menu Text Color */
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
-  }
-
-  #post_entry-right-info,
-  .sidebar-colored .sidebar-nav li:hover > a,
-  .sidebar-colored .sidebar-nav li:hover > a i,
-  .sidebar-colored .sidebar-nav li > a:hover,
-  .sidebar-colored .sidebar-nav li > a:hover i,
-  .sidebar-colored .sidebar-nav li > a:focus i,
-  .sidebar-colored .sidebar-nav > .open > a,
-  .sidebar-colored .sidebar-nav > .open > a:hover,
-  .sidebar-colored .sidebar-nav > .open > a:focus,
-  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
-  }
-
-  .toTop {
-    background: #757575 !important;
-  }
-
-  .material-layout .material-post>.material-nav,
-  .material-layout .material-index>.material-nav,
-  .material-nav a {
-    color: #757575;
-  }
-
-  #scheme-Paradox .MD-burger-layer {
-    background-color: #757575;
-  }
-
-  #scheme-Paradox #post-toc-trigger-btn {
-    color: #757575;
-  }
-
-  .post-toc a:hover {
-    color: #00838F;
-    text-decoration: underline;
-  }
-
-</style>
-
-
-<!-- Theme Background Related-->
-
-    <style>
-      body{
-        background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
-      }
-    </style>
+  <link rel="canonical" href="http://yoursite.com/2018/02/01/Redis从入门到高可用，分布式实践/"/>
 
 
 
 
-<!-- Fade Effect -->
 
-    <style>
-      .fade {
-        transition: all 800ms linear;
-        -webkit-transform: translate3d(0,0,0);
-        -moz-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0);
-        -o-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
-        opacity: 1;
-      }
-
-      .fade.out{
-        opacity: 0;
-      }
-    </style>
+  <title>Redis从入门到实践 | 番茄技术小栈</title>
+  
 
 
-<!-- Import Font -->
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 
 
-        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
-    
-    
-    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
-    <!-- Analytics -->
-    
 
-    <!-- Custom Head -->
-    
+
+
+
+
+
+
+
+
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  
+  
     
-        <body id="scheme-Isolation" class="lazy">
-            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
-                
-                    <!-- Isolation Header -->
-                    <header class="header">
-    <div class="header-wrapper">
-        <!-- Header Copyright -->
-        <div class="header-copyright">
-            <div class="header-site">
-                ©&nbsp;
-                <script type="text/javascript">
-                    var fd = new Date();
-                    document.write(fd.getFullYear());
-                </script>
-                &nbsp;番茄技术小栈
-            </div>
-            <!--
-            I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
-            It will not impact the appearance and can give developers a lot of support :)
+  
 
-            很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-            它不会影响美观并可以给开发者很大的支持。 :)
-            -->
-            <div>
-                Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a>
-                <br>
-                Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a>
-            </div>
-        </div>
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
 
-        <!-- Header Title -->
-        <span class="header-title header-item">
-            <a href="/" title="番茄技术小栈">
-                番茄技术小栈
-            </a>
-        </span>
-
-        <p class="header-slogan header-item">
-        
-            
-                小龙虾
-            
-        
-        </p>
-
-        <!-- Header Nav -->
-        <nav class="header-nav header-item">
-            <span class="header-nav-item">
-                <a href="/" title="Home">
-                    <span>Home</span>
-                </a>
-            </span>
-
-            <!-- Pages  -->
-            
-                <span class="header-nav-item">
-                    <a href="links" title="友情链接">
-                        <span>友情链接</span>
-                    </a>
-                </span>
-            
-                <span class="header-nav-item">
-                    <a href="tags" title="标签云">
-                        <span>标签云</span>
-                    </a>
-                </span>
-            
-                <span class="header-nav-item">
-                    <a href="timeline" title="时间线">
-                        <span>时间线</span>
-                    </a>
-                </span>
-            
-            
-        </nav>
-
-        <!-- Header SNS -->
-        <div class="header-item header-sns_list">
-    <!-- Twitter -->
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
     
 
-    <!-- Facebook -->
-    
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
 
-    <!-- Google + -->
-    
-
-    <!-- Weibo -->
-    
-        <a href="http://weibo.com/5396675870/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo" target="_blank">
-            <i class="fa fa-weibo fa-lg" aria-hidden="true"></i>
-        </a>
-    
-
-    <!-- Instagram -->
-    
-
-    <!-- Tumblr -->
-    
-
-    <!-- Github -->
-    
-        <a href="https://github.com/wujunqi" target="_blank">
-            <i class="fa fa-github fa-lg" aria-hidden="true"></i>
-        </a>
-    
-
-    <!-- LinkedIn -->
-    
-
-    <!-- Telegram -->
-    
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
-</header>
+  </div>
+  <div id="local-search-result"></div>
+</div>
 
-                
 
-                <!-- Main Container -->
-                <main class="material-layout__content" id="main">
 
-                    <!-- Top Anchor -->
-                    <div id="top"></div>
+    </div>
+  
+</nav>
 
-                    
 
-                    <!-- Post TOC -->
 
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
 
+  
 
+  
+  
+  
 
-<!-- Layouts -->
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/Redis从入门到高可用，分布式实践/">
 
-    <!-- Post Module -->
-    <div class="material-post_container">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
 
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
 
-                <!-- Post Header(Thumbnail & Title) -->
-                
-
-
-    <!-- Isolation Post Header -->
-    <!-- Post thumbnail -->
     
-        <!-- Post Header Info -->
-        <div class="post-header_info without-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="wujunqi's avatar">
-            <span class="name-span">wujunqi</span>
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis从入门到实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T10:48:00+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/nosql/" itemprop="url" rel="index">
+                    <span itemprop="name">nosql</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/nosql/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/01/Redis从入门到高可用，分布式实践/" class="leancloud_visitors" data-flag-title="Redis从入门到实践">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
         </div>
-
-        <!-- Null Thumbnail -->
-        <div class="post_thumbnail-null">
-    
-        </div>
-
-
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+      </header>
     
 
-    
-        <div class="post-content_wrapper">
-            <p class="post-title">
-                Redis从入门到实践
-            </p>
-            <p>花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本<a href="https://book.douban.com/subject/26971561/" target="_blank" rel="external">Redis开发与运维 </a>上的知识。</p>
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>花了一周左右，全面的学习redis的知识，并记录学习笔记，主要是付磊 / 张益军 老师的这本<a href="https://book.douban.com/subject/26971561/" target="_blank" rel="external">Redis开发与运维 </a>上的知识。</p>
 <a id="more"></a>
 <h1 id="redis初识"><a href="#redis初识" class="headerlink" title="redis初识"></a>redis初识</h1><h2 id="导学"><a href="#导学" class="headerlink" title="导学"></a>导学</h2><h3 id="盛赞redis"><a href="#盛赞redis" class="headerlink" title="盛赞redis"></a>盛赞redis</h3><ul>
 <li>高性能key-value服务器</li>
@@ -1607,278 +1643,901 @@
 <li>everysec</li>
 </ul>
 <h1 id="常见的持久化开发运维问题"><a href="#常见的持久化开发运维问题" class="headerlink" title="常见的持久化开发运维问题"></a>常见的持久化开发运维问题</h1><h1 id="redis复制的原理和优化"><a href="#redis复制的原理和优化" class="headerlink" title="redis复制的原理和优化"></a>redis复制的原理和优化</h1><h1 id="redis-Sentinel"><a href="#redis-Sentinel" class="headerlink" title="redis Sentinel"></a>redis Sentinel</h1><h1 id="redis云平台CacheCloud"><a href="#redis云平台CacheCloud" class="headerlink" title="redis云平台CacheCloud"></a>redis云平台CacheCloud</h1><h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1>
-        </div>
-    
-</div>
-
-
-                
-                    <!-- Paradox Post Info -->
-                    
-                
-
-                <!-- Post Comments -->
-                
-                    
-    <!-- 使用 changyan -->
-<div id="changyan-comment">
-    <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2018/02/01/Redis从入门到高可用，分布式实践/"  ></div>
-<script type="text/javascript">
-(function(){
-var appid = 'cyt8tJO8w';
-var conf = '036a00c56c28411a2b66a476c8babb86';
-var width = window.innerWidth || document.documentElement.clientWidth;
-if (width < 960) {
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-
-</div>
-<style>
-    #changyan-comment{
-        background-color: #eee;
-        padding: 2pc;
-    }
-</style>
-
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-        <a href="/2018/02/27/linux从入门到实践/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Neuren
-        </a>
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-        <a href="/2018/01/17/算法与数据结构堆和堆排序之堆排序/" id="post_nav-older" class="next-content">
-            Älteren
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
-    
-</nav>
-
-        </div>
+      
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
 
 
-                    
+      
+    </div>
 
-                    
+    <div>
+      
+        
 
-                    <!--Footer-->
-<footer class="mdl-mini-footer" id="bottom">
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/算法与数据结构堆和堆排序之堆排序/" rel="next" title="算法与数据结构堆和堆排序之堆排序">
+                <i class="fa fa-chevron-left"></i> 算法与数据结构堆和堆排序之堆排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/27/linux从入门到实践/" rel="prev" title="linux从入门到实践">
+                linux从入门到实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-</footer>
+      <div id="uyan_frame"></div>
+    
+  </div>
 
 
-                    <!-- Import File -->
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
 
 
-    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
-    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis初识"><span class="nav-number">1.</span> <span class="nav-text">redis初识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导学"><span class="nav-number">1.1.</span> <span class="nav-text">导学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#盛赞redis"><span class="nav-number">1.1.1.</span> <span class="nav-text">盛赞redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis初识-1"><span class="nav-number">1.2.</span> <span class="nav-text">redis初识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.2.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis的前世今生"><span class="nav-number">1.2.3.</span> <span class="nav-text">redis的前世今生</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谁在使用redis"><span class="nav-number">1.3.</span> <span class="nav-text">谁在使用redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis特性目录"><span class="nav-number">1.4.</span> <span class="nav-text">redis特性目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性1：速度快"><span class="nav-number">1.4.1.</span> <span class="nav-text">特性1：速度快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性2：持久化"><span class="nav-number">1.4.2.</span> <span class="nav-text">特性2：持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性3：数据结构"><span class="nav-number">1.4.3.</span> <span class="nav-text">特性3：数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性4：多语言客户端"><span class="nav-number">1.4.4.</span> <span class="nav-text">特性4：多语言客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性5：功能丰富"><span class="nav-number">1.4.5.</span> <span class="nav-text">特性5：功能丰富</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性6：简单"><span class="nav-number">1.4.6.</span> <span class="nav-text">特性6：简单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性7：复制"><span class="nav-number">1.4.7.</span> <span class="nav-text">特性7：复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性8：-高可用"><span class="nav-number">1.4.8.</span> <span class="nav-text">特性8： 高可用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis典型使用场景"><span class="nav-number">1.5.</span> <span class="nav-text">redis典型使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis三种启动方式"><span class="nav-number">1.6.</span> <span class="nav-text">redis三种启动方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis安装（mac-amp-linux）"><span class="nav-number">1.6.1.</span> <span class="nav-text">redis安装（mac&linux）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis可执行文件说明"><span class="nav-number">1.6.2.</span> <span class="nav-text">redis可执行文件说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reids三种启动方法"><span class="nav-number">1.6.3.</span> <span class="nav-text">reids三种启动方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis客户端连接"><span class="nav-number">1.6.4.</span> <span class="nav-text">redis客户端连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis客户端返回值"><span class="nav-number">1.6.5.</span> <span class="nav-text">redis客户端返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis常用配置"><span class="nav-number">1.7.</span> <span class="nav-text">redis常用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis安装启动（配置文件方式）"><span class="nav-number">1.8.</span> <span class="nav-text">redis安装启动（配置文件方式）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API的理解和使用"><span class="nav-number">2.</span> <span class="nav-text">API的理解和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通用命令"><span class="nav-number">2.1.</span> <span class="nav-text">通用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构和内部编码"><span class="nav-number">2.2.</span> <span class="nav-text">数据结构和内部编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示"><span class="nav-number">2.2.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reidsObject"><span class="nav-number">2.2.2.</span> <span class="nav-text">reidsObject</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单线程"><span class="nav-number">2.3.</span> <span class="nav-text">单线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单线程为什么这么快"><span class="nav-number">2.3.2.</span> <span class="nav-text">单线程为什么这么快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用单线程要注意什么"><span class="nav-number">2.3.3.</span> <span class="nav-text">使用单线程要注意什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">2.4.</span> <span class="nav-text">string</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">2.4.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">2.4.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">2.4.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实战"><span class="nav-number">2.4.4.</span> <span class="nav-text">实战</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">2.5.</span> <span class="nav-text">hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希键值结构"><span class="nav-number">2.5.1.</span> <span class="nav-text">哈希键值结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">2.5.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-1"><span class="nav-number">2.5.3.</span> <span class="nav-text">API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">2.6.</span> <span class="nav-text">list</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表结构"><span class="nav-number">2.6.1.</span> <span class="nav-text">列表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">2.6.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-2"><span class="nav-number">2.6.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">2.6.4.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">2.7.</span> <span class="nav-text">set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-2"><span class="nav-number">2.7.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-2"><span class="nav-number">2.7.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-3"><span class="nav-number">2.7.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实战-1"><span class="nav-number">2.7.4.</span> <span class="nav-text">实战</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zset"><span class="nav-number">2.8.</span> <span class="nav-text">zset</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-3"><span class="nav-number">2.8.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-4"><span class="nav-number">2.8.2.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实战-2"><span class="nav-number">2.8.3.</span> <span class="nav-text">实战</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis客户端的使用"><span class="nav-number">3.</span> <span class="nav-text">redis客户端的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">3.1.</span> <span class="nav-text">下载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis的其他功能"><span class="nav-number">4.</span> <span class="nav-text">redis的其他功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#慢查询"><span class="nav-number">4.1.</span> <span class="nav-text">慢查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">4.1.1.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个配置"><span class="nav-number">4.1.2.</span> <span class="nav-text">两个配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#慢查询命令"><span class="nav-number">4.1.3.</span> <span class="nav-text">慢查询命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运维经验"><span class="nav-number">4.1.4.</span> <span class="nav-text">运维经验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pipeline-流水线"><span class="nav-number">4.2.</span> <span class="nav-text">pipeline:流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是流水线"><span class="nav-number">4.2.1.</span> <span class="nav-text">什么是流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与原生操作对比"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">与原生操作对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用建议"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">使用建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布订阅"><span class="nav-number">4.3.</span> <span class="nav-text">发布订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角色"><span class="nav-number">4.3.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">4.3.2.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-5"><span class="nav-number">4.3.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布订阅与消息队列"><span class="nav-number">4.3.4.</span> <span class="nav-text">发布订阅与消息队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitmap"><span class="nav-number">4.4.</span> <span class="nav-text">Bitmap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位图"><span class="nav-number">4.4.1.</span> <span class="nav-text">位图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-6"><span class="nav-number">4.4.2.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#独立用户统计"><span class="nav-number">4.4.3.</span> <span class="nav-text">独立用户统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用经验"><span class="nav-number">4.4.4.</span> <span class="nav-text">使用经验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyperLogLog"><span class="nav-number">4.5.</span> <span class="nav-text">HyperLogLog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新的数据结构"><span class="nav-number">4.5.1.</span> <span class="nav-text">新的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-7"><span class="nav-number">4.5.2.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存消耗"><span class="nav-number">4.5.3.</span> <span class="nav-text">内存消耗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用经验-1"><span class="nav-number">4.5.4.</span> <span class="nav-text">使用经验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GEO"><span class="nav-number">4.6.</span> <span class="nav-text">GEO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GEO是什么"><span class="nav-number">4.6.1.</span> <span class="nav-text">GEO是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5个城市经纬度"><span class="nav-number">4.6.2.</span> <span class="nav-text">5个城市经纬度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-8"><span class="nav-number">4.6.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关说明"><span class="nav-number">4.6.4.</span> <span class="nav-text">相关说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis持久化的取舍和选择"><span class="nav-number">5.</span> <span class="nav-text">redis持久化的取舍和选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化的作用"><span class="nav-number">5.1.</span> <span class="nav-text">持久化的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是持久化"><span class="nav-number">5.1.1.</span> <span class="nav-text">什么是持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化的实现方式"><span class="nav-number">5.1.2.</span> <span class="nav-text">持久化的实现方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB"><span class="nav-number">5.2.</span> <span class="nav-text">RDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是RDB"><span class="nav-number">5.2.1.</span> <span class="nav-text">什么是RDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发机制-主要三种方式"><span class="nav-number">5.2.2.</span> <span class="nav-text">触发机制-主要三种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#save与bgsave"><span class="nav-number">5.2.3.</span> <span class="nav-text">save与bgsave</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发机制-不容忽略的方式"><span class="nav-number">5.2.4.</span> <span class="nav-text">触发机制-不容忽略的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.2.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF"><span class="nav-number">5.3.</span> <span class="nav-text">AOF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB现存问题"><span class="nav-number">5.3.1.</span> <span class="nav-text">RDB现存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是AOF"><span class="nav-number">5.3.2.</span> <span class="nav-text">什么是AOF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF三种策略"><span class="nav-number">5.3.3.</span> <span class="nav-text">AOF三种策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF重写"><span class="nav-number">5.3.4.</span> <span class="nav-text">AOF重写</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF重写的作用"><span class="nav-number">5.3.4.1.</span> <span class="nav-text">AOF重写的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF重写实现的两种方式"><span class="nav-number">5.3.4.2.</span> <span class="nav-text">AOF重写实现的两种方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF重写流程"><span class="nav-number">5.3.4.3.</span> <span class="nav-text">AOF重写流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">5.3.4.4.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB与AOF的选择"><span class="nav-number">5.4.</span> <span class="nav-text">RDB与AOF的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB最佳策略"><span class="nav-number">5.4.1.</span> <span class="nav-text">RDB最佳策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF最佳策略"><span class="nav-number">5.4.2.</span> <span class="nav-text">AOF最佳策略</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的持久化开发运维问题"><span class="nav-number">6.</span> <span class="nav-text">常见的持久化开发运维问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis复制的原理和优化"><span class="nav-number">7.</span> <span class="nav-text">redis复制的原理和优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-Sentinel"><span class="nav-number">8.</span> <span class="nav-text">redis Sentinel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis云平台CacheCloud"><span class="nav-number">9.</span> <span class="nav-text">redis云平台CacheCloud</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结-1"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
 
 
+        
+      </div>
+    </main>
 
-    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
 
 
-<script type="text/ls-javascript" id="NProgress-script">
-    NProgress.configure({
-        showSpinner: true
-    });
-    NProgress.start();
-    $('#nprogress .bar').css({
-        'background': '#29d'
-    });
-    $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
-    });
-    $('#nprogress .spinner-icon').css({
-        'border-top-color': '#29d',
-        'border-left-color': '#29d'
-    });
-    setTimeout(function() {
-        NProgress.done();
-        $('.fade').removeClass('out');
-    }, 800);
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
 
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
     
-        <script>lsloader.load("js/smoothscroll.js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==")</script>
+
     
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140241"></script>
+      <!-- UY END -->
+    
+  
 
 
 
-    <!-- Leancloud -->
-    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-    <script>
-        AV.initialize('kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz', 'jB0xhP7Atray0YesbketdSat');
-    </script>
-    <script type="text/ls-javascript" id="leancloud-views-script">
-    function showTime(Counter) {
-        var query = new AV.Query(Counter);
-        $('.leancloud-views_num').each(function() {
-            var url = $(this).attr('id').trim();
-            query.equalTo('url', url);
-            query.find({
-                success: function(results) {
-                    if (results.length === 0) {
-                        var content = '0 ' + $(document.getElementById(url)).text();
-                        $(document.getElementById(url)).text(content);
-                        return;
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                    for (var i = 0; i < results.length; i++) {
-                        var object = results[i];
-                        var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
-                        $(document.getElementById(url)).text(content);
-                    }
-                },
-                error: function(object, error) {
-                    console.log('Error: ' + error.code + ' ' + error.message);
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
         });
     }
 
     function addCount(Counter) {
-      var Counter = AV.Object.extend('Counter');
-      url = $('.leancloud-views_num').attr('id').trim();
-      title = $('.leancloud-views_num').attr('data-flag-title').trim();
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
       var query = new AV.Query(Counter);
-      query.equalTo('url', url);
+
+      query.equalTo("url", url);
       query.find({
-          success: function(results) {
-            if (results.length > 0) {
-                var counter = results[0];
-                counter.fetchWhenSave(true);
-                counter.increment('time');
-                counter.save(null, {
-                    success: function(counter) {
-                        var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
-                        $(document.getElementById(url)).text(content);
-                    },
-                    error: function(counter, error) {
-                        console.log('Failed to save Visitor num, with error message: ' + error.message);
-                    }
-                });
-            } else {
-              var newcounter = new Counter();
-              newcounter.set('title', title);
-              newcounter.set('url', url);
-              newcounter.set('time', 1);
-              newcounter.save(null, {
-                  success: function(newcounter) {
-                      console.log('newcounter.get(\'time\')='+newcounter.get('time'));
-                      var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
-                      $(document.getElementById(url)).text(content);
-                  },
-                  error: function(newcounter, error) {
-                      console.log('Failed to create');
-                  }
-              });
-            }
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
         },
         error: function(error) {
-            console.log('Error:' + error.code + ' ' + error.message);
+          console.log('Error:' + error.code + " " + error.message);
         }
       });
     }
+
     $(function() {
-        var Counter = AV.Object.extend('Counter');
-        if ($('.leancloud-views_num').length === 1) {
-            addCount(Counter);
-        } else if ($('.post-title-link').length > 1) {
-            showTime(Counter);
-        }
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
     });
-</script>
+  </script>
 
 
 
+  
 
-    <!-- Busuanzi -->
-    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
+  
 
+  
 
-   <!-- 畅言公共 js 代码 start -->
-<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyt8tJO8w">
-</script>
-<!-- 畅言公共 js 代码 end -->
+  
 
-
-
-
-
-<!-- UC Browser Compatible -->
-<script>
-	var agent = navigator.userAgent.toLowerCase();
-	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
-	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
-	}
-</script>
-
-<!-- Window Load-->
-<script type="text/ls-javascript" id="window-load">
-    $(window).on('load', function() {
-        // Post_Toc parent position fixed
-        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
-    });
-</script>
-
-<!-- MathJax Load-->
-
-<script type="text/ls-javascript" id="lazy-load">
-    // Offer LazyLoad
-    queue.offer(function(){
-        $('.lazy').lazyload({
-            effect : 'show'
-        });
-    });
-
-    // Start Queue
-    $(document).ready(function(){
-        setInterval(function(){
-            queue.execNext();
-        },200);
-    });
-</script>
-
-<!-- Bing Background -->
-
-
-<script>
-    (function(){
-        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
-
-        for (var i = 0; i < scriptList.length; ++i) {
-            var item = scriptList[i];
-            lsloader.runInlineScript(item.id,item.id);
-        }
-    })()
-console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
-</script>
-
-                </main>
-            </div>
-        </body>
-    
+</body>
 </html>
