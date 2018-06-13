@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="带权图 Weighted Graph 边上都有自己的权值的带权图。  邻接矩阵表示有权图 把原来的1/0变成权值。   邻接表的改造 邻接表的点变成键值对。节点的索引：权值。封装成Edge类 为了让邻接表和邻接矩阵有一个统一的接口：Edge。i到j的。   没有边的地方用空。edge中存储一个指针。   edge类代码实现// 边 template&amp;lt;typename Weight&amp;gt; c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带权图与最小生成树">
+<meta property="og:url" content="http://yoursite.com/2018/06/12/最小生成树/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="带权图 Weighted Graph 边上都有自己的权值的带权图。  邻接矩阵表示有权图 把原来的1/0变成权值。   邻接表的改造 邻接表的点变成键值对。节点的索引：权值。封装成Edge类 为了让邻接表和邻接矩阵有一个统一的接口：Edge。i到j的。   没有边的地方用空。edge中存储一个指针。   edge类代码实现// 边 template&amp;lt;typename Weight&amp;gt; c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-80b624c1f35f6bf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/230">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-f535b2692ddef357.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/354">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-9e0b59ae4c7d4ed4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/362">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528787371617acon5aqq.png?imageView/2/w/200/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528788194655icwyyuew.png?imageView/2/w/200/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528788264046mvrtnc5q.png?imageView/2/w/200/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/152879343431863xnc9we.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-06-13T04:15:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="带权图与最小生成树">
+<meta name="twitter:description" content="带权图 Weighted Graph 边上都有自己的权值的带权图。  邻接矩阵表示有权图 把原来的1/0变成权值。   邻接表的改造 邻接表的点变成键值对。节点的索引：权值。封装成Edge类 为了让邻接表和邻接矩阵有一个统一的接口：Edge。i到j的。   没有边的地方用空。edge中存储一个指针。   edge类代码实现// 边 template&amp;lt;typename Weight&amp;gt; c">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1779926-80b624c1f35f6bf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/230">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/12/最小生成树/"/>
+
+
+
+
+
+  <title>带权图与最小生成树 | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/最小生成树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">带权图与最小生成树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T14:42:16+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/12/最小生成树/" class="leancloud_visitors" data-flag-title="带权图与最小生成树">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="带权图-Weighted-Graph"><a href="#带权图-Weighted-Graph" class="headerlink" title="带权图 Weighted Graph"></a>带权图 Weighted Graph</h2><blockquote>
+<p>边上都有自己的权值的带权图。<br><img src="//upload-images.jianshu.io/upload_images/1779926-80b624c1f35f6bf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/230" alt=""></p>
+</blockquote>
+<h3 id="邻接矩阵表示有权图"><a href="#邻接矩阵表示有权图" class="headerlink" title="邻接矩阵表示有权图"></a>邻接矩阵表示有权图</h3><ul>
+<li>把原来的1/0变成权值。</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-f535b2692ddef357.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/354" alt=""></p>
+<h3 id="邻接表的改造"><a href="#邻接表的改造" class="headerlink" title="邻接表的改造"></a>邻接表的改造</h3><ul>
+<li>邻接表的点变成键值对。节点的索引：权值。封装成Edge类</li>
+<li>为了让邻接表和邻接矩阵有一个统一的接口：Edge。i到j的。  </li>
+<li>没有边的地方用空。edge中存储一个指针。</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-9e0b59ae4c7d4ed4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/362" alt=""></p>
+<h3 id="edge类代码实现"><a href="#edge类代码实现" class="headerlink" title="edge类代码实现"></a>edge类代码实现</h3><pre><code>// 边
+template&lt;typename Weight&gt;
+class Edge{
+private:
+    int a,b;    // 边的两个端点
+    Weight weight;  // 边的权值
+
+public:
+    // 构造函数
+    Edge(int a, int b, Weight weight){
+        this-&gt;a = a;
+        this-&gt;b = b;
+        this-&gt;weight = weight;
+    }
+    // 空的构造函数, 所有的成员变量都取默认值
+    Edge(){}
+
+    ~Edge(){}
+
+    int v(){ return a;} // 返回第一个顶点
+    int w(){ return b;} // 返回第二个顶点
+    Weight wt(){ return weight;}    // 返回权值
+
+    // 给定一个顶点, 返回另一个顶点
+    int other(int x){
+        assert( x == a || x == b );
+        return x == a ? b : a;
+    }
+
+    // 输出边的信息
+    friend ostream&amp; operator&lt;&lt;(ostream &amp;os, const Edge &amp;e){
+        os&lt;&lt;e.a&lt;&lt;&quot;-&quot;&lt;&lt;e.b&lt;&lt;&quot;: &quot;&lt;&lt;e.weight;
+        return os;
+    }
+
+    // 边的大小比较, 是对边的权值的大小比较
+    bool operator&lt;(Edge&lt;Weight&gt;&amp; e){
+        return weight &lt; e.wt();
+    }
+    bool operator&lt;=(Edge&lt;Weight&gt;&amp; e){
+        return weight &lt;= e.wt();
+    }
+    bool operator&gt;(Edge&lt;Weight&gt;&amp; e){
+        return weight &gt; e.wt();
+    }
+    bool operator&gt;=(Edge&lt;Weight&gt;&amp; e){
+        return weight &gt;= e.wt();
+    }
+    bool operator==(Edge&lt;Weight&gt;&amp; e){
+        return weight == e.wt();
+    }
+};
+</code></pre><h3 id="稠密有权图代码实现"><a href="#稠密有权图代码实现" class="headerlink" title="稠密有权图代码实现"></a>稠密有权图代码实现</h3><pre><code>// 稠密图 - 邻接矩阵
+template &lt;typename Weight&gt;
+class DenseGraph{
+
+private:
+    int n, m;       // 节点数和边数
+    bool directed;  // 是否为有向图
+    vector&lt;vector&lt;Edge&lt;Weight&gt; *&gt;&gt; g;   // 图的具体数据
+
+public:
+    // 构造函数
+    DenseGraph( int n , bool directed){
+        assert( n &gt;= 0 );
+        this-&gt;n = n;
+        this-&gt;m = 0;
+        this-&gt;directed = directed;
+        // g初始化为n*n的矩阵, 每一个g[i][j]指向一个边的信息, 初始化为NULL
+        g = vector&lt;vector&lt;Edge&lt;Weight&gt; *&gt;&gt;(n, vector&lt;Edge&lt;Weight&gt; *&gt;(n, NULL));
+    }
+
+    // 析构函数
+    ~DenseGraph(){
+
+        for( int i = 0 ; i &lt; n ; i ++ )
+            for( int j = 0 ; j &lt; n ; j ++ )
+                if( g[i][j] != NULL )
+                    delete g[i][j];
+    }
+
+    int V(){ return n;} // 返回节点个数
+    int E(){ return m;} // 返回边的个数
+
+    // 向图中添加一个边, 权值为weight
+    void addEdge( int v, int w , Weight weight ){
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+
+        // 如果从v到w已经有边, 删除这条边
+        if( hasEdge( v , w  ) ){
+            delete  g[v][w];
+            if( v != w &amp;&amp; !directed )
+                delete g[w][v];
+            m --;
+        }
+
+        g[v][w] = new Edge&lt;Weight&gt;(v, w, weight);
+        if( v != w &amp;&amp; !directed )
+            g[w][v] = new Edge&lt;Weight&gt;(w, v, weight);
+        m ++;
+    }
+
+    // 验证图中是否有从v到w的边
+    bool hasEdge( int v , int w ){
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+        return g[v][w] != NULL;
+    }
+
+    // 显示图的信息
+    void show(){
+
+        for( int i = 0 ; i &lt; n ; i ++ ){
+            for( int j = 0 ; j &lt; n ; j ++ )
+                if( g[i][j] )
+                    cout&lt;&lt;g[i][j]-&gt;wt()&lt;&lt;&quot;\t&quot;;
+                else
+                    cout&lt;&lt;&quot;NULL\t&quot;;
+            cout&lt;&lt;endl;
+        }
+    }
+
+    // 邻边迭代器, 传入一个图和一个顶点,
+    // 迭代在这个图中和这个顶点向连的所有边
+    class adjIterator{
+    private:
+        DenseGraph &amp;G;  // 图G的引用
+        int v;
+        int index;
+
+    public:
+        // 构造函数
+        adjIterator(DenseGraph &amp;graph, int v): G(graph){
+            this-&gt;v = v;
+            this-&gt;index = -1;   // 索引从-1开始, 因为每次遍历都需要调用一次next()
+        }
+
+        ~adjIterator(){}
+
+        // 返回图G中与顶点v相连接的第一个边
+        Edge&lt;Weight&gt;* begin(){
+            // 索引从-1开始, 因为每次遍历都需要调用一次next()
+            index = -1;
+            return next();
+        }
+
+        // 返回图G中与顶点v相连接的下一个边
+        Edge&lt;Weight&gt;* next(){
+            // 从当前index开始向后搜索, 直到找到一个g[v][index]为true
+            for( index += 1 ; index &lt; G.V() ; index ++ )
+                if( G.g[v][index] )
+                    return G.g[v][index];
+            // 若没有顶点和v相连接, 则返回NULL
+            return NULL;
+        }
+
+        // 查看是否已经迭代完了图G中与顶点v相连接的所有边
+        bool end(){
+            return index &gt;= G.V();
+        }
+    };
+};
+</code></pre><p>main.cpp:</p>
+<pre><code>// 测试有权图和有权图的读取
+int main() {
+
+    string filename = &quot;testG1.txt&quot;;
+    int V = 8;
+    cout&lt;&lt;fixed&lt;&lt;setprecision(2);
+
+    // Test Weighted Dense Graph
+    DenseGraph&lt;double&gt; g1 = DenseGraph&lt;double&gt;(V, false);
+    ReadGraph&lt;DenseGraph&lt;double&gt;,double&gt; readGraph1(g1, filename);
+    g1.show();
+    cout&lt;&lt;endl;
+
+    // Test Weighted Sparse Graph
+    SparseGraph&lt;double&gt; g2 = SparseGraph&lt;double&gt;(V, false);
+    ReadGraph&lt;SparseGraph&lt;double&gt;,double&gt; readGraph2(g2, filename);
+    g2.show();
+    cout&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h3 id="稀疏有权图代码实现"><a href="#稀疏有权图代码实现" class="headerlink" title="稀疏有权图代码实现"></a>稀疏有权图代码实现</h3><pre><code>// 稀疏图 - 邻接表
+template&lt;typename Weight&gt;
+class SparseGraph{
+
+private:
+    int n, m;       // 节点数和边数
+    bool directed;  // 是否为有向图
+    vector&lt;vector&lt;Edge&lt;Weight&gt; *&gt; &gt; g;   // 图的具体数据
+
+public:
+    // 构造函数
+    SparseGraph( int n , bool directed){
+        assert(n &gt;= 0);
+        this-&gt;n = n;
+        this-&gt;m = 0;    // 初始化没有任何边
+        this-&gt;directed = directed;
+        // g初始化为n个空的vector, 表示每一个g[i]都为空, 即没有任和边
+        g = vector&lt;vector&lt;Edge&lt;Weight&gt; *&gt; &gt;(n, vector&lt;Edge&lt;Weight&gt; *&gt;());
+    }
+
+    // 析构函数
+    ~SparseGraph(){
+        for( int i = 0 ; i &lt; n ; i ++ )
+            for( int j = 0 ; j &lt; g[i].size() ; j ++ )
+                delete g[i][j];
+    }
+
+    int V(){ return n;} // 返回节点个数
+    int E(){ return m;} // 返回边的个数
+
+    // 向图中添加一个边, 权值为weight
+    void addEdge( int v, int w , Weight weight){
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+
+        // 注意, 由于在邻接表的情况, 查找是否有重边需要遍历整个链表
+        // 我们的程序允许重边的出现
+
+        g[v].push_back(new Edge&lt;Weight&gt;(v, w, weight));
+        if( v != w &amp;&amp; !directed )
+            g[w].push_back(new Edge&lt;Weight&gt;(w, v, weight));
+        m ++;
+    }
+
+    // 验证图中是否有从v到w的边
+    bool hasEdge( int v , int w ){
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+        for( int i = 0 ; i &lt; g[v].size() ; i ++ )
+            if( g[v][i]-&gt;other(v) == w )
+                return true;
+        return false;
+    }
+
+    // 显示图的信息
+    void show(){
+
+        for( int i = 0 ; i &lt; n ; i ++ ){
+            cout&lt;&lt;&quot;vertex &quot;&lt;&lt;i&lt;&lt;&quot;:\t&quot;;
+            for( int j = 0 ; j &lt; g[i].size() ; j ++ )
+                cout&lt;&lt;&quot;( to:&quot;&lt;&lt;g[i][j]-&gt;w()&lt;&lt;&quot;,wt:&quot;&lt;&lt;g[i][j]-&gt;wt()&lt;&lt;&quot;)\t&quot;;
+            cout&lt;&lt;endl;
+        }
+    }
+
+    // 邻边迭代器, 传入一个图和一个顶点,
+    // 迭代在这个图中和这个顶点向连的所有边
+    class adjIterator{
+    private:
+        SparseGraph &amp;G; // 图G的引用
+        int v;
+        int index;
+
+    public:
+        // 构造函数
+        adjIterator(SparseGraph &amp;graph, int v): G(graph){
+            this-&gt;v = v;
+            this-&gt;index = 0;
+        }
+
+        ~adjIterator(){}
+
+        // 返回图G中与顶点v相连接的第一个边
+        Edge&lt;Weight&gt;* begin(){
+            index = 0;
+            if( G.g[v].size() )
+                return G.g[v][index];
+            // 若没有顶点和v相连接, 则返回NULL
+            return NULL;
+        }
+
+        // 返回图G中与顶点v相连接的下一个边
+        Edge&lt;Weight&gt;* next(){
+            index += 1;
+            if( index &lt; G.g[v].size() )
+                return G.g[v][index];
+            return NULL;
+        }
+
+        // 查看是否已经迭代完了图G中与顶点v相连接的所有顶点
+        bool end(){
+            return index &gt;= G.g[v].size();
+        }
+    };
+};
+</code></pre><p><strong>运行结果：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">NULL	NULL	0.26	NULL	0.38	NULL	0.58	0.16	</div><div class="line">NULL	NULL	0.36	0.29	NULL	0.32	NULL	0.19	</div><div class="line">0.26	0.36	NULL	0.17	NULL	NULL	0.40	0.34	</div><div class="line">NULL	0.29	0.17	NULL	NULL	NULL	0.52	NULL	</div><div class="line">0.38	NULL	NULL	NULL	NULL	0.35	0.93	0.37	</div><div class="line">NULL	0.32	NULL	NULL	0.35	NULL	NULL	0.28	</div><div class="line">0.58	NULL	0.40	0.52	0.93	NULL	NULL	NULL	</div><div class="line">0.16	0.19	0.34	NULL	0.37	0.28	NULL	NULL	</div><div class="line"></div><div class="line">vertex 0:	( to:7,wt:0.16)	( to:4,wt:0.38)	( to:2,wt:0.26)	( to:6,wt:0.58)	</div><div class="line">vertex 1:	( to:5,wt:0.32)	( to:7,wt:0.19)	( to:2,wt:0.36)	( to:3,wt:0.29)	</div><div class="line">vertex 2:	( to:3,wt:0.17)	( to:0,wt:0.26)	( to:1,wt:0.36)	( to:7,wt:0.34)	( to:6,wt:0.40)	</div><div class="line">vertex 3:	( to:2,wt:0.17)	( to:1,wt:0.29)	( to:6,wt:0.52)	</div><div class="line">vertex 4:	( to:5,wt:0.35)	( to:7,wt:0.37)	( to:0,wt:0.38)	( to:6,wt:0.93)	</div><div class="line">vertex 5:	( to:4,wt:0.35)	( to:7,wt:0.28)	( to:1,wt:0.32)	</div><div class="line">vertex 6:	( to:2,wt:0.40)	( to:3,wt:0.52)	( to:0,wt:0.58)	( to:4,wt:0.93)	</div><div class="line">vertex 7:	( to:4,wt:0.37)	( to:5,wt:0.28)	( to:0,wt:0.16)	( to:1,wt:0.19)	( to:2,wt:0.34)</div></pre></td></tr></table></figure>
+<h2 id="最小生成树问题和切分定理"><a href="#最小生成树问题和切分定理" class="headerlink" title="最小生成树问题和切分定理"></a>最小生成树问题和切分定理</h2><h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><blockquote>
+<p>最小生成树是一副连通加权无向图中一棵权值最小的生成树。<br>各个节点之间连通，连通总费用最小。</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528787371617acon5aqq.png?imageView/2/w/200/q/100" alt="paste image"></p>
+<h4 id="相关应用"><a href="#相关应用" class="headerlink" title="相关应用"></a>相关应用</h4><ul>
+<li>电缆布线设计</li>
+<li>网络设计</li>
+<li>电路设计</li>
+</ul>
+<p><strong>最小生成树主要针对：</strong></p>
+<ul>
+<li>针对带权无向图</li>
+<li>针对连通图</li>
+<li>对于不连通的图，可以求所有是连通分量的最小生成树形成最小森林。</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li>找 V-1 条边  </li>
+<li>连接V个顶点  </li>
+<li>总权值最小</li>
+</ul>
+<h3 id="切分定理：Cut-Property"><a href="#切分定理：Cut-Property" class="headerlink" title="切分定理：Cut Property"></a>切分定理：Cut Property</h3><h4 id="切分的定义"><a href="#切分的定义" class="headerlink" title="切分的定义"></a>切分的定义</h4><blockquote>
+<p>把图中的节点分成两部分，成为一个切分（cut）</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528788194655icwyyuew.png?imageView/2/w/200/q/100" alt="paste image"></p>
+<p>蓝色和红色的部分形成了一个切分。</p>
+<h4 id="横切边的定义"><a href="#横切边的定义" class="headerlink" title="横切边的定义"></a>横切边的定义</h4><blockquote>
+<p>如果一个边的两个端点，属于切分(Cut)不同的两边，这个边称为横切边(Crossing Edge)。</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528788264046mvrtnc5q.png?imageView/2/w/200/q/100" alt="paste image"></p>
+<h4 id="切分定理："><a href="#切分定理：" class="headerlink" title="切分定理："></a>切分定理：</h4><blockquote>
+<p>给定任意切分，横切边中权值最小的边必然属于最小生成树。</p>
+</blockquote>
+<h4 id="Lazy-Prim"><a href="#Lazy-Prim" class="headerlink" title="Lazy Prim"></a>Lazy Prim</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/152879343431863xnc9we.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<ul>
+<li>所有边中选取出v-1条。</li>
+<li>找出四条横切边中最小的<ul>
+<li>最小堆进行实现</li>
+</ul>
+</li>
+<li>把最小边加入后。进行新的切分</li>
+<li>不断加入最小横切边的点，直到所有顶点都进入（直到最后所有节点被访问过）。</li>
+<li>懒惰：虽然不是横切边，但是没有被扔掉。</li>
+</ul>
+<h4 id="Prim算法代码实现"><a href="#Prim算法代码实现" class="headerlink" title="Prim算法代码实现"></a>Prim算法代码实现</h4><pre><code>// 使用Prim算法求图的最小生成树
+template&lt;typename Graph, typename Weight&gt;
+class LazyPrimMST{
+
+private:
+    Graph &amp;G;                   // 图的引用
+    MinHeap&lt;Edge&lt;Weight&gt;&gt; pq;   // 最小堆, 算法辅助数据结构
+    bool *marked;               // 标记数组, 在算法运行过程中标记节点i是否被访问
+    vector&lt;Edge&lt;Weight&gt;&gt; mst;   // 最小生成树所包含的所有边
+    Weight mstWeight;           // 最小生成树的权值
+
+    // 访问节点v
+    void visit(int v){
+
+        assert( !marked[v] );
+        marked[v] = true;
+
+        // 将和节点v相连接的所有未访问的边放入最小堆中
+        typename Graph::adjIterator adj(G,v);
+        for( Edge&lt;Weight&gt;* e = adj.begin() ; !adj.end() ; e = adj.next() )
+            if( !marked[e-&gt;other(v)] )
+                pq.insert(*e);
+    }
+
+public:
+    // 构造函数, 使用Prim算法求图的最小生成树
+    LazyPrimMST(Graph &amp;graph):G(graph), pq(MinHeap&lt;Edge&lt;Weight&gt;&gt;(graph.E())){
+
+        // 算法初始化
+        marked = new bool[G.V()];
+        for( int i = 0 ; i &lt; G.V() ; i ++ )
+            marked[i] = false;
+        mst.clear();
+
+        // Lazy Prim
+        visit(0);
+        while( !pq.isEmpty() ){
+            // 使用最小堆找出已经访问的边中权值最小的边
+            Edge&lt;Weight&gt; e = pq.extractMin();
+            // 如果这条边的两端都已经访问过了, 则扔掉这条边
+            if( marked[e.v()] == marked[e.w()] )
+                continue;
+            // 否则, 这条边则应该存在在最小生成树中
+            mst.push_back( e );
+
+            // 访问和这条边连接的还没有被访问过的节点
+            if( !marked[e.v()] )
+                visit( e.v() );
+            else
+                visit( e.w() );
+        }
+
+        // 计算最小生成树的权值
+        mstWeight = mst[0].wt();
+        for( int i = 1 ; i &lt; mst.size() ; i ++ )
+            mstWeight += mst[i].wt();
+    }
+
+    // 析构函数
+    ~LazyPrimMST(){
+        delete[] marked;
+    }
+
+    // 返回最小生成树的所有边
+    vector&lt;Edge&lt;Weight&gt;&gt; mstEdges(){
+        return mst;
+    };
+
+    // 返回最小生成树的权值
+    Weight result(){
+        return mstWeight;
+    };
+};
+</code></pre><p><strong>main函数</strong></p>
+<pre><code>int main() {
+
+    string filename = &quot;testG1.txt&quot;;
+    int V = 8;
+
+    SparseGraph&lt;double&gt; g = SparseGraph&lt;double&gt;(V, false);
+    ReadGraph&lt;SparseGraph&lt;double&gt;, double&gt; readGraph(g, filename);
+
+    // Test Lazy Prim MST
+    cout&lt;&lt;&quot;Test Lazy Prim MST:&quot;&lt;&lt;endl;
+    LazyPrimMST&lt;SparseGraph&lt;double&gt;, double&gt; lazyPrimMST(g);
+    vector&lt;Edge&lt;double&gt;&gt; mst = lazyPrimMST.mstEdges();
+    for( int i = 0 ; i &lt; mst.size() ; i ++ )
+        cout&lt;&lt;mst[i]&lt;&lt;endl;
+    cout&lt;&lt;&quot;The MST weight is: &quot;&lt;&lt;lazyPrimMST.result()&lt;&lt;endl;
+
+    cout&lt;&lt;endl;
+
+
+    // Test Prim MST
+    cout&lt;&lt;&quot;Test Prim MST:&quot;&lt;&lt;endl;
+    PrimMST&lt;SparseGraph&lt;double&gt;, double&gt; primMST(g);
+    mst = primMST.mstEdges();
+    for( int i = 0 ; i &lt; mst.size() ; i ++ )
+        cout&lt;&lt;mst[i]&lt;&lt;endl;
+    cout&lt;&lt;&quot;The MST weight is: &quot;&lt;&lt;primMST.result()&lt;&lt;endl;
+
+    cout&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p> <strong>结果</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Test Lazy Prim MST:</div><div class="line">0-7: 0.16</div><div class="line">7-1: 0.19</div><div class="line">0-2: 0.26</div><div class="line">2-3: 0.17</div><div class="line">7-5: 0.28</div><div class="line">5-4: 0.35</div><div class="line">2-6: 0.4</div><div class="line">The MST weight is: 1.81</div></pre></td></tr></table></figure>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">O(ElogE)</div></pre></td></tr></table></figure>
+<p>###Prim算法优化</p>
+<p><strong>Lazy Prim存在的问题</strong></p>
+<ul>
+<li>所有的边都进入最小堆，而已经访问的节点之间的边其实是可以忽略的（在最小堆中的边已经不是横切边了）。</li>
+<li>只需考虑和节点连接的最小横切边。</li>
+</ul>
+<p>维护数据结构：</p>
+<p>和每个节点相连的最短横切边。</p>
+<h4 id="代码实现-O-ElogV"><a href="#代码实现-O-ElogV" class="headerlink" title="代码实现 (O(ElogV)"></a>代码实现 (O(ElogV)</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by liuyubobobo on 9/26/16.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> INC_05_IMPLEMENTATION_OF_OPTIMIZED_PRIM_ALGORITHM_PRIMMST_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INC_05_IMPLEMENTATION_OF_OPTIMIZED_PRIM_ALGORITHM_PRIMMST_H</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Edge.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"IndexMinHeap.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Graph, <span class="keyword">typename</span> Weight&gt;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrimMST</span>&#123;</span></div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    Graph &amp;G;</div><div class="line">    <span class="built_in">vector</span>&lt;Edge&lt;Weight&gt;&gt; mst;</div><div class="line"></div><div class="line">    <span class="keyword">bool</span>* marked;</div><div class="line">    IndexMinHeap&lt;Weight&gt; ipq;</div><div class="line">    <span class="built_in">vector</span>&lt;Edge&lt;Weight&gt;*&gt; edgeTo; <span class="comment">//存储节点的最短横切边。</span></div><div class="line">    Weight mstWeight;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</div><div class="line">        assert( !marked[v] );</div><div class="line">        marked[v] = <span class="literal">true</span>;</div><div class="line"></div><div class="line">        <span class="keyword">typename</span> Graph::<span class="function">adjIterator <span class="title">adj</span><span class="params">(G,v)</span></span>;</div><div class="line">        <span class="keyword">for</span>( Edge&lt;Weight&gt;* e = adj.begin() ; !adj.end() ; e = adj.next() )&#123;</div><div class="line">            <span class="keyword">int</span> w = e-&gt;other(v);</div><div class="line">            <span class="keyword">if</span>( !marked[w] )&#123;</div><div class="line">                <span class="keyword">if</span>( !edgeTo[w] )&#123;</div><div class="line">                    edgeTo[w] = e;</div><div class="line">                    ipq.insert(w, e-&gt;wt());</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>( e-&gt;wt() &lt; edgeTo[w]-&gt;wt() )&#123;</div><div class="line">                    edgeTo[w] = e;</div><div class="line">                    ipq.change(w, e-&gt;wt());<span class="comment">//最小索引堆才有change操作</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// assume graph is connected</span></div><div class="line">    PrimMST(Graph &amp;graph):G(graph), ipq(IndexMinHeap&lt;<span class="keyword">double</span>&gt;(graph.V()))&#123;</div><div class="line"></div><div class="line">        assert( graph.E() &gt;= <span class="number">1</span> );</div><div class="line"></div><div class="line">        marked = <span class="keyword">new</span> <span class="keyword">bool</span>[G.V()];</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; G.V() ; i ++ )&#123;</div><div class="line">            marked[i] = <span class="literal">false</span>;</div><div class="line">            edgeTo.push_back(<span class="literal">NULL</span>);</div><div class="line">        &#125;</div><div class="line">        mst.clear();</div><div class="line"></div><div class="line">        visit(<span class="number">0</span>);</div><div class="line">        <span class="keyword">while</span>( !ipq.isEmpty() )&#123;</div><div class="line">            <span class="keyword">int</span> v = ipq.extractMinIndex();</div><div class="line">            assert( edgeTo[v] );</div><div class="line">            mst.push_back( *edgeTo[v] );</div><div class="line">            visit( v );</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        mstWeight = mst[<span class="number">0</span>].wt();</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">1</span> ; i &lt; mst.size() ; i ++ )</div><div class="line">            mstWeight += mst[i].wt();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ~PrimMST()&#123;</div><div class="line">        <span class="keyword">delete</span>[] marked;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;Edge&lt;Weight&gt;&gt; mstEdges()&#123;</div><div class="line">        <span class="keyword">return</span> mst;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="function">Weight <span class="title">result</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> mstWeight;</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//INC_05_IMPLEMENTATION_OF_OPTIMIZED_PRIM_ALGORITHM_PRIMMST_H</span></span></div></pre></td></tr></table></figure>
+<h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>Kruskal算法是一种用来查找最小生成树的算法，由Joseph Kruskal在1956年发表。用来解决同样问题的还有Prim算法和Boruvka算法等。三种算法都是贪心算法的应用。和Boruvka算法不同的地方是，Kruskal算法在图中存在相同权值的边时也有效。</p>
+</blockquote>
+<h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li>新建图G，G中拥有原图中相同的节点，但没有边</li>
+<li>将原图中所有的边按权值从小到大排序</li>
+<li>从权值最小的边开始，如果这条边连接的两个节点于图G中不在同一个连通分量中，则添加这条边到图G中</li>
+<li>重复3，直至图G中所有的节点都在同一个连通分量中</li>
+</ul>
+<h3 id="判断节点是否构成环"><a href="#判断节点是否构成环" class="headerlink" title="判断节点是否构成环"></a>判断节点是否构成环</h3><ul>
+<li>使用Union Find快速判断环<ul>
+<li>只需要判断已经找到的边的两个节点的根是否相同，如果相同的话说明已经是连通图了。</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>// Kruskal算法
+template &lt;typename Graph, typename Weight&gt;
+class KruskalMST{
+
+private:
+    vector&lt;Edge&lt;Weight&gt;&gt; mst;   // 最小生成树所包含的所有边
+    Weight mstWeight;           // 最小生成树的权值
+
+public:
+    // 构造函数, 使用Kruskal算法计算graph的最小生成树
+    KruskalMST(Graph &amp;graph){
+
+        // 将图中的所有边存放到一个最小堆中
+        MinHeap&lt;Edge&lt;Weight&gt;&gt; pq( graph.E() );
+        for( int i = 0 ; i &lt; graph.V() ; i ++ ){
+            typename Graph::adjIterator adj(graph,i);
+            for( Edge&lt;Weight&gt; *e = adj.begin() ; !adj.end() ; e = adj.next() )
+                //只存一条边中的一个节点
+                if( e-&gt;v() &lt; e-&gt;w() )
+                    pq.insert(*e);
+        }
+
+        // 创建一个并查集, 来查看已经访问的节点的联通情况
+        UnionFind uf = UnionFind(graph.V());
+        while( !pq.isEmpty() &amp;&amp; mst.size() &lt; graph.V() - 1 ){
+
+            // 从最小堆中依次从小到大取出所有的边
+            Edge&lt;Weight&gt; e = pq.extractMin();
+            // 如果该边的两个端点是联通的, 说明加入这条边将产生环, 扔掉这条边
+            if( uf.isConnected( e.v() , e.w() ) )
+                continue;
+
+            // 否则, 将这条边添加进最小生成树, 同时标记边的两个端点联通
+            mst.push_back( e );
+            uf.unionElements( e.v() , e.w() );
+        }
+
+        mstWeight = mst[0].wt();
+        for( int i = 1 ; i &lt; mst.size() ; i ++ )
+            mstWeight += mst[i].wt();
+    }
+
+    ~KruskalMST(){ }
+
+    // 返回最小生成树的所有边
+    vector&lt;Edge&lt;Weight&gt;&gt; mstEdges(){
+        return mst;
+    };
+
+    // 返回最小生成树的权值
+    Weight result(){
+        return mstWeight;
+    };
+};
+
+
+// 测试Kruskal算法
+int main() {
+
+    string filename = &quot;testG1.txt&quot;;
+    int V = 8;
+
+    SparseGraph&lt;double&gt; g = SparseGraph&lt;double&gt;(V, false);
+    ReadGraph&lt;SparseGraph&lt;double&gt;, double&gt; readGraph(g, filename);
+
+    // Test Lazy Prim MST
+    cout&lt;&lt;&quot;Test Lazy Prim MST:&quot;&lt;&lt;endl;
+    LazyPrimMST&lt;SparseGraph&lt;double&gt;, double&gt; lazyPrimMST(g);
+    vector&lt;Edge&lt;double&gt;&gt; mst = lazyPrimMST.mstEdges();
+    for( int i = 0 ; i &lt; mst.size() ; i ++ )
+        cout&lt;&lt;mst[i]&lt;&lt;endl;
+    cout&lt;&lt;&quot;The MST weight is: &quot;&lt;&lt;lazyPrimMST.result()&lt;&lt;endl;
+
+    cout&lt;&lt;endl;
+
+
+    // Test Prim MST
+    cout&lt;&lt;&quot;Test Prim MST:&quot;&lt;&lt;endl;
+    PrimMST&lt;SparseGraph&lt;double&gt;, double&gt; primMST(g);
+    mst = primMST.mstEdges();
+    for( int i = 0 ; i &lt; mst.size() ; i ++ )
+        cout&lt;&lt;mst[i]&lt;&lt;endl;
+    cout&lt;&lt;&quot;The MST weight is: &quot;&lt;&lt;primMST.result()&lt;&lt;endl;
+
+    cout&lt;&lt;endl;
+
+
+    // Test Kruskal MST
+    cout&lt;&lt;&quot;Test Kruskal MST:&quot;&lt;&lt;endl;
+    KruskalMST&lt;SparseGraph&lt;double&gt;, double&gt; kruskalMST(g);
+    mst = kruskalMST.mstEdges();
+    for( int i = 0 ; i &lt; mst.size() ; i ++ )
+        cout&lt;&lt;mst[i]&lt;&lt;endl;
+    cout&lt;&lt;&quot;The MST weight is: &quot;&lt;&lt;kruskalMST.result()&lt;&lt;endl;
+
+
+    return 0;
+}
+</code></pre><h4 id="算法的更多思考"><a href="#算法的更多思考" class="headerlink" title="算法的更多思考"></a>算法的更多思考</h4><ul>
+<li>Lazy Prim O( ElogE )  </li>
+<li>Prim O( ElogV )  </li>
+<li>Kruskal O( ElogE )</li>
+</ul>
+<h4 id="Vyssotsky’s-Algorithm："><a href="#Vyssotsky’s-Algorithm：" class="headerlink" title="Vyssotsky’s Algorithm："></a>Vyssotsky’s Algorithm：</h4><ul>
+<li>根据算法的具体实现，每次选择一个边</li>
+<li>此时，图存在多个最小生成树</li>
+<li>将边逐渐地添加到生成树中  </li>
+<li>一旦形成环，删除环中权值最大的边.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/11/图论-Graph-Theory/" rel="next" title="图论 Graph Theory">
+                <i class="fa fa-chevron-left"></i> 图论 Graph Theory
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#带权图-Weighted-Graph"><span class="nav-number">1.</span> <span class="nav-text">带权图 Weighted Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接矩阵表示有权图"><span class="nav-number">1.1.</span> <span class="nav-text">邻接矩阵表示有权图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接表的改造"><span class="nav-number">1.2.</span> <span class="nav-text">邻接表的改造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#edge类代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">edge类代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稠密有权图代码实现"><span class="nav-number">1.4.</span> <span class="nav-text">稠密有权图代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏有权图代码实现"><span class="nav-number">1.5.</span> <span class="nav-text">稀疏有权图代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小生成树问题和切分定理"><span class="nav-number">2.</span> <span class="nav-text">最小生成树问题和切分定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小生成树"><span class="nav-number">2.1.</span> <span class="nav-text">最小生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关应用"><span class="nav-number">2.1.1.</span> <span class="nav-text">相关应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切分定理：Cut-Property"><span class="nav-number">2.3.</span> <span class="nav-text">切分定理：Cut Property</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#切分的定义"><span class="nav-number">2.3.1.</span> <span class="nav-text">切分的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#横切边的定义"><span class="nav-number">2.3.2.</span> <span class="nav-text">横切边的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切分定理："><span class="nav-number">2.3.3.</span> <span class="nav-text">切分定理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lazy-Prim"><span class="nav-number">2.3.4.</span> <span class="nav-text">Lazy Prim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prim算法代码实现"><span class="nav-number">2.3.5.</span> <span class="nav-text">Prim算法代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.3.6.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-O-ElogV"><span class="nav-number">2.3.7.</span> <span class="nav-text">代码实现 (O(ElogV)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kruskal算法"><span class="nav-number">3.</span> <span class="nav-text">Kruskal算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-1"><span class="nav-number">3.2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断节点是否构成环"><span class="nav-number">3.3.</span> <span class="nav-text">判断节点是否构成环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.4.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法的更多思考"><span class="nav-number">3.4.1.</span> <span class="nav-text">算法的更多思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vyssotsky’s-Algorithm："><span class="nav-number">3.4.2.</span> <span class="nav-text">Vyssotsky’s Algorithm：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

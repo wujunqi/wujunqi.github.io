@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="图的遍历," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="主要介绍图论的基础、图的两种表示、图的遍历（深度和广度）、一个点到另一点的路径和最短路径等。">
+<meta name="keywords" content="图的遍历">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论 Graph Theory">
+<meta property="og:url" content="http://yoursite.com/2018/06/11/图论-Graph-Theory/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="主要介绍图论的基础、图的两种表示、图的遍历（深度和广度）、一个点到另一点的路径和最短路径等。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/152877585772382htiwj4.png?imageView/2/w/200/q/100">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-850131aefeee2443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/317">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-bbc36a49d6f3414a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/398">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-8b7db3e47f5cdc76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/217">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-b9113b95934d786e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/305">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-81ff1a2e7b7c1604.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/310">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-f440094fcd9deae3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/327">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-1dbb9d1fee8e00b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/301">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-cdfba67b25f9ca7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/252">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-e367da47479f7e50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/194">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-56bc0237f326141d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/199">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-eeaa41fdaf5061f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-d45db35755652b9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/358">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-43438731e2940672.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/249">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-02e0661a8bc40697.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/397">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-73021a816d1185ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/221">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-683469e03d465b48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/393">
+<meta property="og:updated_time" content="2018-06-12T03:58:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图论 Graph Theory">
+<meta name="twitter:description" content="主要介绍图论的基础、图的两种表示、图的遍历（深度和广度）、一个点到另一点的路径和最短路径等。">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/152877585772382htiwj4.png?imageView/2/w/200/q/100">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/11/图论-Graph-Theory/"/>
+
+
+
+
+
+  <title>图论 Graph Theory | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/图论-Graph-Theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图论 Graph Theory</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T17:47:00+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图/" itemprop="url" rel="index">
+                    <span itemprop="name">图</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/11/图论-Graph-Theory/" class="leancloud_visitors" data-flag-title="图论 Graph Theory">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>主要介绍图论的基础、图的两种表示、图的遍历（深度和广度）、一个点到另一点的路径和最短路径等。</p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/152877585772382htiwj4.png?imageView/2/w/200/q/100" alt="paste image"><br><a id="more"></a></p>
+<h2 id="图论基础"><a href="#图论基础" class="headerlink" title="图论基础"></a>图论基础</h2><blockquote>
+<p>图论并不是研究图画。而是研究由节点和边所构成的数学模型</p>
+</blockquote>
+<h3 id="图论抽象模型"><a href="#图论抽象模型" class="headerlink" title="图论抽象模型"></a>图论抽象模型</h3><ul>
+<li><p>万事开头难，虽然看上去很复杂，但是慢慢学习深入之后会体会到他的魅力</p>
+</li>
+<li><p>很多信息之间的联系都可以使用图来表示。数据可视化</p>
+</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-850131aefeee2443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/317" alt=""></p>
+<h3 id="图可以表示的关系"><a href="#图可以表示的关系" class="headerlink" title="图可以表示的关系"></a>图可以表示的关系</h3><ul>
+<li>交通运输（每个节点是城市，边是道路。点是航站楼，边是航线）</li>
+<li>社交网络（人 &amp; 好友关系 电影 &amp; 电影相似程度）</li>
+<li>互联网（域名 域名跳转）</li>
+<li>工作安排（先后程度）</li>
+<li>脑区活动</li>
+<li>程序状态执行（自动机）</li>
+</ul>
+<h3 id="图的分类："><a href="#图的分类：" class="headerlink" title="图的分类："></a>图的分类：</h3><ul>
+<li>无向图（Undirected Graph）人和人认识就是边，没有方向</li>
+<li>有向图（Directed Graph）自动机转移有方向</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-bbc36a49d6f3414a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/398" alt=""></p>
+<ul>
+<li><p>无向图是一种特殊的有向图</p>
+</li>
+<li><p>无权图（边:认识不认识：好友度）</p>
+</li>
+<li>有权图（边带值：电影相似程度 &amp; 路长）</li>
+</ul>
+<h3 id="图的连通性："><a href="#图的连通性：" class="headerlink" title="图的连通性："></a>图的连通性：</h3><p><img src="//upload-images.jianshu.io/upload_images/1779926-8b7db3e47f5cdc76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/217" alt=""></p>
+<h4 id="三图或者一图"><a href="#三图或者一图" class="headerlink" title="三图或者一图"></a>三图或者一图</h4><ul>
+<li>可以看做是三张图。也可以视为一个。  </li>
+<li>图不是完全连通的。</li>
+</ul>
+<h3 id="简单图（simple-Graph）："><a href="#简单图（simple-Graph）：" class="headerlink" title="简单图（simple Graph）："></a>简单图（simple Graph）：</h3><p><img src="//upload-images.jianshu.io/upload_images/1779926-b9113b95934d786e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/305" alt=""></p>
+<ul>
+<li>考虑最小生成树，连通性，这两种边意义不大  </li>
+<li>简单图：不包含。</li>
+</ul>
+<h2 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h2><ul>
+<li>对于边的表示采用什么样的数据结构：</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-81ff1a2e7b7c1604.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/310" alt=""></p>
+<h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><blockquote>
+<p>n个节点 就是一个n行n列的矩阵，无向图对角线对称：1表示连通。0表示没通</p>
+</blockquote>
+<p><strong>有向图的矩阵表示：</strong></p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-f440094fcd9deae3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/327" alt=""></p>
+<h3 id="邻接表："><a href="#邻接表：" class="headerlink" title="邻接表："></a>邻接表：</h3><blockquote>
+<p>对于每个顶点只表达与这个顶点相连接的信息</p>
+</blockquote>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-1dbb9d1fee8e00b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/301" alt=""></p>
+<ul>
+<li>每一行都是一个链表，存放了对这一行而言相连的节点。</li>
+<li>也可以表示有向图</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-cdfba67b25f9ca7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/252" alt=""></p>
+<p><strong>优点：存储空间小</strong></p>
+<h3 id="具体问题具体分析"><a href="#具体问题具体分析" class="headerlink" title="具体问题具体分析"></a>具体问题具体分析</h3><ul>
+<li>邻接表适合表示稀疏图 (Sparse Graph) 多少 </li>
+<li><p>邻接矩阵适合表示稠密图 (Dense Graph)边多</p>
+<ul>
+<li>每个电影和其他所有电影之间的相似度。不管相似大小都是连接的边。所有的点之间都有边。</li>
+</ul>
+</li>
+<li><p>稠密：边的个数与能拥有的最大边的个数对比。</p>
+</li>
+<li><p>如下图就是一个稀疏图：</p>
+</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-e367da47479f7e50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/194" alt=""></p>
+<ul>
+<li>稠密图完全图<br><img src="//upload-images.jianshu.io/upload_images/1779926-56bc0237f326141d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/199" alt=""></li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h3 id="邻接矩阵代码实现"><a href="#邻接矩阵代码实现" class="headerlink" title="邻接矩阵代码实现"></a>邻接矩阵代码实现</h3><pre><code>// 稠密图 - 邻接矩阵
+class DenseGraph{
+
+private:
+    int n, m;       // 节点数和边数
+    bool directed;  // 是否为有向图
+    vector&lt;vector&lt;bool&gt;&gt; g; // 图的具体数据
+
+public:
+    // 构造函数
+    DenseGraph( int n , bool directed ){
+        assert( n &gt;= 0 );
+        this-&gt;n = n;
+        this-&gt;m = 0;    // 初始化没有任何边
+        this-&gt;directed = directed;
+        // g初始化为n*n的布尔矩阵, 每一个g[i][j]均为false, 表示没有任和边
+        //g = vector&lt;vector&lt;bool&gt;&gt;(n, vector&lt;bool&gt;(n, false));
+          for (int i = 0; i &lt; n; ++i) {
+            g.push_back(vector&lt;bool&gt;(n, false));
+        }
+    }
+
+    ~DenseGraph(){ }
+
+    int V(){ return n;} // 返回节点个数
+    int E(){ return m;} // 返回边的个数
+
+    // 向图中添加一个边，v和w表示一个顶点
+    void addEdge( int v , int w ){
+
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+
+        if( hasEdge( v , w ) )
+            return;
+
+        g[v][w] = true;
+        if( !directed )
+            g[w][v] = true;
+
+        m ++;
+    }
+
+    // 验证图中是否有从v到w的边
+    bool hasEdge( int v , int w ){
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+        return g[v][w];
+    }
+};
+</code></pre><p><strong>注意：</strong></p>
+<ul>
+<li>addedge的时候已经去除了平行边的概念。因为如果有边之间return  </li>
+<li>O(1)来判断是否有边</li>
+</ul>
+<h4 id="稀疏图代码实现"><a href="#稀疏图代码实现" class="headerlink" title="稀疏图代码实现"></a>稀疏图代码实现</h4><pre><code>// 稀疏图 - 邻接表
+class SparseGraph{
+
+private:
+    int n, m;       // 节点数和边数
+    bool directed;  // 是否为有向图
+    vector&lt;vector&lt;int&gt;&gt; g;  // 图的具体数据
+
+public:
+    // 构造函数
+    SparseGraph( int n , bool directed ){
+        assert( n &gt;= 0 );
+        this-&gt;n = n;
+        this-&gt;m = 0;    // 初始化没有任何边
+        this-&gt;directed = directed;
+        // g初始化为n个空的vector, 表示每一个g[i]都为空, 即没有任和边
+        //g = vector&lt;vector&lt;int&gt;&gt;(n, vector&lt;int&gt;());
+        for (int i = 0; i &lt; n; ++i) {
+            g.push_back(vector&lt;int&gt;());
+        }
+    }
+
+    ~SparseGraph(){ }
+
+    int V(){ return n;} // 返回节点个数
+    int E(){ return m;} // 返回边的个数
+
+    // 向图中添加一个边
+    void addEdge( int v, int w ){
+
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+
+        g[v].push_back(w);
+        //处理自环边
+        if( v != w &amp;&amp; !directed )
+            g[w].push_back(v);
+
+        m ++;
+    }
+
+    // 验证图中是否有从v到w的边
+    bool hasEdge( int v , int w ){
+
+        assert( v &gt;= 0 &amp;&amp; v &lt; n );
+        assert( w &gt;= 0 &amp;&amp; w &lt; n );
+
+        //使用邻接表在判断解决平行边复杂度高
+        for( int i = 0 ; i &lt; g[v].size() ; i ++ )
+            if( g[v][i] == w )
+                return true;
+        return false;
+    }
+};
+</code></pre><p>邻接表取消平行边复杂度度过大。</p>
+<h4 id="邻接表的优势"><a href="#邻接表的优势" class="headerlink" title="邻接表的优势"></a>邻接表的优势</h4><ul>
+<li>遍历邻边 - 图算法中最常见的操作</li>
+<li>遍历邻边，邻接表有优势</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-eeaa41fdaf5061f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400" alt=""></p>
+<h2 id="相邻点迭代器"><a href="#相邻点迭代器" class="headerlink" title="相邻点迭代器"></a>相邻点迭代器</h2><h3 id="稀疏图的迭代器代码实现"><a href="#稀疏图的迭代器代码实现" class="headerlink" title="稀疏图的迭代器代码实现"></a>稀疏图的迭代器代码实现</h3><pre><code>// 邻边迭代器, 传入一个图和一个顶点,
+  // 迭代在这个图中和这个顶点向连的所有顶点
+  class adjIterator{
+  private:
+      SparseGraph &amp;G; // 图G的引用
+      int v;
+      int index;
+
+  public:
+      // 构造函数
+      adjIterator(SparseGraph &amp;graph, int v): G(graph){
+          this-&gt;v = v;
+          this-&gt;index = 0;
+      }
+
+      ~adjIterator(){}
+
+      // 返回图G中与顶点v相连接的第一个顶点
+      int begin(){
+          index = 0;
+          if( G.g[v].size() )
+              return G.g[v][index];
+          // 若没有顶点和v相连接, 则返回-1
+          return -1;
+      }
+
+      // 返回图G中与顶点v相连接的下一个顶点
+      int next(){
+          index ++;
+          if( index &lt; G.g[v].size() )
+              return G.g[v][index];
+          // 若没有顶点和v相连接, 则返回-1
+          return -1;
+      }
+
+      // 查看是否已经迭代完了图G中与顶点v相连接的所有顶点
+      bool end(){
+          return index &gt;= G.g[v].size();
+      }
+  };
+</code></pre><h3 id="稠密图的代码实现"><a href="#稠密图的代码实现" class="headerlink" title="稠密图的代码实现"></a>稠密图的代码实现</h3><pre><code> // 邻边迭代器, 传入一个图和一个顶点,
+// 迭代在这个图中和这个顶点向连的所有顶点
+class adjIterator{
+private:
+    DenseGraph &amp;G;  // 图G的引用
+    int v;
+    int index;
+
+public:
+    // 构造函数
+    adjIterator(DenseGraph &amp;graph, int v): G(graph){
+        assert( v &gt;= 0 &amp;&amp; v &lt; G.n );
+        this-&gt;v = v;
+        this-&gt;index = -1;   // 索引从-1开始, 因为每次遍历都需要调用一次next()
+    }
+
+    ~adjIterator(){}
+
+    // 返回图G中与顶点v相连接的第一个顶点
+    int begin(){
+
+        // 索引从-1开始, 因为每次遍历都需要调用一次next()
+        index = -1;
+        return next();
+    }
+
+    // 返回图G中与顶点v相连接的下一个顶点
+    int next(){
+
+        // 从当前index开始向后搜索, 直到找到一个g[v][index]为true
+        for( index += 1 ; index &lt; G.V() ; index ++ )
+            if( G.g[v][index] )
+                return index;
+        // 若没有顶点和v相连接, 则返回-1
+        return -1;
+    }
+
+    // 查看是否已经迭代完了图G中与顶点v相连接的所有顶点
+    bool end(){
+        return index &gt;= G.V();
+    }
+};
+</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &quot;SparseGraph.h&quot;</div><div class="line">#include &quot;DenseGraph.h&quot;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line"></div><div class="line">int main() &#123;</div><div class="line"></div><div class="line">    int N = 20;</div><div class="line">    int M = 100;</div><div class="line"></div><div class="line">    srand( time(NULL) );</div><div class="line"></div><div class="line"></div><div class="line">    // Sparse Graph</div><div class="line">    SparseGraph g1(N , false);</div><div class="line">    for( int i = 0 ; i &lt; M ; i ++ )&#123;</div><div class="line">        int a = rand()%N;</div><div class="line">        int b = rand()%N;</div><div class="line">        g1.addEdge( a , b );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // O(E)</div><div class="line">    for( int v = 0 ; v &lt; N ; v ++ )&#123;</div><div class="line">        cout&lt;&lt;v&lt;&lt;&quot; : &quot;;</div><div class="line">        SparseGraph::adjIterator adj( g1 , v );</div><div class="line">        for( int w = adj.begin() ; !adj.end() ; w = adj.next() )</div><div class="line">            cout&lt;&lt;w&lt;&lt;&quot; &quot;;</div><div class="line">        cout&lt;&lt;endl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    cout&lt;&lt;endl;</div><div class="line"></div><div class="line"></div><div class="line">    // Dense Graph</div><div class="line">    DenseGraph g2(N , false);</div><div class="line">    for( int i = 0 ; i &lt; M ; i ++ )&#123;</div><div class="line">        int a = rand()%N;</div><div class="line">        int b = rand()%N;</div><div class="line">        g2.addEdge( a , b );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // O(V^2)</div><div class="line">    for( int v = 0 ; v &lt; N ; v ++ )&#123;</div><div class="line">        cout&lt;&lt;v&lt;&lt;&quot; : &quot;;</div><div class="line">        DenseGraph::adjIterator adj( g2 , v );</div><div class="line">        for( int w = adj.begin() ; !adj.end() ; w = adj.next() )</div><div class="line">            cout&lt;&lt;w&lt;&lt;&quot; &quot;;</div><div class="line">        cout&lt;&lt;endl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">0 : 0 7 17 18 4 2 17 17 7 9 8 </div><div class="line">1 : 15 12 19 8 5 11 3 4 16 4 </div><div class="line">2 : 19 6 2 17 3 9 6 19 4 6 17 7 6 0 </div><div class="line">3 : 2 4 19 16 8 10 19 11 1 7 5 16 17 </div><div class="line">4 : 10 15 3 2 14 0 17 1 16 1 </div><div class="line">5 : 11 14 7 1 14 15 6 3 15 </div><div class="line">6 : 8 2 16 8 11 19 10 2 6 2 11 14 5 9 2 12 17 </div><div class="line">7 : 9 9 17 19 5 0 14 2 3 0 10 </div><div class="line">8 : 9 6 6 9 14 14 1 16 3 17 0 </div><div class="line">9 : 7 15 8 19 7 8 12 2 13 6 0 </div><div class="line">10 : 4 10 6 3 19 18 7 </div><div class="line">11 : 6 5 6 1 3 </div><div class="line">12 : 1 9 6 </div><div class="line">13 : 16 9 18 </div><div class="line">14 : 18 5 8 8 4 7 16 5 6 17 </div><div class="line">15 : 9 1 15 4 5 15 18 5 </div><div class="line">16 : 6 13 8 3 14 4 3 18 1 </div><div class="line">17 : 19 7 2 0 2 4 8 0 0 14 3 6 </div><div class="line">18 : 14 13 0 15 10 16 19 18 </div><div class="line">19 : 2 17 9 1 6 7 3 2 10 3 18 </div><div class="line"></div><div class="line">0 : 2 3 7 8 13 14 19 </div><div class="line">1 : 5 10 12 16 19 </div><div class="line">2 : 0 3 5 6 7 9 10 11 12 18 </div><div class="line">3 : 0 2 6 8 10 14 15 17 18 19 </div><div class="line">4 : 4 6 7 8 14 17 18 19 </div><div class="line">5 : 1 2 7 10 14 15 17 19 </div><div class="line">6 : 2 3 4 8 9 11 12 14 </div><div class="line">7 : 0 2 4 5 7 8 9 13 15 16 19 </div><div class="line">8 : 0 3 4 6 7 17 18 19 </div><div class="line">9 : 2 6 7 15 16 </div><div class="line">10 : 1 2 3 5 13 18 </div><div class="line">11 : 2 6 11 13 15 16 18 19 </div><div class="line">12 : 1 2 6 </div><div class="line">13 : 0 7 10 11 15 17 19 </div><div class="line">14 : 0 3 4 5 6 </div><div class="line">15 : 3 5 7 9 11 13 16 </div><div class="line">16 : 1 7 9 11 15 16 17 </div><div class="line">17 : 3 4 5 8 13 16 17 </div><div class="line">18 : 2 3 4 8 10 11 19 </div><div class="line">19 : 0 1 3 4 5 7 8 11 13 18</div></pre></td></tr></table></figure>
+<h2 id="生成稠密图和稀疏图类封装"><a href="#生成稠密图和稀疏图类封装" class="headerlink" title="生成稠密图和稀疏图类封装"></a>生成稠密图和稀疏图类封装</h2><pre><code>template &lt;typename Graph&gt;
+class ReadGraph{
+
+public:
+    // 从文件filename中读取图的信息, 存储进图graph中
+    ReadGraph(Graph &amp;graph, const string &amp;filename){
+
+        ifstream file(filename);
+        string line;
+        int V, E;
+
+        assert( file.is_open() );
+
+        // 第一行读取图中的节点个数和边的个数
+        assert( getline(file, line) );
+        stringstream ss(line);
+        ss&gt;&gt;V&gt;&gt;E;
+
+        assert( V == graph.V() );
+
+        // 读取每一条边的信息
+        for( int i = 0 ; i &lt; E ; i ++ ){
+
+            assert( getline(file, line) );
+            stringstream ss(line);
+
+            int a,b;
+            ss&gt;&gt;a&gt;&gt;b;
+            assert( a &gt;= 0 &amp;&amp; a &lt; V );
+            assert( b &gt;= 0 &amp;&amp; b &lt; V );
+            graph.addEdge( a , b );
+        }
+    }
+};
+</code></pre><h2 id="深度优先遍历和联通分量"><a href="#深度优先遍历和联通分量" class="headerlink" title="深度优先遍历和联通分量"></a>深度优先遍历和联通分量</h2><ul>
+<li>深度优先遍历</li>
+<li>广度优先遍历</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-d45db35755652b9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/358" alt=""></p>
+<p>思想：一个点往下试，记录是否遍历过（因为存在环）。</p>
+<p>0-1-2-5-3-4-6</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-43438731e2940672.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/249" alt=""></p>
+<p>图示为3个联通分量</p>
+<h3 id="深度优先遍历代码实现"><a href="#深度优先遍历代码实现" class="headerlink" title="深度优先遍历代码实现"></a>深度优先遍历代码实现</h3><p>遍历完成后看没遍历过的点</p>
+<pre><code>// 求无权图的联通分量
+template &lt;typename Graph&gt;
+class Component{
+
+private:
+    Graph &amp;G;       // 图的引用
+    bool *visited;  // 记录dfs的过程中节点是否被访问
+    int ccount;     // 记录联通分量个数
+    int *id;        // 每个节点所对应的联通分量标记
+
+    // 图的深度优先遍历(递归方式)
+    void dfs( int v ){
+
+        visited[v] = true;
+        id[v] = ccount;
+        typename Graph::adjIterator adj(G, v);
+        for( int i = adj.begin() ; !adj.end() ; i = adj.next() ){
+            if( !visited[i] )
+                dfs(i);
+        }
+    }
+
+public:
+    // 构造函数, 求出无权图的联通分量
+    Component(Graph &amp;graph): G(graph){
+
+        // 算法初始化
+        visited = new bool[G.V()];
+        id = new int[G.V()];
+        ccount = 0;
+        for( int i = 0 ; i &lt; G.V() ; i ++ ){
+            visited[i] = false;
+            id[i] = -1;
+        }
+
+        // 求图的联通分量
+        for( int i = 0 ; i &lt; G.V() ; i ++ )
+            if( !visited[i] ){
+                dfs(i);
+                ccount ++;
+            }
+    }
+
+    // 析构函数
+    ~Component(){
+        delete[] visited;
+        delete[] id;
+    }
+
+    // 返回图的联通分量个数
+    int count(){
+        return ccount;
+    }
+
+    // 查询点v和点w是否联通
+    bool isConnected( int v , int w ){
+        assert( v &gt;= 0 &amp;&amp; v &lt; G.V() );
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        return id[v] == id[w];
+    }
+};
+</code></pre><p>main.cpp</p>
+<pre><code>// 测试图的联通分量算法
+int main() {
+
+    // TestG1.txt
+    string filename1 = &quot;testG1.txt&quot;;
+    SparseGraph g1 = SparseGraph(13, false);
+    ReadGraph&lt;SparseGraph&gt; readGraph1(g1, filename1);
+    Component&lt;SparseGraph&gt; component1(g1);
+    cout&lt;&lt;&quot;TestG1.txt, Component Count: &quot;&lt;&lt;component1.count()&lt;&lt;endl;
+
+    cout&lt;&lt;endl;
+
+    // TestG2.txt
+    string filename2 = &quot;testG2.txt&quot;;
+    SparseGraph g2 = SparseGraph(7, false);
+    ReadGraph&lt;SparseGraph&gt; readGraph2(g2, filename2);
+    Component&lt;SparseGraph&gt; component2(g2);
+    cout&lt;&lt;&quot;TestG2.txt, Component Count: &quot;&lt;&lt;component2.count()&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p><strong>结果</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TestG1.txt, Component Count: 3</div><div class="line"></div><div class="line">TestG2.txt, Component Count: 1</div></pre></td></tr></table></figure></p>
+<p><strong> 注意</strong></p>
+<ul>
+<li>求出连通分量，可以求出两个结点是否相连  </li>
+<li>添加id来记录。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int *id;        // 每个节点所对应的联通分量标记</div></pre></td></tr></table></figure>
+<ul>
+<li>并查集只能让我们知道两个结点是否相连。而路径需要图论来解决</li>
+</ul>
+<h2 id="寻路"><a href="#寻路" class="headerlink" title="寻路"></a>寻路</h2><p><img src="//upload-images.jianshu.io/upload_images/1779926-02e0661a8bc40697.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/397" alt=""></p>
+<blockquote>
+<p>深度优先获得一条路径。遍历的同时保存是从哪遍历过来的。</p>
+</blockquote>
+<pre><code> int * from;     // 记录路径, from[i]表示查找的路径上i的上一个节点
+
+
+// 路径查询
+template &lt;typename Graph&gt;
+class Path{
+
+private:
+    Graph &amp;G;   // 图的引用
+    int s;      // 起始点
+    bool* visited;  // 记录dfs的过程中节点是否被访问
+    int * from;     // 记录路径, from[i]表示查找的路径上i的上一个节点
+
+    // 图的深度优先遍历
+    void dfs( int v ){
+
+        visited[v] = true;
+
+        typename Graph::adjIterator adj(G, v);
+        for( int i = adj.begin() ; !adj.end() ; i = adj.next() ){
+            if( !visited[i] ){
+                from[i] = v;
+                dfs(i);
+            }
+        }
+    }
+
+public:
+    // 构造函数, 寻路算法, 寻找图graph从s点到其他点的路径
+    Path(Graph &amp;graph, int s):G(graph){
+
+        // 算法初始化
+        assert( s &gt;= 0 &amp;&amp; s &lt; G.V() );
+
+        visited = new bool[G.V()];
+        from = new int[G.V()];
+        for( int i = 0 ; i &lt; G.V() ; i ++ ){
+            visited[i] = false;
+            from[i] = -1;
+        }
+        this-&gt;s = s;
+
+        // 寻路算法
+        dfs(s);
+    }
+
+    // 析构函数
+    ~Path(){
+
+        delete [] visited;
+        delete [] from;
+    }
+
+    // 查询从s点到w点是否有路径
+    bool hasPath(int w){
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        return visited[w];
+    }
+
+    // 查询从s点到w点的路径, 存放在vec中
+    void path(int w, vector&lt;int&gt; &amp;vec){
+
+        assert( hasPath(w) );
+
+        stack&lt;int&gt; s;
+        // 通过from数组逆向查找到从s到w的路径, 存放到栈中
+        int p = w;
+        while( p != -1 ){
+            s.push(p);
+            p = from[p];
+        }
+
+        // 从栈中依次取出元素, 获得顺序的从s到w的路径
+        vec.clear();
+        while( !s.empty() ){
+            vec.push_back( s.top() );
+            s.pop();
+        }
+    }
+
+    // 打印出从s点到w点的路径
+    void showPath(int w){
+
+        assert( hasPath(w) );
+
+        vector&lt;int&gt; vec;
+        path( w , vec );
+        for( int i = 0 ; i &lt; vec.size() ; i ++ ){
+            cout&lt;&lt;vec[i];
+            if( i == vec.size() - 1 )
+                cout&lt;&lt;endl;
+            else
+                cout&lt;&lt;&quot; -&gt; &quot;;
+        }
+    }
+};
+</code></pre><p>main.cpp:</p>
+<pre><code>// 测试寻路算法
+int main() {
+
+    string filename = &quot;testG.txt&quot;;
+    SparseGraph g = SparseGraph(7, false);
+    ReadGraph&lt;SparseGraph&gt; readGraph(g, filename);
+    g.show();
+    cout&lt;&lt;endl;
+
+    Path&lt;SparseGraph&gt; path(g,0);
+    cout&lt;&lt;&quot;Path from 0 to 6 : &quot; &lt;&lt; endl;
+    path.showPath(6);
+
+    return 0;
+}
+</code></pre><p><strong>运行结果：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">vertex 0:	1	2	5	6	</div><div class="line">vertex 1:	0	</div><div class="line">vertex 2:	0	</div><div class="line">vertex 3:	4	5	</div><div class="line">vertex 4:	3	5	6	</div><div class="line">vertex 5:	0	3	4	</div><div class="line">vertex 6:	0	4	</div><div class="line"></div><div class="line">DFS : 0 -&gt; 5 -&gt; 3 -&gt; 4 -&gt; 6</div><div class="line">[Finished in 1.2s]</div></pre></td></tr></table></figure>
+<h3 id="复杂度："><a href="#复杂度：" class="headerlink" title="复杂度："></a>复杂度：</h3><ul>
+<li>稀疏图（邻接表）： O( V + E ), 想获得一个节点的所有相邻节点的时候，我们要将图中所有节点扫一遍</li>
+<li>稠密图（邻接矩阵）：O( V^2 )</li>
+</ul>
+<p><strong>注意:</strong></p>
+<ul>
+<li>深度优先遍历算法对有向图依然有效</li>
+<li>深度优先遍历也可以用于判断图中是否有环。</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-73021a816d1185ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/221" alt=""></p>
+<h2 id="图的广度优先遍历"><a href="#图的广度优先遍历" class="headerlink" title="图的广度优先遍历"></a>图的广度优先遍历</h2><p>一般需要使用队列使用队列。</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-683469e03d465b48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/393" alt=""></p>
+<ul>
+<li>队列为空表示遍历完成</li>
+<li>距离0节点的距离排序，先遍历的节点距离&lt;=后遍历的节点距离 </li>
+<li>记录距离并且用from数组记录来源节点可以求出最短路径。</li>
+<li>广度优先遍历：求出了无权图的最短路径。</li>
+</ul>
+<h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><pre><code>// 寻找无权图的最短路径
+template &lt;typename Graph&gt;
+class ShortestPath{
+
+private:
+    Graph &amp;G;       // 图的引用
+    int s;          // 起始点
+    bool *visited;  // 记录dfs的过程中节点是否被访问
+    int *from;      // 记录路径, from[i]表示查找的路径上i的上一个节点
+    int *ord;       // 记录路径中节点的次序。ord[i]表示i节点在路径中的次序；记录最短路径
+
+public:
+    // 构造函数, 寻找无权图graph从s点到其他点的最短路径
+    ShortestPath(Graph &amp;graph, int s):G(graph){
+
+        // 算法初始化
+        assert( s &gt;= 0 &amp;&amp; s &lt; graph.V() );
+
+        visited = new bool[graph.V()];
+        from = new int[graph.V()];
+        ord = new int[graph.V()];
+        for( int i = 0 ; i &lt; graph.V() ; i ++ ){
+            visited[i] = false;
+            from[i] = -1;
+            ord[i] = -1;
+        }
+        this-&gt;s = s;
+
+        // 无向图最短路径算法, 从s开始广度优先遍历整张图
+        queue&lt;int&gt; q;
+
+        q.push( s );
+        visited[s] = true;
+        ord[s] = 0;
+        while( !q.empty() ){
+
+            int v = q.front();
+            q.pop();
+
+            typename Graph::adjIterator adj(G, v);
+            for( int i = adj.begin() ; !adj.end() ; i = adj.next() )
+                if( !visited[i] ){
+                    q.push(i);
+                    visited[i] = true;
+                    from[i] = v;
+                    ord[i] = ord[v] + 1;
+                }
+        }
+
+    }
+
+    // 析构函数
+    ~ShortestPath(){
+
+        delete [] visited;
+        delete [] from;
+        delete [] ord;
+    }
+
+    // 查询从s点到w点是否有路径
+    bool hasPath(int w){
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        return visited[w];
+    }
+
+    // 查询从s点到w点的路径, 存放在vec中
+    void path(int w, vector&lt;int&gt; &amp;vec){
+
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+
+        stack&lt;int&gt; s;
+        // 通过from数组逆向查找到从s到w的路径, 存放到栈中
+        int p = w;
+        while( p != -1 ){
+            s.push(p);
+            p = from[p];
+        }
+
+        // 从栈中依次取出元素, 获得顺序的从s到w的路径
+        vec.clear();
+        while( !s.empty() ){
+            vec.push_back( s.top() );
+            s.pop();
+        }
+    }
+
+    // 打印出从s点到w点的路径
+    void showPath(int w){
+
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+
+        vector&lt;int&gt; vec;
+        path(w, vec);
+        for( int i = 0 ; i &lt; vec.size() ; i ++ ){
+            cout&lt;&lt;vec[i];
+            if( i == vec.size()-1 )
+                cout&lt;&lt;endl;
+            else
+                cout&lt;&lt;&quot; -&gt; &quot;;
+        }
+    }
+
+    // 查看从s点到w点的最短路径长度
+    int length(int w){
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        return ord[w];
+    }
+};
+</code></pre><p>main.cpp:</p>
+<pre><code>// 测试无权图最短路径算法
+int main() {
+
+    string filename = &quot;testG.txt&quot;;
+    SparseGraph g = SparseGraph(7, false);
+    ReadGraph&lt;SparseGraph&gt; readGraph(g, filename);
+    g.show();
+    cout&lt;&lt;endl;
+
+    // 比较使用深度优先遍历和广度优先遍历获得路径的不同
+    // 广度优先遍历获得的是无权图的最短路径
+    Path&lt;SparseGraph&gt; dfs(g,0);
+    cout&lt;&lt;&quot;DFS : &quot;;
+    dfs.showPath(6);
+
+    ShortestPath&lt;SparseGraph&gt; bfs(g,0);
+    cout&lt;&lt;&quot;BFS : &quot;;
+    bfs.showPath(6);
+
+    return 0;
+}
+</code></pre><p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">vertex 0:	1	2	5	6	</div><div class="line">vertex 1:	0	</div><div class="line">vertex 2:	0	</div><div class="line">vertex 3:	4	5	</div><div class="line">vertex 4:	3	5	6	</div><div class="line">vertex 5:	0	3	4	</div><div class="line">vertex 6:	0	4	</div><div class="line"></div><div class="line">DFS : 0 -&gt; 5 -&gt; 3 -&gt; 4 -&gt; 6</div><div class="line">BFS : 0 -&gt; 6</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ul>
+<li>广度优先一定可以找到最短无权路径</li>
+<li>广度优先一定可以找到最短无权路径并可能找到多条，深度也有可能找到。  </li>
+<li>多条最短路径。跟遍历顺序有关。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图的遍历/" rel="tag"># 图的遍历</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/10/并查集/" rel="next" title="并查集">
+                <i class="fa fa-chevron-left"></i> 并查集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/12/最小生成树/" rel="prev" title="带权图与最小生成树">
+                带权图与最小生成树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图论基础"><span class="nav-number">1.</span> <span class="nav-text">图论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图论抽象模型"><span class="nav-number">1.1.</span> <span class="nav-text">图论抽象模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图可以表示的关系"><span class="nav-number">1.2.</span> <span class="nav-text">图可以表示的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的分类："><span class="nav-number">1.3.</span> <span class="nav-text">图的分类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的连通性："><span class="nav-number">1.4.</span> <span class="nav-text">图的连通性：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三图或者一图"><span class="nav-number">1.4.1.</span> <span class="nav-text">三图或者一图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单图（simple-Graph）："><span class="nav-number">1.5.</span> <span class="nav-text">简单图（simple Graph）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图的表示"><span class="nav-number">2.</span> <span class="nav-text">图的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接矩阵"><span class="nav-number">2.1.</span> <span class="nav-text">邻接矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接表："><span class="nav-number">2.2.</span> <span class="nav-text">邻接表：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体问题具体分析"><span class="nav-number">2.3.</span> <span class="nav-text">具体问题具体分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接矩阵代码实现"><span class="nav-number">2.5.</span> <span class="nav-text">邻接矩阵代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#稀疏图代码实现"><span class="nav-number">2.5.1.</span> <span class="nav-text">稀疏图代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#邻接表的优势"><span class="nav-number">2.5.2.</span> <span class="nav-text">邻接表的优势</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相邻点迭代器"><span class="nav-number">3.</span> <span class="nav-text">相邻点迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏图的迭代器代码实现"><span class="nav-number">3.1.</span> <span class="nav-text">稀疏图的迭代器代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稠密图的代码实现"><span class="nav-number">3.2.</span> <span class="nav-text">稠密图的代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">3.3.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成稠密图和稀疏图类封装"><span class="nav-number">4.</span> <span class="nav-text">生成稠密图和稀疏图类封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度优先遍历和联通分量"><span class="nav-number">5.</span> <span class="nav-text">深度优先遍历和联通分量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度优先遍历代码实现"><span class="nav-number">5.1.</span> <span class="nav-text">深度优先遍历代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻路"><span class="nav-number">6.</span> <span class="nav-text">寻路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度："><span class="nav-number">6.1.</span> <span class="nav-text">复杂度：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图的广度优先遍历"><span class="nav-number">7.</span> <span class="nav-text">图的广度优先遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现："><span class="nav-number">7.1.</span> <span class="nav-text">代码实现：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
