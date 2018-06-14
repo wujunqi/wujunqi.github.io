@@ -51,7 +51,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="yaf," />
+  <meta name="keywords" content="最短路径," />
 
 
 
@@ -67,24 +67,29 @@
 
 
 
-<meta name="description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
-<meta name="keywords" content="yaf">
+<meta name="description" content="主要介绍最短路径问题和松弛操作、Dijkstra算法的思想、负权边和Bellman-Ford算法等">
+<meta name="keywords" content="最短路径">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用docker搭建yaf">
-<meta property="og:url" content="http://yoursite.com/2017/10/08/利用docker搭建yaf/index.html">
+<meta property="og:title" content="最短路径">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/最短路径/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
+<meta property="og:description" content="主要介绍最短路径问题和松弛操作、Dijkstra算法的思想、负权边和Bellman-Ford算法等">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1520939843100vgelfape.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim">
-<meta property="og:updated_time" content="2018-03-13T11:19:29.000Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-3b694676bade6585.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/384">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-0a88d33803384b66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-cfb688245472a8a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/266">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-5dda74ebdcd5f595.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/335">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15289577987654rm2wg8e.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528958137130pf7b9e08.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/152896022104854lpiurf.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15289608255339psr85di.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528961953710ivjzlqfq.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528968124691skvnq05d.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-06-14T09:31:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用docker搭建yaf">
-<meta name="twitter:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
+<meta name="twitter:title" content="最短路径">
+<meta name="twitter:description" content="主要介绍最短路径问题和松弛操作、Dijkstra算法的思想、负权边和Bellman-Ford算法等">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1779926-3b694676bade6585.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/384">
 
 
 
@@ -112,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/08/利用docker搭建yaf/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/最短路径/"/>
 
 
 
 
 
-  <title>利用docker搭建yaf | 番茄技术小栈</title>
+  <title>最短路径 | 番茄技术小栈</title>
   
 
 
@@ -291,7 +296,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/08/利用docker搭建yaf/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/最短路径/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wujunqi">
@@ -308,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">利用docker搭建yaf</h1>
+          <h1 class="post-title" itemprop="name headline">最短路径</h1>
         
 
         <div class="post-meta">
@@ -320,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-08T00:23:00+08:00">
-                2017-10-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T12:23:00+08:00">
+                2018-06-13
               </time>
             
 
@@ -343,8 +348,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/图/" itemprop="url" rel="index">
+                    <span itemprop="name">图</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -360,7 +376,7 @@
 
           
           
-             <span id="/2017/10/08/利用docker搭建yaf/" class="leancloud_visitors" data-flag-title="利用docker搭建yaf">
+             <span id="/2018/06/13/最短路径/" class="leancloud_visitors" data-flag-title="最短路径">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -393,131 +409,409 @@
       
 
       
-        <p>下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。</p>
+        <p>主要介绍最短路径问题和松弛操作、Dijkstra算法的思想、负权边和Bellman-Ford算法等</p>
 <a id="more"></a>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。</p>
-<h1 id="什么是docker？"><a href="#什么是docker？" class="headerlink" title="什么是docker？"></a>什么是docker？</h1><h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><blockquote>
-<p>Docker:an open source project to pack,ship and run any application as a lightweight container.</p>
+<h2 id="最短路径问题和松弛操作"><a href="#最短路径问题和松弛操作" class="headerlink" title="最短路径问题和松弛操作"></a>最短路径问题和松弛操作</h2><blockquote>
+<p>一个节点到另一个节点最短的路径，路径规划问题。</p>
 </blockquote>
-<p>这个docker官方的解释：将任何应用以轻量级的容器的形式来进行<strong>打包</strong>，<strong>发布</strong>和运行。</p>
+<ul>
+<li>路径规划（费用、长度）</li>
+<li>工作任务规划</li>
+</ul>
+<p>对于无权图进行广度优先遍历就是求出了一个最短路径（求出的是一颗最短路径树）</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-3b694676bade6585.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/384" alt=""></p>
+<ul>
+<li><p>从起始点到其他节点路径最短的树</p>
+</li>
+<li><p>无权图的最短路径。</p>
+</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-0a88d33803384b66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/263" alt=""></p>
+<ul>
+<li>有权最短路径</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-cfb688245472a8a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/266" alt=""></p>
+<h3 id="松弛操作"><a href="#松弛操作" class="headerlink" title="松弛操作"></a>松弛操作</h3><blockquote>
+<p>松弛操作是指对于每个顶点v∈V，都设置一个属性d[v]，用来描述从源点s到v的最短路径上权值的上界，称为最短路径估计（shortest-path estimate）。</p>
+<ul>
+<li>松弛操作,找到更短路径，松弛操作是最短路径求解的核心。</li>
+</ul>
+</blockquote>
+<h2 id="dijkstra-单源最短路径算法"><a href="#dijkstra-单源最短路径算法" class="headerlink" title="dijkstra 单源最短路径算法"></a>dijkstra 单源最短路径算法</h2><h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><ul>
+<li>前提：图中不能有负权边  </li>
+<li>复杂度 O( E log(V) )同最小生成树</li>
+</ul>
+<p>最小索引堆</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-5dda74ebdcd5f595.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/335" alt=""></p>
+<ul>
+<li>从源点能到达的点中最短的路径。  </li>
+<li>图中不能有负权边</li>
+</ul>
+<p><strong>松弛操作</strong></p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/15289577987654rm2wg8e.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<ul>
+<li>经过2到达1和经过2到达3比原来记录的值小，所以松弛更新。</li>
+</ul>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528958137130pf7b9e08.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<ul>
+<li>经过1到4更短</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>// Dijkstra算法求最短路径
+template&lt;typename Graph, typename Weight&gt;
+class Dijkstra{
+
+private:
+    Graph &amp;G;                   // 图的引用
+    int s;                      // 起始点
+    Weight *distTo;             // distTo[i]存储从起始点s到i的最短路径长度
+    bool *marked;               // 标记数组, 在算法运行过程中标记节点i是否被访问
+    vector&lt;Edge&lt;Weight&gt;*&gt; from; // from[i]记录最短路径中, 到达i点的边是哪一条
+                                // 可以用来恢复整个最短路径
+
+public:
+    // 构造函数, 使用Dijkstra算法求最短路径
+    Dijkstra(Graph &amp;graph, int s):G(graph){
+
+        // 算法初始化
+        assert( s &gt;= 0 &amp;&amp; s &lt; G.V() );
+        this-&gt;s = s;
+        distTo = new Weight[G.V()];
+        marked = new bool[G.V()];
+        for( int i = 0 ; i &lt; G.V() ; i ++ ){
+            distTo[i] = Weight();
+            marked[i] = false;
+            from.push_back(NULL);
+        }
+
+        // 使用索引堆记录当前找到的到达每个顶点的最短距离
+        IndexMinHeap&lt;Weight&gt; ipq(G.V());
+
+        // 对于其实点s进行初始化
+        distTo[s] = Weight();
+        from[s] = new Edge&lt;Weight&gt;(s, s, 0);
+        ipq.insert(s, distTo[s] );
+        marked[s] = true;
+        while( !ipq.isEmpty() ){
+            int v = ipq.extractMinIndex();
+
+            // distTo[v]就是s到v的最短距离
+            marked[v] = true;
+
+            // 对v的所有相邻节点进行更新
+            typename Graph::adjIterator adj(G, v);
+            for( Edge&lt;Weight&gt;* e = adj.begin() ; !adj.end() ; e = adj.next() ){
+                int w = e-&gt;other(v);
+                // 如果从s点到w点的最短路径还没有找到
+                if( !marked[w] ){
+                    // 如果w点以前没有访问过,
+                    // 或者访问过, 但是通过当前的v点到w点距离更短, 则进行更新
+                    if( from[w] == NULL || distTo[v] + e-&gt;wt() &lt; distTo[w] ){
+                        distTo[w] = distTo[v] + e-&gt;wt();
+                        from[w] = e;
+                        if( ipq.contain(w) )
+                            ipq.change(w, distTo[w] );//最小索引堆支持change操作
+                        else
+                            ipq.insert(w, distTo[w] );
+                    }
+                }
+            }
+        }
+    }
+
+    // 析构函数
+    ~Dijkstra(){
+        delete[] distTo;
+        delete[] marked;
+        delete from[0];
+    }
+
+    // 返回从s点到w点的最短路径长度
+    Weight shortestPathTo( int w ){
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        assert( hasPathTo(w) );
+        return distTo[w];
+    }
+
+    // 判断从s点到w点是否联通
+    bool hasPathTo( int w ){
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        return marked[w];
+    }
+
+    // 寻找从s到w的最短路径, 将整个路径经过的边存放在vec中
+    void shortestPath( int w, vector&lt;Edge&lt;Weight&gt;&gt; &amp;vec ){
+
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        assert( hasPathTo(w) );
+
+        // 通过from数组逆向查找到从s到w的路径, 存放到栈中
+        stack&lt;Edge&lt;Weight&gt;*&gt; s;
+        Edge&lt;Weight&gt; *e = from[w];
+        while( e-&gt;v() != this-&gt;s ){
+            s.push(e);
+            e = from[e-&gt;v()];
+        }
+        s.push(e);
+
+        // 从栈中依次取出元素, 获得顺序的从s到w的路径
+        while( !s.empty() ){
+            e = s.top();
+            vec.push_back( *e );
+            s.pop();
+        }
+    }
+
+    // 打印出从s点到w点的路径
+    void showPath(int w){
+
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        assert( hasPathTo(w) );
+
+        vector&lt;Edge&lt;Weight&gt;&gt; vec;
+        shortestPath(w, vec);
+        for( int i = 0 ; i &lt; vec.size() ; i ++ ){
+            cout&lt;&lt;vec[i].v()&lt;&lt;&quot; -&gt; &quot;;
+            if( i == vec.size()-1 )
+                cout&lt;&lt;vec[i].w()&lt;&lt;endl;
+        }
+    }
+};
+</code></pre><p>main.cpp:</p>
+<pre><code>// 测试我们的Dijkstra最短路径算法
+int main() {
+
+    string filename = &quot;testG1.txt&quot;;
+    int V = 5;
+
+    SparseGraph&lt;int&gt; g = SparseGraph&lt;int&gt;(V, true);
+    // Dijkstra最短路径算法同样适用于有向图
+    //SparseGraph&lt;int&gt; g = SparseGraph&lt;int&gt;(V, false);
+    ReadGraph&lt;SparseGraph&lt;int&gt;, int&gt; readGraph(g, filename);
+
+    cout&lt;&lt;&quot;Test Dijkstra:&quot;&lt;&lt;endl&lt;&lt;endl;
+    Dijkstra&lt;SparseGraph&lt;int&gt;, int&gt; dij(g,0);
+    for( int i = 0 ; i &lt; V ; i ++ ){
+        if(dij.hasPathTo(i)){
+            cout&lt;&lt;&quot;Shortest Path to &quot;&lt;&lt;i&lt;&lt;&quot; : &quot;&lt;&lt;dij.shortestPathTo(i)&lt;&lt;endl;
+            dij.showPath(i);
+        }
+        else
+            cout&lt;&lt;&quot;No Path to &quot;&lt;&lt;i&lt;&lt;endl;
+
+        cout&lt;&lt;&quot;----------&quot;&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h2 id="负权边和Bellman-Ford算法"><a href="#负权边和Bellman-Ford算法" class="headerlink" title="负权边和Bellman-Ford算法"></a>负权边和Bellman-Ford算法</h2><p><strong>dijkstra算法不能处理负权边</strong></p>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/152896022104854lpiurf.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<ul>
+<li><p>拥有负权环的不存在最短路径<br><img src="http://otwbgbfg8.bkt.clouddn.com/15289608255339psr85di.png?imageView/2/w/400/q/100" alt="paste image"></p>
+</li>
+<li><p>两边形成负权环</p>
+</li>
+</ul>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528961953710ivjzlqfq.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<h3 id="Bellman-Ford-单源最短路径算法"><a href="#Bellman-Ford-单源最短路径算法" class="headerlink" title="Bellman-Ford 单源最短路径算法"></a>Bellman-Ford 单源最短路径算法</h3><ul>
+<li>一个图不能有负权环</li>
+<li>bellman-ford可以判断图中是否有负权环</li>
+<li>从一点到另外一点的最短路径，最多经过所有的V个顶线，有V-1条边</li>
+<li>否则，存在顶点经过了两次，既存在负权环</li>
+</ul>
 <blockquote>
-<p>Node.js: allows to package an application with all of its dependencies into a standardized unit。</p>
+<p>松弛操作的核心是我们找到了一条边的路径，我们看一下有没有两条边的路径比他权值小。</p>
 </blockquote>
-<p>这是node.js的解释：docker允许一个应用程序及其所有依赖以一种标准的单位来进行打包。</p>
-<p>wiki的定义：</p>
-<blockquote>
-<p>Docker是一个开放源代码软件项目，让应用程序布署在软件容器下的工作可以自动化进行，借此在Linux操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制[1]。Docker利用Linux核心中的资源分脱机制，例如cgroups，以及Linux核心名字空间（name space），来创建独立的软件容器（containers）。这可以在单一Linux实体下运作，避免引导一个虚拟机造成的额外负担[2]。Linux核心对名字空间的支持完全隔离了工作环境中应用程序的视野，包括进程树、网络、用户ID与挂载文件系统，而核心的cgroup提供资源隔离，包括CPU、内存、block I/O与网络。从0.9版本起，Dockers在使用抽象虚拟是经由libvirt的 LXC与systemd - nspawn提供界面的基础上，开始包括libcontainer库做为以自己的方式开始直接使用由Linux核心提供的虚拟化的设施，<br>依据行业分析公司“451研究”：“Dockers是有能力打包应用程序及其虚拟容器，可以在任何Linux服务器上运行的依赖性工具，这有助于实现灵活性和便携性，应用程序在任何地方都可以运行，无论是公有云、私有云、单机等。”</p>
+<ul>
+<li>对一个点的一次松弛操作，就是找到经过这个点的另外一条路径，多一条边，权值更小。</li>
+<li>如果一个图没有负权环，从一点到另外一点的最短路径，最多经过所有的V个顶线，有V-1条边</li>
+<li>对所有的点进行V-1次松弛操作</li>
+<li>对所有的点进行V-1次松弛操作，理论上就找到了从源点到其他所有点的最短路径。</li>
+<li>如果还可以继续松弛，所说原图中有负权环。</li>
+</ul>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><pre><code>// 使用BellmanFord算法求最短路径
+template &lt;typename Graph, typename Weight&gt;
+class BellmanFord{
+
+private:
+    Graph &amp;G;                   // 图的引用
+    int s;                      // 起始点
+    Weight* distTo;             // distTo[i]存储从起始点s到i的最短路径长度
+    vector&lt;Edge&lt;Weight&gt;*&gt; from; // from[i]记录最短路径中, 到达i点的边是哪一条
+                                // 可以用来恢复整个最短路径
+    bool hasNegativeCycle;      // 标记图中是否有负权环
+
+    // 判断图中是否有负权环
+    bool detectNegativeCycle(){
+
+        for( int i = 0 ; i &lt; G.V() ; i ++ ){
+            typename Graph::adjIterator adj(G,i);
+            for( Edge&lt;Weight&gt;* e = adj.begin() ; !adj.end() ; e = adj.next() )
+                if( from[e-&gt;v()] &amp;&amp; distTo[e-&gt;v()] + e-&gt;wt() &lt; distTo[e-&gt;w()] )
+                    return true;
+        }
+
+        return false;
+    }
+
+public:
+    // 构造函数, 使用BellmanFord算法求最短路径
+    BellmanFord(Graph &amp;graph, int s):G(graph){
+
+        this-&gt;s = s;
+        distTo = new Weight[G.V()];
+        // 初始化所有的节点s都不可达, 由from数组来表示
+        for( int i = 0 ; i &lt; G.V() ; i ++ )
+            from.push_back(NULL);
+
+        // 设置distTo[s] = 0, 并且让from[s]不为NULL, 表示初始s节点可达且距离为0
+        distTo[s] = Weight();
+        from[s] = new Edge&lt;Weight&gt;(s, s, 0); // 这里我们from[s]的内容是new出来的, 注意要在析构函数里delete掉
+
+        // Bellman-Ford的过程
+        // 进行V-1次循环, 每一次循环求出从起点到其余所有点, 最多使用pass步可到达的最短距离
+        for( int pass = 1 ; pass &lt; G.V() ; pass ++ ){
+
+            // 每次循环中对所有的边进行一遍松弛操作
+            // 遍历所有边的方式是先遍历所有的顶点, 然后遍历和所有顶点相邻的所有边
+            for( int i = 0 ; i &lt; G.V() ; i ++ ){
+                // 使用我们实现的邻边迭代器遍历和所有顶点相邻的所有边
+                typename Graph::adjIterator adj(G,i);
+                for( Edge&lt;Weight&gt;* e = adj.begin() ; !adj.end() ; e = adj.next() )
+                    // 对于每一个边首先判断e-&gt;v()可达
+                    // 之后看如果e-&gt;w()以前没有到达过， 显然我们可以更新distTo[e-&gt;w()]
+                    // 或者e-&gt;w()以前虽然到达过, 但是通过这个e我们可以获得一个更短的距离, 即可以进行一次松弛操作, 我们也可以更新distTo[e-&gt;w()]
+                    if( from[e-&gt;v()] &amp;&amp; (!from[e-&gt;w()] || distTo[e-&gt;v()] + e-&gt;wt() &lt; distTo[e-&gt;w()]) ){
+                        distTo[e-&gt;w()] = distTo[e-&gt;v()] + e-&gt;wt();
+                        from[e-&gt;w()] = e;
+                    }
+            }
+        }
+
+        hasNegativeCycle = detectNegativeCycle();
+    }
+
+    // 析构函数
+    ~BellmanFord(){
+
+        delete[] distTo;
+        delete from[s];
+    }
+
+    // 返回图中是否有负权环
+    bool negativeCycle(){
+        return hasNegativeCycle;
+    }
+
+    // 返回从s点到w点的最短路径长度
+    Weight shortestPathTo( int w ){
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        assert( !hasNegativeCycle );
+        assert( hasPathTo(w) );
+        return distTo[w];
+    }
+
+    // 判断从s点到w点是否联通
+    bool hasPathTo( int w ){
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        return from[w] != NULL;
+    }
+
+    // 寻找从s到w的最短路径, 将整个路径经过的边存放在vec中
+    void shortestPath( int w, vector&lt;Edge&lt;Weight&gt;&gt; &amp;vec ){
+
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        assert( !hasNegativeCycle );
+        assert( hasPathTo(w) );
+
+        // 通过from数组逆向查找到从s到w的路径, 存放到栈中
+        stack&lt;Edge&lt;Weight&gt;*&gt; s;
+        Edge&lt;Weight&gt; *e = from[w];
+        while( e-&gt;v() != this-&gt;s ){
+            s.push(e);
+            e = from[e-&gt;v()];
+        }
+        s.push(e);
+
+        // 从栈中依次取出元素, 获得顺序的从s到w的路径
+        while( !s.empty() ){
+            e = s.top();
+            vec.push_back( *e );
+            s.pop();
+        }
+    }
+
+    // 打印出从s点到w点的路径
+    void showPath(int w){
+
+        assert( w &gt;= 0 &amp;&amp; w &lt; G.V() );
+        assert( !hasNegativeCycle );
+        assert( hasPathTo(w) );
+
+        vector&lt;Edge&lt;Weight&gt;&gt; vec;
+        shortestPath(w, vec);
+        for( int i = 0 ; i &lt; vec.size() ; i ++ ){
+            cout&lt;&lt;vec[i].v()&lt;&lt;&quot; -&gt; &quot;;
+            if( i == vec.size()-1 )
+                cout&lt;&lt;vec[i].w()&lt;&lt;endl;
+        }
+    }
+};
+</code></pre><p>main.cpp:</p>
+<pre><code>// 测试Bellman-Ford算法
+int main() {
+
+    string filename = &quot;testG2.txt&quot;;
+    //string filename = &quot;testG_negative_circle.txt&quot;;
+    int V = 5;
+
+    SparseGraph&lt;int&gt; g = SparseGraph&lt;int&gt;(V, true);
+    ReadGraph&lt;SparseGraph&lt;int&gt;, int&gt; readGraph(g, filename);
+
+    cout&lt;&lt;&quot;Test Bellman-Ford:&quot;&lt;&lt;endl&lt;&lt;endl;
+    BellmanFord&lt;SparseGraph&lt;int&gt;, int&gt; bellmanFord(g,0);
+    if( bellmanFord.negativeCycle() )
+        cout&lt;&lt;&quot;The graph contain negative cycle!&quot;&lt;&lt;endl;
+    else
+        for( int i = 1 ; i &lt; V ; i ++ ) {
+            if (bellmanFord.hasPathTo(i)) {
+                cout &lt;&lt; &quot;Shortest Path to &quot; &lt;&lt; i &lt;&lt; &quot; : &quot; &lt;&lt; bellmanFord.shortestPathTo(i) &lt;&lt; endl;
+                bellmanFord.showPath(i);
+            }
+            else
+                cout &lt;&lt; &quot;No Path to &quot; &lt;&lt; i &lt;&lt; endl;
+
+            cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;
+        }
+
+    return 0;
+}
+</code></pre><blockquote>
+<p>用于有向图，因为无向图中一条负权边就等价于两个方向都有，会形成环。</p>
 </blockquote>
-<h2 id="类比："><a href="#类比：" class="headerlink" title="类比："></a>类比：</h2><ul>
-<li>可以粗略的理解为轻量级的虚拟机</li>
-<li>开挂的chroot</li>
-</ul>
-<h2 id="VM-vs-Docker"><a href="#VM-vs-Docker" class="headerlink" title="VM vs Docker"></a>VM vs Docker</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim" alt="paste image"></p>
-<h1 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h1><h2 id="for-mac"><a href="#for-mac" class="headerlink" title="for mac"></a>for mac</h2><p>首先在<a href="docker for mac">https://store.docker.com/editions/community/docker-ce-desktop-mac</a>官网进行下载，安装和安装普通mac软件一样。<br>安装完毕后在右上角有一个小船的标示。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim" alt="paste image"></p>
-<p>当然可以在命令行中输入：<code>docder info</code>显示<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim" alt="paste image"></p>
-<p>表示安装成功！</p>
-<h1 id="docker-基本概念"><a href="#docker-基本概念" class="headerlink" title="docker 基本概念"></a>docker 基本概念</h1><h2 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h2><p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:14.04 就包含了完整的一套 Ubuntu 14.04 最小系统的 root 文件系统。</p>
-<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
-<h2 id="Docker-容器"><a href="#Docker-容器" class="headerlink" title="Docker 容器"></a>Docker 容器</h2><p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
-<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会把容器和虚拟机搞混。</p>
-<p>前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为容器存储层。</p>
-<p>容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。</p>
-<p>按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</p>
-<p>数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器可以随意删除、重新 run，数据却不会丢失。</p>
-<h2 id="Docker-Registry"><a href="#Docker-Registry" class="headerlink" title="Docker Registry"></a>Docker Registry</h2><p>镜像构建完成后，可以很容易的在当前宿主上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。</p>
-<p>一个 Docker Registry 中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。</p>
-<p>通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 &lt;仓库名&gt;:&lt;标签&gt; 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 latest 作为默认标签。</p>
-<p>以 Ubuntu 镜像 为例，ubuntu 是仓库的名字，其内包含有不同的版本标签，如，14.04, 16.04。我们可以通过 ubuntu:14.04，或者 ubuntu:16.04 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 ubuntu，那将视为 ubuntu:latest。</p>
-<p>仓库名经常以 两段式路径 形式出现，比如 jwilder/nginx-proxy，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。</p>
-<p>最常使用的 Registry 公开服务是官方的 Docker Hub，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 CoreOS 的 Quay.io，CoreOS 相关的镜像存储在这里；Google 的 Google Container Registry，Kubernetes 的镜像使用的就是这个服务。</p>
-<h1 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h1><ul>
-<li>获取镜像：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>获取镜像：</li>
+<h2 id="更多和最短路径相关的问题"><a href="#更多和最短路径相关的问题" class="headerlink" title="更多和最短路径相关的问题"></a>更多和最短路径相关的问题</h2><h3 id="单源最短路径算法-具体实现改进"><a href="#单源最短路径算法-具体实现改进" class="headerlink" title="单源最短路径算法 具体实现改进"></a>单源最短路径算法 具体实现改进</h3><ul>
+<li><p>具体实现，distTo[i] 初始化为“正无穷”</p>
+<pre><code>if( from[e-&gt;v()] &amp;&amp; (!from[e-&gt;w()] || distTo[e-&gt;v()] + e-&gt;wt() &lt; distTo[e-&gt;w()]) ){
+                      distTo[e-&gt;w()] = distTo[e-&gt;v()] + e-&gt;wt();
+                      from[e-&gt;w()] = e;
+                  }
+</code></pre></li>
 </ul>
 <ul>
-<li>列出镜像</li>
+<li>利用队列数据结构  </li>
+<li>queue-based bellman-ford算法</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure>
-<ul>
-<li>利用 commit 理解镜像构成</li>
+<h3 id="单源最短路径算法对比"><a href="#单源最短路径算法对比" class="headerlink" title="单源最短路径算法对比"></a>单源最短路径算法对比</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1528968124691skvnq05d.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h3 id="所有对最短路径算法"><a href="#所有对最短路径算法" class="headerlink" title="所有对最短路径算法"></a>所有对最短路径算法</h3><ul>
+<li>Floyed算法，处理无负权环的图  </li>
+<li>O( V^3 )</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit [选项] &lt;容器ID或容器名&gt; [&lt;仓库名&gt;[:&lt;标签&gt;]]</div></pre></td></tr></table></figure>
-<ul>
-<li>删除本地镜像</li>
+<h3 id="最长路径算法"><a href="#最长路径算法" class="headerlink" title="最长路径算法"></a>最长路径算法</h3><ul>
+<li>最长路径问题不能有正权环。  </li>
+<li>无权图的最长路径问题是指数级难度的。  </li>
+<li>对于有权图，不能使用Dijkstra求最长路径问题。  </li>
+<li>可以使用 Bellman-Ford算法。（取负操作）</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</div></pre></td></tr></table></figure>
-<ul>
-<li>启动容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8002:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf lnmp/yaf:v1 /sbin/init</div><div class="line"></div><div class="line">docker exec -it lnmp_yaf /bin/bash # 进入</div></pre></td></tr></table></figure>
-<ul>
-<li>终止容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stop [容器ID或容器名]</div></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker attach [容器ID或容器名]</div></pre></td></tr></table></figure>
-<ul>
-<li>删除容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm [容器ID或容器名]</div></pre></td></tr></table></figure>
-<h1 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h1><h2 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h2><p>数据卷是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：</p>
-<p>数据卷可以在容器之间共享和重用<br>对数据卷的修改会立马生效<br>对数据卷的更新，不会影响镜像<br>数据卷默认会一直存在，即使容器被删除<br>*注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷。</p>
-<h2 id="挂载一个主机目录作为数据卷"><a href="#挂载一个主机目录作为数据卷" class="headerlink" title="挂载一个主机目录作为数据卷"></a>挂载一个主机目录作为数据卷</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init</div><div class="line">docker exec -it lnmp_yaf /bin/bash # 进入</div></pre></td></tr></table></figure>
-<h1 id="docker下lnmp配置"><a href="#docker下lnmp配置" class="headerlink" title="docker下lnmp配置"></a>docker下lnmp配置</h1><ul>
-<li>首先安装centos：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull centeros</div></pre></td></tr></table></figure>
-<ul>
-<li>启动镜像并进入</li>
-</ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it centos:latest bash # -it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。我们这里打算进入 bash 执行一些命令并查看返回结果，因此我们需要交互式终端</div></pre></td></tr></table></figure>
-<ul>
-<li>执行一键安装lnmp（需要大概84分钟）</li>
-</ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -c http://soft.vpser.net/lnmp/lnmp1.4.tar.gz &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp</div></pre></td></tr></table></figure>
-<p> 可以需要用yum install 安装wget</p>
-<h1 id="安装yaf扩展"><a href="#安装yaf扩展" class="headerlink" title="安装yaf扩展"></a>安装yaf扩展</h1><ul>
-<li>yaf 扩展安装</li>
-</ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd ~</div><div class="line">wget http://pecl.php.net/get/yaf-3.0.5.tgz</div><div class="line">tar zxvf yaf-3.0.5.tgz</div><div class="line">cd yaf-3.0.5</div><div class="line">phpize # 生成匹配文件</div><div class="line">./configure --with-php-config=/usr/local/php/bin/php-config # php-config存放php的一些配置信息，比如路径等。它会结合本地的php-config配置信息进行前期的编译准备</div><div class="line">make #开始编译</div><div class="line">make test</div><div class="line">make install # 将module下的yaf.so放在/usr/local/php/lib/php/extensions/no-debug-non-zts-20160303/yaf.so下面</div></pre></td></tr></table></figure>
-<ul>
-<li>修改php.ini</li>
-</ul>
-<p>打开php.ini（/usr/local/php/etc/php.ini）,加入下面三行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[Yaf]</div><div class="line">extension=yaf.so</div><div class="line">yaf.environ=&quot;product&quot;</div></pre></td></tr></table></figure>
-<ul>
-<li>添加vhost</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lnmp vhost add</div></pre></td></tr></table></figure>
-<ul>
-<li>修改vhost配置文件</li>
-</ul>
-<p>打开/usr/local/nginx/conf/vhost/imooc.com.conf, 修改为下面的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">server</div><div class="line">    &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name imooc.com n;</div><div class="line">        index index.php;</div><div class="line">        root  /home/work/imooc;</div><div class="line"></div><div class="line">        include enable-php.conf;</div><div class="line"></div><div class="line">        if (!-e $request_filename) &#123;</div><div class="line">            rewrite ^/(.*) /index.php?$1 last;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        access_log  /home/work/logs/imooc.com.log;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>添加yaf项目</li>
-</ul>
-<p><strong>直接用服务器搭建需要注意</strong></p>
-<ul>
-<li>#include enable-php.conf; 改成 include enable-php-pathinfo.conf;</li>
-</ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1520939843100vgelfape.png?imageslim" alt="paste image"></p>
-<ul>
-<li>nginx的配置文件，覆盖了php.ini的配置</li>
-</ul>
-<p>在使用LNMP包安装PHP时，发现直接修改php.ini的配置是无法生效的，其原因竟然是因为nginx的配置文件，覆盖了php.ini的配置。<br>——————————————————————–<br>LNMP 1.4上如果不想用防跨目录还需要将 /usr/local/nginx/conf/fastcgi.conf 里面的fastcgi_param PHP_ADMIN_VALUE “open_basedir=$document_root/:/tmp/:/proc/”; 删除，需要重启nginx。<br>LNMP 1.4上也可以直接使用lnmp1.4/tools/ 目录下的 ./remove_open_basedir_restriction.sh 进行移除。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /home/work/imooc/</div><div class="line">mkdir tmp</div><div class="line">wget https://github.com/laruence/yaf/archive/master.zip</div><div class="line">unzip master.zip </div><div class="line">cd yaf-master/tools/cg/</div><div class="line">./yaf_cg imooc</div><div class="line">cp -rf tmp/yaf-master/tools/cg/output/imooc/* ./ (在imooc目录下）</div></pre></td></tr></table></figure>
-<p>最后的代码项目结果为：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim" alt="paste image"></p>
-<ul>
-<li>今后在这个基础上编写代码：</li>
-</ul>
-<p>可以使用sublime 直接编写啦！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -567,7 +861,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/yaf/" rel="tag"># yaf</a>
+            <a href="/tags/最短路径/" rel="tag"># 最短路径</a>
           
         </div>
       
@@ -580,8 +874,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/28/高性能msyql之mysql构架和历史/" rel="next" title="高性能msyql之mysql构架和历史">
-                <i class="fa fa-chevron-left"></i> 高性能msyql之mysql构架和历史
+              <a href="/2018/06/12/最小生成树/" rel="next" title="带权图与最小生成树">
+                <i class="fa fa-chevron-left"></i> 带权图与最小生成树
               </a>
             
           </div>
@@ -589,10 +883,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/08/高性能的-PHP-API-接口开发之用户类登录、注册接口/" rel="prev" title="高性能的PHP API 接口开发之用户类接口">
-                高性能的PHP API 接口开发之用户类接口 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -803,7 +1093,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是docker？"><span class="nav-number">2.</span> <span class="nav-text">什么是docker？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类比："><span class="nav-number">2.2.</span> <span class="nav-text">类比：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VM-vs-Docker"><span class="nav-number">2.3.</span> <span class="nav-text">VM vs Docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-安装"><span class="nav-number">3.</span> <span class="nav-text">docker 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for-mac"><span class="nav-number">3.1.</span> <span class="nav-text">for mac</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-基本概念"><span class="nav-number">4.</span> <span class="nav-text">docker 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-镜像"><span class="nav-number">4.1.</span> <span class="nav-text">Docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-容器"><span class="nav-number">4.2.</span> <span class="nav-text">Docker 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Registry"><span class="nav-number">4.3.</span> <span class="nav-text">Docker Registry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker常用命令"><span class="nav-number">5.</span> <span class="nav-text">docker常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据管理"><span class="nav-number">6.</span> <span class="nav-text">数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据卷"><span class="nav-number">6.1.</span> <span class="nav-text">数据卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载一个主机目录作为数据卷"><span class="nav-number">6.2.</span> <span class="nav-text">挂载一个主机目录作为数据卷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker下lnmp配置"><span class="nav-number">7.</span> <span class="nav-text">docker下lnmp配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装yaf扩展"><span class="nav-number">8.</span> <span class="nav-text">安装yaf扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最短路径问题和松弛操作"><span class="nav-number">1.</span> <span class="nav-text">最短路径问题和松弛操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#松弛操作"><span class="nav-number">1.1.</span> <span class="nav-text">松弛操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dijkstra-单源最短路径算法"><span class="nav-number">2.</span> <span class="nav-text">dijkstra 单源最短路径算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#局限性"><span class="nav-number">2.1.</span> <span class="nav-text">局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负权边和Bellman-Ford算法"><span class="nav-number">3.</span> <span class="nav-text">负权边和Bellman-Ford算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bellman-Ford-单源最短路径算法"><span class="nav-number">3.1.</span> <span class="nav-text">Bellman-Ford 单源最短路径算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多和最短路径相关的问题"><span class="nav-number">4.</span> <span class="nav-text">更多和最短路径相关的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单源最短路径算法-具体实现改进"><span class="nav-number">4.1.</span> <span class="nav-text">单源最短路径算法 具体实现改进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单源最短路径算法对比"><span class="nav-number">4.2.</span> <span class="nav-text">单源最短路径算法对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有对最短路径算法"><span class="nav-number">4.3.</span> <span class="nav-text">所有对最短路径算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长路径算法"><span class="nav-number">4.4.</span> <span class="nav-text">最长路径算法</span></a></li></ol></li></ol></div>
             
 
           </div>
