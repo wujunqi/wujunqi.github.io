@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="查找，是使用计算机处理问题时的一个最基本的任务，因此也是面试中非常常见的一类问题。很多算法问题的本质，就是要能够高效查找。学会使用系统库中的map和set，就已经成功了一半。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode题解(查找表问题)">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/leetcode题解-查找表问题/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="查找，是使用计算机处理问题时的一个最基本的任务，因此也是面试中非常常见的一类问题。很多算法问题的本质，就是要能够高效查找。学会使用系统库中的map和set，就已经成功了一半。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529394598441n9z9igu9.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15293960784422x2jh5za.png?imageslim">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-b167da61ea9bbc7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/393">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-405ebd21f45a6f92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/68">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529459651173z3s8aahm.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529461918249ml0c5fcn.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529465308641g3ark9t5.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529467659407modz27uh.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529475128185mioy9j4y.png?imageslim">
+<meta property="og:updated_time" content="2018-06-20T06:19:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode题解(查找表问题)">
+<meta name="twitter:description" content="查找，是使用计算机处理问题时的一个最基本的任务，因此也是面试中非常常见的一类问题。很多算法问题的本质，就是要能够高效查找。学会使用系统库中的map和set，就已经成功了一半。">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1529394598441n9z9igu9.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/19/leetcode题解-查找表问题/"/>
+
+
+
+
+
+  <title>leetcode题解(查找表问题) | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/leetcode题解-查找表问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode题解(查找表问题)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T15:30:46+08:00">
+                2018-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/19/leetcode题解-查找表问题/" class="leancloud_visitors" data-flag-title="leetcode题解(查找表问题)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>查找，是使用计算机处理问题时的一个最基本的任务，因此也是面试中非常常见的一类问题。很多算法问题的本质，就是要能够高效查找。学会使用系统库中的map和set，就已经成功了一半。</p>
+<a id="more"></a>
+<h2 id="set的使用"><a href="#set的使用" class="headerlink" title="set的使用"></a>set的使用</h2><h3 id="两类查找问题"><a href="#两类查找问题" class="headerlink" title="两类查找问题"></a>两类查找问题</h3><ul>
+<li>查找有无：元素’a’是否存在？set；集合</li>
+<li>查找对应关系（键值对应）：元素’a’出现了几次？map；字典</li>
+<li>通常语言的标准库中都内置set和map </li>
+<li>容器类<ul>
+<li>屏蔽实现细节</li>
+<li>了解语言中标准库里常见容器类的使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见操作："><a href="#常见操作：" class="headerlink" title="常见操作："></a>常见操作：</h3><ul>
+<li>insert</li>
+<li>find</li>
+<li>erase:删除</li>
+<li>change (map)</li>
+</ul>
+<h3 id="leetcode349-两个数组的交集"><a href="#leetcode349-两个数组的交集" class="headerlink" title="leetcode349. 两个数组的交集"></a>leetcode349. 两个数组的交集</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529394598441n9z9igu9.png?imageslim" alt="paste image"></p>
+<ul>
+<li>结果中每个元素只能出现一次</li>
+<li>出现的顺序可以是任意的</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">// 349. Intersection of Two Arrays</span></div><div class="line">    <span class="comment">// 时间复杂度：O(nlogn)</span></div><div class="line">    <span class="comment">// 空间复杂度：O(n)</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="keyword">public</span>:</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersection(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line">            <span class="comment">//O(nlogn)</span></div><div class="line">    </div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; record;</div><div class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums1.size() ; i ++ )</div><div class="line">                record.insert(nums1[i]);</div><div class="line">            <span class="comment">//O(nlogn)</span></div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; resultSet;</div><div class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">                <span class="keyword">if</span>( record.find( nums2[i] ) != record.end() )</div><div class="line">                    resultSet.insert( nums2[i] );</div><div class="line">            <span class="comment">//o(n)</span></div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; resultVector;</div><div class="line">            <span class="keyword">for</span>(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = resultSet.begin() ; iter != resultSet.end() ; iter ++ )</div><div class="line">                resultVector.push_back( *iter );</div><div class="line">    </div><div class="line">            <span class="keyword">return</span> resultVector;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line"></div><div class="line">改写程序:</div><div class="line"></div><div class="line">    <span class="comment">// 349. Intersection of Two Arrays</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="keyword">public</span>:</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersection(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line">    </div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; record(nums1.begin(), nums1.end());</div><div class="line">    </div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; resultSet;</div><div class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">                <span class="keyword">if</span>( record.find( nums2[i] ) != record.end() )</div><div class="line">                    resultSet.insert( nums2[i] );</div><div class="line">    </div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(resultSet.begin(), resultSet.end());</div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<h2 id="map的使用"><a href="#map的使用" class="headerlink" title="map的使用"></a>map的使用</h2><h3 id="leetcode350-两个数组的交集-II"><a href="#leetcode350-两个数组的交集-II" class="headerlink" title="leetcode350. 两个数组的交集 II"></a>leetcode350. 两个数组的交集 II</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15293960784422x2jh5za.png?imageslim" alt="paste image"></p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 350. Intersection of Two Arrays II</span></div><div class="line"><span class="comment">// 时间复杂度：O(nlogn)</span></div><div class="line"><span class="comment">// 空间复杂度：O(n)</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersect(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; record;</div><div class="line">        <span class="comment">//O(nlogn)</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums1.size() ; i ++ )</div><div class="line">            record[nums1[i]] += <span class="number">1</span>;</div><div class="line"></div><div class="line">        <span class="comment">//o(nlogn)</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; resultVector;</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">            <span class="keyword">if</span>( record[ nums2[i] ] &gt; <span class="number">0</span> )&#123;</div><div class="line">                resultVector.push_back( nums2[i] );</div><div class="line">                record[nums2[i]] --;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> resultVector;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>思考</strong></p>
+<ul>
+<li>数组有序如何改写？</li>
+</ul>
+<h2 id="set和map不同底层实现的区别"><a href="#set和map不同底层实现的区别" class="headerlink" title="set和map不同底层实现的区别"></a>set和map不同底层实现的区别</h2><h3 id="常见操作：-1"><a href="#常见操作：-1" class="headerlink" title="常见操作："></a>常见操作：</h3><ul>
+<li>insert</li>
+<li>find</li>
+<li>erase</li>
+<li><p>change (map)</p>
+</li>
+<li><p>set和map可以有不同的底层实现</p>
+</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-b167da61ea9bbc7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/393" alt="底层实现"></p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-405ebd21f45a6f92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/68" alt="哈希表"></p>
+<blockquote>
+<p>哈希表不管查找、插入、删除都是O(1)的时间复杂度。</p>
+</blockquote>
+<ul>
+<li>哈希表的缺点是失去了数据的顺序性</li>
+</ul>
+<h3 id="数据的顺序性"><a href="#数据的顺序性" class="headerlink" title="数据的顺序性"></a>数据的顺序性</h3><ul>
+<li>数据集中的最大值和最小值</li>
+<li>某个元素的前驱和后继</li>
+<li>某个元素的floor和ceil</li>
+<li>某个元素的排位rank</li>
+<li><p>选择某个排位的元素select</p>
+</li>
+<li><p>map和set的底层实现为平衡二叉树  </p>
+</li>
+<li>unordered_map和unordered_set的底层实现为哈希表</li>
+</ul>
+<h3 id="改用哈希表实现的代码"><a href="#改用哈希表实现的代码" class="headerlink" title="改用哈希表实现的代码"></a>改用哈希表实现的代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></div><div class="line">   <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">   </div><div class="line">   <span class="comment">// 349. Intersection of Two Arrays</span></div><div class="line">   <span class="comment">// 时间复杂度：O(n)</span></div><div class="line">   <span class="comment">// 空间复杂度：O(n)</span></div><div class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">   <span class="keyword">public</span>:</div><div class="line">       <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersection(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line">           <span class="comment">// O(n)</span></div><div class="line">           <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; record(nums1.begin(), nums1.end());</div><div class="line">           <span class="comment">// O(n)</span></div><div class="line">           <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; resultSet;</div><div class="line">           <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">               <span class="keyword">if</span>( record.find( nums2[i] ) != record.end() )</div><div class="line">                   resultSet.insert( nums2[i] );</div><div class="line">           <span class="comment">// O(n)</span></div><div class="line">           <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(resultSet.begin(), resultSet.end());</div><div class="line">       &#125;</div><div class="line">   &#125;;</div><div class="line">  </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//改写过使用hash表实现底层的unorder_map</span></div><div class="line"></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></div><div class="line">   <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">   </div><div class="line">   <span class="comment">/// 350. Intersection of Two Arrays II</span></div><div class="line">   <span class="comment">// 时间复杂度：O(n)</span></div><div class="line">   <span class="comment">// 空间复杂度：O(n)</span></div><div class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">   <span class="keyword">public</span>:</div><div class="line">       <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersect(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line">           <span class="comment">// O(n)</span></div><div class="line">           <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; record;</div><div class="line">           <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums1.size() ; i ++ )</div><div class="line">               record[nums1[i]] += <span class="number">1</span>;</div><div class="line">           <span class="comment">// O(n)</span></div><div class="line">           <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; resultVector;</div><div class="line">           <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">               <span class="keyword">if</span>( record[ nums2[i] ] &gt; <span class="number">0</span> )&#123;</div><div class="line">                   resultVector.push_back( nums2[i] );</div><div class="line">                   record[nums2[i]] --;</div><div class="line">               &#125;</div><div class="line">           <span class="comment">// O(n)</span></div><div class="line">           <span class="keyword">return</span> resultVector;</div><div class="line">       &#125;</div><div class="line">   &#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似题目"><a href="#相似题目" class="headerlink" title="相似题目"></a>相似题目</h3><ul>
+<li>leetcode242 Valid Anagram</li>
+</ul>
+<blockquote>
+<p>Anagram：一个字符串中的字母调整顺序后与原字符串一致。</p>
+</blockquote>
+<ul>
+<li>空串</li>
+<li>字符集</li>
+</ul>
+<ul>
+<li>leetcode202 Happy Number</li>
+</ul>
+<blockquote>
+<p>判断一个数是否为happy number。happy number是指，一个数，将其替换为其各位数字的平方和，重复这个过程，如果最终能得到1，这是happy number，如果这个过程陷入了一个不包含1的循环，则不是happy number</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">判断一个数是否为happy number。以19为例：</div><div class="line"></div><div class="line">1^2 + 9^2 = 82</div><div class="line"></div><div class="line">8^2 + 2^2 = 68</div><div class="line"></div><div class="line">6^2 + 8^2 = 100</div><div class="line"></div><div class="line">1^2 + 0^2 + 0^2 = 1 Happy Number!</div></pre></td></tr></table></figure>
+<ul>
+<li>leetcode290 Word Pattern</li>
+</ul>
+<blockquote>
+<p>给出一个模式（pattern）以及一个字符串，判断这个字符串是否符合模式？</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如pattern=“abba”，str=“dog cat cat dog”，返回true</div><div class="line">    </div><div class="line">如pattern=“abba”，str=“dog cat cat fish”，返回false</div><div class="line">    </div><div class="line">字符集？</div><div class="line">    </div><div class="line">空串符合任意模式？还是不符合任意模式？</div></pre></td></tr></table></figure>
+<ul>
+<li>leetcode205 Isomorphic Strings </li>
+</ul>
+<blockquote>
+<p>判断两个字符串是否同构？<br>如果我们能够寻找到一个字符集到字符集的映射，使得通过这个字符集的映射，s可以转变为t，则称为s和t同构。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如 egg 和 add，返回true</div><div class="line">如 foo 和 bar，返回false</div><div class="line">如 paper 和 title，返回true</div></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li>字符集？  </li>
+<li>空串  </li>
+<li><p>是否可以一个字母映射到自己？</p>
+</li>
+<li><p>451 Sort Characters By Frequency</p>
+</li>
+</ul>
+<blockquote>
+<p>给定一个字符串，按照字母出现频率的倒序重组整个字符串</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">如“tree”，返回“eert”</div><div class="line">如“cccaaa”，返回“cccaaa”</div><div class="line">如“Aabb”，返回“bbAa”</div><div class="line">对于相同频次的字母，顺序任意。大小写敏感。</div></pre></td></tr></table></figure>
+<h2 id="一个使用查找表的经典问题"><a href="#一个使用查找表的经典问题" class="headerlink" title="一个使用查找表的经典问题"></a>一个使用查找表的经典问题</h2><h3 id="leetcode1-两数之和"><a href="#leetcode1-两数之和" class="headerlink" title="leetcode1 两数之和"></a>leetcode1 两数之和</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529459651173z3s8aahm.png?imageslim" alt="paste image"></p>
+<p><strong>注意</strong></p>
+<ul>
+<li>索引从0开始计算还是从1开始计算？  </li>
+<li>没有解怎么办？  </li>
+<li>有多个解怎么办？ 保证有唯一解</li>
+</ul>
+<h4 id="暴力解法：O-n-2"><a href="#暴力解法：O-n-2" class="headerlink" title="暴力解法：O(n^2)"></a>暴力解法：O(n^2)</h4><ul>
+<li>遍历所有数据对。判断是否等于target。</li>
+</ul>
+<h4 id="双索引对撞"><a href="#双索引对撞" class="headerlink" title="双索引对撞"></a>双索引对撞</h4><ul>
+<li>排序后，使用双索引对撞：O(nlogn) + O(n) = O(nlogn)</li>
+</ul>
+<h4 id="使用查找表"><a href="#使用查找表" class="headerlink" title="使用查找表"></a>使用查找表</h4><ul>
+<li>查找表。将所有元素放入查找表，之后对于每一个元素a，查找 target -   a 是否存在。存在的话索引是谁。</li>
+<li>将所有元素放入查找表 - 不行</li>
+<li>只把v前面的放入查找表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//时间复杂度:O(n)</div><div class="line">//空间复杂度：O(n)</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</div><div class="line"></div><div class="line">        unordered_map&lt;int,int&gt; record;</div><div class="line">        for( int i = 0 ; i &lt; nums.size() ; i ++ )&#123;</div><div class="line"></div><div class="line">            int complement = target - nums[i];</div><div class="line">            if( record.find(complement) != record.end() )&#123;</div><div class="line">                int res[] = &#123;i, record[complement]&#125;;</div><div class="line">                return vector&lt;int&gt;(res, res + 2);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            record[nums[i]] = i;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        throw invalid_argument(&quot;the input has no solution&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题"><a href="#相似问题" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode15-3Sum"><a href="#leetcode15-3Sum" class="headerlink" title="leetcode15 3Sum"></a>leetcode15 3Sum</h4><blockquote>
+<p>给出一个整形数组，寻找其中的所有不同的三元组(a,b,c)，使得a+b+c=0<br> 如 nums = [-1, 0, 1, 2, -1, -4]<br> 结果为[ [-1, 0, 1], [-1,-1,2] ]</p>
+</blockquote>
+<ul>
+<li>不同的三元组？</li>
+<li>如果有多个解，解的顺序？</li>
+<li>如果没有解？</li>
+</ul>
+<h4 id="leetcode18-4Sum"><a href="#leetcode18-4Sum" class="headerlink" title="leetcode18 4Sum"></a>leetcode18 4Sum</h4><blockquote>
+<p>给出一个整形数组，寻找其中的所有不同的四元组(a,b,c,d)，使得a+b+c+d 等于一个给定的数字target。<br>如 nums = [1, 0, -1, 0, -2, 2]，target = 0<br>结果为[ [-1, 0, 0, 1], [-2, -1, 1, 2], [-2, 0, 0, 2] ]</p>
+</blockquote>
+<h4 id="leetcode16-3Sum-Closest"><a href="#leetcode16-3Sum-Closest" class="headerlink" title="leetcode16 3Sum Closest"></a>leetcode16 3Sum Closest</h4><blockquote>
+<p>给出一个整形数组，寻找其中的三个元素a,b,c，使得a+b+c的值最接近另外一个给定的数字target</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如 nums = [-1, 2, 1, -4]，target = 1</div><div class="line">结果为2 ( -1 + 2 + 1 = 2 )</div></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li><p>如果有多个解，其和target值的接近程度一样怎么办？</p>
+</li>
+<li><p>如果没解？（可不可能没解？）</p>
+</li>
+</ul>
+<h2 id="灵活选择键值"><a href="#灵活选择键值" class="headerlink" title="灵活选择键值"></a>灵活选择键值</h2><h3 id="leetcode454-4Sum-II"><a href="#leetcode454-4Sum-II" class="headerlink" title="leetcode454 4Sum II"></a>leetcode454 4Sum II</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529461918249ml0c5fcn.png?imageslim" alt="paste image"></p>
+<h4 id="暴力解法：O-n-4"><a href="#暴力解法：O-n-4" class="headerlink" title="暴力解法：O(n^4)"></a>暴力解法：O(n^4)</h4><p>500^4 = 625,0000,0000</p>
+<h4 id="将D中的元素放入查找表：O-n-3"><a href="#将D中的元素放入查找表：O-n-3" class="headerlink" title="将D中的元素放入查找表：O(n^3)"></a>将D中的元素放入查找表：O(n^3)</h4><p>500^3 = 1,2500,0000</p>
+<h4 id="将C-D的每一种可能放入查找表：O-n-2"><a href="#将C-D的每一种可能放入查找表：O-n-2" class="headerlink" title="将C+D的每一种可能放入查找表：O(n^2)"></a>将C+D的每一种可能放入查找表：O(n^2)</h4><ul>
+<li>500^2 = 25,0000</li>
+<li>要记录每一种和出现了多少次，所以使用map</li>
+</ul>
+<h5 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//时间复杂度O(n^2)</div><div class="line">//空间复杂度O(n^2)</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    int fourSumCount(vector&lt;int&gt;&amp; A, vector&lt;int&gt;&amp; B, vector&lt;int&gt;&amp; C, vector&lt;int&gt;&amp; D) &#123;</div><div class="line"></div><div class="line">        assert( A.size() == B.size() &amp;&amp; B.size() == C.size() &amp;&amp; C.size() == D.size() );</div><div class="line">        unordered_map&lt;int,int&gt; hashtable;</div><div class="line">        for( int i = 0 ; i &lt; C.size() ; i ++ )</div><div class="line">            for( int j = 0 ; j &lt; D.size() ; j ++ )</div><div class="line">                hashtable[C[i]+D[j]] += 1;</div><div class="line"></div><div class="line">        int res = 0;</div><div class="line">        for( int i = 0 ; i &lt; A.size() ; i ++ )</div><div class="line">            for( int j = 0 ; j &lt; B.size() ; j ++ )</div><div class="line">                if( hashtable.find(-A[i]-B[j]) != hashtable.end() )</div><div class="line">                    res += hashtable[-A[i]-B[j]];</div><div class="line"></div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>思考</strong></p>
+<ul>
+<li>将A+B和C+D的每一种可能放入两个查找表：O(n^2)</li>
+</ul>
+<h3 id="相似问题-1"><a href="#相似问题-1" class="headerlink" title="相似问题"></a>相似问题</h3><ul>
+<li>leetcode49 Group Anagrams</li>
+</ul>
+<blockquote>
+<p>给出一个字符串数组，将其中所有可以通过颠倒字符顺序产生相同结果的单词进行分组。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如 [ “eat”, “tea”, “tan”, “ate”, “nat”, “bat”]</div><div class="line">返回[ [“ate”, “eat”, “tea”], [“nat”, “tan”], [“bat”] ]</div></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li>字符集  </li>
+<li>大小写敏感</li>
+</ul>
+<h2 id="灵活选择键值2"><a href="#灵活选择键值2" class="headerlink" title="灵活选择键值2"></a>灵活选择键值2</h2><h3 id="leetcode447-回旋镖的数量-Number-of-Boomerangs"><a href="#leetcode447-回旋镖的数量-Number-of-Boomerangs" class="headerlink" title="leetcode447 回旋镖的数量(Number of Boomerangs)"></a>leetcode447 回旋镖的数量(Number of Boomerangs)</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529465308641g3ark9t5.png?imageslim" alt="paste image"></p>
+<h4 id="暴力解法：O-n-3"><a href="#暴力解法：O-n-3" class="headerlink" title="暴力解法：O(n^3)"></a>暴力解法：O(n^3)</h4><ul>
+<li>三重循环枚举所有的可能性。</li>
+</ul>
+<h3 id="使用查找表-1"><a href="#使用查找表-1" class="headerlink" title="使用查找表"></a>使用查找表</h3><ul>
+<li>观察到 i 是一个“枢纽”，对于每个点i，遍历其余点到i的距离 </li>
+<li>对于每个枢纽i,计算它到其它点j的距离,并将距离作为键存入map中，value为距离的个数。</li>
+<li>O(n^2)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//时间复杂度：O(n^2)</div><div class="line">//空间复杂度：O(n)</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    int numberOfBoomerangs(vector&lt;pair&lt;int, int&gt;&gt;&amp; points) &#123;</div><div class="line"></div><div class="line">        int res = 0;</div><div class="line">        for( int i = 0 ; i &lt; points.size() ; i ++ )&#123;</div><div class="line"></div><div class="line">            // record中存储 点i 到所有其他点的距离出现的频次</div><div class="line">            unordered_map&lt;int, int&gt; record;</div><div class="line">            for( int j = 0 ; j &lt; points.size() ; j ++ )</div><div class="line">                if( j != i )</div><div class="line">                    record[dis(points[i], points[j])] += 1;</div><div class="line"></div><div class="line">            for( unordered_map&lt;int, int&gt;::iterator iter = record.begin() ; iter != record.end() ; iter ++ )</div><div class="line">                res += (iter-&gt;second)*(iter-&gt;second-1);</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">private:</div><div class="line">    int dis( const pair&lt;int,int&gt; &amp;pa, const pair&lt;int,int&gt; &amp;pb)&#123;</div><div class="line">        return (pa.first - pb.first) * (pa.first - pb.first) +</div><div class="line">               (pa.second - pb.second) * (pa.second - pb.second);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题-2"><a href="#相似问题-2" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode149-Max-Points-on-a-Line"><a href="#leetcode149-Max-Points-on-a-Line" class="headerlink" title="leetcode149 Max Points on a Line"></a>leetcode149 Max Points on a Line</h4><blockquote>
+<p>给出2D平面上的n个点，求出最多有多少个点在一条直线上？</p>
+</blockquote>
+<ul>
+<li>点坐标的范围</li>
+<li>点坐标的表示（整数？浮点数？浮点误差？）</li>
+</ul>
+<h2 id="查找表和滑动窗口"><a href="#查找表和滑动窗口" class="headerlink" title="查找表和滑动窗口"></a>查找表和滑动窗口</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529467659407modz27uh.png?imageslim" alt="paste image"></p>
+<h3 id="暴力解法：O-n-2-1"><a href="#暴力解法：O-n-2-1" class="headerlink" title="暴力解法：O(n^2)"></a>暴力解法：O(n^2)</h3><ul>
+<li>时间性能不满足</li>
+</ul>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul>
+<li>结合使用滑动窗口和查找表，不断查找当前滑动窗口内有没有重复值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 时间复杂度: O(n)</div><div class="line">// 空间复杂度: O(k)</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    bool containsNearbyDuplicate(vector&lt;int&gt;&amp; nums, int k) &#123;</div><div class="line"></div><div class="line">        if( nums.size() &lt;= 1 )</div><div class="line">            return false;</div><div class="line"></div><div class="line">        if( k &lt;= 0 )</div><div class="line">            return false;</div><div class="line"></div><div class="line">        unordered_set&lt;int&gt; record;</div><div class="line">        for( int i = 0 ; i &lt; nums.size() ; i ++ )&#123;</div><div class="line"></div><div class="line">            if( record.find( nums[i] ) != record.end() )</div><div class="line">                return true;</div><div class="line"></div><div class="line">            record.insert( nums[i] );</div><div class="line"></div><div class="line">            // 保持record中最多有k个元素</div><div class="line">            // 因为在下一次循环中会添加一个新元素,使得总共考虑k+1个元素</div><div class="line">            if( record.size() == k + 1 )</div><div class="line">                //删除掉最左侧元素</div><div class="line">                record.erase( nums[i-k] );</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题-3"><a href="#相似问题-3" class="headerlink" title="相似问题"></a>相似问题</h3><ul>
+<li>leetcode217 Contains Duplicate </li>
+</ul>
+<blockquote>
+<p>给出一个整形数组，若数组中存在相同的元素，则返回true，否则返回false.</p>
+</blockquote>
+<h2 id="二分搜索树底层实现的顺序性"><a href="#二分搜索树底层实现的顺序性" class="headerlink" title="二分搜索树底层实现的顺序性"></a>二分搜索树底层实现的顺序性</h2><h3 id="leetcode220-存在重复元素-III"><a href="#leetcode220-存在重复元素-III" class="headerlink" title="leetcode220. 存在重复元素 III"></a>leetcode220. 存在重复元素 III</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529475128185mioy9j4y.png?imageslim" alt="paste image"></p>
+<h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><blockquote>
+<p>维持滑动窗的大小为k<br>遍历每一个元素，在活动窗口中寻找|v-nums[i]| &lt; t， 即窗口中的元素范围为：[v-t…v+t]之间。采用ceil和floor可以实现</p>
+</blockquote>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 时间复杂度: O(nlogn)</div><div class="line">// 空间复杂度: O(k)</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    bool containsNearbyAlmostDuplicate(vector&lt;int&gt;&amp; nums, int k, int t) &#123;</div><div class="line"></div><div class="line">        set&lt;long long&gt; record;</div><div class="line">        for( int i = 0 ; i &lt; nums.size() ; i ++ )&#123;</div><div class="line"></div><div class="line">            if( record.lower_bound( (long long)nums[i] - (long long)t ) != record.end() &amp;&amp;</div><div class="line">                *record.lower_bound( (long long)nums[i] - (long long)t ) &lt;= (long long)nums[i] + (long long)t )</div><div class="line">                return true;</div><div class="line"></div><div class="line">            record.insert( nums[i] );</div><div class="line"></div><div class="line">            if( record.size() == k + 1 )</div><div class="line">                record.erase( nums[i-k] );</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/17/数组中的问题其实最常见/" rel="next" title="leetcode题解（数组问题）">
+                <i class="fa fa-chevron-left"></i> leetcode题解（数组问题）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set的使用"><span class="nav-number">1.</span> <span class="nav-text">set的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两类查找问题"><span class="nav-number">1.1.</span> <span class="nav-text">两类查找问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见操作："><span class="nav-number">1.2.</span> <span class="nav-text">常见操作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode349-两个数组的交集"><span class="nav-number">1.3.</span> <span class="nav-text">leetcode349. 两个数组的交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map的使用"><span class="nav-number">2.</span> <span class="nav-text">map的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode350-两个数组的交集-II"><span class="nav-number">2.1.</span> <span class="nav-text">leetcode350. 两个数组的交集 II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-1"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set和map不同底层实现的区别"><span class="nav-number">3.</span> <span class="nav-text">set和map不同底层实现的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见操作：-1"><span class="nav-number">3.1.</span> <span class="nav-text">常见操作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的顺序性"><span class="nav-number">3.2.</span> <span class="nav-text">数据的顺序性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改用哈希表实现的代码"><span class="nav-number">3.3.</span> <span class="nav-text">改用哈希表实现的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似题目"><span class="nav-number">3.4.</span> <span class="nav-text">相似题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个使用查找表的经典问题"><span class="nav-number">4.</span> <span class="nav-text">一个使用查找表的经典问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode1-两数之和"><span class="nav-number">4.1.</span> <span class="nav-text">leetcode1 两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力解法：O-n-2"><span class="nav-number">4.1.1.</span> <span class="nav-text">暴力解法：O(n^2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双索引对撞"><span class="nav-number">4.1.2.</span> <span class="nav-text">双索引对撞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用查找表"><span class="nav-number">4.1.3.</span> <span class="nav-text">使用查找表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题"><span class="nav-number">4.2.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode15-3Sum"><span class="nav-number">4.2.1.</span> <span class="nav-text">leetcode15 3Sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode18-4Sum"><span class="nav-number">4.2.2.</span> <span class="nav-text">leetcode18 4Sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode16-3Sum-Closest"><span class="nav-number">4.2.3.</span> <span class="nav-text">leetcode16 3Sum Closest</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灵活选择键值"><span class="nav-number">5.</span> <span class="nav-text">灵活选择键值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode454-4Sum-II"><span class="nav-number">5.1.</span> <span class="nav-text">leetcode454 4Sum II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力解法：O-n-4"><span class="nav-number">5.1.1.</span> <span class="nav-text">暴力解法：O(n^4)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将D中的元素放入查找表：O-n-3"><span class="nav-number">5.1.2.</span> <span class="nav-text">将D中的元素放入查找表：O(n^3)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将C-D的每一种可能放入查找表：O-n-2"><span class="nav-number">5.1.3.</span> <span class="nav-text">将C+D的每一种可能放入查找表：O(n^2)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#代码实现："><span class="nav-number">5.1.3.1.</span> <span class="nav-text">代码实现：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-1"><span class="nav-number">5.2.</span> <span class="nav-text">相似问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灵活选择键值2"><span class="nav-number">6.</span> <span class="nav-text">灵活选择键值2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode447-回旋镖的数量-Number-of-Boomerangs"><span class="nav-number">6.1.</span> <span class="nav-text">leetcode447 回旋镖的数量(Number of Boomerangs)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力解法：O-n-3"><span class="nav-number">6.1.1.</span> <span class="nav-text">暴力解法：O(n^3)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用查找表-1"><span class="nav-number">6.2.</span> <span class="nav-text">使用查找表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-2"><span class="nav-number">6.3.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode149-Max-Points-on-a-Line"><span class="nav-number">6.3.1.</span> <span class="nav-text">leetcode149 Max Points on a Line</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找表和滑动窗口"><span class="nav-number">7.</span> <span class="nav-text">查找表和滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力解法：O-n-2-1"><span class="nav-number">7.1.</span> <span class="nav-text">暴力解法：O(n^2)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滑动窗口"><span class="nav-number">7.2.</span> <span class="nav-text">滑动窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-3"><span class="nav-number">7.3.</span> <span class="nav-text">相似问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分搜索树底层实现的顺序性"><span class="nav-number">8.</span> <span class="nav-text">二分搜索树底层实现的顺序性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode220-存在重复元素-III"><span class="nav-number">8.1.</span> <span class="nav-text">leetcode220. 存在重复元素 III</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思想"><span class="nav-number">8.2.</span> <span class="nav-text">思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-2"><span class="nav-number">8.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

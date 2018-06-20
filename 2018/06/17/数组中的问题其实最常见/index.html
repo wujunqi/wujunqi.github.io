@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数组," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要学习常见的数组中处理问题的方法。">
+<meta name="keywords" content="数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode题解（数组问题）">
+<meta property="og:url" content="http://yoursite.com/2018/06/17/数组中的问题其实最常见/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要学习常见的数组中处理问题的方法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-3e014b7f740b7c79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529221237991k5a2wg5s.png?imageslim">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-5d797f817f54f656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/284">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529375301069gs9h7tac.png?imageslim">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-becdb8f80c3a4e53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/577">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-61999d430b0fce48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/590">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15293775674464jare3v8.png?imageslim">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-cfa841e72ca3980a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/394">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-4915d4b9990fbd5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/405">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15293869244421d489r91.png?imageslim">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-9688eeb0ad39ffb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/283">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-30a6d2a73eb06084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/562">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529392337765m38c5mbd.png?imageslim">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-5c3e9355ecae97ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/576">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-f8f40349d6d48db2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/392">
+<meta property="og:updated_time" content="2018-06-19T07:22:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode题解（数组问题）">
+<meta name="twitter:description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要学习常见的数组中处理问题的方法。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1779926-3e014b7f740b7c79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/17/数组中的问题其实最常见/"/>
+
+
+
+
+
+  <title>leetcode题解（数组问题） | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/17/数组中的问题其实最常见/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode题解（数组问题）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-17T10:16:00+08:00">
+                2018-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/17/数组中的问题其实最常见/" class="leancloud_visitors" data-flag-title="leetcode题解（数组问题）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要学习常见的数组中处理问题的方法。</p>
+<a id="more"></a>
+<h2 id="数组中的问题其实最常见。"><a href="#数组中的问题其实最常见。" class="headerlink" title="数组中的问题其实最常见。"></a>数组中的问题其实最常见。</h2><ul>
+<li>排序：选择排序；插入排序；归并排序；快速排序  </li>
+<li>查找：二分查找法  </li>
+<li>数据结构：栈；队列；堆  </li>
+</ul>
+<h2 id="从二分查找法看如何写出正确的程序"><a href="#从二分查找法看如何写出正确的程序" class="headerlink" title="从二分查找法看如何写出正确的程序"></a>从二分查找法看如何写出正确的程序</h2><ul>
+<li>建立一个基础的框架</li>
+<li>什么是正确的程序</li>
+</ul>
+<h3 id="二分查找法"><a href="#二分查找法" class="headerlink" title="二分查找法"></a>二分查找法</h3><ul>
+<li>二分查找法的思想在1946年提出。  </li>
+<li>第一个没有bug的二分查找法在1962年才出现。</li>
+<li>对于有序数列，才能使用二分查找法 （排序的作用）</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-3e014b7f740b7c79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400" alt=""></p>
+<h3 id="需要注意的问题"><a href="#需要注意的问题" class="headerlink" title="需要注意的问题"></a>需要注意的问题</h3><ul>
+<li>声明变量的时候，明确变量的意义，并且在书写整个逻辑的时候，要不听的维护住这个变量的意义。</li>
+<li>初始值问题</li>
+<li>边界问题</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">( T arr[], <span class="keyword">int</span> n, T target )</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n<span class="number">-1</span>; <span class="comment">// 在[l...r]的范围里寻找target：前闭后闭</span></div><div class="line">    <span class="keyword">while</span>( l &lt;= r )&#123;    <span class="comment">// 只要还有可以查找的内容。当 l == r时,区间[l...r]依然是有效的</span></div><div class="line">        <span class="keyword">int</span> mid = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>( arr[mid] == target ) <span class="keyword">return</span> mid;</div><div class="line">        <span class="comment">//mid已经判断过了</span></div><div class="line">        <span class="keyword">if</span>( target &gt; arr[mid] )</div><div class="line">            l = mid + <span class="number">1</span>;  <span class="comment">// target在[mid+1...r]中; [l...mid]一定没有target</span></div><div class="line">        <span class="keyword">else</span>    <span class="comment">// target &lt; arr[mid]</span></div><div class="line">            r = mid - <span class="number">1</span>;  <span class="comment">// target在[l...mid-1]中; [mid...r]一定没有target</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong> 循环不变量。声明不变。控制边界。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">int</span> l = <span class="number">0</span>, r = n<span class="number">-1</span>; <span class="comment">// 在[l...r]的范围里寻找target：前闭后闭</span></div></pre></td></tr></table></figure>
+<h2 id="改变变量定义，依然可以写出正确的算法"><a href="#改变变量定义，依然可以写出正确的算法" class="headerlink" title="改变变量定义，依然可以写出正确的算法"></a>改变变量定义，依然可以写出正确的算法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">( T arr[], <span class="keyword">int</span> n, T target )</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n; <span class="comment">// target在[l...r)的范围里，这样设置才能保证长度为n</span></div><div class="line">    <span class="keyword">while</span>( l &lt; r )&#123;    <span class="comment">// 当 l == r时,区间[l...r)是一个无效区间 [42,43)</span></div><div class="line">        <span class="keyword">int</span> mid = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>( arr[mid] == target ) <span class="keyword">return</span> mid;</div><div class="line">        <span class="keyword">if</span>( target &gt; arr[mid] )</div><div class="line">            l = mid + <span class="number">1</span>;    <span class="comment">// target在[mid+1...r)中; [l...mid]一定没有target</span></div><div class="line">        <span class="keyword">else</span><span class="comment">// target &lt; arr[mid]</span></div><div class="line">            r = mid;        <span class="comment">// target在[l...mid)中; [mid...r)一定没有target</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li>求mid值是采用(l+r)/2容易整形溢出</li>
+<li>采用mid = l + (r-l)/2;</li>
+</ul>
+<h3 id="如何写出正确的程序？"><a href="#如何写出正确的程序？" class="headerlink" title="如何写出正确的程序？"></a>如何写出正确的程序？</h3><ul>
+<li>明确变量的含义</li>
+<li>循环不变量</li>
+<li>小数据量调试（4到6个数据）空集，边界（小数据集上代码如何运作的）</li>
+<li>耐心找到bug，定位错误发生的位置。</li>
+<li>大数据量测试（性能）</li>
+</ul>
+<h2 id="LeetCode题解：-Move-Zeros"><a href="#LeetCode题解：-Move-Zeros" class="headerlink" title="LeetCode题解： Move Zeros"></a>LeetCode题解： Move Zeros</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529221237991k5a2wg5s.png?imageslim" alt="paste image"></p>
+<h3 id="直观的解题思路"><a href="#直观的解题思路" class="headerlink" title="直观的解题思路"></a>直观的解题思路</h3><p><img src="//upload-images.jianshu.io/upload_images/1779926-5d797f817f54f656.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/284" alt=""></p>
+<ul>
+<li>拿出非0元素</li>
+<li>将非0元素拿出来，然后空位补0</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// 时间复杂度 O(n)</span></div><div class="line">    <span class="comment">// 空间复杂度 O(n) 新创建数组</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nonZeroElements;</div><div class="line"></div><div class="line">        <span class="comment">// 将vec中所有非0元素放入nonZeroElements中</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.size() ; i ++ )</div><div class="line">            <span class="keyword">if</span>( nums[i] )</div><div class="line">                nonZeroElements.push_back( nums[i] );</div><div class="line"></div><div class="line">        <span class="comment">// 将nonZeroElements中的所有元素依次放入到nums开始的位置</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nonZeroElements.size() ; i ++ )</div><div class="line">            nums[i] = nonZeroElements[i];</div><div class="line"></div><div class="line">        <span class="comment">// 将nums剩余的位置放置为0</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = nonZeroElements.size() ; i &lt; nums.size() ; i ++ )</div><div class="line">            nums[i] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">12</span>&#125;;</div><div class="line">    <span class="comment">//根据生成的数据创建vector：传入头指针和尾指针</span></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(arr, arr + <span class="keyword">sizeof</span>(arr)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line"></div><div class="line">    Solution().moveZeroes(vec);</div><div class="line"></div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; vec.size() ; i ++ )</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;vec[i]&lt;&lt;<span class="string">" "</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="即使简单的算法也能进一步优化。"><a href="#即使简单的算法也能进一步优化。" class="headerlink" title="即使简单的算法也能进一步优化。"></a>即使简单的算法也能进一步优化。</h2><ul>
+<li>不开辟额外空间</li>
+<li>k - [0…k)中保存所有当前遍历过的非0元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// 时间复杂度 O(n)</span></div><div class="line">    <span class="comment">// 空间复杂度 O(1)</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> k = <span class="number">0</span>; <span class="comment">// nums中, [0...k)的元素均为非0元素</span></div><div class="line"></div><div class="line">        <span class="comment">// 遍历到第i个元素后,保证[0...i]中所有非0元素</span></div><div class="line">        <span class="comment">// 都按照顺序排列在[0...k)中</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.size() ; i ++ )</div><div class="line">            <span class="keyword">if</span>( nums[i] )</div><div class="line">                nums[k++] = nums[i];</div><div class="line"></div><div class="line">        <span class="comment">// 将nums剩余的位置放置为0</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = k ; i &lt; nums.size() ; i ++ )</div><div class="line">            nums[i] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">12</span>&#125;;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(arr, arr + <span class="keyword">sizeof</span>(arr)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line"></div><div class="line">    Solution().moveZeroes(vec);</div><div class="line"></div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; vec.size() ; i ++ )</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;vec[i]&lt;&lt;<span class="string">" "</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h3><ul>
+<li><p>非0的赋值不用操作了。</p>
+</li>
+<li><p>非0的与0直接互换。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// 时间复杂度 O(n)</span></div><div class="line">    <span class="comment">// 空间复杂度 O(1)</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> k = <span class="number">0</span>; <span class="comment">// nums中, [0...k)的元素均为非0元素</span></div><div class="line"></div><div class="line">        <span class="comment">// 遍历到第i个元素后,保证[0...i]中所有非0元素</span></div><div class="line">        <span class="comment">// 都按照顺序排列在[0...k)中</span></div><div class="line">        <span class="comment">// 同时, [k...i] 为0</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.size() ; i ++ )</div><div class="line">            <span class="keyword">if</span>( nums[i] )</div><div class="line">                swap( nums[k++] , nums[i] );</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong> 极端情况：如果都为非0，则每个都自己和自己交换</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// 时间复杂度 O(n)</span></div><div class="line">    <span class="comment">// 空间复杂度 O(1)</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> k = <span class="number">0</span>; <span class="comment">// nums中, [0...k)的元素均为非0元素</span></div><div class="line"></div><div class="line">        <span class="comment">// 遍历到第i个元素后,保证[0...i]中所有非0元素</span></div><div class="line">        <span class="comment">// 都按照顺序排列在[0...k)中</span></div><div class="line">        <span class="comment">// 同时, [k...i] 为0</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.size() ; i ++ )</div><div class="line">            <span class="keyword">if</span>( nums[i] )</div><div class="line">                <span class="comment">//</span></div><div class="line">                <span class="keyword">if</span>( k != i )</div><div class="line">                    swap( nums[k++] , nums[i] );</div><div class="line">                <span class="keyword">else</span><span class="comment">// i == k</span></div><div class="line">                    k ++;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似题目"><a href="#相似题目" class="headerlink" title="相似题目"></a>相似题目</h3><ul>
+<li>leetcode 27</li>
+<li>leetcode 26</li>
+<li>leetcode 80</li>
+</ul>
+<p><strong>注意的问题</strong></p>
+<ul>
+<li>如何定义删除？从数组中去除？还是放在数组末尾？</li>
+<li>剩余元素的排列是否要保证原有的相对顺序？</li>
+<li>是否有空间复杂度的要求？ O(1)</li>
+</ul>
+<h2 id="基础算法思路的应用"><a href="#基础算法思路的应用" class="headerlink" title="基础算法思路的应用"></a>基础算法思路的应用</h2><h3 id="75-Sort-Colors"><a href="#75-Sort-Colors" class="headerlink" title="75 Sort Colors"></a>75 Sort Colors</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529375301069gs9h7tac.png?imageslim" alt="paste image"></p>
+<h3 id="基数排序法"><a href="#基数排序法" class="headerlink" title="基数排序法"></a>基数排序法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间复杂度: O(n)</span></div><div class="line"><span class="comment">// 空间复杂度: O(k), k为元素的取值范围</span></div><div class="line"><span class="comment">// 对整个数组遍历了两遍</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> count[<span class="number">3</span>] = &#123;<span class="number">0</span>&#125;;    <span class="comment">// 存放0,1,2三个元素的频率</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.size() ; i ++ )&#123;</div><div class="line">            assert( nums[i] &gt;= <span class="number">0</span> &amp;&amp; nums[i] &lt;= <span class="number">2</span> );</div><div class="line">            count[nums[i]] ++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count[<span class="number">0</span>] ; i ++ )</div><div class="line">            nums[index++] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count[<span class="number">1</span>] ; i ++ )</div><div class="line">            nums[index++] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count[<span class="number">2</span>] ; i ++ )</div><div class="line">            nums[index++] = <span class="number">2</span>;</div><div class="line"></div><div class="line">        <span class="comment">// 小练习: 更加自使用的计数排序</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> nums[] = &#123;<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;( nums , nums + <span class="keyword">sizeof</span>(nums)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line"></div><div class="line">    Solution().sortColors( vec );</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; vec.size() ; i ++ )</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;vec[i]&lt;&lt;<span class="string">" "</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以只扫描一遍么？</p>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-becdb8f80c3a4e53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/577" alt=""></p>
+<p>一次三路快排</p>
+<blockquote>
+<p>设置三个索引：zero two i</p>
+</blockquote>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-61999d430b0fce48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/590" alt=""></p>
+<p>三路快排</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间复杂度: O(n)</span></div><div class="line"><span class="comment">// 空间复杂度: O(1)</span></div><div class="line"><span class="comment">// 对整个数组只遍历了一遍</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> zero = <span class="number">-1</span>;          <span class="comment">// [0...zero] == 0</span></div><div class="line">        <span class="keyword">int</span> two = nums.size();  <span class="comment">// [two...n-1] == 2</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; two ; )&#123;</div><div class="line">            <span class="keyword">if</span>( nums[i] == <span class="number">1</span> )</div><div class="line">                i ++;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> ( nums[i] == <span class="number">2</span> )</div><div class="line">                swap( nums[i] , nums[--two]);</div><div class="line">            <span class="keyword">else</span>&#123; <span class="comment">// nums[i] == 0</span></div><div class="line">                assert( nums[i] == <span class="number">0</span> );</div><div class="line">                swap( nums[++zero] , nums[i++] );</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> nums[] = &#123;<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;( nums , nums + <span class="keyword">sizeof</span>(nums)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line"></div><div class="line">    Solution().sortColors( vec );</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; vec.size() ; i ++ )</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;vec[i]&lt;&lt;<span class="string">" "</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="相似题目-1"><a href="#相似题目-1" class="headerlink" title="相似题目"></a>相似题目</h3><ul>
+<li>88 Merge Sorted Array</li>
+<li>215 Kth Largest Element in an Array</li>
+</ul>
+<h2 id="双索引技术-对撞指针"><a href="#双索引技术-对撞指针" class="headerlink" title="双索引技术-对撞指针"></a>双索引技术-对撞指针</h2><h3 id="167-两数之和-II-输入有序数组"><a href="#167-两数之和-II-输入有序数组" class="headerlink" title="167 两数之和 II - 输入有序数组"></a>167 两数之和 II - 输入有序数组</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15293775674464jare3v8.png?imageslim" alt="paste image"></p>
+<p><strong>需要考虑的问题</strong></p>
+<ul>
+<li>如果没有解怎样？保证有解</li>
+<li>如果有多个解怎样？返回任意解</li>
+</ul>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><ul>
+<li><p>最直接的思考：暴力解法。双层遍历，O(n^2)</p>
+<ul>
+<li>暴力解法没有充分利用原数组的性质 —— 有序：有序？二分搜索？</li>
+</ul>
+</li>
+<li><p>二分搜索法</p>
+<ul>
+<li>对于每个i, 在剩余数组中查找target-nums[i]的值</li>
+<li>时间复杂度为O(NlogN)<br><img src="//upload-images.jianshu.io/upload_images/1779926-cfa841e72ca3980a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/394" alt="有序的二分搜索"></li>
+</ul>
+</li>
+<li><p>对撞指针</p>
+</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-4915d4b9990fbd5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/405" alt="初始化的ij"></p>
+<ul>
+<li>一般会是大于或者小于。  </li>
+<li>如果大i++ 小 j–  </li>
+<li>两个索引在往中间走。对撞指针。</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间复杂度: O(n)</span></div><div class="line"><span class="comment">// 空间复杂度: O(1)</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; numbers, <span class="keyword">int</span> target) &#123;</div><div class="line"></div><div class="line">        assert( numbers.size() &gt;= <span class="number">2</span> );</div><div class="line">        <span class="comment">// assert( isSorted(numbers) );</span></div><div class="line"></div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = numbers.size()<span class="number">-1</span>;</div><div class="line">        <span class="keyword">while</span>( l &lt; r )&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( numbers[l] + numbers[r] == target )&#123;</div><div class="line">                <span class="keyword">int</span> res[<span class="number">2</span>] = &#123;l+<span class="number">1</span>, r+<span class="number">1</span>&#125;;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(res, res+<span class="number">2</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>( numbers[l] + numbers[r] &lt; target )</div><div class="line">                l ++;</div><div class="line">            <span class="keyword">else</span> <span class="comment">// numbers[l] + numbers[r] &gt; target</span></div><div class="line">                r --;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">throw</span> invalid_argument(<span class="string">"the input has no solution"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似题目-2"><a href="#相似题目-2" class="headerlink" title="相似题目"></a>相似题目</h3><ul>
+<li>125 Valid Palindrome<ul>
+<li>空字符串如何看？</li>
+<li>字符的定义？</li>
+<li>大小写问题</li>
+</ul>
+</li>
+<li>344 Reverse String</li>
+<li>345 Reverse Vowels of a String</li>
+<li>11 Container With Most Water</li>
+</ul>
+<h2 id="双索引技术-滑动窗口"><a href="#双索引技术-滑动窗口" class="headerlink" title="双索引技术-滑动窗口"></a>双索引技术-滑动窗口</h2><h3 id="209长度最小的子数组"><a href="#209长度最小的子数组" class="headerlink" title="209长度最小的子数组"></a>209长度最小的子数组</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15293869244421d489r91.png?imageslim" alt="paste image"></p>
+<h4 id="什么是子数组"><a href="#什么是子数组" class="headerlink" title="什么是子数组"></a>什么是子数组</h4><p><img src="//upload-images.jianshu.io/upload_images/1779926-9688eeb0ad39ffb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/283" alt="什么叫子数组？"></p>
+<ul>
+<li>一般不要求连续</li>
+<li>而这个题目中规定了子数组要连续这样的特性。<ul>
+<li>如果没有解怎么办？返回0</li>
+</ul>
+</li>
+</ul>
+<h4 id="暴力解O-N-3"><a href="#暴力解O-N-3" class="headerlink" title="暴力解O(N^3)"></a>暴力解O(N^3)</h4><ul>
+<li>计算其和sum，验证sum &gt;= s  </li>
+<li>时间复杂度O(n^3)</li>
+</ul>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        assert(s &gt; <span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="keyword">int</span> res = nums.size() + <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span> ; l &lt; nums.size() ; l ++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> r = l ; r &lt; nums.size() ; r ++)&#123;</div><div class="line">                <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = l ; i &lt;= r ; i ++)</div><div class="line">                    sum += nums[i];</div><div class="line">                <span class="keyword">if</span>(sum &gt;= s)</div><div class="line">                    res = min(res, r - l + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(res == nums.size() + <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="暴力解的优化O-N-2"><a href="#暴力解的优化O-N-2" class="headerlink" title="暴力解的优化O(N^2)"></a>暴力解的优化O(N^2)</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line"></div><div class="line">        assert(s &gt; <span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="comment">// sums[i]存放nums[0...i-1]的和</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sums(nums.size() + <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= nums.size() ; i ++)</div><div class="line">            sums[i] = sums[i<span class="number">-1</span>] + nums[i<span class="number">-1</span>];</div><div class="line"></div><div class="line">        <span class="keyword">int</span> res = nums.size() + <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span> ; l &lt; nums.size() ; l ++)</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> r = l ; r &lt; nums.size() ; r ++)&#123;</div><div class="line">                <span class="comment">// 使用sums[r+1] - sums[l] 快速获得nums[l...r]的和</span></div><div class="line">                <span class="keyword">if</span>(sums[r+<span class="number">1</span>] - sums[l] &gt;= s)</div><div class="line">                    res = min(res, r - l + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(res == nums.size() + <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="滑动窗口解"><a href="#滑动窗口解" class="headerlink" title="滑动窗口解"></a>滑动窗口解</h4><p><img src="//upload-images.jianshu.io/upload_images/1779926-30a6d2a73eb06084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/562" alt=""></p>
+<ul>
+<li><p>如果当前子数组不到就往后再看一个</p>
+</li>
+<li><p>窗口不停向前滑动。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 滑动窗口的思路</span></div><div class="line"><span class="comment">// 时间复杂度: O(n)</span></div><div class="line"><span class="comment">// 空间复杂度: O(1)</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="comment">//nums[l...r]为我们的滑动窗口</span></div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = nums.size() + <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(l &lt; nums.size())&#123;</div><div class="line">            <span class="keyword">if</span>(r+<span class="number">1</span> &lt; nums.size() &amp;&amp; sum &lt; s)&#123;</div><div class="line">                r++;</div><div class="line">                sum += nums[r];</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                sum -= nums[l];</div><div class="line">                l++;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(sum &gt;= s)&#123;</div><div class="line">                res = min(res, r - l + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(res == nums.size() + <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="在滑动窗口中做记录"><a href="#在滑动窗口中做记录" class="headerlink" title="在滑动窗口中做记录"></a>在滑动窗口中做记录</h2><h3 id="无重复字符的最长子串"><a href="#无重复字符的最长子串" class="headerlink" title="无重复字符的最长子串"></a>无重复字符的最长子串</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529392337765m38c5mbd.png?imageslim" alt="paste image"></p>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>字符集？只有字母？数字+字母？ASCII？<br>大小写是否敏感？</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p><img src="//upload-images.jianshu.io/upload_images/1779926-5c3e9355ecae97ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/576" alt="往后++"></p>
+<ul>
+<li>j++如果没有重复元素，窗口j继续往后</li>
+<li>如果有重复元素，i++去除重复</li>
+<li>freq[256]记录窗口中的元素</li>
+</ul>
+<p><img src="//upload-images.jianshu.io/upload_images/1779926-f8f40349d6d48db2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/392" alt=""></p>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> freq[<span class="number">256</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">-1</span>; <span class="comment">//滑动窗口为s[l...r]</span></div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="comment">// 整个循环从 l == 0; r == -1 这个空窗口开始</span></div><div class="line">        <span class="comment">// 到l == s.size(); r == s.size()-1 这个空窗口截止</span></div><div class="line">        <span class="comment">// 在每次循环里逐渐改变窗口, 维护freq, 并记录当前窗口中是否找到了一个新的最优值</span></div><div class="line">        <span class="keyword">while</span>( l &lt; s.size() )&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( r + <span class="number">1</span> &lt; s.size() &amp;&amp; freq[s[r+<span class="number">1</span>]] == <span class="number">0</span> )</div><div class="line">                freq[s[++r]] ++;</div><div class="line">            <span class="keyword">else</span>    <span class="comment">//r已经到头 || freq[s[r+1]] == 1</span></div><div class="line">                freq[s[l++]] --;</div><div class="line"></div><div class="line">            res = max( res , r-l+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; Solution().lengthOfLongestSubstring( <span class="string">"abcabcbb"</span> )&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; Solution().lengthOfLongestSubstring( <span class="string">"bbbbb"</span> )&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; Solution().lengthOfLongestSubstring( <span class="string">"pwwkew"</span> )&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; Solution().lengthOfLongestSubstring( <span class="string">""</span> )&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="相似题目-3"><a href="#相似题目-3" class="headerlink" title="相似题目"></a>相似题目</h3><ul>
+<li><p>438 Find All Anagrams in a String</p>
+<ul>
+<li>字符集范围？英文小写字母  </li>
+<li>返回的解的顺序？任意。</li>
+</ul>
+</li>
+<li><p>76 Minimum Window Substring</p>
+<ul>
+<li>字符集范围  </li>
+<li>若没有解？ 返回“”<br>*若有多个解？保证只有一个解  </li>
+<li>什么叫包含所有字符？S = “a”，T = “aa”</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/15/面试中的复杂度分析/" rel="next" title="面试中的复杂度分析">
+                <i class="fa fa-chevron-left"></i> 面试中的复杂度分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/19/leetcode题解-查找表问题/" rel="prev" title="leetcode题解(查找表问题)">
+                leetcode题解(查找表问题) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组中的问题其实最常见。"><span class="nav-number">1.</span> <span class="nav-text">数组中的问题其实最常见。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从二分查找法看如何写出正确的程序"><span class="nav-number">2.</span> <span class="nav-text">从二分查找法看如何写出正确的程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找法"><span class="nav-number">2.1.</span> <span class="nav-text">二分查找法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要注意的问题"><span class="nav-number">2.2.</span> <span class="nav-text">需要注意的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变变量定义，依然可以写出正确的算法"><span class="nav-number">3.</span> <span class="nav-text">改变变量定义，依然可以写出正确的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何写出正确的程序？"><span class="nav-number">3.1.</span> <span class="nav-text">如何写出正确的程序？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode题解：-Move-Zeros"><span class="nav-number">4.</span> <span class="nav-text">LeetCode题解： Move Zeros</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直观的解题思路"><span class="nav-number">4.1.</span> <span class="nav-text">直观的解题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#即使简单的算法也能进一步优化。"><span class="nav-number">5.</span> <span class="nav-text">即使简单的算法也能进一步优化。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进一步优化"><span class="nav-number">5.1.</span> <span class="nav-text">进一步优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似题目"><span class="nav-number">5.2.</span> <span class="nav-text">相似题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础算法思路的应用"><span class="nav-number">6.</span> <span class="nav-text">基础算法思路的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#75-Sort-Colors"><span class="nav-number">6.1.</span> <span class="nav-text">75 Sort Colors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基数排序法"><span class="nav-number">6.2.</span> <span class="nav-text">基数排序法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似题目-1"><span class="nav-number">6.3.</span> <span class="nav-text">相似题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双索引技术-对撞指针"><span class="nav-number">7.</span> <span class="nav-text">双索引技术-对撞指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#167-两数之和-II-输入有序数组"><span class="nav-number">7.1.</span> <span class="nav-text">167 两数之和 II - 输入有序数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解法"><span class="nav-number">7.2.</span> <span class="nav-text">解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">7.3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似题目-2"><span class="nav-number">7.4.</span> <span class="nav-text">相似题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双索引技术-滑动窗口"><span class="nav-number">8.</span> <span class="nav-text">双索引技术-滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#209长度最小的子数组"><span class="nav-number">8.1.</span> <span class="nav-text">209长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是子数组"><span class="nav-number">8.1.1.</span> <span class="nav-text">什么是子数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力解O-N-3"><span class="nav-number">8.1.2.</span> <span class="nav-text">暴力解O(N^3)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-1"><span class="nav-number">8.1.3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力解的优化O-N-2"><span class="nav-number">8.1.4.</span> <span class="nav-text">暴力解的优化O(N^2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滑动窗口解"><span class="nav-number">8.1.5.</span> <span class="nav-text">滑动窗口解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在滑动窗口中做记录"><span class="nav-number">9.</span> <span class="nav-text">在滑动窗口中做记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无重复字符的最长子串"><span class="nav-number">9.1.</span> <span class="nav-text">无重复字符的最长子串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">9.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现代码"><span class="nav-number">9.3.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似题目-3"><span class="nav-number">9.4.</span> <span class="nav-text">相似题目</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
