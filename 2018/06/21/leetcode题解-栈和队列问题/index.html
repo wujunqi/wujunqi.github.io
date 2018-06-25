@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="leetcode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="栈和队列虽然是简单的数据结构，但是使用这些简单的数据结构所解决的算法问题不一定简单,主要介绍和栈与队列相关的leetcode算法问题。">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode题解(栈和队列问题)">
+<meta property="og:url" content="http://yoursite.com/2018/06/21/leetcode题解-栈和队列问题/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="栈和队列虽然是简单的数据结构，但是使用这些简单的数据结构所解决的算法问题不一定简单,主要介绍和栈与队列相关的leetcode算法问题。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529583038432ng57azro.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529588945987wo0bstdp.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529589135268rm2o8esj.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529637942341igg3gvqo.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529652433133skhhrjsx.png?imageslim">
+<meta property="og:image" content="http://oseihavwm.bkt.clouddn.com/Perfect%20Squares.png">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529669863490zll4ouav.png?imageslim">
+<meta property="og:updated_time" content="2018-06-22T12:41:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode题解(栈和队列问题)">
+<meta name="twitter:description" content="栈和队列虽然是简单的数据结构，但是使用这些简单的数据结构所解决的算法问题不一定简单,主要介绍和栈与队列相关的leetcode算法问题。">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1529583038432ng57azro.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/21/leetcode题解-栈和队列问题/"/>
+
+
+
+
+
+  <title>leetcode题解(栈和队列问题) | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/leetcode题解-栈和队列问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode题解(栈和队列问题)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T15:09:00+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/21/leetcode题解-栈和队列问题/" class="leancloud_visitors" data-flag-title="leetcode题解(栈和队列问题)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>栈和队列虽然是简单的数据结构，但是使用这些简单的数据结构所解决的算法问题不一定简单,主要介绍和栈与队列相关的leetcode算法问题。</p>
+<a id="more"></a>
+<h2 id="栈的基础应用"><a href="#栈的基础应用" class="headerlink" title="栈的基础应用"></a>栈的基础应用</h2><h3 id="leetcode-20-有效的括号"><a href="#leetcode-20-有效的括号" class="headerlink" title="leetcode 20. 有效的括号"></a>leetcode 20. 有效的括号</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529583038432ng57azro.png?imageslim" alt="paste image"></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ul>
+<li>采用栈这个数据结构存储“左符号”</li>
+<li>栈顶元素反映了在嵌套的层次关系中，最近的需要匹配的元素</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    bool isValid(string s) &#123;</div><div class="line">        stack&lt;char&gt; st;</div><div class="line">        </div><div class="line">        for (int i = 0; i &lt; s.size(); i++)&#123;</div><div class="line">            //只有左符号才入栈</div><div class="line">            if (s[i] == &apos;(&apos; || s[i] == &apos;&#123;&apos;|| s[i] == &apos;[&apos;)&#123;</div><div class="line">                st.push(s[i]);</div><div class="line">            &#125;else&#123;</div><div class="line">                if (st.size() == 0)&#123;</div><div class="line">                    return false;</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                char top = st.top();</div><div class="line">                st.pop();</div><div class="line">                </div><div class="line">                char match;</div><div class="line">                if (s[i] == &apos;)&apos;)&#123;</div><div class="line">                    match = &apos;(&apos;;</div><div class="line">                &#125;else if(s[i] == &apos;&#125;&apos;)&#123;</div><div class="line">                    match = &apos;&#123;&apos;;</div><div class="line">                &#125;else&#123;</div><div class="line">                    assert(s[i] == &apos;]&apos;);</div><div class="line">                    match = &apos;[&apos;;</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                if (top != match)&#123;</div><div class="line">                    return false;</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">            &#125;  </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        if (st.size() != 0)&#123;</div><div class="line">            return false;</div><div class="line">        &#125;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题"><a href="#相似问题" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode-150-逆波兰表达式求值"><a href="#leetcode-150-逆波兰表达式求值" class="headerlink" title="leetcode 150. 逆波兰表达式求值"></a>leetcode 150. 逆波兰表达式求值</h4><h4 id="leetcode-71-简化路径"><a href="#leetcode-71-简化路径" class="headerlink" title="leetcode 71. 简化路径"></a>leetcode 71. 简化路径</h4><h2 id="栈和递归的紧密关系"><a href="#栈和递归的紧密关系" class="headerlink" title="栈和递归的紧密关系"></a>栈和递归的紧密关系</h2><p>我们先看一下二叉树的先序遍历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function preorder(node)&#123;</div><div class="line">  if(node)&#123;</div><div class="line">    cout &lt;&lt; node -&gt; val;</div><div class="line">    preorder(node.left);</div><div class="line">    preorder(node.right);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1529588945987wo0bstdp.png?imageslim" alt="paste image"></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><blockquote>
+<p>我们来看一下具体的遍历，假设我们只有三个节点，父节点是1，左节点是2，右节点是3。我们首先使用根节点调用函数preorder，然后使用节点2调用了函数preorder，再使用节点3调用了函数preorder。这三次preorder的传入参数是不同的，那么这三个函数的调用顺序是怎么样的？我们可以抽象为根节点调用时，执行到节点2调用的时候停住了，接着执行一个子函数也就是节点2的调用，直到节点2调用结束之后，再进行节点3子函数的调用。那么操作系统就是通过栈来实现这样一个操作。根节点调用的函数先被压入栈中开始执行，这时遇到了函数栈节点2。在节点2的函数被压入栈之后立即执行，等到执行完之后返回值(或不返回)，然后节点2的函数被弹出。节点2的函数被弹出之后，节点1的函数继续执行，节点3的函数被压入并立即执行。</p>
+</blockquote>
+<h3 id="leetcode144-二叉树的前序遍历"><a href="#leetcode144-二叉树的前序遍历" class="headerlink" title="leetcode144. 二叉树的前序遍历"></a>leetcode144. 二叉树的前序遍历</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529589135268rm2o8esj.png?imageslim" alt="paste image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123;</div><div class="line">        vector&lt;int&gt; vec;</div><div class="line">        preHelp(root, vec);</div><div class="line">        return vec;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">private:</div><div class="line">    void preHelp(TreeNode* root, vector&lt;int&gt; &amp;vec)&#123;</div><div class="line">        </div><div class="line">        if(root)&#123;</div><div class="line">            vec.push_back(root-&gt;val);</div><div class="line">            preHelp(root-&gt;left, vec);</div><div class="line">            preHelp(root-&gt;right, vec);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题-1"><a href="#相似问题-1" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode-94-二叉树的中序遍历"><a href="#leetcode-94-二叉树的中序遍历" class="headerlink" title="leetcode 94. 二叉树的中序遍历"></a>leetcode 94. 二叉树的中序遍历</h4><h4 id="leetcode-145-二叉树的后序遍历"><a href="#leetcode-145-二叉树的后序遍历" class="headerlink" title="leetcode 145. 二叉树的后序遍历"></a>leetcode 145. 二叉树的后序遍历</h4><h2 id="运用栈模拟递归"><a href="#运用栈模拟递归" class="headerlink" title="运用栈模拟递归"></a>运用栈模拟递归</h2><blockquote>
+<p>现在使用栈模拟系统栈，写出非递归程序：我们先推入右孩子，在再推入左孩子，最后推入打印，这样由于栈的后进先出就完成了先序遍历。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">struct TreeNode &#123;</div><div class="line">    int val;</div><div class="line">    TreeNode *left;</div><div class="line">    TreeNode *right;</div><div class="line">    TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">class Solution &#123;</div><div class="line"></div><div class="line">private:</div><div class="line">    struct Command&#123;</div><div class="line">        string s;   // go, print</div><div class="line">        TreeNode* node;</div><div class="line">        Command(string s, TreeNode* node): s(s), node(node)&#123;&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">public:</div><div class="line">    vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123;</div><div class="line"></div><div class="line">        vector&lt;int&gt; res;</div><div class="line">        if(root == NULL)</div><div class="line">            return res;</div><div class="line"></div><div class="line">        stack&lt;Command&gt; stack;</div><div class="line">        stack.push(Command(&quot;go&quot;, root));</div><div class="line">        while(!stack.empty())&#123;</div><div class="line">            Command command = stack.top();</div><div class="line">            stack.pop();</div><div class="line"></div><div class="line">            if(command.s == &quot;print&quot;)</div><div class="line">                res.push_back(command.node-&gt;val);</div><div class="line">            else&#123;</div><div class="line">                assert(command.s == &quot;go&quot;); </div><div class="line">                //stack.push(Command(&quot;print&quot;, command.node));//后序遍历</div><div class="line">                if(command.node-&gt;right)</div><div class="line">                    stack.push(Command(&quot;go&quot;,command.node-&gt;right));</div><div class="line">                //stack.push(Command(&quot;print&quot;, command.node));//中序遍历</div><div class="line">                if(command.node-&gt;left)</div><div class="line">                    stack.push(Command(&quot;go&quot;,command.node-&gt;left));</div><div class="line">                stack.push(Command(&quot;print&quot;, command.node));//先序遍历</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="相似问题-2"><a href="#相似问题-2" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode-341"><a href="#leetcode-341" class="headerlink" title="leetcode 341"></a>leetcode 341</h4><hr>
+<h2 id="队列的典型应用"><a href="#队列的典型应用" class="headerlink" title="队列的典型应用"></a>队列的典型应用</h2><h3 id="leetcode-102-二叉树的层次遍历"><a href="#leetcode-102-二叉树的层次遍历" class="headerlink" title="leetcode 102. 二叉树的层次遍历"></a>leetcode 102. 二叉树的层次遍历</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529637942341igg3gvqo.png?imageslim" alt="paste image"></p>
+<blockquote>
+<p>其实对于队列Queue来说，它主要处理的算法问题就是广度优先遍历(树：层序遍历，图：无权图的最短路径)<br>这其实就是二叉树的层序遍历，但却是很多公司的面试题，在平时还是要多注重典型基础数据结构的应用。</p>
+</blockquote>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123;</div><div class="line">        vector&lt;vector&lt;int&gt;&gt; res;</div><div class="line">        if (root == NULL)&#123;</div><div class="line">            return res;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        queue&lt;pair&lt;TreeNode*, int&gt;&gt; q;//存储节点和层级</div><div class="line">        </div><div class="line">        q.push(make_pair(root, 0));</div><div class="line">        </div><div class="line">        while(!q.empty())&#123;</div><div class="line">            TreeNode* node = q.front().first;</div><div class="line">            int level = q.front().second;</div><div class="line">            </div><div class="line">            q.pop();</div><div class="line">            </div><div class="line">            </div><div class="line">            if (res.size() == level)&#123;</div><div class="line">                res.push_back(vector&lt;int&gt;());</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            res[level].push_back(node-&gt;val);</div><div class="line">            </div><div class="line">            if (node-&gt;left)&#123;</div><div class="line">                q.push(make_pair(node-&gt;left, level+1));</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            if (node -&gt; right)&#123;</div><div class="line">                q.push(make_pair(node-&gt;right, level+1));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="相似问题-3"><a href="#相似问题-3" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode-107"><a href="#leetcode-107" class="headerlink" title="leetcode 107"></a>leetcode 107</h4><h4 id="leetcode-103"><a href="#leetcode-103" class="headerlink" title="leetcode 103"></a>leetcode 103</h4><h4 id="leetcode-199"><a href="#leetcode-199" class="headerlink" title="leetcode 199"></a>leetcode 199</h4><h2 id="图的广度优先遍历-BFS-和图的最短路径"><a href="#图的广度优先遍历-BFS-和图的最短路径" class="headerlink" title="图的广度优先遍历(BFS)和图的最短路径"></a>图的广度优先遍历(BFS)和图的最短路径</h2><blockquote>
+<p>当我们对图进行广度优先遍历的时候可以解决最短路径的问题。但其实很多算法问题，我们使用图的最短路径这一思路来解决，但是这个问题第一眼看上去却不像一个图论问题，在问题的描述中没有非常明确的告诉我们需要使用图来解决问题，在这种情况下我们需要对问题深入分析并建模。</p>
+</blockquote>
+<h3 id="leetcode279-完全平方数"><a href="#leetcode279-完全平方数" class="headerlink" title="leetcode279. 完全平方数"></a>leetcode279. 完全平方数</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529652433133skhhrjsx.png?imageslim" alt="paste image"></p>
+<h4 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h4><h5 id="直觉解法？贪心？"><a href="#直觉解法？贪心？" class="headerlink" title="直觉解法？贪心？"></a>直觉解法？贪心？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">12 = 9 + 1 + 1 + 1  </div><div class="line">12 = 4 + 4 + 4</div></pre></td></tr></table></figure>
+<blockquote>
+<p>关于贪心算法我们后续还会有介绍，贪心算法实现起来比较简单，但我们很容易陷入一个误区，一个问题不能用贪心算法来解决我们却以为可以使用贪心算法来解决。</p>
+</blockquote>
+<h4 id="广度遍历建模"><a href="#广度遍历建模" class="headerlink" title="广度遍历建模"></a>广度遍历建模</h4><blockquote>
+<p>对于这个问题建模：  整个问题转化为一个图论问题,从n到0，每个数字表示一个节点,如果有两个数字x到y相差一个完全平方数，则连接一条边，我们得到了一个无权图，原问题转化成，求这个无权图中从n到0的最短路径</p>
+</blockquote>
+<p><a href="http://oseihavwm.bkt.clouddn.com/Perfect%20Squares.png" target="_blank" rel="external"><img src="http://oseihavwm.bkt.clouddn.com/Perfect%20Squares.png" alt=""></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    int numSquares(int n) &#123;</div><div class="line">        queue&lt;pair&lt;int, int&gt;&gt; q;</div><div class="line">        q.push(make_pair(n, 0));//从n出发，到达n需要0步</div><div class="line">        </div><div class="line">        while(!q.empty())&#123;</div><div class="line">            int num = q.front().first;</div><div class="line">            int step = q.front().second;</div><div class="line">            </div><div class="line">            q.pop();</div><div class="line">            </div><div class="line">            if (num == 0)&#123;</div><div class="line">                return step;</div><div class="line">            &#125;else&#123;</div><div class="line">                for(int i = 1; num - i *i &gt;= 0; i++)&#123;</div><div class="line">                    q.push(make_pair(num - i *i, step + 1));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        throw invalid_argument(&quot;no answer!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><blockquote>
+<p>这样实现的程序并不是一个标准的广度优先实现，它是有性能问题的，问题来自我们每一次都将num-i*i推入了队列中，其中包含有大量的重复，因为每一个数字我们可以从多种路径到达。</p>
+</blockquote>
+<ul>
+<li>为了处理冗余，我们设立一个新数组visited表示从0到n这n+1个数字有没有被访问过。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    int numSquares(int n) &#123;</div><div class="line">        queue&lt;pair&lt;int, int&gt;&gt; q;</div><div class="line">        q.push(make_pair(n, 0));//从n出发，到达n需要0步</div><div class="line">        </div><div class="line">        vector&lt;bool&gt; visited(n + 1, false);</div><div class="line">        visited[n] = true;</div><div class="line">        </div><div class="line">        while(!q.empty())&#123;</div><div class="line">            int num = q.front().first;</div><div class="line">            int step = q.front().second;</div><div class="line">            </div><div class="line">            q.pop();</div><div class="line">            </div><div class="line">            if (num == 0)&#123;</div><div class="line">                return step;</div><div class="line">            &#125;else&#123;</div><div class="line">                for(int i = 1; ; i++)&#123;</div><div class="line">                    int tmp = num - i *i;</div><div class="line">                    </div><div class="line">                    if (tmp &lt; 0)&#123;</div><div class="line">                        break;</div><div class="line">                    &#125;</div><div class="line">                    </div><div class="line">                    if (!visited[tmp])&#123;</div><div class="line">                        q.push(make_pair(tmp, step + 1));</div><div class="line">                        visited[tmp] = true;</div><div class="line">                    &#125;</div><div class="line">                    </div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        throw invalid_argument(&quot;no answer!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题-4"><a href="#相似问题-4" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode-127"><a href="#leetcode-127" class="headerlink" title="leetcode 127"></a>leetcode 127</h4><h4 id="leetcode-126"><a href="#leetcode-126" class="headerlink" title="leetcode 126"></a>leetcode 126</h4><hr>
+<h2 id="优先队列-c"><a href="#优先队列-c" class="headerlink" title="优先队列(c++)"></a>优先队列(c++)</h2><blockquote>
+<p>优先队列是一种特殊的队列，通常优先队列的底层实现是堆。对于堆得底层实现需要我们可以使用白板编程。</p>
+</blockquote>
+<h3 id="c-库-priority-queue"><a href="#c-库-priority-queue" class="headerlink" title="c++库 priority_queue"></a>c++库 priority_queue</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;queue&gt;</div><div class="line">#include &lt;ctime&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">bool myCmp(int a , int b)&#123;</div><div class="line"></div><div class="line">    if(a%10 != b%10)</div><div class="line">        return a%10 &gt; b%10;</div><div class="line">    return a &gt; b;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line"></div><div class="line">    srand(time(NULL));</div><div class="line"></div><div class="line">    // 默认的priority queue, 底层是最大堆</div><div class="line">    priority_queue&lt;int&gt; pq;</div><div class="line"></div><div class="line">    for(int i = 0 ; i &lt; 10 ; i ++)&#123;</div><div class="line">        int num = rand() % 100;</div><div class="line">        pq.push(num);</div><div class="line">        cout &lt;&lt; &quot;insert &quot; &lt;&lt; num &lt;&lt; &quot; in priority queue.&quot; &lt;&lt; endl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    while(!pq.empty())&#123;</div><div class="line">        cout &lt;&lt; pq.top() &lt;&lt; &quot; &quot;;</div><div class="line">        pq.pop();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    cout &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">    // 使用greater的priority queue, 底层是最小堆</div><div class="line">    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq2;</div><div class="line"></div><div class="line">    for(int i = 0; i &lt; 10; i ++)&#123;</div><div class="line">        int num = rand() % 100;</div><div class="line">        pq2.push(num);</div><div class="line">        cout &lt;&lt; &quot;insert &quot; &lt;&lt; num &lt;&lt; &quot; in priority queue.&quot; &lt;&lt; endl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    while(!pq2.empty())&#123;</div><div class="line">        cout &lt;&lt; pq2.top() &lt;&lt; &quot; &quot;;</div><div class="line">        pq2.pop();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    cout &lt;&lt; endl &lt;&lt; endl;</div><div class="line"></div><div class="line">    // 使用自定义Comparator的priority queue</div><div class="line">    priority_queue&lt;int, vector&lt;int&gt;, function&lt;bool(int,int)&gt;&gt; pq3(myCmp);</div><div class="line"></div><div class="line">    for(int i = 0; i &lt; 10; i ++)&#123;</div><div class="line">        int num = rand() % 100;</div><div class="line">        pq3.push(num);</div><div class="line">        cout &lt;&lt; &quot;insert &quot; &lt;&lt; num &lt;&lt; &quot; in priority queue.&quot; &lt;&lt; endl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    while(!pq3.empty())&#123;</div><div class="line">        cout &lt;&lt; pq3.top() &lt;&lt; &quot; &quot;;</div><div class="line">        pq3.pop();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="优先队列相关的算法问题"><a href="#优先队列相关的算法问题" class="headerlink" title="优先队列相关的算法问题"></a>优先队列相关的算法问题</h2><h3 id="leetcode-347-前K个高频元素"><a href="#leetcode-347-前K个高频元素" class="headerlink" title="leetcode 347. 前K个高频元素"></a>leetcode 347. 前K个高频元素</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529669863490zll4ouav.png?imageslim" alt="paste image"></p>
+<blockquote>
+<p>最简单的思路：扫描一遍统计频率：排序找到前k个出现频率最高的元素，O(nlogn)。</p>
+<p>经过思考，其实我们可以维护一个含有k个元素的优先队列。如果遍历到的元素比队列中的最小频率元素的频率高，则取出队列中最小频率的元素，将新元素入队。最终，队列中剩下的，就是前k个出现频率最高的元素。</p>
+</blockquote>
+<h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line">#include &lt;queue&gt;</div><div class="line">#include &lt;unordered_map&gt;</div><div class="line">#include &lt;cassert&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) &#123;</div><div class="line"></div><div class="line">        assert( k &gt; 0 );</div><div class="line"></div><div class="line">        // 统计每个元素出现的频率</div><div class="line">        unordered_map&lt;int,int&gt; freq;</div><div class="line">        for(int i = 0 ; i &lt; nums.size() ; i ++ )</div><div class="line">            freq[nums[i]] ++;</div><div class="line"></div><div class="line">        assert( k &lt;= freq.size() );</div><div class="line"></div><div class="line">        // 扫描freq,维护当前出现频率最高的k个元素</div><div class="line">        // 在优先队列中,按照频率排序,所以数据对是 (频率,元素) 的形式</div><div class="line">        priority_queue&lt; pair&lt;int,int&gt; , vector&lt;pair&lt;int,int&gt;&gt; , greater&lt;pair&lt;int,int&gt;&gt; &gt; pq;</div><div class="line">        for( unordered_map&lt;int,int&gt;::iterator iter = freq.begin() ;</div><div class="line">             iter != freq.end() ; iter ++ )&#123;</div><div class="line">            if( pq.size() == k )&#123;</div><div class="line">                if( iter-&gt;second &gt; pq.top().first )&#123;</div><div class="line">                    pq.pop();</div><div class="line">                    pq.push( make_pair( iter-&gt;second , iter-&gt;first) );</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            else</div><div class="line">                pq.push( make_pair( iter-&gt;second , iter-&gt;first ) );</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        vector&lt;int&gt; res;</div><div class="line">        while( !pq.empty() )&#123;</div><div class="line">            res.push_back( pq.top().second );</div><div class="line">            pq.pop();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h4><ul>
+<li>上面代码的时间复杂度为O(N*longK)</li>
+<li>但是如果k接近N，则时间复杂度蜕化为O(N*N)</li>
+<li>可以修改上述代码，当k接近N，时间复杂度为O(nlog(n-k))</li>
+</ul>
+<h3 id="相似问题-5"><a href="#相似问题-5" class="headerlink" title="相似问题"></a>相似问题</h3><h4 id="leetcode-23"><a href="#leetcode-23" class="headerlink" title="leetcode 23"></a>leetcode 23</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/20/leetcode题解（链表类/" rel="next" title="leetcode题解（链表类)">
+                <i class="fa fa-chevron-left"></i> leetcode题解（链表类)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/23/面试的技巧（上）：听懂别人的问题/" rel="prev" title="面试的技巧（上）：听懂别人的问题">
+                面试的技巧（上）：听懂别人的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#栈的基础应用"><span class="nav-number">1.</span> <span class="nav-text">栈的基础应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-20-有效的括号"><span class="nav-number">1.1.</span> <span class="nav-text">leetcode 20. 有效的括号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题"><span class="nav-number">1.4.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-150-逆波兰表达式求值"><span class="nav-number">1.4.1.</span> <span class="nav-text">leetcode 150. 逆波兰表达式求值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-71-简化路径"><span class="nav-number">1.4.2.</span> <span class="nav-text">leetcode 71. 简化路径</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈和递归的紧密关系"><span class="nav-number">2.</span> <span class="nav-text">栈和递归的紧密关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode144-二叉树的前序遍历"><span class="nav-number">2.2.</span> <span class="nav-text">leetcode144. 二叉树的前序遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-1"><span class="nav-number">2.3.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-94-二叉树的中序遍历"><span class="nav-number">2.3.1.</span> <span class="nav-text">leetcode 94. 二叉树的中序遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-145-二叉树的后序遍历"><span class="nav-number">2.3.2.</span> <span class="nav-text">leetcode 145. 二叉树的后序遍历</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运用栈模拟递归"><span class="nav-number">3.</span> <span class="nav-text">运用栈模拟递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-2"><span class="nav-number">3.1.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-341"><span class="nav-number">3.1.1.</span> <span class="nav-text">leetcode 341</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列的典型应用"><span class="nav-number">4.</span> <span class="nav-text">队列的典型应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-102-二叉树的层次遍历"><span class="nav-number">4.1.</span> <span class="nav-text">leetcode 102. 二叉树的层次遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-1"><span class="nav-number">4.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-3"><span class="nav-number">4.3.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-107"><span class="nav-number">4.3.1.</span> <span class="nav-text">leetcode 107</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-103"><span class="nav-number">4.3.2.</span> <span class="nav-text">leetcode 103</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-199"><span class="nav-number">4.3.3.</span> <span class="nav-text">leetcode 199</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图的广度优先遍历-BFS-和图的最短路径"><span class="nav-number">5.</span> <span class="nav-text">图的广度优先遍历(BFS)和图的最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode279-完全平方数"><span class="nav-number">5.1.</span> <span class="nav-text">leetcode279. 完全平方数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决思路"><span class="nav-number">5.1.1.</span> <span class="nav-text">解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#直觉解法？贪心？"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">直觉解法？贪心？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广度遍历建模"><span class="nav-number">5.1.2.</span> <span class="nav-text">广度遍历建模</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-1"><span class="nav-number">5.1.3.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-4"><span class="nav-number">5.2.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-127"><span class="nav-number">5.2.1.</span> <span class="nav-text">leetcode 127</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-126"><span class="nav-number">5.2.2.</span> <span class="nav-text">leetcode 126</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先队列-c"><span class="nav-number">6.</span> <span class="nav-text">优先队列(c++)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#c-库-priority-queue"><span class="nav-number">6.1.</span> <span class="nav-text">c++库 priority_queue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先队列相关的算法问题"><span class="nav-number">7.</span> <span class="nav-text">优先队列相关的算法问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-347-前K个高频元素"><span class="nav-number">7.1.</span> <span class="nav-text">leetcode 347. 前K个高频元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-2"><span class="nav-number">7.1.1.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-2"><span class="nav-number">7.1.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-5"><span class="nav-number">7.2.</span> <span class="nav-text">相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode-23"><span class="nav-number">7.2.1.</span> <span class="nav-text">leetcode 23</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
