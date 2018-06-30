@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="动态规划本质依然是递归算法，只不过是满足特定条件的递归算法；动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode题解(动态规划)">
+<meta property="og:url" content="http://yoursite.com/2018/06/21/leetcode题解-动态规划/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="动态规划本质依然是递归算法，只不过是满足特定条件的递归算法；动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530175872347v6g6udoj.png?imageView/2/w/500/q/100">
+<meta property="og:image" content="http://oseihavwm.bkt.clouddn.com/Fibonacci.png">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530175984893am8xva83.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15301760281729lc21hxy.png?imageView/2/w/500/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15302650052271elvu2y2.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530265086925w5acn39q.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530265178661v1cq9obf.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530364803408dv08o8dg.png?imageslim">
+<meta property="og:image" content="http://oseihavwm.bkt.clouddn.com/House%20Robber.png">
+<meta property="og:updated_time" content="2018-06-30T13:37:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode题解(动态规划)">
+<meta name="twitter:description" content="动态规划本质依然是递归算法，只不过是满足特定条件的递归算法；动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1530175872347v6g6udoj.png?imageView/2/w/500/q/100">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/21/leetcode题解-动态规划/"/>
+
+
+
+
+
+  <title>leetcode题解(动态规划) | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/leetcode题解-动态规划/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wujunqi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode题解(动态规划)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T22:33:00+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/21/leetcode题解-动态规划/" class="leancloud_visitors" data-flag-title="leetcode题解(动态规划)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>动态规划本质依然是递归算法，只不过是满足特定条件的递归算法；动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。<br><a id="more"></a></p>
+<h2 id="什么是动态规划"><a href="#什么是动态规划" class="headerlink" title="什么是动态规划"></a>什么是动态规划</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>将原问题拆解成若干子问题，同时保存子问题的答案，使得每个子问题只求解一次，最终获得原问题的答案。</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1530175872347v6g6udoj.png?imageView/2/w/500/q/100" alt="paste image"></p>
+<ul>
+<li>我们先解决小数据量的问题，之后层层递推来解决更大数据量的问题，通常这个过程就叫做动态规划。这个时间和记忆化搜索的时间复杂度是相当的，不过动态规划没有递归的调用，不需要额外调用和栈空间。</li>
+<li>动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。</li>
+</ul>
+<h3 id="一个简单例子"><a href="#一个简单例子" class="headerlink" title="一个简单例子"></a>一个简单例子</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">( <span class="keyword">int</span> n )</span></span>&#123;</div><div class="line"></div><div class="line">    num ++;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( n == <span class="number">0</span> )</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( n == <span class="number">1</span> )</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    num = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> n = <span class="number">42</span>;</div><div class="line">    <span class="keyword">time_t</span> startTime = clock();</div><div class="line">    <span class="keyword">int</span> res = fib(n);</div><div class="line">    <span class="keyword">time_t</span> endTime = clock();</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"fib("</span>&lt;&lt;n&lt;&lt;<span class="string">") = "</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"time : "</span>&lt;&lt;<span class="keyword">double</span>(endTime-startTime)/CLOCKS_PER_SEC&lt;&lt;<span class="string">" s"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"run function fib() "</span>&lt;&lt;num&lt;&lt;<span class="string">"times."</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><blockquote>
+<p>通过计时我们会发现这个算法很慢，为什么这个解法效率这么低呢？当我们需要计算fib(5)时，它的递归树是：</p>
+</blockquote>
+<p><a href="http://oseihavwm.bkt.clouddn.com/Fibonacci.png" target="_blank" rel="external"><img src="http://oseihavwm.bkt.clouddn.com/Fibonacci.png" alt=""></a></p>
+<blockquote>
+<p>从这个图可以看出这里面有大量的重复计算，我们怎样避免呢，我们可以在程序的外面做一个数组memo，其实memo[i]就记忆了第i个斐波那契数列。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;ctime&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">vector&lt;int&gt; memo;</div><div class="line">int num = 0;</div><div class="line"></div><div class="line">// 记忆化搜索</div><div class="line">int fib( int n )&#123;</div><div class="line"></div><div class="line">    num ++;</div><div class="line"></div><div class="line">    if( n == 0 )</div><div class="line">        return 0;</div><div class="line"></div><div class="line">    if( n == 1 )</div><div class="line">        return 1;</div><div class="line"></div><div class="line">    if( memo[n] == -1 )</div><div class="line">        memo[n] = fib(n-1) + fib(n-2);</div><div class="line"></div><div class="line">    return memo[n];</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line"></div><div class="line">    num = 0;</div><div class="line"></div><div class="line">    int n = 42;</div><div class="line">    memo = vector&lt;int&gt;(n+1,-1);</div><div class="line"></div><div class="line">    time_t startTime = clock();</div><div class="line">    int res = fib(n);</div><div class="line">    time_t endTime = clock();</div><div class="line"></div><div class="line">    cout&lt;&lt;&quot;fib(&quot;&lt;&lt;n&lt;&lt;&quot;) = &quot;&lt;&lt;res&lt;&lt;endl;</div><div class="line">    cout&lt;&lt;&quot;time : &quot;&lt;&lt;double(endTime-startTime)/CLOCKS_PER_SEC&lt;&lt;&quot; s&quot;&lt;&lt;endl;</div><div class="line">    cout&lt;&lt;&quot;run function fib() &quot;&lt;&lt;num&lt;&lt;&quot;times.&quot;&lt;&lt;endl;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>我们采用一个memo数组来记忆，所以叫做记忆化搜索。记忆化搜索其实就是在递归的过程中添加计划化，是一种自上向下的解决问题，我们假设基本的问题已经解决了，我们已经会求fib(n-1)和fib(n-2)了，那么我们就能求第n个数了。</p>
+<p>如果我们能自上而下解决问题，我们也能自下而上解决问题，只不过很多时候我们习惯于前者。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">// 动态规划</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">( <span class="keyword">int</span> n )</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; memo(n+<span class="number">1</span>, <span class="number">-1</span>);</div><div class="line"></div><div class="line">    memo[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">    memo[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">2</span> ; i &lt;= n ; i ++ )</div><div class="line">        memo[i] = memo[i<span class="number">-1</span>] + memo[i<span class="number">-2</span>];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> memo[n];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 结果会溢出,这里只看性能</span></div><div class="line">    <span class="keyword">int</span> n = <span class="number">1000</span>;</div><div class="line"></div><div class="line">    <span class="keyword">time_t</span> startTime = clock();</div><div class="line">    <span class="keyword">int</span> res = fib(n);</div><div class="line">    <span class="keyword">time_t</span> endTime = clock();</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"fib("</span>&lt;&lt;n&lt;&lt;<span class="string">") = "</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"time : "</span>&lt;&lt;<span class="keyword">double</span>(endTime-startTime)/CLOCKS_PER_SEC&lt;&lt;<span class="string">" s"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="第一个动态规划问题"><a href="#第一个动态规划问题" class="headerlink" title="第一个动态规划问题"></a>第一个动态规划问题</h2><h3 id="leetcode-70-爬楼梯"><a href="#leetcode-70-爬楼梯" class="headerlink" title="leetcode 70. 爬楼梯"></a>leetcode 70. 爬楼梯</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530175984893am8xva83.png?imageslim" alt="paste image"></p>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>我们来看一下递归的思路，把一个大的问题分解成小的问题。</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/15301760281729lc21hxy.png?imageView/2/w/500/q/100" alt="paste image"></p>
+<h4 id="代码实现（递归）"><a href="#代码实现（递归）" class="headerlink" title="代码实现（递归）"></a>代码实现（递归）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">    #include &lt;vector&gt;</div><div class="line">    </div><div class="line">    using namespace std;</div><div class="line">    </div><div class="line">    // 记忆化搜索</div><div class="line">    class Solution &#123;</div><div class="line">    private:</div><div class="line">        vector&lt;int&gt; memo;</div><div class="line">    </div><div class="line">        int calcWays(int n)&#123;</div><div class="line">    </div><div class="line">            if( n == 0 || n == 1)</div><div class="line">                return 1;</div><div class="line">    </div><div class="line">            if( memo[n] == -1 )</div><div class="line">                memo[n] = calcWays(n-1) + calcWays(n-2);</div><div class="line">    </div><div class="line">            return memo[n];</div><div class="line">        &#125;</div><div class="line">    public:</div><div class="line">        int climbStairs(int n) &#123;</div><div class="line">    </div><div class="line">            memo = vector&lt;int&gt;(n+1,-1);</div><div class="line">            return calcWays(n);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<h4 id="代码实现（动态规划）"><a href="#代码实现（动态规划）" class="headerlink" title="代码实现（动态规划）"></a>代码实现（动态规划）</h4><blockquote>
+<p>我们会发现和上面斐波那契一样，很轻易可以转化为动态规划解法。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">    #include &lt;vector&gt;</div><div class="line">    </div><div class="line">    using namespace std;</div><div class="line">    </div><div class="line">    // 动态规划</div><div class="line">    class Solution &#123;</div><div class="line">    </div><div class="line">    public:</div><div class="line">        int climbStairs(int n) &#123;</div><div class="line">    </div><div class="line">            vector&lt;int&gt; memo(n+1, -1);</div><div class="line">            memo[0] = 1;</div><div class="line">            memo[1] = 1;</div><div class="line">    </div><div class="line">            for ( int i = 2; i &lt;= n; i++ ) &#123;</div><div class="line">                memo[i] = memo[i-1] + memo[i-2];</div><div class="line">            &#125;</div><div class="line">    </div><div class="line">            return memo[n];</div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题"><a href="#相似问题" class="headerlink" title="相似问题"></a>相似问题</h3><ul>
+<li>leetcode 120</li>
+<li>leetcode 64</li>
+</ul>
+<hr>
+<h2 id="发现重叠子问题"><a href="#发现重叠子问题" class="headerlink" title="发现重叠子问题"></a>发现重叠子问题</h2><h3 id="leetcode-343-整数拆分"><a href="#leetcode-343-整数拆分" class="headerlink" title="leetcode 343. 整数拆分"></a>leetcode 343. 整数拆分</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15302650052271elvu2y2.png?imageslim" alt="paste image"></p>
+<h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530265086925w5acn39q.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<blockquote>
+<p>对于一个问题如果没有思路时，我们可以先考虑暴力解法。话句话说，我们使用什么样的方式，才能把正整数n的所有分割枚举出来，我们无法知道有几重循环，通常我们需要使用递归的手段。<br>暴力解法：回溯遍历将一个数做分割的所有可能性。O(2^n)</p>
+<p>之所以递归树存在，是因为它有最优子结构<br>通过求子问题的最优解，可以获得原问题的最优解。</p>
+</blockquote>
+<h4 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530265178661v1cq9obf.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<ul>
+<li>通过求子问题的最优解， 可以获得原问题的最优解</li>
+</ul>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><h5 id="实现1"><a href="#实现1" class="headerlink" title="实现1"></a>实现1</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;cassert&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">class Solution &#123;</div><div class="line">private:</div><div class="line">    int max3( int a , int b , int c )&#123;</div><div class="line">        return max( a , max(b,c) );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 将n进行分割(至少分割两部分), 可以获得的最大乘积</div><div class="line">    int breakInteger( int n )&#123;</div><div class="line"></div><div class="line">        if( n == 1 )</div><div class="line">            return 1;</div><div class="line"></div><div class="line">        int res = -1;</div><div class="line">        for( int i = 1 ; i &lt;= n-1 ; i ++ )</div><div class="line">            res = max3( res , i*(n-i) , i * breakInteger(n-i) );</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">public:</div><div class="line">    int integerBreak(int n) &#123;</div><div class="line">        assert( n &gt;= 1 );</div><div class="line">        return breakInteger(n);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h5 id="实现2"><a href="#实现2" class="headerlink" title="实现2"></a>实现2</h5><blockquote>
+<p>它包含重叠子问题，下面是记忆化搜索版本：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Solution &#123;</div><div class="line">private:</div><div class="line">    vector&lt;int&gt; memo;</div><div class="line"></div><div class="line">    int max3( int a , int b , int c )&#123;</div><div class="line">        return max( a , max(b,c) );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 将n进行分割(至少分割两部分), 可以获得的最大乘积</div><div class="line">    int breakInteger( int n )&#123;</div><div class="line"></div><div class="line">        if( n == 1 )</div><div class="line">            return 1;</div><div class="line"></div><div class="line">        if( memo[n] != -1 )</div><div class="line">            return memo[n];</div><div class="line"></div><div class="line">        int res = -1;</div><div class="line">        for( int i = 1 ; i &lt;= n-1 ; i ++ )</div><div class="line">            res = max3( res , i*(n-i) , i * breakInteger(n-i) );</div><div class="line">        memo[n] = res;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">public:</div><div class="line">    int integerBreak(int n) &#123;</div><div class="line">        assert( n &gt;= 1 );</div><div class="line">        memo = vector&lt;int&gt;(n+1, -1);</div><div class="line">        return breakInteger(n);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h5 id="实现3-动态规划"><a href="#实现3-动态规划" class="headerlink" title="实现3 动态规划"></a>实现3 动态规划</h5><blockquote>
+<p>下面我们使用自底向上的方法，也就是动态规划解决这个问题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Solution &#123;</div><div class="line"></div><div class="line">private:</div><div class="line">    int max3( int a , int b , int c )&#123;</div><div class="line">        return max(max(a,b),c);</div><div class="line">    &#125;</div><div class="line">public:</div><div class="line">    int integerBreak(int n) &#123;</div><div class="line"></div><div class="line">        // memo[i] 表示将数字i分割(至少分割成两部分)后得到的最大乘积</div><div class="line">        vector&lt;int&gt; memo(n+1, -1);</div><div class="line"></div><div class="line">        memo[1] = 1;</div><div class="line">        for ( int i = 2; i &lt;= n; i++ ) &#123;</div><div class="line">            // 求解memo[i]</div><div class="line">            for ( int j = 1; j &lt;= i-1; j++ ) &#123;</div><div class="line">                // j + (i-j)</div><div class="line">                memo[i] = max3( memo[i], j*(i-j), j*memo[i-j] );</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return memo[n];</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="相似问题-1"><a href="#相似问题-1" class="headerlink" title="相似问题"></a>相似问题</h3><ul>
+<li>leetcode 279 </li>
+<li>leetcode 91</li>
+<li>leetcode 62</li>
+<li>leetcode 63</li>
+</ul>
+<hr>
+<h2 id="状态的定义和状态转移"><a href="#状态的定义和状态转移" class="headerlink" title="状态的定义和状态转移"></a>状态的定义和状态转移</h2><h3 id="leetcode-198-打家劫舍"><a href="#leetcode-198-打家劫舍" class="headerlink" title="leetcode 198. 打家劫舍"></a>leetcode 198. 打家劫舍</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530364803408dv08o8dg.png?imageslim" alt="paste image"></p>
+<h3 id="状态的定义"><a href="#状态的定义" class="headerlink" title="状态的定义"></a>状态的定义</h3><blockquote>
+<p>考虑偷取[x…n-1]范围里的房子（函数定义）</p>
+</blockquote>
+<h3 id="状态的转移"><a href="#状态的转移" class="headerlink" title="状态的转移"></a>状态的转移</h3><blockquote>
+<p>f(0) = max{ v(0) + f(2), v(1) + f(3), v(2) + f(4), … , v(n-3) + f(n-1), v(n-2), v(n-1)}(状态转移方程)</p>
+</blockquote>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p><a href="http://oseihavwm.bkt.clouddn.com/House%20Robber.png" target="_blank" rel="external"><img src="http://oseihavwm.bkt.clouddn.com/House%20Robber.png" alt=""></a></p>
+<blockquote>
+<p>首先依然是如果没有思路的话，先考虑暴力解法。检查所有的房子，对每个组合，检查是否有相邻的房子，如果没有，记录其价值，找最大值。O((2^n)*n)</p>
+<p>注意其中对状态的定义：<br>考虑偷取[x…n-1]范围里的房子(函数的定义)</p>
+<p>根据对状态的定义，决定状态的转移：<br>f(0) = max{ v(0) + f(2), v(1) + f(3), v(2) + f(4), … , v(n-3) + f(n-1), v(n-2), v(n-1)}(状态转移方程)</p>
+<p>实际上我们的递归函数就是在实现状态转移。</p>
+</blockquote>
+<h2 id="198-House-Robber"><a href="#198-House-Robber" class="headerlink" title="198. House Robber"></a><a href="#198-House-Robber" title="198. House Robber"></a>198. House Robber</h2><h4 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">private:</div><div class="line">    // memo[i] 表示考虑抢劫 nums[i...n) 所能获得的最大收益</div><div class="line">    vector&lt;int&gt; memo;</div><div class="line"></div><div class="line">    // 考虑抢劫nums[index...nums.size())这个范围的所有房子</div><div class="line">    int tryRob( vector&lt;int&gt; &amp;nums, int index)&#123;</div><div class="line"></div><div class="line">        if( index &gt;= nums.size() )</div><div class="line">            return 0;</div><div class="line"></div><div class="line">        if( memo[index] != -1 )</div><div class="line">            return memo[index];</div><div class="line"></div><div class="line">        int res = 0;</div><div class="line">        for( int i = index ; i &lt; nums.size() ; i ++ )</div><div class="line">            res = max(res, nums[i] + tryRob(nums, i+2));</div><div class="line">        memo[index] = res;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">public:</div><div class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</div><div class="line"></div><div class="line">        memo = vector&lt;int&gt;(nums.size(), -1);</div><div class="line">        return tryRob(nums, 0);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="动态规划解法"><a href="#动态规划解法" class="headerlink" title="动态规划解法"></a>动态规划解法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Solution &#123;</div><div class="line"></div><div class="line">public:</div><div class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</div><div class="line"></div><div class="line">        int n = nums.size();</div><div class="line"></div><div class="line">        if( n == 0 ) &#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // memo[i] 表示考虑抢劫 nums[i...n) 所能获得的最大收益</div><div class="line">        vector&lt;int&gt; memo(n, 0);</div><div class="line">        memo[n-1] = nums[n-1];</div><div class="line">        for( int i = n-2 ; i &gt;= 0 ; i -- ) &#123;</div><div class="line">            for (int j = i; j &lt; n; j++) &#123;</div><div class="line">                memo[i] = max(memo[i], nums[j] + (j + 2 &lt; n ? memo[j + 2] : 0) );</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return memo[0];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="状态的另一种定义"><a href="#状态的另一种定义" class="headerlink" title="状态的另一种定义"></a>状态的另一种定义</h3><blockquote>
+<p>我们所强调的是对于动态规划来说，我们要清晰自己对状态的定义，在我们之前的定义我们是去考虑偷取[x…n-1]范围里的房子(函数的定义)。对于同样的问题，很多时候我们可以设立不同的状态得到同样正确的答案。</p>
+<p>改变对状态的定义：<br>考虑偷取[0…x]范围里的房子(函数的定义)。实现如下：</p>
+</blockquote>
+<h4 id="记忆化搜索代码实现"><a href="#记忆化搜索代码实现" class="headerlink" title="记忆化搜索代码实现"></a>记忆化搜索代码实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line"></div><div class="line">private:</div><div class="line">    vector&lt;int&gt; memo;</div><div class="line">    //考虑偷取[0..x]范围里的房子</div><div class="line">    int tryRob(vector&lt;int&gt;&amp;nums, int index)&#123;</div><div class="line">        if (index &lt; 0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        if (memo[index] != -1)&#123;</div><div class="line">            return memo[index];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        int res = 0;</div><div class="line">        for( int i = index; i &gt;= 0; i--)&#123;</div><div class="line">            res = max(res, nums[i] + tryRob(nums, i - 2));</div><div class="line">        &#125;</div><div class="line">        memo[index] = res;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">public:</div><div class="line">    </div><div class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</div><div class="line">        int n = nums.size();</div><div class="line">        memo = vector&lt;int&gt;(n + 1, -1);</div><div class="line">        if (n == 0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return tryRob(nums, n-1);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="动态规划代码实现"><a href="#动态规划代码实现" class="headerlink" title="动态规划代码实现"></a>动态规划代码实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line"></div><div class="line">public:</div><div class="line">    </div><div class="line">    //考虑偷取[0..x]范围里的房子</div><div class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</div><div class="line">        int n = nums.size();</div><div class="line">        vector&lt;int&gt; memo(n, -1);</div><div class="line">        </div><div class="line">        if (n == 0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        memo[0] = nums[0];</div><div class="line">        </div><div class="line">        for(int i = 1; i &lt; n; i++)&#123;</div><div class="line">            for(int j = i; j &gt;= 0; j --)&#123;</div><div class="line">                memo[i] = max(memo[i], nums[j] + (j-2 &gt;= 0? memo[j-2]: 0));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return memo[n-1];</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="相似问题-2"><a href="#相似问题-2" class="headerlink" title="相似问题"></a>相似问题</h3><ul>
+<li>leetcode 213</li>
+<li>leetcode 337</li>
+<li>leetcode 309</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="wujunqi WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="wujunqi Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/21/leetcode题解-递归和回溯法/" rel="next" title="leetcode题解(递归和回溯法)">
+                <i class="fa fa-chevron-left"></i> leetcode题解(递归和回溯法)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/23/面试的技巧（上）：听懂别人的问题/" rel="prev" title="面试的技巧（上）：听懂别人的问题">
+                面试的技巧（上）：听懂别人的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="wujunqi" />
+          <p class="site-author-name" itemprop="name">wujunqi</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是动态规划"><span class="nav-number">1.</span> <span class="nav-text">什么是动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个简单例子"><span class="nav-number">1.2.</span> <span class="nav-text">一个简单例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.2.1.</span> <span class="nav-text">分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个动态规划问题"><span class="nav-number">2.</span> <span class="nav-text">第一个动态规划问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-70-爬楼梯"><span class="nav-number">2.1.</span> <span class="nav-text">leetcode 70. 爬楼梯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">2.1.1.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现（递归）"><span class="nav-number">2.1.2.</span> <span class="nav-text">代码实现（递归）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现（动态规划）"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码实现（动态规划）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题"><span class="nav-number">2.2.</span> <span class="nav-text">相似问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发现重叠子问题"><span class="nav-number">3.</span> <span class="nav-text">发现重叠子问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-343-整数拆分"><span class="nav-number">3.1.</span> <span class="nav-text">leetcode 343. 整数拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最优子结构"><span class="nav-number">3.1.2.</span> <span class="nav-text">最优子结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">3.1.3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实现1"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">实现1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现2"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">实现2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现3-动态规划"><span class="nav-number">3.1.3.3.</span> <span class="nav-text">实现3 动态规划</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-1"><span class="nav-number">3.2.</span> <span class="nav-text">相似问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态的定义和状态转移"><span class="nav-number">4.</span> <span class="nav-text">状态的定义和状态转移</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-198-打家劫舍"><span class="nav-number">4.1.</span> <span class="nav-text">leetcode 198. 打家劫舍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态的定义"><span class="nav-number">4.2.</span> <span class="nav-text">状态的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态的转移"><span class="nav-number">4.3.</span> <span class="nav-text">状态的转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-2"><span class="nav-number">4.4.</span> <span class="nav-text">解题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#198-House-Robber"><span class="nav-number">5.</span> <span class="nav-text">198. House Robber</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代码"><span class="nav-number">5.0.1.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划解法"><span class="nav-number">5.0.2.</span> <span class="nav-text">动态规划解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态的另一种定义"><span class="nav-number">5.1.</span> <span class="nav-text">状态的另一种定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#记忆化搜索代码实现"><span class="nav-number">5.1.1.</span> <span class="nav-text">记忆化搜索代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划代码实现"><span class="nav-number">5.1.2.</span> <span class="nav-text">动态规划代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题-2"><span class="nav-number">5.2.</span> <span class="nav-text">相似问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wujunqi</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
