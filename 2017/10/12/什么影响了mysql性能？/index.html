@@ -85,7 +85,7 @@
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507828846732glbnb1bw.png?imageView/2/w/600/q/90">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507878673777hhqu8tsc.png?imageView/2/w/600/q/90">
 <meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507899669527a6cc6c2z.png?imageView/2/w/600/q/90">
-<meta property="og:updated_time" content="2017-11-29T23:33:11.000Z">
+<meta property="og:updated_time" content="2018-07-02T10:40:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么影响了mysql性能？">
 <meta name="twitter:description" content="介绍服务器硬件、服务器系统、数据库存储引擎（插件式存储引擎）、数据库参数配置、数据库结构设计和sql语句对数据库的影响">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3,875
+                  3,874
                 </span>
               
 
@@ -476,14 +476,14 @@
 </ul>
 <p><img src="http://otwbgbfg8.bkt.clouddn.com/1507821154792dw6y9vmi.png?imageView/2/w/400/q/90" alt="paste image"></p>
 <ul>
-<li><p>READ 5 定义</p>
+<li>READ 5 定义</li>
+</ul>
 <blockquote>
 <p>RAID Level 5是一种储存性能、数据安全和存储成本兼顾的存储解决方案。它使用的是Disk Striping（硬盘分区）技术。RAID 5至少需要三块硬盘，RAID 5不是对存储的数据进行备份，而是把数据和相对应的奇偶校验信息存储到组成RAID5的各个磁盘上，并且奇偶校验信息和相对应的数据分别存储于不同的磁盘上。当RAID5的一个磁盘数据发生损坏后，可以利用剩下的数据和相应的奇偶校验信息去恢复被损坏的数据。RAID 5可以理解为是RAID 0和RAID 1的折衷方案。RAID 5可以为系统提供数据安全保障，但保障程度要比镜像低而磁盘空间利用率要比镜像高。RAID 5具有和RAID 0相近似的数据读取速度，只是因为多了一个奇偶校验信息，写入数据的速度相对单独写入一块硬盘的速度略慢，若使用“回写缓存”可以让性能改善不少。同时由于多个数据对应一个奇偶校验信息，RAID 5的磁盘空间利用率要比RAID 1高，存储成本相对较便宜。</p>
 </blockquote>
-<p>  <img src="http://otwbgbfg8.bkt.clouddn.com/150782136019151phpx17.png?imageView/2/w/400/q/90" alt="paste image"></p>
-</li>
-<li><p>READ 10</p>
-<blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/150782136019151phpx17.png?imageView/2/w/400/q/90" alt="paste image"></p>
+<ul>
+<li>READ 10<blockquote>
 <p>RAID 10是先镜射再分区数据，再将所有硬盘分为两组，视为是RAID 0的最低组合，然后将这两组各自视为RAID 1运作。当RAID 10有一个硬盘受损，其余硬盘会继续运作。RAID 01只要有一个硬盘受损，同组RAID 0的所有硬盘都会停止运作，只剩下其他组的硬盘运作，可靠性较低。如果以六个硬盘建RAID 01，镜射再用三个建RAID 0，那么坏一个硬盘便会有三个硬盘离线。</p>
 </blockquote>
 </li>
@@ -822,7 +822,12 @@
       <strong>版权声明： </strong>
 	  本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请保留原文链接及作者！
     </li>
-  </ul>
+  <ul>
+
+	<div>
+		欢迎搜索及关注：番茄技术小栈
+		<img src="http://otwbgbfg8.bkt.clouddn.com/15305785034493pp9x9ln.png?imageslim" width="100%" height="100%"/>
+	</div>
 
 
 		
