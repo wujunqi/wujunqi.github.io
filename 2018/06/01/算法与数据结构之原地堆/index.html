@@ -402,7 +402,7 @@
       
         <p>做了太久的小程序，6月份之后开始去年的算法的学习，今天比较有感悟的是吴军老师《硅谷来信》的一句话：走完最后的1%，这很重要。主要介绍一下原地堆排序算法以及实现（PHP)</p>
 <a id="more"></a>
-<h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><p>上一次的博客 <a href="http://fanqieto.top/2018/01/17/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%A0%86%E6%8E%92%E5%BA%8F/" target="_blank" rel="external">算法与数据结构堆和堆排序之堆排序
+<h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><p>上一次的博客 <a href="http://fanqieto.top/2018/01/17/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%A0%86%E6%8E%92%E5%BA%8F/">算法与数据结构堆和堆排序之堆排序
 </a>两种堆排序都需要开辟O(n)的辅助空间（构造函数中使用new分配的辅助空间），程序在开辟辅助空间和释放空间的时候也会消耗一定的时间，若能多数组进行原地堆排序，则省去了开辟和释放空间的时间，时间性能会好一些。</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>  给定一个大小为n的数组，将这个数组heapify，变为最大堆，此时数组的第一个元素就是最大值，将该值与数组最后一个元素交换位置后，对前n-1个元素进行heapify，变成最大堆，将第一个元素与数组倒数第二个元素交换位置…以此类推，最后得到的数组就是从小到大排序的。</p>
 <ul>
@@ -573,7 +573,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzc0MC8xNDI3MQ"></div>
+      <div id="SOHUCS"></div>
     
   </div>
 
@@ -622,7 +622,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -644,7 +644,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -894,17 +894,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 

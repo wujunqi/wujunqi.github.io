@@ -405,7 +405,7 @@
       
 
       
-        <p>前面的博文介绍了堆的实现<a href="http://fanqieto.top/2018/01/11/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0/" target="_blank" rel="external">堆的介绍</a>，今天主要主要介绍索引堆，以及索引堆的优化。<br><a id="more"></a></p>
+        <p>前面的博文介绍了堆的实现<a href="http://fanqieto.top/2018/01/11/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F%E4%B9%8B%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0/">堆的介绍</a>，今天主要主要介绍索引堆，以及索引堆的优化。<br><a id="more"></a></p>
 <h2 id="何为索引堆？"><a href="#何为索引堆？" class="headerlink" title="何为索引堆？"></a>何为索引堆？</h2><p>索引堆是对堆进行了优化。</p>
 <h2 id="优化了什么？"><a href="#优化了什么？" class="headerlink" title="优化了什么？"></a>优化了什么？</h2><p>在堆中，构建堆、插入、删除过程都需要大量的交换操作。在之前的实现中，进行交换操作是直接交换datas数组中两个元素。而索引堆交换的是这两个元素的索引，而不是直接交换元素。</p>
 <h2 id="有什么好处？"><a href="#有什么好处？" class="headerlink" title="有什么好处？"></a>有什么好处？</h2><p>主要有两个好处：</p>
@@ -639,7 +639,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzc0MC8xNDI3MQ"></div>
+      <div id="SOHUCS"></div>
     
   </div>
 
@@ -688,7 +688,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -710,7 +710,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -960,17 +960,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 

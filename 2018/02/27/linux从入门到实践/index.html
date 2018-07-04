@@ -425,7 +425,7 @@
 
       
         <p>系统的学习linux，主要包括linux简介，linux命令，远程连接ssh, webserver、数据库服务、缓存服务、git服务的安装与配置，以及java、python运行环境的安装等。<br><a id="more"></a></p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="mac安装docker"><a href="#mac安装docker" class="headerlink" title="mac安装docker"></a>mac安装docker</h3><p>具体参考之前的这篇博客<a href="http://fanqieto.top/2017/10/08/%E5%88%A9%E7%94%A8docker%E6%90%AD%E5%BB%BAyaf/" target="_blank" rel="external">利用docker搭建yaf</a></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="mac安装docker"><a href="#mac安装docker" class="headerlink" title="mac安装docker"></a>mac安装docker</h3><p>具体参考之前的这篇博客<a href="http://fanqieto.top/2017/10/08/%E5%88%A9%E7%94%A8docker%E6%90%AD%E5%BB%BAyaf/">利用docker搭建yaf</a></p>
 <h3 id="启动centos"><a href="#启动centos" class="headerlink" title="启动centos"></a>启动centos</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name centos_mysql_new --privileged=true -v /Users/junqi1/centos_mysql:/home/work -v /sys/fs/cgroup:/sys/fs/cgroup centos:latest /sbin/init</div><div class="line">docker exec -it centos_mysql_new /bin/bash</div></pre></td></tr></table></figure>
 <h4 id="解决进入容器后无法使用-service-命令"><a href="#解决进入容器后无法使用-service-命令" class="headerlink" title="解决进入容器后无法使用 service 命令"></a>解决进入容器后无法使用 service 命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@3f3838ae0cda /]# service</div><div class="line">bash: service: command not found</div></pre></td></tr></table></figure>
 <p>一般原因是没有将/sbin/service 加到 path 中,但在 docker 的官方 centos 容器中,到/sbin 目录下也没有找到 service 命令.<br><strong>解决</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install initscripts.x86_64</div></pre></td></tr></table></figure></p>
@@ -936,7 +936,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzc0MC8xNDI3MQ"></div>
+      <div id="SOHUCS"></div>
     
   </div>
 
@@ -985,7 +985,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1007,7 +1007,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1257,17 +1257,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
