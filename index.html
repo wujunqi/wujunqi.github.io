@@ -287,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://fanqieto.top/2018/07/10/python基本类型/">
+    <link itemprop="mainEntityOfPage" href="http://fanqieto.top/2018/07/10/python3理解代码及基本类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴军旗">
@@ -306,7 +306,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/10/python基本类型/" itemprop="url">python基本类型</a></h1>
+                <a class="post-title-link" href="/2018/07/10/python3理解代码及基本类型/" itemprop="url">python3理解代码及基本类型</a></h1>
         
 
         <div class="post-meta">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T20:09:15+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T22:29:50+08:00">
                 2018-07-10
               </time>
             
@@ -336,7 +336,7 @@
 
           
           
-             <span id="/2018/07/10/python基本类型/" class="leancloud_visitors" data-flag-title="python基本类型">
+             <span id="/2018/07/10/python3理解代码及基本类型/" class="leancloud_visitors" data-flag-title="python3理解代码及基本类型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -362,7 +362,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,758
+                  1,039
                 </span>
               
 
@@ -378,7 +378,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  7
+                  4
                 </span>
               
             </div>
@@ -398,25 +398,28 @@
       
         
           
-          什么是代码，什么是写代码
-代码：是现实世界事物在计算机世界中的映射；  
-写代码：是将现实世界中的事物用计算机语言来描述
+          什么是代码
+代码是现实世界在计算机世界中的映射
 
-在计算机中，怎么样来表示现实世界的事物？
-基本数据类型
+什么是写代码
+用计算机语言描述现实世界中的事物
 
-基本数据类型
-python3中的浮点数不分精度，整型不分短和长；布尔值一定是大写的True / False；列表使用[ ]，元组使用( )，集合使用{ }，字典使用{ k:v }
-type(1+1.0)  # 1.1 float
-type(2 / 2) #  1.0  float
-type(2 // 2)  #  1  int
 
-a = 123 # 不需要写变量的类型
-isinstance(a，int) # Tru
+python中的基本数据类型之数字
+Number
+整数 int
+浮点数 float
+
+
+
+python中的整数只有一种 与Java的short int long有区别浮点数只有float 没有double （python2.x中有long 3.x中没有 这里用的是python3.6）但是python中的float精度与java中的double精度相同
+在IDLE中使用type()函数可以查看数据的类型
+
+123456789&gt;&gt;&gt; type(1)&lt;class 'int'&
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/python基本类型/#more" rel="contents">
+            <a class="btn" href="/2018/07/10/python3理解代码及基本类型/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -563,7 +566,7 @@ isinstance(a，int) # Tru
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  328
+                  445
                 </span>
               
 
@@ -579,7 +582,7 @@ isinstance(a，int) # Tru
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -599,20 +602,24 @@ isinstance(a，int) # Tru
       
         
           
-          导语
-python是一门编程语言，它只是众多编程语言中的一种
-语法简洁、优雅、编写的程序容易阅读（life is short i use python)
-跨平台，可以运行在windows、linux以及macos上
-易于学习
-极为强大而丰富的标准库与第三方库，比如电子邮件，比如图形GUI界面
-python是面向对象的语言。
+          
+Life is short，I use Python 
 
-我为什么喜欢python
-简洁、灵活、优雅、哲学（python之禅：）
+导学
+Python不是一门新兴的语言，诞生于上世纪90年代初。
+Python的特点：简洁，易于学习
 
-1234567# 很多语言中，需要一个临时变量来交换temp = xx = yy = temp#  在python中x，y = y，x   //实现了x与y的值相互交换
+如何交换两个变量？12345    temp = x    x = y    y = tempPython:    x,y = y,x
 
-simple is bet
+Python定义为万金油，爬虫、大数据、测试、Web、AI、脚本处理等都可用Python*Simple is better than complex
+
+Python的特性
+Python是一门编程语言而不是框架
+语法简洁优雅，编写程序容易阅读
+跨平台
+易于入门
+极为强大且丰富的标准库于第三方库
+是面向
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1941,7 +1948,7 @@ F(n,C)考虑将n个物品放进容量为C的背包，使得价值最大。
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共201.0k字</span>
+	<span class="post-count">博客全站共200.4k字</span>
 </div>
 
         
