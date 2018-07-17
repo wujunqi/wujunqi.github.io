@@ -65,14 +65,14 @@
 
 <meta name="description" content="什么是表达式 表达式(Expression)是运算符和操作数所构成的序列。运算符和操作数是有顺序的。  表达式的优先级1234567&amp;gt;&amp;gt;&amp;gt; a = 1&amp;gt;&amp;gt;&amp;gt; b = 2&amp;gt;&amp;gt;&amp;gt; c = 3&amp;gt;&amp;gt;&amp;gt; a + b * c7&amp;gt;&amp;gt;&amp;gt; a or b and c        // b 和 c 做 and 之后再和 a 做">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python3分支、循环、条件与枚举">
+<meta property="og:title" content="python3分支、循环、条件">
 <meta property="og:url" content="http://fanqieto.top/2018/07/12/python3分支、循环、条件与枚举/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="什么是表达式 表达式(Expression)是运算符和操作数所构成的序列。运算符和操作数是有顺序的。  表达式的优先级1234567&amp;gt;&amp;gt;&amp;gt; a = 1&amp;gt;&amp;gt;&amp;gt; b = 2&amp;gt;&amp;gt;&amp;gt; c = 3&amp;gt;&amp;gt;&amp;gt; a + b * c7&amp;gt;&amp;gt;&amp;gt; a or b and c        // b 和 c 做 and 之后再和 a 做">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-12T13:28:09.000Z">
+<meta property="og:updated_time" content="2018-07-14T09:15:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python3分支、循环、条件与枚举">
+<meta name="twitter:title" content="python3分支、循环、条件">
 <meta name="twitter:description" content="什么是表达式 表达式(Expression)是运算符和操作数所构成的序列。运算符和操作数是有顺序的。  表达式的优先级1234567&amp;gt;&amp;gt;&amp;gt; a = 1&amp;gt;&amp;gt;&amp;gt; b = 2&amp;gt;&amp;gt;&amp;gt; c = 3&amp;gt;&amp;gt;&amp;gt; a + b * c7&amp;gt;&amp;gt;&amp;gt; a or b and c        // b 和 c 做 and 之后再和 a 做">
 
 
@@ -107,7 +107,7 @@
 
 
 
-  <title>python3分支、循环、条件与枚举 | 番茄技术小栈</title>
+  <title>python3分支、循环、条件 | 番茄技术小栈</title>
   
 
 
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python3分支、循环、条件与枚举</h1>
+          <h1 class="post-title" itemprop="name headline">python3分支、循环、条件</h1>
         
 
         <div class="post-meta">
@@ -351,7 +351,7 @@
 
           
           
-             <span id="/2018/07/12/python3分支、循环、条件与枚举/" class="leancloud_visitors" data-flag-title="python3分支、循环、条件与枚举">
+             <span id="/2018/07/12/python3分支、循环、条件与枚举/" class="leancloud_visitors" data-flag-title="python3分支、循环、条件">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -382,7 +382,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  629
+                  925
                 </span>
               
 
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -472,7 +472,41 @@
 <h2 id="改变思维定势"><a href="#改变思维定势" class="headerlink" title="改变思维定势"></a>改变思维定势</h2><blockquote>
 <p>input()函数录入的字符串str。<br>在学习动态语言对数据类型格外注意。</p>
 </blockquote>
-
+<h2 id="while循环与使用场景"><a href="#while循环与使用场景" class="headerlink" title="while循环与使用场景"></a>while循环与使用场景</h2><blockquote>
+<p>while循环和for循环</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">counter = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> counter &lt;= <span class="number">10</span>:</div><div class="line">    counter += <span class="number">1</span></div><div class="line">    print(counter)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">'Eof'</span>)    <span class="comment">#while结束后会执行else</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>ctrl + c 结束死循环<br>递归适合用while</p>
+</blockquote>
+<h2 id="for与for-else循环"><a href="#for与for-else循环" class="headerlink" title="for与for-else循环"></a>for与for-else循环</h2><blockquote>
+<p>for主要是用来遍历/循环 序列或者集合、字典<br>对应于其他语言中的for each</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a = [[<span class="string">'apple'</span>,<span class="string">'orange'</span>,<span class="string">'banana'</span>,<span class="string">'grape'</span>],(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)]</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</div><div class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> x:</div><div class="line">        print(y,end = <span class="string">' '</span>)    <span class="comment">#一横行打印</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">'fruit is gone'</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>利用break和continue跳过某些字符：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</div><div class="line">    <span class="keyword">if</span> x == <span class="number">2</span>:</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    print(x)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>利用break打断的for循环不会执行else里的语句，而continue会执行else</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</div><div class="line">    <span class="keyword">if</span> x == <span class="number">2</span>:</div><div class="line">        <span class="keyword">break</span></div><div class="line">    print(x)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">'EOF'</span>)    <span class="comment">#此句不执行</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>循环二维数组时跳出</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a = [[<span class="string">'apple'</span>,<span class="string">'orange'</span>,<span class="string">'banana'</span>,<span class="string">'grape'</span>],(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)]</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</div><div class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> x:</div><div class="line">        <span class="keyword">if</span> y == <span class="string">'orange'</span>:</div><div class="line">            <span class="keyword">break</span>    <span class="comment">#只跳出了内层循环</span></div><div class="line">        print(y,end = <span class="string">' '</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">'fruit is gone'</span>)</div></pre></td></tr></table></figure>
+<h2 id="for-与-range"><a href="#for-与-range" class="headerlink" title="for 与 range"></a>for 与 range</h2><blockquote>
+<p>利用range()打印0-9</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">10</span>):</div><div class="line">    print(x)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>rang(首，跨度，步长)打印0，2，4，6，8</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">10</span>,<span class="number">2</span>):</div><div class="line">    print(x,end = <span class="string">' | '</span>)</div><div class="line"><span class="comment">#0 | 2 | 4 | 6 | 8 |</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>递减的等差数列：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>,<span class="number">0</span>,<span class="number">-2</span>):</div><div class="line">    print(x,end = <span class="string">' | '</span>)</div><div class="line"><span class="comment">#10 | 8 | 6 | 4 | 2 |</span></div></pre></td></tr></table></figure>
       
     </div>
 
@@ -504,7 +538,7 @@
   <ul class="post-copyright">
     <li class="post-copyright-author">
 		<strong>本文标题：</strong>
-		python3分支、循环、条件与枚举
+		python3分支、循环、条件
 	</li>
     <li class="post-copyright-author">
       <strong>本文作者：</strong>
@@ -512,7 +546,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://fanqieto.top/2018/07/12/python3分支、循环、条件与枚举/" title="python3分支、循环、条件与枚举">http://fanqieto.top/2018/07/12/python3分支、循环、条件与枚举/</a>
+      <a href="http://fanqieto.top/2018/07/12/python3分支、循环、条件与枚举/" title="python3分支、循环、条件">http://fanqieto.top/2018/07/12/python3分支、循环、条件与枚举/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -682,7 +716,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -791,7 +825,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是表达式"><span class="nav-number">1.</span> <span class="nav-text">什么是表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式的优先级"><span class="nav-number">2.</span> <span class="nav-text">表达式的优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式优先级练习"><span class="nav-number">3.</span> <span class="nav-text">表达式优先级练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉VSCode开发环境与Python插件安装"><span class="nav-number">4.</span> <span class="nav-text">熟悉VSCode开发环境与Python插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制语句之条件控制"><span class="nav-number">5.</span> <span class="nav-text">流程控制语句之条件控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制语句之条件控制二"><span class="nav-number">6.</span> <span class="nav-text">流程控制语句之条件控制二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量与Pylint规范"><span class="nav-number">7.</span> <span class="nav-text">常量与Pylint规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#snippet、嵌套分支、代码块的概念"><span class="nav-number">8.</span> <span class="nav-text">snippet、嵌套分支、代码块的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#elif的优点"><span class="nav-number">9.</span> <span class="nav-text">elif的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变思维定势"><span class="nav-number">10.</span> <span class="nav-text">改变思维定势</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是表达式"><span class="nav-number">1.</span> <span class="nav-text">什么是表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式的优先级"><span class="nav-number">2.</span> <span class="nav-text">表达式的优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式优先级练习"><span class="nav-number">3.</span> <span class="nav-text">表达式优先级练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉VSCode开发环境与Python插件安装"><span class="nav-number">4.</span> <span class="nav-text">熟悉VSCode开发环境与Python插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制语句之条件控制"><span class="nav-number">5.</span> <span class="nav-text">流程控制语句之条件控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制语句之条件控制二"><span class="nav-number">6.</span> <span class="nav-text">流程控制语句之条件控制二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量与Pylint规范"><span class="nav-number">7.</span> <span class="nav-text">常量与Pylint规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#snippet、嵌套分支、代码块的概念"><span class="nav-number">8.</span> <span class="nav-text">snippet、嵌套分支、代码块的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#elif的优点"><span class="nav-number">9.</span> <span class="nav-text">elif的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变思维定势"><span class="nav-number">10.</span> <span class="nav-text">改变思维定势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while循环与使用场景"><span class="nav-number">11.</span> <span class="nav-text">while循环与使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for与for-else循环"><span class="nav-number">12.</span> <span class="nav-text">for与for-else循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-与-range"><span class="nav-number">13.</span> <span class="nav-text">for 与 range</span></a></li></ol></div>
             
 
           </div>
@@ -823,7 +857,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共205.5k字</span>
+	<span class="post-count">博客全站共211.3k字</span>
 </div>
 
         
