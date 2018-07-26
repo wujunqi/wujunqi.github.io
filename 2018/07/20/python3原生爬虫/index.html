@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="爬虫的步骤 明确目的 找到数据对应的网页 分析网页的结构找到数据所在的标签的位置 模拟HTTP请求,向服务器发送这个请求,获取到服务器返回给我们的HTML 用正则表达式提取我们的数据  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python3原生爬虫">
+<meta property="og:url" content="http://fanqieto.top/2018/07/20/python3原生爬虫/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="爬虫的步骤 明确目的 找到数据对应的网页 分析网页的结构找到数据所在的标签的位置 模拟HTTP请求,向服务器发送这个请求,获取到服务器返回给我们的HTML 用正则表达式提取我们的数据  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-20T08:52:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python3原生爬虫">
+<meta name="twitter:description" content="爬虫的步骤 明确目的 找到数据对应的网页 分析网页的结构找到数据所在的标签的位置 模拟HTTP请求,向服务器发送这个请求,获取到服务器返回给我们的HTML 用正则表达式提取我们的数据  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fanqieto.top/2018/07/20/python3原生爬虫/"/>
+
+
+
+
+
+  <title>python3原生爬虫 | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+		<a href="https://github.com/wujunqi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fanqieto.top/2018/07/20/python3原生爬虫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴军旗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python3原生爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T16:51:00+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/20/python3原生爬虫/" class="leancloud_visitors" data-flag-title="python3原生爬虫">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,327
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="爬虫的步骤"><a href="#爬虫的步骤" class="headerlink" title="爬虫的步骤"></a>爬虫的步骤</h2><ol>
+<li>明确目的</li>
+<li>找到数据对应的网页</li>
+<li>分析网页的结构找到数据所在的标签的位置</li>
+<li>模拟HTTP请求,向服务器发送这个请求,获取到服务器返回给我们的HTML</li>
+<li>用正则表达式提取我们的数据</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</div><div class="line"></div><div class="line"><span class="comment"># &lt;div class="video-info"&gt;</span></div><div class="line"><span class="comment">#     &lt;span class="video-title" title="LPL半决赛 IG vs RNG"&gt;LPL半决赛 IG vs RNG&lt;/span&gt;</span></div><div class="line"><span class="comment">#     &lt;span class="video-nickname" title="LPL英文解说室"&gt;</span></div><div class="line"><span class="comment">#         &lt;i class="icon-host-level icon-host-level-2" data-level="2"&gt;&lt;/i&gt;</span></div><div class="line"><span class="comment">#         LPL英文解说室                      </span></div><div class="line"><span class="comment">#     &lt;/span&gt;</span></div><div class="line"><span class="comment">#     &lt;span class="video-number"&gt;32.7万&lt;/span&gt;</span></div><div class="line"><span class="comment">#     &lt;span class="video-station-info"&gt;</span></div><div class="line"><span class="comment">#         &lt;i class="video-station-num"&gt;1人&lt;/i&gt;</span></div><div class="line"><span class="comment">#     &lt;/span&gt;</span></div><div class="line"><span class="comment"># &lt;/div&gt;</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Splider</span><span class="params">()</span>:</span></div><div class="line">    url = <span class="string">'https://www.panda.tv/cate/lol'</span></div><div class="line">    root_pattern = <span class="string">'&lt;div class="video-info"&gt;([\s\S]*?)&lt;/div&gt;'</span></div><div class="line">    name_pattern = <span class="string">'&lt;/i&gt;([\s\S]*?)&lt;/span&gt;'</span></div><div class="line">    number_pattern = <span class="string">'&lt;span class="video-number"&gt;([\s\S]*?)&lt;/span&gt;'</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__fetch_content</span><span class="params">(self)</span>:</span></div><div class="line">        r = request.urlopen(Splider.url)</div><div class="line">        htmls = r.read()</div><div class="line">        htmls = str(htmls,encoding=<span class="string">'utf-8'</span>)</div><div class="line">        <span class="keyword">return</span> htmls</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__analysis</span><span class="params">(self,htmls)</span>:</span></div><div class="line">        root_html = re.findall(Splider.root_pattern,htmls)</div><div class="line">        anchors = []</div><div class="line"></div><div class="line">        <span class="keyword">for</span> html <span class="keyword">in</span> root_html:</div><div class="line">            name = re.findall(Splider.name_pattern,html)</div><div class="line">            number = re.findall(Splider.number_pattern,html)</div><div class="line">            anchor =&#123;<span class="string">'name'</span>:name,<span class="string">'number'</span>:number&#125;</div><div class="line">            anchors.append(anchor)</div><div class="line">        <span class="keyword">return</span> anchors</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__refine</span><span class="params">(self,anchors)</span>:</span></div><div class="line">        l = <span class="keyword">lambda</span> anchor: &#123;<span class="string">'name'</span>:anchor[<span class="string">'name'</span>][<span class="number">0</span>].strip(),<span class="string">'number'</span>:anchor[<span class="string">'number'</span>][<span class="number">0</span>]&#125;</div><div class="line">        <span class="keyword">return</span> map(l,anchors)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__sort</span><span class="params">(self,anchors)</span>:</span></div><div class="line">        anchors = sorted(anchors,key=self.__sort_seed,reverse=<span class="keyword">True</span>)</div><div class="line">        <span class="keyword">return</span> anchors</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__show</span><span class="params">(self,anchors)</span>:</span></div><div class="line">        <span class="keyword">for</span> rank <span class="keyword">in</span> range(<span class="number">0</span>,len(anchors)):</div><div class="line">            print(<span class="string">'rank  '</span> + str(rank + <span class="number">1</span>) + <span class="string">':'</span> + anchors[rank][<span class="string">'name'</span>] + <span class="string">'    '</span> + anchors[rank][<span class="string">'number'</span>])</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__sort_seed</span><span class="params">(self,anchor)</span>:</span></div><div class="line">        r = re.findall(<span class="string">'\d*'</span>,anchor[<span class="string">'number'</span>])</div><div class="line">        number = float(r[<span class="number">0</span>])</div><div class="line">        <span class="keyword">if</span> <span class="string">'万'</span> <span class="keyword">in</span> anchor[<span class="string">'number'</span>]:</div><div class="line">            number *=<span class="number">10000</span></div><div class="line">        <span class="keyword">return</span> number</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">go</span><span class="params">(self)</span>:</span></div><div class="line">        htmls = self.__fetch_content()</div><div class="line">        anchors = self.__analysis(htmls)</div><div class="line">        anchors = list(self.__refine(anchors))</div><div class="line">        anchors = self.__sort(anchors)</div><div class="line">        self.__show(anchors)</div><div class="line"></div><div class="line">splider = Splider()</div><div class="line">splider.go()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># rank  1:    1715.0万</span></div><div class="line"><span class="comment"># rank  2:LPL英文解说室    38.8万</span></div><div class="line"><span class="comment"># rank  3:魔兽后裔    16.9万</span></div><div class="line"><span class="comment"># rank  4:守卫者    12.4万</span></div><div class="line"><span class="comment"># rank  5:药水哥s    5.2万</span></div><div class="line"><span class="comment"># rank  6:2d战衣托儿索    3.5万</span></div><div class="line"><span class="comment"># rank  7:三枪赵信    3.4万</span></div><div class="line"><span class="comment"># rank  8:一只呆萌娜    8932</span></div><div class="line"><span class="comment"># rank  9:小黑胖砸    8387</span></div><div class="line"><span class="comment"># rank  10:阿涛皎月Carry    6960</span></div><div class="line"><span class="comment"># rank  11:熊猫TV丶油菜花1    6700</span></div><div class="line"><span class="comment"># rank  12:熊猫丶蛮神    6398</span></div><div class="line"><span class="comment"># rank  13:小星k95    6343</span></div><div class="line"><span class="comment"># rank  14:老头一必诚    4347</span></div><div class="line"><span class="comment"># rank  15:狐狸酱大魔王    4127</span></div><div class="line"><span class="comment"># rank  16:杀鸡菜逼俱乐部    3367</span></div><div class="line"><span class="comment"># rank  17:一个很C的稻草人    3211</span></div><div class="line"><span class="comment"># rank  18:筱筱玉丶微服私访    3080</span></div><div class="line"><span class="comment"># rank  19:魔剑神无敌    3007</span></div><div class="line"><span class="comment"># rank  20:金三炮丶丶    2881</span></div><div class="line"><span class="comment"># rank  21:刀锋秀秀QAQ    2780</span></div><div class="line"><span class="comment"># rank  22:我是小二阿    2498</span></div><div class="line"><span class="comment"># rank  23:Roumm    2140</span></div><div class="line"><span class="comment"># rank  24:冰雪丶狐狸    2085</span></div><div class="line"><span class="comment"># rank  25:_木木不酷    1947</span></div><div class="line"><span class="comment"># rank  26:有毒i吸血鬼    1846</span></div><div class="line"><span class="comment"># rank  27:东北小伙_    1784</span></div><div class="line"><span class="comment"># rank  28:琳琪baby    1780</span></div><div class="line"><span class="comment"># rank  29:皮小胖QAQ    1685</span></div><div class="line"><span class="comment"># rank  30:阿佑any    1668</span></div><div class="line"><span class="comment"># rank  31:美丽可爱栗子哟    1654</span></div><div class="line"><span class="comment"># rank  32:大表哥王者蛇女    1645</span></div><div class="line"><span class="comment"># rank  33:冷面寒枪人马神    1643</span></div><div class="line"><span class="comment"># rank  34:琦玉啊zzz    1639</span></div><div class="line"><span class="comment"># rank  35:熊猫TV老泽拉斯    1638</span></div><div class="line"><span class="comment"># rank  36:熊猫TV灬美猴王    1635</span></div><div class="line"><span class="comment"># rank  37:不会98K的传海    1619</span></div><div class="line"><span class="comment"># rank  38:分手何必把锅背走    1604</span></div><div class="line"><span class="comment"># rank  39:可乐解忧杂货铺    1569</span></div><div class="line"><span class="comment"># rank  40:二言是只喵c    1559</span></div><div class="line"><span class="comment"># rank  41:God_of_War龙宝宝    1553</span></div><div class="line"><span class="comment"># rank  42:骠骑大将军1    1546</span></div><div class="line"><span class="comment"># rank  43:暴力美学小毅    1536</span></div><div class="line"><span class="comment"># rank  44:可乐可乐大雪碧    1521</span></div><div class="line"><span class="comment"># rank  45:国际女特工    1520</span></div><div class="line"><span class="comment"># rank  46:醉梦醒酒    1500</span></div><div class="line"><span class="comment"># rank  47:阿毛君2    1499</span></div><div class="line"><span class="comment"># rank  48:请叫我越塔怪    1497</span></div><div class="line"><span class="comment"># rank  49:社会我墙哥丶    1494</span></div><div class="line"><span class="comment"># rank  50:Panda丶冰冰    1493</span></div><div class="line"><span class="comment"># rank  51:熊猫丶大风6    1493</span></div><div class="line"><span class="comment"># rank  52:初柔_    1491</span></div><div class="line"><span class="comment"># rank  53:熊猫TV天倪    1467</span></div><div class="line"><span class="comment"># rank  54:芥子喵i    1464</span></div><div class="line"><span class="comment"># rank  55:或许这就是离岛吧    1460</span></div><div class="line"><span class="comment"># rank  56:熊猫尼古拉斯胖虎    1451</span></div><div class="line"><span class="comment"># rank  57:雁回阿    1446</span></div><div class="line"><span class="comment"># rank  58:这个人帅到没朋友    1446</span></div><div class="line"><span class="comment"># rank  59:西灬瓜酱    1438</span></div><div class="line"><span class="comment"># rank  60:长路漫漫剑圣作伴    1430</span></div><div class="line"><span class="comment"># rank  61:幼稚凯卡特    1430</span></div><div class="line"><span class="comment"># rank  62:李阿特    1403</span></div><div class="line"><span class="comment"># rank  63:小白菜嗷呜    1398</span></div><div class="line"><span class="comment"># rank  64:盒你相约_张小白    1388</span></div><div class="line"><span class="comment"># rank  65:小哇D卡    1349</span></div><div class="line"><span class="comment"># rank  66:武媚儿丶    1340</span></div><div class="line"><span class="comment"># rank  67:暴走的青蛙队长    1313</span></div><div class="line"><span class="comment"># rank  68:2017英雄联盟全明星    1309</span></div><div class="line"><span class="comment"># rank  69:熊猫TV木灵符    1306</span></div><div class="line"><span class="comment"># rank  70:酥软迷妹小慢慢Zz    1304</span></div><div class="line"><span class="comment"># rank  71:言希cc    1292</span></div><div class="line"><span class="comment"># rank  72:熊猫TV丶黑默丁宇    1274</span></div><div class="line"><span class="comment"># rank  73:零七Se7en丶    1270</span></div><div class="line"><span class="comment"># rank  74:疯疯大魔王    1270</span></div><div class="line"><span class="comment"># rank  75:笨蛋真嗣    1259</span></div><div class="line"><span class="comment"># rank  76:熊猫TVsao马    1251</span></div><div class="line"><span class="comment"># rank  77:诗琪baby_    1249</span></div><div class="line"><span class="comment"># rank  78:小姑爷爷丶    1231</span></div><div class="line"><span class="comment"># rank  79:Sye钰神    1227</span></div><div class="line"><span class="comment"># rank  80:唐羽菲    1217</span></div><div class="line"><span class="comment"># rank  81:甜崽__    1204</span></div><div class="line"><span class="comment"># rank  82:冠胖又帅又皮    1192</span></div><div class="line"><span class="comment"># rank  83:繁星yer    1184</span></div><div class="line"><span class="comment"># rank  84:顺顺套路王    1181</span></div><div class="line"><span class="comment"># rank  85:Panda丶浅唱小生    1175</span></div><div class="line"><span class="comment"># rank  86:你的温岚    1169</span></div><div class="line"><span class="comment"># rank  87:苏璞呀丶    1159</span></div><div class="line"><span class="comment"># rank  88:涛涛段r    1121</span></div><div class="line"><span class="comment"># rank  89:糖小鱼丶丶    1110</span></div><div class="line"><span class="comment"># rank  90:我就是神仙丶丶    1092</span></div><div class="line"><span class="comment"># rank  91:熊猫TV丶sao白    1031</span></div><div class="line"><span class="comment"># rank  92:丨空城忆旧巷丨    1019</span></div><div class="line"><span class="comment"># rank  93:愿卿好    951</span></div><div class="line"><span class="comment"># rank  94:C哥哔哩罢了丶    943</span></div><div class="line"><span class="comment"># rank  95:周龍丶    925</span></div><div class="line"><span class="comment"># rank  96:熊猫TV桂林168    902</span></div><div class="line"><span class="comment"># rank  97:迟到不准时的岛屿    900</span></div><div class="line"><span class="comment"># rank  98:嘿we狗丶老污狗    896</span></div><div class="line"><span class="comment"># rank  99:努力的杰欧巴    886</span></div><div class="line"><span class="comment"># rank  100:我真的没有钱畫訫    841</span></div><div class="line"><span class="comment"># rank  101:裙裙裙子    811</span></div><div class="line"><span class="comment"># rank  102:Dyz8    795</span></div><div class="line"><span class="comment"># rank  103:喵菌i    788</span></div><div class="line"><span class="comment"># rank  104:电竞歌后小莲莲丶    785</span></div><div class="line"><span class="comment"># rank  105:人生如戏丶戏如命    781</span></div><div class="line"><span class="comment"># rank  106:熊猫LCS直播间    764</span></div><div class="line"><span class="comment"># rank  107:战士狂魔天    754</span></div><div class="line"><span class="comment"># rank  108:忘忧人云彩    749</span></div><div class="line"><span class="comment"># rank  109:熊猫第一姬    734</span></div><div class="line"><span class="comment"># rank  110:阿祥Q    724</span></div><div class="line"><span class="comment"># rank  111:灵魂纯白    722</span></div><div class="line"><span class="comment"># rank  112:林如风1    705</span></div><div class="line"><span class="comment"># rank  113:熊猫壹棉被    698</span></div><div class="line"><span class="comment"># rank  114:熊猫Tv丶K88    690</span></div><div class="line"><span class="comment"># rank  115:俊姑豹女丶丶    678</span></div><div class="line"><span class="comment"># rank  116:isme明非    674</span></div><div class="line"><span class="comment"># rank  117:熊猫tv胖胖虎    671</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+	<div>
+		
+		<div>
+    
+	    <div style="text-align:center;color: #ccc;font-size:14px;">
+			-------------本文结束
+			<i class="fa fa-paw"></i>
+			感谢您的阅读-------------
+		</div>
+	
+</div>
+
+		
+	</div>
+
+	<div>
+		
+		
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+		<strong>本文标题：</strong>
+		python3原生爬虫
+	</li>
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      吴军旗
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://fanqieto.top/2018/07/20/python3原生爬虫/" title="python3原生爬虫">http://fanqieto.top/2018/07/20/python3原生爬虫/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+	  本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请保留原文链接及作者！
+    </li>
+  <ul>
+
+	<div style="margin-top:50px">
+		欢迎搜索及关注：番茄技术小栈,所有文章都将同步在公众号上!
+		<img src="http://otwbgbfg8.bkt.clouddn.com/15305785034493pp9x9ln.png" width="40%" height="40%"/>
+	</div>
+
+
+		
+	</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="吴军旗 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="吴军旗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/python3函数式编程：匿名函数、高阶函数、装饰器/" rel="next" title="python3函数式编程：匿名函数、高阶函数、装饰器">
+                <i class="fa fa-chevron-left"></i> python3函数式编程：匿名函数、高阶函数、装饰器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/20/python3-Pythonic与Python杂记/" rel="prev" title="python3 Pythonic与Python杂记">
+                python3 Pythonic与Python杂记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="吴军旗" />
+          <p class="site-author-name" itemprop="name">吴军旗</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫的步骤"><span class="nav-number">1.</span> <span class="nav-text">爬虫的步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴军旗</span>
+</div>
+
+<div class="theme-info">
+	<div class="powered-by"></div>
+	<span class="post-count">博客全站共221.3k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
