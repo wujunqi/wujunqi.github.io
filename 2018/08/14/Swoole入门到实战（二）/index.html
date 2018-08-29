@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="上一篇：Swoole入门到实战（一）：PHP7&amp;amp;Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景一、进程，内存和协程1.1 进程1.1.1 进程 进程就是正在运行的程序的一个实例  $process = new swoole_process(function(swoole_process $pro) {     // todo //     php redis.php     $">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swoole入门到实战（二）">
+<meta property="og:url" content="http://fanqieto.top/2018/08/14/Swoole入门到实战（二）/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="上一篇：Swoole入门到实战（一）：PHP7&amp;amp;Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景一、进程，内存和协程1.1 进程1.1.1 进程 进程就是正在运行的程序的一个实例  $process = new swoole_process(function(swoole_process $pro) {     // todo //     php redis.php     $">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-14T13:41:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swoole入门到实战（二）">
+<meta name="twitter:description" content="上一篇：Swoole入门到实战（一）：PHP7&amp;amp;Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景一、进程，内存和协程1.1 进程1.1.1 进程 进程就是正在运行的程序的一个实例  $process = new swoole_process(function(swoole_process $pro) {     // todo //     php redis.php     $">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fanqieto.top/2018/08/14/Swoole入门到实战（二）/"/>
+
+
+
+
+
+  <title>Swoole入门到实战（二） | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+		<a href="https://github.com/wujunqi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fanqieto.top/2018/08/14/Swoole入门到实战（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴军旗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swoole入门到实战（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T21:41:33+08:00">
+                2018-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/14/Swoole入门到实战（二）/" class="leancloud_visitors" data-flag-title="Swoole入门到实战（二）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,405
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="上一篇：Swoole入门到实战（一）：PHP7-amp-Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景"><a href="#上一篇：Swoole入门到实战（一）：PHP7-amp-Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景" class="headerlink" title="上一篇：Swoole入门到实战（一）：PHP7&amp;Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景"></a><a href="https://segmentfault.com/a/1190000014572291" target="_blank" rel="external"><strong>上一篇：</strong>Swoole入门到实战（一）：PHP7&amp;Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景</a></h3><h1 id="一、进程，内存和协程"><a href="#一、进程，内存和协程" class="headerlink" title="一、进程，内存和协程"></a>一、进程，内存和协程</h1><h2 id="1-1-进程"><a href="#1-1-进程" class="headerlink" title="1.1 进程"></a>1.1 进程</h2><h3 id="1-1-1-进程"><a href="#1-1-1-进程" class="headerlink" title="1.1.1 进程"></a>1.1.1 进程</h3><blockquote>
+<p>进程就是<strong><code>正在运行的程序</code></strong>的<strong>一个实例</strong></p>
+</blockquote>
+<pre><code>$process = new swoole_process(function(swoole_process $pro) {
+    // todo
+//     php redis.php
+    $pro-&gt;exec(&quot;/usr/local/php/bin/php&quot;, [__DIR__.&apos;/../server/http_server.php&apos;]);
+}, false);
+
+$pid = $process-&gt;start();
+echo $pid . PHP_EOL;
+//回收结束运行的子进程
+swoole_process::wait();
+
+![clipboard.png](/img/bV9jG9?w=674&amp;h=212 &quot;clipboard.png&quot;)
+
+以**树状图**显示进程间的关系:`pstree -p 进程id`  
+启动成功后会创建`worker_num+2`个进程。`Master`进程+`Manager`进程+`serv`-&gt;`worker_num`个`Worker`进程
+</code></pre><h3 id="1-1-2-进程使用场景"><a href="#1-1-2-进程使用场景" class="headerlink" title="1.1.2 进程使用场景"></a>1.1.2 进程使用场景</h3><pre><code>![clipboard.png](/img/bV9jJR?w=313&amp;h=173 &quot;clipboard.png&quot;)
+
+![clipboard.png](/img/bV9jJ5?w=191&amp;h=82 &quot;clipboard.png&quot;)
+</code></pre><blockquote>
+<p><strong>管道：</strong>进程和进程间的一个桥梁</p>
+</blockquote>
+<pre><code>echo &quot;process-start-time:&quot;.date(&quot;Ymd H:i:s&quot;);
+$workers = [];
+$urls = [
+    &apos;http://baidu.com&apos;,
+    &apos;http://sina.com.cn&apos;,
+    &apos;http://qq.com&apos;,
+    &apos;http://baidu.com?search=singwa&apos;,
+    &apos;http://baidu.com?search=singwa2&apos;,
+    &apos;http://baidu.com?search=imooc&apos;,
+];
+//创建多个子进程分别模拟请求URL的内容
+for($i = 0; $i &lt; 6; $i++) {
+    $process = new swoole_process(function(swoole_process $worker) use($i, $urls) {
+        // curl
+        $content = curlData($urls[$i]);
+        //将内容写入管道
+    //    echo $content.PHP_EOL;
+        $worker-&gt;write($content.PHP_EOL);
+    }, true);
+    $pid = $process-&gt;start();
+    $workers[$pid] = $process;
+}
+//获取管道内容
+foreach($workers as $process) {
+    echo $process-&gt;read();
+}
+/**
+ * 模拟请求URL的内容  1s
+ * @param $url
+ * @return string
+ */
+function curlData($url) {
+    // curl file_get_contents
+    sleep(1);
+    return $url . &quot;success&quot;.PHP_EOL;
+}
+echo &quot;process-end-time:&quot;.date(&quot;Ymd H:i:s&quot;);
+</code></pre><h2 id="1-2-Swoole内存-table详解"><a href="#1-2-Swoole内存-table详解" class="headerlink" title="1.2 Swoole内存-table详解"></a>1.2 Swoole内存-table详解</h2><blockquote>
+<p>内存操作模块之：<code>Table</code></p>
+</blockquote>
+<pre><code>`swoole_table`一个基于共享内存和锁实现的超高性能，并发数据结构  
+**使用场景：**用于解决**`多进程/多线程`**数据共享和同步加锁问题  
+进程结束后内存表会自动释放
+
+// 创建内存表
+$table = new swoole_table(1024);
+
+// 内存表增加一列
+$table-&gt;column(&apos;id&apos;, $table::TYPE_INT, 4);
+$table-&gt;column(&apos;name&apos;, $table::TYPE_STRING, 64);
+$table-&gt;column(&apos;age&apos;, $table::TYPE_INT, 3);
+$table-&gt;create();
+
+$table-&gt;set(&apos;singwa_imooc&apos;, [&apos;id&apos; =&gt; 1, &apos;name&apos;=&gt; &apos;singwa&apos;, &apos;age&apos; =&gt; 30]);
+// 另外一种方案
+$table[&apos;singwa_imooc_2&apos;] = [
+    &apos;id&apos; =&gt; 2,
+    &apos;name&apos; =&gt; &apos;singwa2&apos;,
+    &apos;age&apos; =&gt; 31,
+];
+
+$table-&gt;decr(&apos;singwa_imooc_2&apos;, &apos;age&apos;, 2);
+print_r($table[&apos;singwa_imooc_2&apos;]);
+
+echo &quot;delete start:&quot;.PHP_EOL;
+$table-&gt;del(&apos;singwa_imooc_2&apos;);
+print_r($table[&apos;singwa_imooc_2&apos;]);
+</code></pre><h2 id="1-3-协程"><a href="#1-3-协程" class="headerlink" title="1.3 协程"></a>1.3 协程</h2><pre><code>[线程、进程、协程的区别](https://www.jianshu.com/p/e2fb46e10878)  
+[进程，线程，协程与并行，并发](https://www.jianshu.com/p/f11724034d50)  
+[并发与并行的区别？](https://www.zhihu.com/question/33515481)
+
+$http = new swoole_http_server(&apos;0.0.0.0&apos;, 9001);
+
+$http-&gt;on(&apos;request&apos;, function($request, $response) {
+    // 获取redis 里面 的key的内容， 然后输出浏览器
+
+    $redis = new Swoole\Coroutine\Redis();
+    $redis-&gt;connect(&apos;127.0.0.1&apos;, 6379);
+    $value = $redis-&gt;get($request-&gt;get[&apos;a&apos;]);
+
+    // mysql.....
+
+    //执行时间取它们中最大的：time = max(redis,mysql)
+    $response-&gt;header(&quot;Content-Type&quot;, &quot;text/plain&quot;);
+    $response-&gt;end($value);
+});
+
+$http-&gt;start();    
+</code></pre><h1 id="二、Swoole完美支持ThinkPHP5（重难点）"><a href="#二、Swoole完美支持ThinkPHP5（重难点）" class="headerlink" title="二、Swoole完美支持ThinkPHP5（重难点）"></a>二、Swoole完美支持ThinkPHP5（<strong><code>重难点</code></strong>）</h1><h2 id="2-1-面向过程方案"><a href="#2-1-面向过程方案" class="headerlink" title="2.1 面向过程方案"></a>2.1 面向过程方案</h2><h3 id="2-1-1-面向过程代码实现"><a href="#2-1-1-面向过程代码实现" class="headerlink" title="2.1.1 面向过程代码实现"></a>2.1.1 面向过程代码实现</h3><pre><code>$http = new swoole_http_server(&quot;0.0.0.0&quot;, 9911);
+
+$http-&gt;set(
+    [
+        &apos;enable_static_handler&apos; =&gt; true,
+        &apos;document_root&apos; =&gt; &quot;/home/wwwroot/swoole/thinkphp/public/static&quot;,
+        &apos;worker_num&apos; =&gt; 5,
+    ]
+);
+//此事件在Worker进程/Task进程启动时发生,这里创建的对象可以在进程生命周期内使用
+$http-&gt;on(&apos;WorkerStart&apos;, function(swoole_server $server,  $worker_id) {
+    // 定义应用目录
+    define(&apos;APP_PATH&apos;, __DIR__ . &apos;/../../../../application/&apos;);
+    // 加载框架里面的文件
+    require __DIR__ . &apos;/../../../../thinkphp/base.php&apos;;
+});
+$http-&gt;on(&apos;request&apos;, function($request, $response) use($http){
+        //如果在每次请求时加载框架文件，则不用修改thinkphp5源码
+//    // 定义应用目录
+//    define(&apos;APP_PATH&apos;, __DIR__ . &apos;/../../../../application/&apos;);
+//    // 加载框架里面的文件
+//    require_once __DIR__ . &apos;/../../../../thinkphp/base.php&apos;;
+    /**
+     * 解决上一次输入的变量还存在的问题
+     * 方案一：if(!empty($_GET)) {unset($_GET);}
+     * 方案二：$http-close();把之前的进程kill，swoole会重新启一个进程，重启会释放内存，把上一次的资源包括变量等全部清空
+     * 方案三：$_SERVER  =  []
+     */
+    $_SERVER  =  [];
+    if(isset($request-&gt;server)) {
+        foreach($request-&gt;server as $k =&gt; $v) {
+            $_SERVER[strtoupper($k)] = $v;
+        }
+    }
+    if(isset($request-&gt;header)) {
+        foreach($request-&gt;header as $k =&gt; $v) {
+            $_SERVER[strtoupper($k)] = $v;
+        }
+    }
+
+    $_GET = [];
+    if(isset($request-&gt;get)) {
+        foreach($request-&gt;get as $k =&gt; $v) {
+            $_GET[$k] = $v;
+        }
+    }
+    $_POST = [];
+    if(isset($request-&gt;post)) {
+        foreach($request-&gt;post as $k =&gt; $v) {
+            $_POST[$k] = $v;
+        }
+    }
+    //开启缓冲区
+    ob_start();
+    // 执行应用并响应
+    try {
+        think\Container::get(&apos;app&apos;, [APP_PATH])
+            -&gt;run()
+            -&gt;send();
+    }catch (\Exception $e) {
+        // todo
+    }
+    //输出TP当前请求的控制方法
+    //echo &quot;-action-&quot;.request()-&gt;action().PHP_EOL;
+    //获取缓冲区内容
+    $res = ob_get_contents();
+    ob_end_clean();
+    $response-&gt;end($res);
+    //把之前的进程kill，swoole会重新启一个进程，重启会释放内存，把上一次的资源包括变量等全部清空
+    //$http-&gt;close();
+});
+$http-&gt;start();
+
+**测试：**
+
+![clipboard.png](/img/bV9sak?w=411&amp;h=113 &quot;clipboard.png&quot;)
+</code></pre><h3 id="2-1-2-onWorkerStart事件"><a href="#2-1-2-onWorkerStart事件" class="headerlink" title="2.1.2 onWorkerStart事件"></a>2.1.2 onWorkerStart事件</h3><pre><code>//此事件在Worker进程/Task进程启动时发生,这里创建的对象可以在进程生命周期内使用
+$http-&gt;on(&apos;WorkerStart&apos;, function(swoole_server $server,  $worker_id) {
+    // 定义应用目录
+    define(&apos;APP_PATH&apos;, __DIR__ . &apos;/../../../../application/&apos;);
+    // 加载框架里面的文件
+    require __DIR__ . &apos;/../../../../thinkphp/base.php&apos;;
+});
+</code></pre><blockquote>
+<p><strong>Tips：</strong>如果修改了加载框架文件，需要重启：<code>php php_server.php</code></p>
+</blockquote>
+<pre><code>**onWorkerStart：**
+
+此事件在`Worker`进程/`Task`进程启动时发生,这里创建的对象可以在进程生命周期内使用  
+在`onWorkerStart`中加载框架的核心文件后：
+</code></pre><ol>
+<li>不用每次请求都加载框架核心文件，提高性能</li>
+<li>可以在后续的<strong>回调事件</strong>中继续使用框架的核心文件或者类库</li>
+</ol>
+<h3 id="2-1-3-关于再次请求进程缓存解决方案"><a href="#2-1-3-关于再次请求进程缓存解决方案" class="headerlink" title="2.1.3 关于再次请求进程缓存解决方案"></a>2.1.3 关于再次请求进程缓存解决方案</h3><pre><code>当前`worker`进程没有结束，所以会**保存上一次的资源等**。解决上一次输入的变量还存在的问题：
+</code></pre><ol>
+<li>方案一：<code>if(!empty($_SERVER)) { unset($_SERVER); }</code></li>
+<li>方案二：<code>$http-close();</code>把之前的进程<code>kill</code>，<code>swoole</code>会重新启一个进程，重启会释放内存，把上一次的资源包括变量等全部清空（<code>php-cli</code>控制台会提示错误）</li>
+<li>方案三：<code>$_SERVER = []</code>（<strong>推荐方案</strong>）</li>
+</ol>
+<h3 id="2-1-3-关于ThinkPHP5路由解决方案"><a href="#2-1-3-关于ThinkPHP5路由解决方案" class="headerlink" title="2.1.3 关于ThinkPHP5路由解决方案"></a>2.1.3 关于ThinkPHP5路由解决方案</h3><blockquote>
+<p>当第一次请求后下一次再请求不同的模块或者方法不生效，都是‘第一次’请求<strong>模块/控制器/方法</strong>。如下图：</p>
+</blockquote>
+<pre><code>![clipboard.png](/img/bV9sa4?w=407&amp;h=130 &quot;clipboard.png&quot;)
+
+![clipboard.png](/img/bV9saZ?w=428&amp;h=112 &quot;clipboard.png&quot;)
+
+![clipboard.png](/img/bV9sbj?w=427&amp;h=123 &quot;clipboard.png&quot;)
+</code></pre><blockquote>
+<p>修改<code>ThinkPHP5</code>框架<code>Request.php</code>源码位置：<code>/thinkphp/library/think/Request.php</code></p>
+</blockquote>
+<pre><code>**修改如下：**
+</code></pre><ol>
+<li><code>function path() { }</code><br>//注销判断，不再复用<strong>类成员变量</strong><code>$this-&gt;path</code></li>
+<li><code>function pathinfo() { }</code><br>//注销判断，不再复用<strong>类成员变量</strong><code>$this-&gt;pathinfo</code></li>
+<li><p>使其支持<code>pathinfo</code>路由，添加如下代码在<code>function pathinfo() { }</code>中</p>
+<p>if (isset($_SERVER[‘PATH_INFO’]) &amp;&amp; $_SERVER[‘PATH_INFO’] != ‘/‘) {</p>
+<pre><code>return ltrim($_SERVER[&apos;PATH_INFO&apos;], &apos;/&apos;);
+</code></pre><p> }</p>
+<p><strong>修改后完整<code>Request.php</code>文件：</strong></p>
+<pre><code>/**
+ * 获取当前请求URL的pathinfo信息（含URL后缀）
+ * @access public
+ * @return string
+ */
+public function pathinfo()
+{
+    if (isset($_SERVER[&apos;PATH_INFO&apos;]) &amp;&amp; $_SERVER[&apos;PATH_INFO&apos;] != &apos;/&apos;) {
+        return ltrim($_SERVER[&apos;PATH_INFO&apos;], &apos;/&apos;);
+    }
+</code></pre><p>//        if (is_null($this-&gt;pathinfo)) {</p>
+<pre><code>if (isset($_GET[$this-&gt;config-&gt;get(&apos;var_pathinfo&apos;)])) {
+    // 判断URL里面是否有兼容模式参数
+    $_SERVER[&apos;PATH_INFO&apos;] = $_GET[$this-&gt;config-&gt;get(&apos;var_pathinfo&apos;)];
+    unset($_GET[$this-&gt;config-&gt;get(&apos;var_pathinfo&apos;)]);
+} elseif ($this-&gt;isCli()) {
+    // CLI模式下 index.php module/controller/action/params/...
+    $_SERVER[&apos;PATH_INFO&apos;] = isset($_SERVER[&apos;argv&apos;][1]) ? $_SERVER[&apos;argv&apos;][1] : &apos;&apos;;
+}
+
+// 分析PATHINFO信息
+if (!isset($_SERVER[&apos;PATH_INFO&apos;])) {
+    foreach ($this-&gt;config-&gt;get(&apos;pathinfo_fetch&apos;) as $type) {
+        if (!empty($_SERVER[$type])) {
+            $_SERVER[&apos;PATH_INFO&apos;] = (0 === strpos($_SERVER[$type], $_SERVER[&apos;SCRIPT_NAME&apos;])) ?
+            substr($_SERVER[$type], strlen($_SERVER[&apos;SCRIPT_NAME&apos;])) : $_SERVER[$type];
+            break;
+        }
+    }
+}
+
+$this-&gt;pathinfo = empty($_SERVER[&apos;PATH_INFO&apos;]) ? &apos;/&apos; : ltrim($_SERVER[&apos;PATH_INFO&apos;], &apos;/&apos;);
+</code></pre><p>//        }</p>
+<pre><code>    return $this-&gt;pathinfo;
+}
+
+/**
+ * 获取当前请求URL的pathinfo信息(不含URL后缀)
+ * @access public
+ * @return string
+ */
+public function path()
+{
+//注销判断，不再复用类成员变量$this-&gt;path
+</code></pre><p>//        if (is_null($this-&gt;path)) {</p>
+<pre><code>$suffix   = $this-&gt;config-&gt;get(&apos;url_html_suffix&apos;);
+$pathinfo = $this-&gt;pathinfo();
+if (false === $suffix) {
+    // 禁止伪静态访问
+    $this-&gt;path = $pathinfo;
+} elseif ($suffix) {
+    // 去除正常的URL后缀
+    $this-&gt;path = preg_replace(&apos;/\.(&apos; . ltrim($suffix, &apos;.&apos;) . &apos;)$/i&apos;, &apos;&apos;, $pathinfo);
+} else {
+    // 允许任何后缀访问
+    $this-&gt;path = preg_replace(&apos;/\.&apos; . $this-&gt;ext() . &apos;$/i&apos;, &apos;&apos;, $pathinfo);
+}
+</code></pre><p>//        }</p>
+<pre><code>    return $this-&gt;path;
+}
+</code></pre></li>
+</ol>
+<h2 id="2-2-面向对象方案"><a href="#2-2-面向对象方案" class="headerlink" title="2.2 面向对象方案"></a>2.2 面向对象方案</h2><pre><code>class Http {
+    CONST HOST = &quot;0.0.0.0&quot;;
+    CONST PORT = 9911;
+
+    public $http = null;
+    public function __construct() {
+        $this-&gt;http = new swoole_http_server(self::HOST, self::PORT);
+
+        $this-&gt;http-&gt;set(
+            [
+                &apos;enable_static_handler&apos; =&gt; true,
+                &apos;document_root&apos; =&gt; &quot;/home/wwwroot/swoole/thinkphp/public/static&quot;,
+                &apos;worker_num&apos; =&gt; 4,
+            ]
+        );
+
+        $this-&gt;http-&gt;on(&quot;workerstart&quot;, [$this, &apos;onWorkerStart&apos;]);
+        $this-&gt;http-&gt;on(&quot;request&quot;, [$this, &apos;onRequest&apos;]);
+        $this-&gt;http-&gt;on(&quot;close&quot;, [$this, &apos;onClose&apos;]);
+
+        $this-&gt;http-&gt;start();
+    }
+
+    /**
+     * 此事件在Worker进程/Task进程启动时发生,这里创建的对象可以在进程生命周期内使用
+     * 在onWorkerStart中加载框架的核心文件后
+     * 1.不用每次请求都加载框架核心文件，提高性能
+     * 2.可以在后续的回调中继续使用框架的核心文件或者类库
+     *
+     * @param $server
+     * @param $worker_id
+     */
+    public function onWorkerStart($server,  $worker_id) {
+        // 定义应用目录
+        define(&apos;APP_PATH&apos;, __DIR__ . &apos;/../../../../application/&apos;);
+        // 加载框架里面的文件
+        require __DIR__ . &apos;/../../../../thinkphp/base.php&apos;;
+    }
+
+    /**
+     * request回调
+     * 解决上一次输入的变量还存在的问题例：$_SERVER  =  []
+     * @param $request
+     * @param $response
+     */
+    public function onRequest($request, $response) {
+        $_SERVER  =  [];
+        if(isset($request-&gt;server)) {
+            foreach($request-&gt;server as $k =&gt; $v) {
+                $_SERVER[strtoupper($k)] = $v;
+            }
+        }
+        if(isset($request-&gt;header)) {
+            foreach($request-&gt;header as $k =&gt; $v) {
+                $_SERVER[strtoupper($k)] = $v;
+            }
+        }
+
+        $_GET = [];
+        if(isset($request-&gt;get)) {
+            foreach($request-&gt;get as $k =&gt; $v) {
+                $_GET[$k] = $v;
+            }
+        }
+        $_POST = [];
+        if(isset($request-&gt;post)) {
+            foreach($request-&gt;post as $k =&gt; $v) {
+                $_POST[$k] = $v;
+            }
+        }
+        $_POST[&apos;http_server&apos;] = $this-&gt;http;
+
+        ob_start();
+        // 执行应用并响应
+        try {
+            think\Container::get(&apos;app&apos;, [APP_PATH])
+                -&gt;run()
+                -&gt;send();
+        }catch (\Exception $e) {
+            // todo
+        }
+
+        $res = ob_get_contents();
+        ob_end_clean();
+        $response-&gt;end($res);
+    }
+    /**
+     * close
+     * @param $ws
+     * @param $fd
+     */
+    public function onClose($ws, $fd) {
+        echo &quot;clientid:{$fd}\n&quot;;
+    }
+}
+new Http();
+</code></pre><h1 id="三、分发Task异步任务机制实现"><a href="#三、分发Task异步任务机制实现" class="headerlink" title="三、分发Task异步任务机制实现"></a>三、分发Task异步任务机制实现</h1><pre><code>**示例演示：发送验证码**
+</code></pre><blockquote>
+<p>1、优化，将对接第三方的接口放入异步任务中</p>
+</blockquote>
+<pre><code> $_POST[&apos;http_server&apos;]-&gt;task($taskData);   
+
+    /**
+     * 发送验证码
+     */
+    public function index() {
+        $phoneNum = intval($_GET[&apos;phone_num&apos;]);// tp  input
+        if(empty($phoneNum)) {
+            return Util::show(config(&apos;code.error&apos;), &apos;error&apos;);
+        }
+        // 生成一个随机数
+        $code = rand(1000, 9999);
+        $taskData = [
+            &apos;method&apos; =&gt; &apos;sendSms&apos;,
+            &apos;data&apos; =&gt; [
+                &apos;phone&apos; =&gt; $phoneNum,
+                &apos;code&apos; =&gt; $code,
+            ]
+        ];
+        //优化，将对接第三方的接口放入异步任务中
+        $_POST[&apos;http_server&apos;]-&gt;task($taskData);
+        return Util::show(config(&apos;code.success&apos;), &apos;ok&apos;);
+   }
+} 
+</code></pre><blockquote>
+<p>2、将<code>http</code>对象放入预定义<code>$_POST</code>中，传给调用者<br><code>$_POST[&#39;http_server&#39;] = $this-&gt;http;</code></p>
+</blockquote>
+<pre><code>/**
+ * request回调
+ */
+public function onRequest($request, $response) {
+
+    ......
+
+    //将http对象放入预定义$_POST中，传给调用者
+    $_POST[&apos;http_server&apos;] = $this-&gt;http;
+
+    ob_start();
+    // 执行应用并响应
+    try {
+        think\Container::get(&apos;app&apos;, [APP_PATH])
+            -&gt;run()
+            -&gt;send();
+    }catch (\Exception $e) {
+        // todo
+    }
+
+    ......
+}
+</code></pre><blockquote>
+<p>3、Task任务分发</p>
+</blockquote>
+<pre><code>/**
+ * Task任务分发
+ */
+public function onTask($serv, $taskId, $workerId, $data) {
+
+    // 分发 task 任务机制，让不同的任务 走不同的逻辑
+    $obj = new app\common\lib\task\Task;
+    $method = $data[&apos;method&apos;];
+    $flag = $obj-&gt;$method($data[&apos;data&apos;]);
+
+    return $flag; // 告诉worker
+}
+</code></pre><blockquote>
+<p>4、代表的是<code>swoole</code>里面后续所有<code>task</code>异步任务都放这里来</p>
+</blockquote>
+<pre><code>class Task {
+    /**
+     * 异步发送 验证码
+     */
+    public function sendSms($data, $serv) {
+        try {
+            $response = Sms::sendSms($data[&apos;phone&apos;], $data[&apos;code&apos;]);
+        }catch (\Exception $e) {
+            return false;
+        }
+        // 如果发送成功 把验证码记录到redis里面
+        if($response-&gt;Code === &quot;OK&quot;) {
+            Predis::getInstance()-&gt;set(Redis::smsKey($data[&apos;phone&apos;]), $data[&apos;code&apos;], config(&apos;redis.out_time&apos;));
+        }else {
+            return false;
+        }
+        return true;
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+	<div>
+		
+		<div>
+    
+	    <div style="text-align:center;color: #ccc;font-size:14px;">
+			-------------本文结束
+			<i class="fa fa-paw"></i>
+			感谢您的阅读-------------
+		</div>
+	
+</div>
+
+		
+	</div>
+
+	<div>
+		
+		
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+		<strong>本文标题：</strong>
+		Swoole入门到实战（二）
+	</li>
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      吴军旗
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://fanqieto.top/2018/08/14/Swoole入门到实战（二）/" title="Swoole入门到实战（二）">http://fanqieto.top/2018/08/14/Swoole入门到实战（二）/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+	  本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请保留原文链接及作者！
+    </li>
+  <ul>
+
+	<div style="margin-top:50px">
+		欢迎搜索及关注：番茄技术小栈,所有文章都将同步在公众号上!
+		<img src="http://otwbgbfg8.bkt.clouddn.com/15305785034493pp9x9ln.png" width="40%" height="40%"/>
+	</div>
+
+
+		
+	</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="吴军旗 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="吴军旗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/从一道百度面试题说起/" rel="next" title="从一道百度面试题说起">
+                <i class="fa fa-chevron-left"></i> 从一道百度面试题说起
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/14/Swoole入门到实战（三）/" rel="prev" title="Swoole入门到实战（三）">
+                Swoole入门到实战（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="吴军旗" />
+          <p class="site-author-name" itemprop="name">吴军旗</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#上一篇：Swoole入门到实战（一）：PHP7-amp-Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景"><span class="nav-number">1.</span> <span class="nav-text">上一篇：Swoole入门到实战（一）：PHP7&Swoole源码安装、玩转网络通信引擎、异步非堵塞IO场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、进程，内存和协程"><span class="nav-number"></span> <span class="nav-text">一、进程，内存和协程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-进程"><span class="nav-number"></span> <span class="nav-text">1.1 进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-进程"><span class="nav-number">1.</span> <span class="nav-text">1.1.1 进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-进程使用场景"><span class="nav-number">2.</span> <span class="nav-text">1.1.2 进程使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Swoole内存-table详解"><span class="nav-number"></span> <span class="nav-text">1.2 Swoole内存-table详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-协程"><span class="nav-number"></span> <span class="nav-text">1.3 协程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Swoole完美支持ThinkPHP5（重难点）"><span class="nav-number"></span> <span class="nav-text">二、Swoole完美支持ThinkPHP5（重难点）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-面向过程方案"><span class="nav-number"></span> <span class="nav-text">2.1 面向过程方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-面向过程代码实现"><span class="nav-number">1.</span> <span class="nav-text">2.1.1 面向过程代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-onWorkerStart事件"><span class="nav-number">2.</span> <span class="nav-text">2.1.2 onWorkerStart事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-关于再次请求进程缓存解决方案"><span class="nav-number">3.</span> <span class="nav-text">2.1.3 关于再次请求进程缓存解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-关于ThinkPHP5路由解决方案"><span class="nav-number">4.</span> <span class="nav-text">2.1.3 关于ThinkPHP5路由解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-面向对象方案"><span class="nav-number"></span> <span class="nav-text">2.2 面向对象方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、分发Task异步任务机制实现"><span class="nav-number"></span> <span class="nav-text">三、分发Task异步任务机制实现</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴军旗</span>
+</div>
+
+<div class="theme-info">
+	<div class="powered-by"></div>
+	<span class="post-count">博客全站共246.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

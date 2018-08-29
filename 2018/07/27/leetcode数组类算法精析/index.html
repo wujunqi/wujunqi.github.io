@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要介绍leetcode中典型的数组类问题，主要介绍这类问题的一些常用解法：做好初始定义；基础算法思想应用；对撞指针；滑动窗口法等。所有题解代码采用python实现。 做好初始定义 做数组类算法问题的时候，我们常常需要定义一个变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode数组类算法精析">
+<meta property="og:url" content="http://fanqieto.top/2018/07/27/leetcode数组类算法精析/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要介绍leetcode中典型的数组类问题，主要介绍这类问题的一些常用解法：做好初始定义；基础算法思想应用；对撞指针；滑动窗口法等。所有题解代码采用python实现。 做好初始定义 做数组类算法问题的时候，我们常常需要定义一个变量">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15326930809478w4vc5mm.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1532695395109wc5a52nv.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1532699856414ncf2me16.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15327003342201w29cjac.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15327009287108px1ox15.png?imageslim">
+<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1532701891207tnyu99z0.png?imageslim">
+<meta property="og:updated_time" content="2018-07-27T14:32:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode数组类算法精析">
+<meta name="twitter:description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要介绍leetcode中典型的数组类问题，主要介绍这类问题的一些常用解法：做好初始定义；基础算法思想应用；对撞指针；滑动窗口法等。所有题解代码采用python实现。 做好初始定义 做数组类算法问题的时候，我们常常需要定义一个变量">
+<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/15326930809478w4vc5mm.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fanqieto.top/2018/07/27/leetcode数组类算法精析/"/>
+
+
+
+
+
+  <title>leetcode数组类算法精析 | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+		<a href="https://github.com/wujunqi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fanqieto.top/2018/07/27/leetcode数组类算法精析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴军旗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode数组类算法精析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T22:31:00+08:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/27/leetcode数组类算法精析/" class="leancloud_visitors" data-flag-title="leetcode数组类算法精析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4,164
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要介绍leetcode中典型的数组类问题，主要介绍这类问题的一些常用解法：做好初始定义；基础算法思想应用；对撞指针；滑动窗口法等。所有题解代码采用python实现。</p>
+<h2 id="做好初始定义"><a href="#做好初始定义" class="headerlink" title="做好初始定义"></a>做好初始定义</h2><blockquote>
+<p>做数组类算法问题的时候，我们常常需要定义一个变量，明确该变量的定义，并且在书写整个逻辑的时候，要不停的维护住这个变量的意义。也特别需要注意初始值和边界的问题</p>
+</blockquote>
+<h3 id="leetcode-283-移动零"><a href="#leetcode-283-移动零" class="headerlink" title="leetcode(283):移动零"></a>leetcode(283):移动零</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<p>示例:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: [0,1,0,3,12]</div><div class="line">输出: [1,3,12,0,0]</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明:</p>
+</blockquote>
+<ul>
+<li>必须在原数组上操作，不能拷贝额外的数组。</li>
+<li>尽量减少操作次数。</li>
+</ul>
+<h4 id="直观解题思路"><a href="#直观解题思路" class="headerlink" title="直观解题思路"></a>直观解题思路</h4><blockquote>
+<p>首先遍历一遍数列，用另个数列按顺序存储所有非0的元素，在将存储的非零元素按顺序复制到原数列中，空位补0即可</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/15326930809478w4vc5mm.png?imageslim" alt="paste image"></p>
+<p>直观的解题思路新建额外的数组，不符合要求，但是对于我们下面的优化算法很有起始</p>
+<h4 id="简单的优化"><a href="#简单的优化" class="headerlink" title="简单的优化"></a>简单的优化</h4><blockquote>
+<p>只要把数组中所有的非零元素，按顺序给数组的前段元素位赋值，剩下的全部直接赋值0。我们定义一个nums<a href="初始i=-1">0…i</a>表示为非0元素的数组，之后在遍历数列的时候不断维护这个定义</p>
+</blockquote>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :rtype: void Do not return anything, modify nums in-place instead.</span></div><div class="line"><span class="string">        """</span></div><div class="line">        n = len(nums)</div><div class="line">        i = <span class="number">-1</span></div><div class="line">        j = <span class="number">0</span></div><div class="line">        <span class="comment"># nums[0....i]表示非0元素的数列,初始值i=-1</span></div><div class="line">        <span class="keyword">while</span> j &lt;= n<span class="number">-1</span>:</div><div class="line">            <span class="keyword">if</span> nums[j] != <span class="number">0</span>:</div><div class="line">                i += <span class="number">1</span></div><div class="line">                nums[i] = nums[j]</div><div class="line">            j += <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</div><div class="line">            nums[k] = <span class="number">0</span></div></pre></td></tr></table></figure>
+<h3 id="相似问题"><a href="#相似问题" class="headerlink" title="相似问题"></a>相似问题</h3><h3 id="leetcode-27-移除元素"><a href="#leetcode-27-移除元素" class="headerlink" title="leetcode 27. 移除元素"></a>leetcode 27. 移除元素</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p>示例 1:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">给定 nums = [3,2,2,3], val = 3,</div><div class="line">函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。</div><div class="line">你不需要考虑数组中超出新长度后面的元素。</div></pre></td></tr></table></figure>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>定义nums[0…i]为非val的数列，遍历整个数列不断的维护这个定义</p>
+</blockquote>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeElement</span><span class="params">(self, nums, val)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :type val: int</span></div><div class="line"><span class="string">        :rtype: int</span></div><div class="line"><span class="string">        """</span></div><div class="line">        n = len(nums)</div><div class="line">        i = <span class="number">-1</span></div><div class="line">        <span class="comment"># 定义nums[0...i]为非val的数列</span></div><div class="line">        j = <span class="number">0</span></div><div class="line">        <span class="keyword">while</span> j &lt;= n<span class="number">-1</span>:</div><div class="line">            <span class="keyword">if</span> nums[j] != val:</div><div class="line">                i += <span class="number">1</span></div><div class="line">                nums[i] = nums[j]</div><div class="line">            j += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> i+<span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="leetcode-26-删除排序数组中的重复项"><a href="#leetcode-26-删除排序数组中的重复项" class="headerlink" title="leetcode 26. 删除排序数组中的重复项"></a>leetcode 26. 删除排序数组中的重复项</h3><h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
+<p>示例 1:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">给定数组 nums = [1,1,2], 函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 你不需要考虑数组中超出新长度后面的元素。</div></pre></td></tr></table></figure>
+<h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>定义nums[0…i]为为非重复数列，遍历整个数列不断的维护这个定义</p>
+</blockquote>
+<h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :rtype: int</span></div><div class="line"><span class="string">        """</span></div><div class="line">        n = len(nums)</div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">or</span> n ==<span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> n</div><div class="line">        <span class="comment"># nums[0,i]为非重复数列</span></div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = i + <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> j &lt;= n<span class="number">-1</span>:</div><div class="line">            <span class="keyword">if</span> nums[j] != nums[i]:</div><div class="line">                <span class="comment"># 指向同一个元素不需要赋值</span></div><div class="line">                <span class="keyword">if</span> i + <span class="number">1</span> != j:</div><div class="line">                    nums[i+<span class="number">1</span>] = nums[j]</div><div class="line">                i += <span class="number">1</span></div><div class="line">            j += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> i + <span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="leetcode-80-删除排序数组中的重复项-II"><a href="#leetcode-80-删除排序数组中的重复项-II" class="headerlink" title="leetcode 80. 删除排序数组中的重复项 II"></a>leetcode 80. 删除排序数组中的重复项 II</h3><h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
+<p>示例 1:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">给定 nums = [1,1,1,2,2,3],</div><div class="line"></div><div class="line">函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3 。</div><div class="line"></div><div class="line">你不需要考虑数组中超出新长度后面的元素。</div></pre></td></tr></table></figure>
+<h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>定义nums[0…i]满足每个元素最多出现两次，初始值i=-1,遍历整个数列不断的维护这个定义</p>
+</blockquote>
+<h4 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :rtype: int</span></div><div class="line"><span class="string">        """</span></div><div class="line">        n = len(nums)</div><div class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span>):</div><div class="line">            <span class="keyword">return</span> n</div><div class="line">        <span class="comment"># nums[0...i]是符合要求的，</span></div><div class="line">        i = <span class="number">1</span></div><div class="line">        k = i - <span class="number">1</span></div><div class="line">        j = i + <span class="number">1</span></div><div class="line"></div><div class="line">        <span class="keyword">while</span> j &lt;= n<span class="number">-1</span>:</div><div class="line">            <span class="keyword">if</span> (nums[j] != nums[i]) <span class="keyword">or</span> (nums[j] == nums[i] <span class="keyword">and</span> nums[j] != nums[k]):</div><div class="line">                k = i</div><div class="line">                nums[i+<span class="number">1</span>] = nums[j]</div><div class="line">                i += <span class="number">1</span></div><div class="line">            j += <span class="number">1</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> i + <span class="number">1</span></div></pre></td></tr></table></figure>
+<h2 id="基础算法思想在leetcode中的应用"><a href="#基础算法思想在leetcode中的应用" class="headerlink" title="基础算法思想在leetcode中的应用"></a>基础算法思想在leetcode中的应用</h2><blockquote>
+<p>典型的排序算法思想、二分查找思想在解leetcode题目时很有用。</p>
+</blockquote>
+<h3 id="leetcode-75-分类颜色"><a href="#leetcode-75-分类颜色" class="headerlink" title="leetcode 75. 分类颜色"></a>leetcode 75. 分类颜色</h3><h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个包含红色、白色和蓝色，一共 n 个元素的数组，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。此题中，我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。</p>
+<p>注意:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">不能使用代码库中的排序函数来解决这道题。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>示例:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: [2,0,2,1,1,0]</div><div class="line">输出: [0,0,1,1,2,2]</div></pre></td></tr></table></figure>
+<h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><h5 id="基数排序法"><a href="#基数排序法" class="headerlink" title="基数排序法"></a>基数排序法</h5><blockquote>
+<p>可以采用基数排序法的思想，用一个数组记录下0，1，3的次数，后重排，这个算法对数组进行了两次遍历，其实有一种只进行一次遍历的方法。</p>
+</blockquote>
+<h5 id="三路快速排序方法"><a href="#三路快速排序方法" class="headerlink" title="三路快速排序方法"></a>三路快速排序方法</h5><blockquote>
+<p>设置三个lt, gt, i 定义：nums[0…lt] == 0, nums[lt+1…i-1] = 1, nums[gt…n-1] == 2, 遍历一遍改数列保持这个定义。</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1532695395109wc5a52nv.png?imageslim" alt="paste image"></p>
+<h4 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortColors</span><span class="params">(self, nums)</span>:</span></div><div class="line">        n = len(nums)</div><div class="line"></div><div class="line">        lt = <span class="number">-1</span></div><div class="line">        gt = n</div><div class="line">        i = <span class="number">0</span></div><div class="line"></div><div class="line">        <span class="keyword">while</span> i &lt; gt:</div><div class="line">            <span class="keyword">if</span> nums[i] == <span class="number">0</span>:</div><div class="line">                lt += <span class="number">1</span></div><div class="line">                nums[lt], nums[i] = nums[i], nums[lt]</div><div class="line">                i += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> nums[i] == <span class="number">2</span>:</div><div class="line">                gt -= <span class="number">1</span></div><div class="line">                nums[gt], nums[i] = nums[i], nums[gt]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                i += <span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="leetcode-215-数组中的第K个最大元素"><a href="#leetcode-215-数组中的第K个最大元素" class="headerlink" title="leetcode 215. 数组中的第K个最大元素"></a>leetcode 215. 数组中的第K个最大元素</h3><h4 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。</p>
+<p>示例 1:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: [3,2,1,5,6,4] 和 k = 2</div><div class="line">输出: 5</div></pre></td></tr></table></figure>
+<h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>利用快速排序的思想，从数组 S 中随机找出一个元素 X，把数组分为两部分 Sa 和 Sb。Sa 中的元素大于等于 X，Sb 中元素小于 X。这时有两种情况：</p>
+<ul>
+<li>Sa 中元素的个数小于 k，则 Sb 中的第 k-|Sa| 个元素即为第k大数；</li>
+<li>Sa 中元素的个数大于等于 k，则返回 Sa 中的第 k 大数。时间复杂度近似为 O(n)</li>
+</ul>
+</blockquote>
+<h4 id="代码实现-5"><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># 采用快速排序方法，分成的数列左边大于右边</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthLargest</span><span class="params">(self, nums, k)</span>:</span></div><div class="line">        n = len(nums)</div><div class="line">        <span class="keyword">if</span> (k &gt; n):</div><div class="line">            <span class="keyword">return</span></div><div class="line">        index = self.quickSort(nums, <span class="number">0</span>, n<span class="number">-1</span>, k)</div><div class="line">        <span class="keyword">return</span> nums[index]</div><div class="line">        </div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">quickSort</span><span class="params">(self, nums, l, r, k)</span>:</span></div><div class="line">        <span class="keyword">if</span> l &gt;= r:</div><div class="line">            <span class="keyword">return</span> l</div><div class="line">        p = self.partition(nums, l, r)</div><div class="line">        <span class="keyword">if</span> p + <span class="number">1</span> == k:</div><div class="line">            <span class="keyword">return</span> p</div><div class="line">        <span class="keyword">if</span> p + <span class="number">1</span> &gt; k:</div><div class="line">            <span class="keyword">return</span> self.quickSort(nums, l, p <span class="number">-1</span>, k)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> self.quickSort(nums, p + <span class="number">1</span>, r, k)</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, nums, l, r)</span>:</span></div><div class="line">        v = nums[l]</div><div class="line">        j = l</div><div class="line">        i = l + <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> i &lt;= r:</div><div class="line">            <span class="keyword">if</span> nums[i] &gt;= v:</div><div class="line">                nums[j+<span class="number">1</span>],nums[i] = nums[i],nums[j+<span class="number">1</span>]</div><div class="line">                j += <span class="number">1</span></div><div class="line">            i += <span class="number">1</span></div><div class="line">        nums[l], nums[j] = nums[j], nums[l]</div><div class="line">        <span class="keyword">return</span> j</div></pre></td></tr></table></figure>
+<h3 id="相似题目"><a href="#相似题目" class="headerlink" title="相似题目"></a>相似题目</h3><h3 id="leetcode-88-合并两个有序数组"><a href="#leetcode-88-合并两个有序数组" class="headerlink" title="leetcode 88. 合并两个有序数组"></a>leetcode 88. 合并两个有序数组</h3><h4 id="题目描述-6"><a href="#题目描述-6" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。</p>
+<p>说明:</p>
+</blockquote>
+<ul>
+<li>初始化 nums1 和 nums2 的元素数量分别为 m 和 n。</li>
+<li>你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。</li>
+</ul>
+<blockquote>
+<p>示例:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">输入:</div><div class="line">nums1 = [1,2,3,0,0,0], m = 3</div><div class="line">nums2 = [2,5,6],       n = 3</div><div class="line"></div><div class="line">输出: [1,2,2,3,5,6]</div></pre></td></tr></table></figure>
+<h4 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h4><h5 id="常规解题思路"><a href="#常规解题思路" class="headerlink" title="常规解题思路"></a>常规解题思路</h5><blockquote>
+<p>其实这道题就是归并排序partition的过程(将两个有序的数列合并成一个有序数列)， 直观的思路是新建一个新的数列，遍历nums1 和 nums2这两个数列，将新建的数列有序后又赋值给nums1后返回。其实还有一种方法不需要开辟新的空间</p>
+</blockquote>
+<h5 id="尾插法"><a href="#尾插法" class="headerlink" title="尾插法"></a>尾插法</h5><blockquote>
+<p>由于nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素，所以从k=m+n-1开始，分别遍历nums1[m…0]和nums2[n…0]中选取值大的</p>
+</blockquote>
+<h4 id="代码实现-6"><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, nums1, m, nums2, n)</span>:</span></div><div class="line">        </div><div class="line">        <span class="comment"># 尾插入法 </span></div><div class="line">        <span class="keyword">if</span> (n &lt; <span class="number">1</span>):</div><div class="line">            <span class="keyword">return</span></div><div class="line">        <span class="keyword">if</span> (m &lt; <span class="number">1</span>):</div><div class="line">            nums1[<span class="number">0</span>:n] = nums2[<span class="number">0</span>:n]</div><div class="line">            <span class="keyword">return</span></div><div class="line">        k = m + n - <span class="number">1</span></div><div class="line">        i = m - <span class="number">1</span></div><div class="line">        j = n - <span class="number">1</span></div><div class="line"></div><div class="line">        <span class="keyword">while</span> k &gt;= <span class="number">0</span>:</div><div class="line">            <span class="keyword">if</span> (nums1[i] &gt; nums2[j] <span class="keyword">and</span> i &gt;= <span class="number">0</span>) <span class="keyword">or</span> (j &lt; <span class="number">0</span> <span class="keyword">and</span> i &gt;= <span class="number">0</span>):</div><div class="line">                nums1[k] = nums1[i]</div><div class="line">                k -= <span class="number">1</span></div><div class="line">                i -= <span class="number">1</span></div><div class="line"></div><div class="line">            <span class="keyword">if</span> (nums2[j] &gt;= nums1[i] <span class="keyword">and</span> j &gt;= <span class="number">0</span>) <span class="keyword">or</span> (i &lt; <span class="number">0</span> <span class="keyword">and</span> j &gt;=<span class="number">0</span>):</div><div class="line">                nums1[k] = nums2[j] </div><div class="line">                k -= <span class="number">1</span></div><div class="line">                j -= <span class="number">1</span></div></pre></td></tr></table></figure>
+<h2 id="双索引技术-对撞指针"><a href="#双索引技术-对撞指针" class="headerlink" title="双索引技术-对撞指针"></a>双索引技术-对撞指针</h2><blockquote>
+<p>有一些leetcode题目，我们可以采用对撞指针进行求解：指针 i 和 j 分别指向数组的第一个元素和最后一个元素，然后指针 i 不断向前， 指针 j 不断递减，知道 i = j (当然具体的逻辑操作根据题目的变化而变化)</p>
+</blockquote>
+<h3 id="leetcode-167-两数之和-II-输入有序数组"><a href="#leetcode-167-两数之和-II-输入有序数组" class="headerlink" title="leetcode 167. 两数之和 II - 输入有序数组"></a>leetcode 167. 两数之和 II - 输入有序数组</h3><h4 id="题目描述-7"><a href="#题目描述-7" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。<br>函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。</p>
+<p>说明:</p>
+<ul>
+<li>返回的下标值（index1 和 index2）不是从零开始的。</li>
+<li>你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。</li>
+</ul>
+<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入: numbers = [2, 7, 11, 15], target = 9</div><div class="line">输出: [1,2]</div><div class="line">解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h4><blockquote>
+<p>双层遍历，时间复杂度为O(n^2)，暴力解法没有充分利用原数组的性质 —— 有序，本文不采用。</p>
+</blockquote>
+<p>当我们看到数列有序的时候，就应该想到可以用二分搜索法</p>
+<h4 id="二分搜索法"><a href="#二分搜索法" class="headerlink" title="二分搜索法"></a>二分搜索法</h4><blockquote>
+<p>遍历每个nums[i], 在剩余数组中查找target-nums[i]的值，时间复杂度为O(NlogN)</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1532699856414ncf2me16.png?imageslim" alt="paste image"></p>
+<p>有兴趣的读者可以用这种方法尝试一下，应该也是可以AC的， 本文采用对撞指针法。</p>
+<h4 id="对撞指针法"><a href="#对撞指针法" class="headerlink" title="对撞指针法"></a>对撞指针法</h4><blockquote>
+<p>们首先判断首尾两项的和是不是target，如果比target小，那么我们左边(i)+1位置的数（比左边位置的数大）再和右相相加，继续判断。如果比target大，那么我们右边(j)-1位置的数（比右边位置的数小）再和左相相加，继续判断。我们通过这样不断放缩的过程，就可以在O(n)的时间复杂度内找到对应的坐标位置。</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/15327003342201w29cjac.png?imageslim" alt="paste image"></p>
+<h4 id="代码实现-7"><a href="#代码实现-7" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, numbers, target)</span>:</span></div><div class="line">        n = len(numbers)</div><div class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>):</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = n<span class="number">-1</span></div><div class="line">        <span class="keyword">while</span> i &lt; j:</div><div class="line">            <span class="keyword">if</span> numbers[i] + numbers[j] == target:</div><div class="line">                <span class="keyword">return</span> [i+<span class="number">1</span>,j+<span class="number">1</span>]</div><div class="line">            <span class="keyword">elif</span> numbers[i] + numbers[j] &lt; target:</div><div class="line">                i += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                j -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> []</div></pre></td></tr></table></figure>
+<h3 id="相似题目-1"><a href="#相似题目-1" class="headerlink" title="相似题目"></a>相似题目</h3><h3 id="leetcode-125-验证回文串"><a href="#leetcode-125-验证回文串" class="headerlink" title="leetcode 125. 验证回文串"></a>leetcode 125. 验证回文串</h3><h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。</p>
+<p>说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">本题中，我们将空字符串定义为有效的回文串。</div></pre></td></tr></table></figure></p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: &quot;A man, a plan, a canal: Panama&quot;</div><div class="line">输出: true</div></pre></td></tr></table></figure></p>
+<p>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: &quot;race a car&quot;</div><div class="line">输出: false</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>采用对撞指针</p>
+</blockquote>
+<h4 id="代码实现-8"><a href="#代码实现-8" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type s: str</span></div><div class="line"><span class="string">        :rtype: bool</span></div><div class="line"><span class="string">        """</span></div><div class="line">        </div><div class="line">        n = len(s)</div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = n<span class="number">-1</span></div><div class="line"></div><div class="line">        <span class="keyword">while</span> i &lt; j:</div><div class="line">            <span class="keyword">if</span> s[i].isalnum() == <span class="keyword">False</span>:</div><div class="line">                i += <span class="number">1</span></div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">if</span> s[j].isalnum() == <span class="keyword">False</span>:</div><div class="line">                j -= <span class="number">1</span></div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">if</span> s[i].lower() != s[j].lower():</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            i += <span class="number">1</span></div><div class="line">            j -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>注</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">isalnum()判断一个字符是否为数字或者字母，lower()字符转小写函数</div></pre></td></tr></table></figure>
+<h3 id="leetcode-345-反转字符串中的元音字母"><a href="#leetcode-345-反转字符串中的元音字母" class="headerlink" title="leetcode 345. 反转字符串中的元音字母"></a>leetcode 345. 反转字符串中的元音字母</h3><h4 id="题目描述-9"><a href="#题目描述-9" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>编写一个函数，以字符串作为输入，反转该字符串中的元音字母。</p>
+<p>示例 1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">给定 s = &quot;hello&quot;, 返回 &quot;holle&quot;.</div></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">给定 s = &quot;leetcode&quot;, 返回 &quot;leotcede&quot;.</div><div class="line">`</div></pre></td></tr></table></figure></p>
+<p>注意:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">元音字母不包括 &quot;y&quot;.</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>也是采用对撞指针哦</p>
+</blockquote>
+<h4 id="代码实现-9"><a href="#代码实现-9" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: wujunqi</span></div><div class="line"><span class="string">@email: jun_qi_wu@163.com</span></div><div class="line"><span class="string">@desc: </span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseVowels</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type s: str</span></div><div class="line"><span class="string">        :rtype: str</span></div><div class="line"><span class="string">        """</span></div><div class="line"></div><div class="line">        ss = list(s)</div><div class="line"></div><div class="line">        aeiou = [<span class="string">'a'</span>, <span class="string">'e'</span>, <span class="string">'i'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'A'</span>,<span class="string">'E'</span>,<span class="string">'I'</span>,<span class="string">'O'</span>,<span class="string">'U'</span>]</div><div class="line">        n = len(s)</div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = n<span class="number">-1</span></div><div class="line"></div><div class="line">        <span class="keyword">while</span> i &lt; j:</div><div class="line">            <span class="keyword">if</span> ss[i] <span class="keyword">not</span> <span class="keyword">in</span> aeiou:</div><div class="line">                i += <span class="number">1</span></div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">if</span> ss[j] <span class="keyword">not</span> <span class="keyword">in</span> aeiou:</div><div class="line">                j -= <span class="number">1</span></div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">if</span> (i &lt; j):</div><div class="line">                ss[i], ss[j] = ss[j], ss[i]</div><div class="line">            i += <span class="number">1</span></div><div class="line">            j -= <span class="number">1</span></div><div class="line">        d = <span class="string">''</span></div><div class="line">        <span class="keyword">return</span> d.join(ss)</div></pre></td></tr></table></figure>
+<h3 id="leetcode-11-盛最多水的容器"><a href="#leetcode-11-盛最多水的容器" class="headerlink" title="leetcode 11. 盛最多水的容器"></a>leetcode 11. 盛最多水的容器</h3><h4 id="题目描述-10"><a href="#题目描述-10" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">你不能倾斜容器，且 n 的值至少为 2。</div></pre></td></tr></table></figure></p>
+<p>图示</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/15327009287108px1ox15.png?imageslim" alt="paste image"></p>
+<h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>我们在由线段长度构成的数组中使用两个指针，一个放在开始，一个置于末尾。 此外，我们会使用变量 maxareamaxarea 来持续存储到目前为止所获得的最大面积。 在每一步中，我们会找出指针所指向的两条线段形成的区域，更新 maxareamaxarea，并将指向较短线段的指针向较长线段那端移动一步。</p>
+</blockquote>
+<h4 id="代码实现-10"><a href="#代码实现-10" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: wujunqi</span></div><div class="line"><span class="string">@email: jun_qi_wu@163.com</span></div><div class="line"><span class="string">@desc: </span></div><div class="line"><span class="string">'''</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxArea</span><span class="params">(self, height)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type height: List[int]</span></div><div class="line"><span class="string">        :rtype: int</span></div><div class="line"><span class="string">        """</span></div><div class="line">        n = len(height)</div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = n - <span class="number">1</span></div><div class="line"></div><div class="line">        maxareamaxarea = (j - i) * min(height[i], height[j])</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> i &lt; j:</div><div class="line">            <span class="keyword">if</span> height[i] &lt; height[j]:</div><div class="line">                i += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                j -= <span class="number">1</span></div><div class="line">            maxareamaxarea = max(maxareamaxarea, (j - i) * min(height[i], height[j]))</div><div class="line">            </div><div class="line">        <span class="keyword">return</span> maxareamaxarea</div></pre></td></tr></table></figure>
+<h2 id="双索引技术-滑动窗口"><a href="#双索引技术-滑动窗口" class="headerlink" title="双索引技术-滑动窗口"></a>双索引技术-滑动窗口</h2><blockquote>
+<p>一些题目用滑动窗口方法解题，可以将时间复杂度控制在O(N)级别，最重要的是定义好滑动窗口，明确它要表达的意思，当然边界和初始值非常重要</p>
+</blockquote>
+<h3 id="leetcode-209-长度最小的子数组"><a href="#leetcode-209-长度最小的子数组" class="headerlink" title="leetcode 209. 长度最小的子数组"></a>leetcode 209. 长度最小的子数组</h3><h4 id="题目描述-11"><a href="#题目描述-11" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
+<p>给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组。如果不存在符合条件的连续子数组，返回 0。</p>
+<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入: s = 7, nums = [2,3,1,2,4,3]</div><div class="line">输出: 2</div><div class="line">解释: 子数组 [4,3] 是该条件下的长度最小的连续子数组。</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<p>要求是连续子数组，所以我们必须定义i，j两个指针，i向前遍历，j向后遍历，相当与一个滑块，这样所有的子数组都会在[i…j]中出现，如果nums[i..j]的和小于目标值s,那么j向后移一位，再次比较，直到大于目标值s之后，i向前移动一位，缩小数组的长度。遍历到i到数组的最末端，就算结束了，如果不存在符合条件的就返回0.</p>
+</blockquote>
+<p><img src="http://otwbgbfg8.bkt.clouddn.com/1532701891207tnyu99z0.png?imageslim" alt="paste image"></p>
+<h4 id="代码实现-11"><a href="#代码实现-11" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: wujunqi</span></div><div class="line"><span class="string">@email: jun_qi_wu@163.com</span></div><div class="line"><span class="string">@desc: </span></div><div class="line"><span class="string">'''</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSubArrayLen</span><span class="params">(self, s, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type s: int</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :rtype: int</span></div><div class="line"><span class="string">        """</span></div><div class="line">        </div><div class="line">        n = len(nums)</div><div class="line">        <span class="keyword">if</span> (n &lt; <span class="number">1</span> <span class="keyword">or</span> sum(nums) &lt; s):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        </div><div class="line">        <span class="comment"># 维护一个滑动窗口nums[i,j], nums[i...j] &lt; s</span></div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = <span class="number">-1</span></div><div class="line">        total = <span class="number">0</span></div><div class="line">        res = n + <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> i &lt;= n<span class="number">-1</span>:</div><div class="line">            <span class="keyword">if</span> (j + <span class="number">1</span> &lt; n) <span class="keyword">and</span> total &lt; s:</div><div class="line">                j += <span class="number">1</span></div><div class="line">                total += nums[j]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                total -= nums[i]</div><div class="line">                i += <span class="number">1</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> (total &gt;= s):</div><div class="line">                res = min(res, j-i+<span class="number">1</span>)</div><div class="line">        <span class="keyword">if</span> res == n+<span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>我们知道在准备面试的时候，刷算法题是一种捷径，特别是刷leetcode，但是不能一味的刷题，我们需要总结和思考，对于一些相似的题目我们应该多想想他们的思想，其实很多题的解题思路都是相近的。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+	<div>
+		
+		<div>
+    
+	    <div style="text-align:center;color: #ccc;font-size:14px;">
+			-------------本文结束
+			<i class="fa fa-paw"></i>
+			感谢您的阅读-------------
+		</div>
+	
+</div>
+
+		
+	</div>
+
+	<div>
+		
+		
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+		<strong>本文标题：</strong>
+		leetcode数组类算法精析
+	</li>
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      吴军旗
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://fanqieto.top/2018/07/27/leetcode数组类算法精析/" title="leetcode数组类算法精析">http://fanqieto.top/2018/07/27/leetcode数组类算法精析/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+	  本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请保留原文链接及作者！
+    </li>
+  <ul>
+
+	<div style="margin-top:50px">
+		欢迎搜索及关注：番茄技术小栈,所有文章都将同步在公众号上!
+		<img src="http://otwbgbfg8.bkt.clouddn.com/15305785034493pp9x9ln.png" width="40%" height="40%"/>
+	</div>
+
+
+		
+	</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="吴军旗 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="吴军旗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/26/笔试面试常用排序算法总结/" rel="next" title="笔试面试常用排序算法总结">
+                <i class="fa fa-chevron-left"></i> 笔试面试常用排序算法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/03/从一道百度面试题说起/" rel="prev" title="从一道百度面试题说起">
+                从一道百度面试题说起 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="吴军旗" />
+          <p class="site-author-name" itemprop="name">吴军旗</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#做好初始定义"><span class="nav-number">1.</span> <span class="nav-text">做好初始定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-283-移动零"><span class="nav-number">1.1.</span> <span class="nav-text">leetcode(283):移动零</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直观解题思路"><span class="nav-number">1.1.2.</span> <span class="nav-text">直观解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单的优化"><span class="nav-number">1.1.3.</span> <span class="nav-text">简单的优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">1.1.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似问题"><span class="nav-number">1.2.</span> <span class="nav-text">相似问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-27-移除元素"><span class="nav-number">1.3.</span> <span class="nav-text">leetcode 27. 移除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">1.3.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-26-删除排序数组中的重复项"><span class="nav-number">1.4.</span> <span class="nav-text">leetcode 26. 删除排序数组中的重复项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-2"><span class="nav-number">1.4.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-80-删除排序数组中的重复项-II"><span class="nav-number">1.5.</span> <span class="nav-text">leetcode 80. 删除排序数组中的重复项 II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-3"><span class="nav-number">1.5.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础算法思想在leetcode中的应用"><span class="nav-number">2.</span> <span class="nav-text">基础算法思想在leetcode中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-75-分类颜色"><span class="nav-number">2.1.</span> <span class="nav-text">leetcode 75. 分类颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-4"><span class="nav-number">2.1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-3"><span class="nav-number">2.1.2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基数排序法"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">基数排序法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三路快速排序方法"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">三路快速排序方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-4"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-215-数组中的第K个最大元素"><span class="nav-number">2.2.</span> <span class="nav-text">leetcode 215. 数组中的第K个最大元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-5"><span class="nav-number">2.2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-4"><span class="nav-number">2.2.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-5"><span class="nav-number">2.2.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似题目"><span class="nav-number">2.3.</span> <span class="nav-text">相似题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-88-合并两个有序数组"><span class="nav-number">2.4.</span> <span class="nav-text">leetcode 88. 合并两个有序数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-6"><span class="nav-number">2.4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-5"><span class="nav-number">2.4.2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常规解题思路"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">常规解题思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#尾插法"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">尾插法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-6"><span class="nav-number">2.4.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双索引技术-对撞指针"><span class="nav-number">3.</span> <span class="nav-text">双索引技术-对撞指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-167-两数之和-II-输入有序数组"><span class="nav-number">3.1.</span> <span class="nav-text">leetcode 167. 两数之和 II - 输入有序数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-7"><span class="nav-number">3.1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力解法"><span class="nav-number">3.1.2.</span> <span class="nav-text">暴力解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二分搜索法"><span class="nav-number">3.1.3.</span> <span class="nav-text">二分搜索法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对撞指针法"><span class="nav-number">3.1.4.</span> <span class="nav-text">对撞指针法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-7"><span class="nav-number">3.1.5.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似题目-1"><span class="nav-number">3.2.</span> <span class="nav-text">相似题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-125-验证回文串"><span class="nav-number">3.3.</span> <span class="nav-text">leetcode 125. 验证回文串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-8"><span class="nav-number">3.3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-6"><span class="nav-number">3.3.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-8"><span class="nav-number">3.3.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-345-反转字符串中的元音字母"><span class="nav-number">3.4.</span> <span class="nav-text">leetcode 345. 反转字符串中的元音字母</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-9"><span class="nav-number">3.4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-7"><span class="nav-number">3.4.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-9"><span class="nav-number">3.4.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-11-盛最多水的容器"><span class="nav-number">3.5.</span> <span class="nav-text">leetcode 11. 盛最多水的容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-10"><span class="nav-number">3.5.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-8"><span class="nav-number">3.5.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-10"><span class="nav-number">3.5.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双索引技术-滑动窗口"><span class="nav-number">4.</span> <span class="nav-text">双索引技术-滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-209-长度最小的子数组"><span class="nav-number">4.1.</span> <span class="nav-text">leetcode 209. 长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-11"><span class="nav-number">4.1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-9"><span class="nav-number">4.1.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现-11"><span class="nav-number">4.1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴军旗</span>
+</div>
+
+<div class="theme-info">
+	<div class="powered-by"></div>
+	<span class="post-count">博客全站共246.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

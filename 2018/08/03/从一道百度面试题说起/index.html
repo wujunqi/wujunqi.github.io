@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言7月27日我收到百度的面试邀约（8月1日），兴奋之余，我也做了5天的面试准备。从下午两点开始一直面试到五点半，长达三个半小时的面试也让我知道百度确实是一家重视技术的公司。其中有一道面试题尤其让我印象深刻，因为它分别是一面和二面的“压轴题”，可以说这道面试题自己回答的好与否直接决定着自己能否进入下一轮面试，今天我主要就从这道面试题开始，一步一步讲解其中涉及到的知识点。这次的面经（四面）会在下一篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从一道百度面试题说起">
+<meta property="og:url" content="http://fanqieto.top/2018/08/03/从一道百度面试题说起/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="前言7月27日我收到百度的面试邀约（8月1日），兴奋之余，我也做了5天的面试准备。从下午两点开始一直面试到五点半，长达三个半小时的面试也让我知道百度确实是一家重视技术的公司。其中有一道面试题尤其让我印象深刻，因为它分别是一面和二面的“压轴题”，可以说这道面试题自己回答的好与否直接决定着自己能否进入下一轮面试，今天我主要就从这道面试题开始，一步一步讲解其中涉及到的知识点。这次的面经（四面）会在下一篇">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://note.youdao.com/yws/res/3550/7124884D4F634F6D8B8E3B9671C6A248">
+<meta property="og:updated_time" content="2018-08-03T13:14:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从一道百度面试题说起">
+<meta name="twitter:description" content="前言7月27日我收到百度的面试邀约（8月1日），兴奋之余，我也做了5天的面试准备。从下午两点开始一直面试到五点半，长达三个半小时的面试也让我知道百度确实是一家重视技术的公司。其中有一道面试题尤其让我印象深刻，因为它分别是一面和二面的“压轴题”，可以说这道面试题自己回答的好与否直接决定着自己能否进入下一轮面试，今天我主要就从这道面试题开始，一步一步讲解其中涉及到的知识点。这次的面经（四面）会在下一篇">
+<meta name="twitter:image" content="http://note.youdao.com/yws/res/3550/7124884D4F634F6D8B8E3B9671C6A248">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fanqieto.top/2018/08/03/从一道百度面试题说起/"/>
+
+
+
+
+
+  <title>从一道百度面试题说起 | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+		<a href="https://github.com/wujunqi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fanqieto.top/2018/08/03/从一道百度面试题说起/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴军旗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从一道百度面试题说起</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T21:13:51+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/03/从一道百度面试题说起/" class="leancloud_visitors" data-flag-title="从一道百度面试题说起">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  5,078
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>7月27日我收到百度的面试邀约（8月1日），兴奋之余，我也做了5天的面试准备。从下午两点开始一直面试到五点半，长达三个半小时的面试也让我知道百度确实是一家重视技术的公司。其中有一道面试题尤其让我印象深刻，因为它分别是一面和二面的“压轴题”，可以说这道面试题自己回答的好与否直接决定着自己能否进入下一轮面试，今天我主要就从这道面试题开始，一步一步讲解其中涉及到的知识点。这次的面经（四面）会在下一篇文章总结后分享给大家。</p>
+<h1 id="面试真题"><a href="#面试真题" class="headerlink" title="面试真题"></a>面试真题</h1><blockquote>
+<p>真题</p>
+</blockquote>
+<p>php如何解决网站大流量与高并发的问题（一面最后一题）</p>
+<blockquote>
+<p>变体</p>
+</blockquote>
+<p>网站高并发的优化方法，从浏览器到服务器中间经过所有组件的你能想到的优化点（二面最后一题）</p>
+<h1 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h1><ul>
+<li>高并发架构相关概念</li>
+<li>高并发解决方案（优化方案）</li>
+</ul>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>由于涉及到的知识点太多，我这里先给出我当时回答的总的结构，之后会对每个分点进行更为详细的分析，如果你有更好的答案，或者有一些遗漏的点还请指出。</p>
+<h1 id="高并发架构相关概念"><a href="#高并发架构相关概念" class="headerlink" title="高并发架构相关概念"></a>高并发架构相关概念</h1><blockquote>
+<p>并发（百度百科的定义）</p>
+</blockquote>
+<p>并发，在操作系统中，是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一处理机上运行，但任意时刻点上都只有一个程序在处理机上运行</p>
+<h2 id="web开发中说的高并发指的是什么？"><a href="#web开发中说的高并发指的是什么？" class="headerlink" title="web开发中说的高并发指的是什么？"></a>web开发中说的高并发指的是什么？</h2><p>上面的定义明显不是我们通常所言的并发，在互联网时代，所讲的并发、高并发,通常是指并发访问。也就是在某个时间点,有多少个访问同时到来，通常如果一个系统的日PV在干万以上,有可能是一个高并发的系统。</p>
+<h2 id="高并发的问题-我们具体该关心什么"><a href="#高并发的问题-我们具体该关心什么" class="headerlink" title="高并发的问题,我们具体该关心什么?"></a>高并发的问题,我们具体该关心什么?</h2><blockquote>
+<p>QPS  </p>
+</blockquote>
+<p>每秒钟请求或者査询的数量,在互联网领域,指毎秒响应请求数(指HTTP请求);一个页面中可能有多个 http 请求  </p>
+<blockquote>
+<p>吞吐量  </p>
+</blockquote>
+<p>单位时间内处理的请求数量(通常由QPS与并发数决定)</p>
+<blockquote>
+<p>响应时间  </p>
+</blockquote>
+<p>从请求发出到收到响应花费的时间。例如系统处理一个HTTP请求需要100ms,这个100ms就是系统的响应时间</p>
+<blockquote>
+<p>PV  </p>
+</blockquote>
+<p>综合浏览量( Pageview),即页面浏览量或者点击量</p>
+<blockquote>
+<p>UV<br>独立访客( UniqueVisitor),即一定时间范围内相同访客多次访问网站,只计算为1个独立访客</p>
+<p>带宽</p>
+</blockquote>
+<p>计算带宽大小需关注两个指标,峰值流量和页面的平均大小</p>
+<ul>
+<li><code>日网站带宽=PV/统计时间(换算到秒)*平均页面大小(单位KB)*8</code></li>
+</ul>
+<h2 id="常用的压测工具"><a href="#常用的压测工具" class="headerlink" title="常用的压测工具"></a>常用的压测工具</h2><p>ab、wrk、 http_load、 Web bench、 Siege、 Apache Jmeter</p>
+<h2 id="ab-概念"><a href="#ab-概念" class="headerlink" title="ab 概念"></a>ab 概念</h2><p>全称是 apache benchmark,是 apache官方推出的工具刨建多个并发访问线程,模拟多个访问者同时对某一URL地址进行访问。它的测试目标是基于URL的,因此,它既可以用来测试apache的负载压力,也可以测试 nginx、 lighthttp、 tomcat、IS等其它Web服务器的压力</p>
+<h2 id="ab的使用"><a href="#ab的使用" class="headerlink" title="ab的使用"></a>ab的使用</h2><p>模拟并发请求1000次,总共请求50000次<br><code>ab -c 1000 -n 50000 www.test.com</code></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>测试机器与被测试机器分开  </li>
+<li>不要对线上服务做压力测试  </li>
+<li>观察测试工具ab所在机器,以及被测试的前端机的cPU,内存,网络等都不超过最高限度的75% (<code>top</code> 命令)  </li>
+</ul>
+<h2 id="高并发解决方案-优化方案"><a href="#高并发解决方案-优化方案" class="headerlink" title="高并发解决方案(优化方案)"></a>高并发解决方案(优化方案)</h2><blockquote>
+<p>流量层优化</p>
+</blockquote>
+<ul>
+<li>防盗链处理</li>
+</ul>
+<blockquote>
+<p>前端层优化</p>
+</blockquote>
+<ul>
+<li>减少http请求</li>
+<li>添加异步请求</li>
+<li>启用浏览器缓存和文件压缩</li>
+<li>CDN加速</li>
+<li>建立独立图片服务器</li>
+</ul>
+<blockquote>
+<p>服务器层优化</p>
+</blockquote>
+<ul>
+<li>页面静态化</li>
+<li>并发处理</li>
+</ul>
+<blockquote>
+<p>数据库层优化</p>
+</blockquote>
+<ul>
+<li>数据库缓存（Memache, Redis）</li>
+<li>分库分表（水平、垂直切分）、分区操作</li>
+<li>读写分离</li>
+<li>负载均衡</li>
+</ul>
+<blockquote>
+<p>web服务器架构优化</p>
+</blockquote>
+<ul>
+<li>负载均衡</li>
+</ul>
+<h1 id="流量层优化（防盗链处理）"><a href="#流量层优化（防盗链处理）" class="headerlink" title="流量层优化（防盗链处理）"></a>流量层优化（防盗链处理）</h1><blockquote>
+<p>如果我们发现我们的网站主页的流量很大（服务器负荷很重）但是网站的 PV、UV 却很小，这时候我们就需要考虑我们的网站是不是被盗链了。</p>
+</blockquote>
+<h2 id="盗链概念"><a href="#盗链概念" class="headerlink" title="盗链概念"></a>盗链概念</h2><blockquote>
+<p>盗链是指在自己的页面上展示一些并不在自己服务器上的内容获得他人服务器上的资源地址,绕过别人的资源展示页面,直接在自己的页面上向最终用户提供此内容，常见的是小站盗用大站的图片、音乐、视频、软件等资源，通过盗链的方法可以减轻自己服务器的负担,因为真实的空间和流量均是来自别人的服务器</p>
+</blockquote>
+<h2 id="防盗链概念"><a href="#防盗链概念" class="headerlink" title="防盗链概念"></a>防盗链概念</h2><p>防止别人通过一些技术手段绕过本站的资源展示页面,盗用本站的资源，让绕开本站资源展示页面的资源链接失效，可以大大减轻服务器及带宽的压力</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>通过 Referer或者签名,网站可以检测目标网页访问的来源网页,如果是资源文件,则可以跟踪到显示它的网页地址。一旦检测到来源不是本站即进行阻止或者返回指定的页面</p>
+<h2 id="Referer-方式防盗链"><a href="#Referer-方式防盗链" class="headerlink" title="Referer 方式防盗链"></a>Referer 方式防盗链</h2><p>Nginx模块 <code>ngx_http_referer_module</code>用于阻挡来源非法的域名请求  </p>
+<p><strong>配置</strong></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">location</span> <span class="regexp">~ .*\.(gifljpglpnglflvlswfrarlzips)<span class="variable">$&#123;</span></span></div><div class="line"><span class="regexp"><span class="variable">    valid_referers none blocked test.com * test.com:</span></span></div><div class="line"><span class="regexp"><span class="variable">    if($invalid_referer)&#123;</span></span></div><div class="line"><span class="regexp"><span class="variable">        #return 403:</span></span></div><div class="line"><span class="regexp"><span class="variable">        rewrite ^/ http://www.test.com/403.jpg;</span></span></div><div class="line"><span class="regexp"><span class="variable">    &#125;</span></span></div><div class="line"><span class="regexp">&#125;</span></div></pre></td></tr></table></figure>
+<p><code>valid_referers none I blocked I server_names,string</code></p>
+<p><strong> 解释</strong></p>
+<ul>
+<li>none: “Referer” 来源头部为空的情况</li>
+<li>blocked: “Referer” 来源头部不为空,但是里面的值被代理或者防火墙删除了,这些值都不以htp:/或者<a href="https://开头" target="_blank" rel="external">https://开头</a>.</li>
+<li>server names: “Referer” 来源头部包含当前的 server names</li>
+</ul>
+<h2 id="加密签名防盗链"><a href="#加密签名防盗链" class="headerlink" title="加密签名防盗链"></a>加密签名防盗链</h2><blockquote>
+<p>Referer 这种方式虽然可以防止一下低中级的防盗链，但是更高级的盗链往往可以伪造 referer，从而绕过 Referer 检测，更安全的方式是可以采用加密签名解决  </p>
+</blockquote>
+<p>使用第三方模块<code>HttpaccesskeyModule</code>实现 Nginx防盗链</p>
+<blockquote>
+<p>nginx配置</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">accesskey</span> <span class="literal">on</span> <span class="literal">off</span>模块开关</div><div class="line">accesskey_hashmethod md5 | sha-<span class="number">1</span>签名加密方式</div><div class="line">accesskey_arg GET参数名称</div><div class="line">accesskey signature加密规则</div><div class="line"></div><div class="line"></div><div class="line">location <span class="regexp">~ .*\.(gifljpglpnglflvlswfrarlzips)<span class="variable">$&#123;</span></span></div><div class="line"><span class="regexp"><span class="variable">    accesskey on;</span></span></div><div class="line"><span class="regexp"><span class="variable">    accesskey_hashmethod md5;</span></span></div><div class="line"><span class="regexp"><span class="variable">    accesskey_arg sign;</span></span></div><div class="line"><span class="regexp"><span class="variable">    accesskey_signature"yourPrefix$remote_addr;  # 你的前缀码和客户端 ip</span></span></div><div class="line"><span class="regexp"><span class="variable">&#125;</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>php代码段</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$sign= md5(&apos;yourPrefix&apos;. $_SERVER[&apos;remote_addr&apos;];</div><div class="line">echo &apos;&lt;img src=”./youimage.png?sign=. $sign.&apos;&quot;&gt;&apos;;</div></pre></td></tr></table></figure>
+<h1 id="前端层优化"><a href="#前端层优化" class="headerlink" title="前端层优化"></a>前端层优化</h1><h2 id="减少http请求"><a href="#减少http请求" class="headerlink" title="减少http请求"></a>减少http请求</h2><blockquote>
+<p>性能黄金法则</p>
+</blockquote>
+<p>只有10%–20%的最终用户响应时间花在接收请求的HTML文档上，剩下的80%–90%时间花在HTML文档所引用的所有组件（图片，script，css，flash等等）进行的HTTP请求上</p>
+<h3 id="如何改善："><a href="#如何改善：" class="headerlink" title="如何改善："></a>如何改善：</h3><blockquote>
+<p>改善响应时间的最简单途径就是减少组件数量，并由此减少HTTP请求的数量</p>
+</blockquote>
+<h3 id="减少HTTP请求的方式"><a href="#减少HTTP请求的方式" class="headerlink" title="减少HTTP请求的方式"></a>减少HTTP请求的方式</h3><h3 id="图片地图"><a href="#图片地图" class="headerlink" title="图片地图"></a>图片地图</h3><blockquote>
+<p>图片地址允许你在一个图片上关联多个URL，目标URL的选择取决于用户单击了图片上的哪个未知</p>
+</blockquote>
+<p><img src="http://note.youdao.com/yws/res/3550/7124884D4F634F6D8B8E3B9671C6A248" alt="image"></p>
+<ul>
+<li>将五张图片合并为一张图片，然后以位置信息定位超链接，把五个HTTP请求减少为一个，可以保证设计的完整性和功能的齐全性</li>
+<li>使用<map><area><map>标签</map></map></li>
+</ul>
+<h3 id="CSS精灵（CSS-Sprites）"><a href="#CSS精灵（CSS-Sprites）" class="headerlink" title="CSS精灵（CSS Sprites）"></a>CSS精灵（CSS Sprites）</h3><blockquote>
+<p>Sprites中文翻译为CSS精灵，通过使用合并图片，通过指定css的background-image 和 background-position来显示元素</p>
+</blockquote>
+<h3 id="合并脚本和样式表"><a href="#合并脚本和样式表" class="headerlink" title="合并脚本和样式表"></a>合并脚本和样式表</h3><ol>
+<li>使用外部的js和css文件引用的方式，因为这要比直接写在页面中性能更好一点</li>
+<li>独立的一个js比用多个js文件组成的页面载入要快38%</li>
+<li>把多个脚本合并为一个脚本，把多个样式表合并为一个样式表</li>
+</ol>
+<h3 id="图片使用Base64编码减少页面请求数"><a href="#图片使用Base64编码减少页面请求数" class="headerlink" title="图片使用Base64编码减少页面请求数"></a>图片使用Base64编码减少页面请求数</h3><blockquote>
+<p>采用Base64的编码方式将图片直接嵌入到网页中，而不是从外部载入</p>
+</blockquote>
+<h2 id="添加异步请求"><a href="#添加异步请求" class="headerlink" title="添加异步请求"></a>添加异步请求</h2><blockquote>
+<p>Ajax可以实现动态不刷新（局部刷新），就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变过的信息。</p>
+<p>优势</p>
+</blockquote>
+<ul>
+<li>通过异步模式，提升了用户体验</li>
+<li>优化了浏览器和服务器之间的传输，减少不必要的数据往返，减少了带宽占用</li>
+<li>Ajax引擎在客户端运行，承担了一部分本来由服务器承担的工作，从而减少了大用户量下的服务器负载。</li>
+</ul>
+<h2 id="启用浏览器缓存和文件压缩"><a href="#启用浏览器缓存和文件压缩" class="headerlink" title="启用浏览器缓存和文件压缩"></a>启用浏览器缓存和文件压缩</h2><blockquote>
+<p>缓存分类</p>
+</blockquote>
+<p>HTTP缓存模型中，如果请求成功会有三种请款</p>
+<ol>
+<li>200 from cache：直接从本地缓存中获取响应，最快速，最省流量，因为根本没有向服务器发送请求</li>
+<li>304 Not Modified：协商缓存，浏览器再本地没有命中的情况下请求头中发送一定的校验数据到服务端，如果服务端数据没有改变浏览器从本地缓存响应，返回304，快速，发送的数据很少。只返回一些基本的响应头信息，数据量很小，不发送实际响应体</li>
+<li>200 OK：以上两种缓存全部失败，服务器返回完整响应，没有用到缓存，相对最慢</li>
+</ol>
+<h3 id="本地缓存"><a href="#本地缓存" class="headerlink" title="本地缓存"></a>本地缓存</h3><p>浏览器认为本地缓存可以使用，不会去请求服务端</p>
+<blockquote>
+<p>相关Header</p>
+</blockquote>
+<ul>
+<li>Expires：expires值对应一个形如Thu，32 Dec 2037 23：55：55 GMT的格林威治时间，告诉浏览器缓存实现的时刻，如果还没到该时刻，标明缓存有效，无需发送请求（绝对时间）</li>
+<li>Cache-Control（设置缓存秒数）：运用Cache-Control告知浏览器缓存过期的时间间隔不是时刻（时间间隔）<ul>
+<li>no-store：禁止浏览器缓存响应</li>
+<li>no-cache：不允许直接使用本地缓存，先发起请求和服务器协商</li>
+<li>max-age=delta-seconds：告知浏览器该响应本地缓存有效的最长期限，以秒为单位</li>
+</ul>
+</li>
+</ul>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><blockquote>
+<p>当浏览器没有命中本地缓存，如本地缓存过期或者响应中声明不允许直接使用本地缓存，那么浏览器肯定会发起服务端请求，服务端会验证数据是否修改，如果没有通知浏览器使用本地缓存</p>
+<p>相关Header</p>
+</blockquote>
+<ol>
+<li>Last-Modified：通知浏览器资源的最后修改时间</li>
+<li>If-Modified-Since：得到资源的最后修改时间后，会将这个信息通过If-Modified-Sinc提交到服务器做检查，如果没有修改，返回304状态码</li>
+<li>Etag：HTTP1.1推出，文件的指纹标识符，如果文件内容修改，指纹会改变</li>
+<li>If-None-Match：本地缓存失效，会携带此值去请求服务端，服务端判断该资源是否改变，如果没有改变，直接使用本地缓存，返回304</li>
+</ol>
+<h3 id="适合缓存的内容"><a href="#适合缓存的内容" class="headerlink" title="适合缓存的内容"></a>适合缓存的内容</h3><ol>
+<li>不变的图像，如logo，图标等</li>
+<li>js、CSS静态文件</li>
+<li>可下载的内容，媒体文件</li>
+</ol>
+<h3 id="建议使用协商缓存"><a href="#建议使用协商缓存" class="headerlink" title="建议使用协商缓存"></a>建议使用协商缓存</h3><ol>
+<li>HTML文件</li>
+<li>经常替换的图片</li>
+<li>经常修改的js、css文件</li>
+<li>js、css文件的加载可以加入文件的签名来拒绝缓存</li>
+<li>index.css?签名</li>
+</ol>
+<h3 id="不建议缓存的内容"><a href="#不建议缓存的内容" class="headerlink" title="不建议缓存的内容"></a>不建议缓存的内容</h3><ol>
+<li>用户隐私等敏感数据</li>
+<li>经常改变的api数据接口</li>
+</ol>
+<h3 id="前端代码和资源的压缩"><a href="#前端代码和资源的压缩" class="headerlink" title="前端代码和资源的压缩"></a>前端代码和资源的压缩</h3><blockquote>
+<p>优势</p>
+</blockquote>
+<p>让资源文件更小，加快文件再网络中的传输，让网页更快的展现，降低带宽和流量开销</p>
+<blockquote>
+<p>压缩方式</p>
+</blockquote>
+<p>JS、CSS、图片、HTML代码的压缩、Gzip压缩</p>
+<blockquote>
+<p>JavaScript代码压缩</p>
+</blockquote>
+<ul>
+<li>JavaScript压缩的原理一般是去掉多余的空格和回车、替换长变量名、简化一些代码写法等</li>
+<li>JavaScript代码压缩工具很多，有在线工具，有应用程序，有编辑器插件</li>
+</ul>
+<blockquote>
+<p>CSS代码压缩</p>
+</blockquote>
+<ul>
+<li>原理跟JavaScript压缩原理类似，同样是去除空白符、注释并且优化一些CSS语义规则等</li>
+</ul>
+<h2 id="使用CDN加速"><a href="#使用CDN加速" class="headerlink" title="使用CDN加速"></a>使用CDN加速</h2><blockquote>
+<p>CDN的全称是Content Delivery Network， 即内容分发网络，尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快，更稳定</p>
+</blockquote>
+<ul>
+<li>在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络</li>
+<li>CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应实践等综合信息将用户的请求重新导向离用户最近的服务器节点上。</li>
+</ul>
+<h3 id="使用CDN的优势"><a href="#使用CDN的优势" class="headerlink" title="使用CDN的优势"></a>使用CDN的优势</h3><ul>
+<li>本地Cache加速， 提高企业站点（尤其含有大量图片和静态页面站点）的访问速度</li>
+<li>跨运营商的网络加速， 保证不同网络的用户都得到良好的访问质量</li>
+<li>远程访问用户根据DNS负载均衡技术智能自动选择Cache服务器</li>
+<li>自动生成服务器的远程Mirror（镜像）cache服务器，远程用户访问时从cache服务器上读取数据，减少远程访问的带宽、分担网络流量、减轻原站点web服务器负载等功能。</li>
+</ul>
+<h2 id="建立独立的图片服务器"><a href="#建立独立的图片服务器" class="headerlink" title="建立独立的图片服务器"></a>建立独立的图片服务器</h2><p><strong>好处</strong></p>
+<ul>
+<li>分担Web服务器的I/O负载将耗费资源的图片服务分离出来,提高服务器的性能和稳定性</li>
+<li>能够专门对图片服务器进行优化-为图片服务设置有针对性的缓存方案,减少带宽成本,提高访问速度</li>
+<li>提高网站的可扩展性-通过增加图片服务器,提高图片吞吐能力</li>
+</ul>
+<h1 id="服务器层优化"><a href="#服务器层优化" class="headerlink" title="服务器层优化"></a>服务器层优化</h1><h2 id="页面静态化（动态语言静态化）"><a href="#页面静态化（动态语言静态化）" class="headerlink" title="页面静态化（动态语言静态化）"></a>页面静态化（动态语言静态化）</h2><blockquote>
+<p>将现有 PHP、python 等动态语言的逻辑代码生成为静态 HTML 文件,用户访问动态脚本重定向到静态 HTML 文件的过程</p>
+</blockquote>
+<p><strong>使用场景</strong></p>
+<p>对实时性要求不高的页面</p>
+<p><strong>好处</strong></p>
+<ul>
+<li>动态脚本通常会做逻辑计算和数据查询,访问量越大,服务器压力越大  </li>
+<li>访问量大时可能会造成CPU负载过高,数据库服务器压力过大</li>
+</ul>
+<h2 id="php的并发处理"><a href="#php的并发处理" class="headerlink" title="php的并发处理"></a>php的并发处理</h2><h3 id="PHP的-Swoole扩展"><a href="#PHP的-Swoole扩展" class="headerlink" title="PHP的 Swoole扩展"></a>PHP的 Swoole扩展</h3><blockquote>
+<p>PHP的异步、并行、高性能网络通信引擎，使用纯C语言编写，提供了PHP语言的异步多线程服务器，异步TcP/UDP网络客户端，异步 MYSQL,异步 Redis，数据库连接池，Asynctask,消息队列，毫秒定时器,异步文件读写，异步DNS查询，除了异步Io的支持之外， Swoole为PHP多进程的模式设计了多个并发数据结构和IPC通信机制，可以大大简化多进程并发编程的工作。</p>
+</blockquote>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p><strong>使用场景</strong></p>
+<blockquote>
+<p>用户注册</p>
+</blockquote>
+<ul>
+<li>场景说明<br>用户注册后,需要发注册邮件和注册短信</li>
+<li>串行方式<br>将注册信息写入数据库成功后,发送注册邮件,再发送注册短信</li>
+<li>并行方式<br>将注册信息写入数据库成功后,发送注册郎件的同时发送注册短信</li>
+<li>消息队列方式<br>将注册信息写入数据库成功后,将成功信息写入队列,此时直接返回成功给用户,写入队列的时间非常短,可以忽略不计,然后异步发送邮件和短信</li>
+</ul>
+<blockquote>
+<p>日志处理</p>
+</blockquote>
+<ul>
+<li>应用场景<br>解决大量日志的传输,日志采集程序将程序写入消息队列,然后通过日志处理程序的订阅消费日志</li>
+</ul>
+<h3 id="常见消息队列产品"><a href="#常见消息队列产品" class="headerlink" title="常见消息队列产品"></a>常见消息队列产品</h3><p>Kafka、 Activemq、 Zeros、 Rabbitmq、 Redis等</p>
+<h1 id="数据库层优化"><a href="#数据库层优化" class="headerlink" title="数据库层优化"></a>数据库层优化</h1><h2 id="数据库缓存（Memache-Redis）"><a href="#数据库缓存（Memache-Redis）" class="headerlink" title="数据库缓存（Memache, Redis）"></a>数据库缓存（Memache, Redis）</h2><blockquote>
+<p>Mysql 等一些常见的关系型数据库的数据都存储在磁盘当中,在高并发场景下,业务应用对 MYSQL 产生的增、删、改、查的操作造成巨大的 I/O 开销和查询压力，这无疑对数据库和服务器都是一种巨大的压力，为了解决此类问题,缓存数据的概念应运而生。</p>
+<p>优点</p>
+</blockquote>
+<ul>
+<li>极大地解决数据库服务器的压力  </li>
+<li>提高应用数据的响应速度</li>
+</ul>
+<h3 id="使用-Memcache缓存查询数据"><a href="#使用-Memcache缓存查询数据" class="headerlink" title="使用 Memcache缓存查询数据"></a>使用 Memcache缓存查询数据</h3><blockquote>
+<p>对于大型站点,如果没有中间缓存层,当流量打入数据库层时,即便有之前的几层为我们挡住一部分流量,但是在大并发的情况下,还是会有大量请求涌入数据库层,这样对于数据库服务器的压力冲击很大,响应速度也会下降,因此添加中间缓存层很有必要。</p>
+</blockquote>
+<p><strong>工作原理</strong></p>
+<blockquote>
+<p>Memcache 是一个高性能的分布式的内存对象缓存系统,通过在内存里维护一个统一的巨大的 hash 表,它能够用来存储各种格式的数据,包括图像、视频、文件以及数据库检索的结果等。简单的说就是将数据调用到内存，然后从内存中读取，从而大大提高读取速度</p>
+</blockquote>
+<h3 id="使用-Redis绶存查询数据"><a href="#使用-Redis绶存查询数据" class="headerlink" title="使用 Redis绶存查询数据"></a>使用 Redis绶存查询数据</h3><blockquote>
+<p>Memcache的区别</p>
+</blockquote>
+<ul>
+<li>Redis支持(快照、AOF),依赖快照进行持久化,aof增强了可靠性的同时,对性能有所影响</li>
+<li>Memcache不支持持久化,通常做缓存,提升性能;</li>
+<li>Redis支持多种类的数据类型</li>
+<li>Redis用于数据量较小的高性能操作和运算上</li>
+<li>Memcache用于在动态系统中减少数据库负载,提升性能;适合做缓存,提高性能</li>
+</ul>
+<h2 id="数据表数据类型优化"><a href="#数据表数据类型优化" class="headerlink" title="数据表数据类型优化"></a>数据表数据类型优化</h2><ul>
+<li>tinyint (0-255) smallint , bigint （考虑空间的问题，考虑范围的问题）</li>
+<li>char,vachar  </li>
+<li>enum 特定、固定的分类可以使用enUm存储,效率更快  </li>
+<li>IP地址的存储 //用 php 的 <code>ip2long(&#39;192.168.1.38&#39;); //3232235814</code>  </li>
+</ul>
+<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><ul>
+<li>索引不是越多越好,在合适的字段上创建合适的索引  </li>
+<li>复合索引的前缀原则  </li>
+<li>lke查询%的问题(% 在前如:<code>%name</code> 则索引失败)  </li>
+<li>全表扫描优化（mysql自动识别）</li>
+<li>or条件索引使用情况（or后的索引不会使用） </li>
+<li>字符串类型索引失效的问题(如字符串类型的字段必须要加引号查询)</li>
+</ul>
+<h2 id="SQL语句的优化"><a href="#SQL语句的优化" class="headerlink" title="SQL语句的优化"></a>SQL语句的优化</h2><p>使用慢查询日志找到需要优化的sql语句，一般会再用explain分析。</p>
+<ul>
+<li><p>优化查询过程中的数据访问  </p>
+<ul>
+<li>使用 Limit  </li>
+<li>返回列不用* </li>
+</ul>
+</li>
+<li><p>优化特定类型的查询语句  </p>
+<ul>
+<li>优化关联查询  </li>
+<li>优化子查询  </li>
+<li>优化 Group by和 distinct  </li>
+</ul>
+</li>
+</ul>
+<h2 id="数据库服务器架构的优化"><a href="#数据库服务器架构的优化" class="headerlink" title="数据库服务器架构的优化"></a>数据库服务器架构的优化</h2><ul>
+<li>分库分表<ul>
+<li>水平切分</li>
+<li>垂直切分</li>
+</ul>
+</li>
+<li>读写分离</li>
+<li>负载均衡<ul>
+<li>通过LVS的三种基本模式实现负载均衡  </li>
+<li>My Cat数据库中间件实现负载均衡</li>
+</ul>
+</li>
+</ul>
+<h1 id="web服务器架构优化"><a href="#web服务器架构优化" class="headerlink" title="web服务器架构优化"></a>web服务器架构优化</h1><h2 id="七层负载均衡的实现"><a href="#七层负载均衡的实现" class="headerlink" title="七层负载均衡的实现"></a>七层负载均衡的实现</h2><ul>
+<li>基于URL等应用层信息的负载均衡  </li>
+<li>Nginx的 proxy是它一个很强大的功能,实现了7层负载均衡</li>
+</ul>
+<p><strong>nginx的简单配置</strong></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Nginx配置</div><div class="line">    http&#123;</div><div class="line">        <span class="attribute">upstream</span> test_cluster &#123;</div><div class="line">            server 121.41.68.2:8001 weight=11;// 加权中</div><div class="line">            <span class="attribute">server</span> <span class="number">121.41.69.2:8002</span> weight=<span class="number">10</span>;</div><div class="line">            <span class="comment">#server 121.41.68.2:8003;</span></div><div class="line">            <span class="comment">#server 121.41.68.9;</span></div><div class="line">        &#125;</div><div class="line">        <span class="section">server</span> &#123;</div><div class="line">            <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">            <span class="attribute">location</span> / &#123;</div><div class="line">                <span class="attribute">proxy_pass</span> http: //test_cluster;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="四层负载均衡的实现"><a href="#四层负载均衡的实现" class="headerlink" title="四层负载均衡的实现"></a>四层负载均衡的实现</h2><ul>
+<li><p>通过报文中的目标地址和端口,再加上负载均衡设备设置的服务器选择方式,决定最终选择的内部服务器</p>
+</li>
+<li><p>LVS实现服务器集群负载均衡有三种方式,NAT,DR和TUN</p>
+</li>
+</ul>
+<p><strong>参考资料</strong></p>
+<ul>
+<li><a href="https://www.cnblogs.com/zxjwlh/p/4458349.html" target="_blank" rel="external">AJAX笔试面试题汇总</a></li>
+<li>李捷的全面解读PHP面试</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+	<div>
+		
+		<div>
+    
+	    <div style="text-align:center;color: #ccc;font-size:14px;">
+			-------------本文结束
+			<i class="fa fa-paw"></i>
+			感谢您的阅读-------------
+		</div>
+	
+</div>
+
+		
+	</div>
+
+	<div>
+		
+		
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+		<strong>本文标题：</strong>
+		从一道百度面试题说起
+	</li>
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      吴军旗
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://fanqieto.top/2018/08/03/从一道百度面试题说起/" title="从一道百度面试题说起">http://fanqieto.top/2018/08/03/从一道百度面试题说起/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+	  本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请保留原文链接及作者！
+    </li>
+  <ul>
+
+	<div style="margin-top:50px">
+		欢迎搜索及关注：番茄技术小栈,所有文章都将同步在公众号上!
+		<img src="http://otwbgbfg8.bkt.clouddn.com/15305785034493pp9x9ln.png" width="40%" height="40%"/>
+	</div>
+
+
+		
+	</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="吴军旗 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="吴军旗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/27/leetcode数组类算法精析/" rel="next" title="leetcode数组类算法精析">
+                <i class="fa fa-chevron-left"></i> leetcode数组类算法精析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/14/Swoole入门到实战（二）/" rel="prev" title="Swoole入门到实战（二）">
+                Swoole入门到实战（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="吴军旗" />
+          <p class="site-author-name" itemprop="name">吴军旗</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面试真题"><span class="nav-number">2.</span> <span class="nav-text">面试真题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#考点分析"><span class="nav-number">3.</span> <span class="nav-text">考点分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">4.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高并发架构相关概念"><span class="nav-number">5.</span> <span class="nav-text">高并发架构相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web开发中说的高并发指的是什么？"><span class="nav-number">5.1.</span> <span class="nav-text">web开发中说的高并发指的是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高并发的问题-我们具体该关心什么"><span class="nav-number">5.2.</span> <span class="nav-text">高并发的问题,我们具体该关心什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的压测工具"><span class="nav-number">5.3.</span> <span class="nav-text">常用的压测工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ab-概念"><span class="nav-number">5.4.</span> <span class="nav-text">ab 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ab的使用"><span class="nav-number">5.5.</span> <span class="nav-text">ab的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">5.6.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高并发解决方案-优化方案"><span class="nav-number">5.7.</span> <span class="nav-text">高并发解决方案(优化方案)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流量层优化（防盗链处理）"><span class="nav-number">6.</span> <span class="nav-text">流量层优化（防盗链处理）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#盗链概念"><span class="nav-number">6.1.</span> <span class="nav-text">盗链概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防盗链概念"><span class="nav-number">6.2.</span> <span class="nav-text">防盗链概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作原理"><span class="nav-number">6.3.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Referer-方式防盗链"><span class="nav-number">6.4.</span> <span class="nav-text">Referer 方式防盗链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密签名防盗链"><span class="nav-number">6.5.</span> <span class="nav-text">加密签名防盗链</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前端层优化"><span class="nav-number">7.</span> <span class="nav-text">前端层优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#减少http请求"><span class="nav-number">7.1.</span> <span class="nav-text">减少http请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何改善："><span class="nav-number">7.1.1.</span> <span class="nav-text">如何改善：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少HTTP请求的方式"><span class="nav-number">7.1.2.</span> <span class="nav-text">减少HTTP请求的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片地图"><span class="nav-number">7.1.3.</span> <span class="nav-text">图片地图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS精灵（CSS-Sprites）"><span class="nav-number">7.1.4.</span> <span class="nav-text">CSS精灵（CSS Sprites）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并脚本和样式表"><span class="nav-number">7.1.5.</span> <span class="nav-text">合并脚本和样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片使用Base64编码减少页面请求数"><span class="nav-number">7.1.6.</span> <span class="nav-text">图片使用Base64编码减少页面请求数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加异步请求"><span class="nav-number">7.2.</span> <span class="nav-text">添加异步请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用浏览器缓存和文件压缩"><span class="nav-number">7.3.</span> <span class="nav-text">启用浏览器缓存和文件压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地缓存"><span class="nav-number">7.3.1.</span> <span class="nav-text">本地缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协商缓存"><span class="nav-number">7.3.2.</span> <span class="nav-text">协商缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适合缓存的内容"><span class="nav-number">7.3.3.</span> <span class="nav-text">适合缓存的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建议使用协商缓存"><span class="nav-number">7.3.4.</span> <span class="nav-text">建议使用协商缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不建议缓存的内容"><span class="nav-number">7.3.5.</span> <span class="nav-text">不建议缓存的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端代码和资源的压缩"><span class="nav-number">7.3.6.</span> <span class="nav-text">前端代码和资源的压缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用CDN加速"><span class="nav-number">7.4.</span> <span class="nav-text">使用CDN加速</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CDN的优势"><span class="nav-number">7.4.1.</span> <span class="nav-text">使用CDN的优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立独立的图片服务器"><span class="nav-number">7.5.</span> <span class="nav-text">建立独立的图片服务器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器层优化"><span class="nav-number">8.</span> <span class="nav-text">服务器层优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#页面静态化（动态语言静态化）"><span class="nav-number">8.1.</span> <span class="nav-text">页面静态化（动态语言静态化）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php的并发处理"><span class="nav-number">8.2.</span> <span class="nav-text">php的并发处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP的-Swoole扩展"><span class="nav-number">8.2.1.</span> <span class="nav-text">PHP的 Swoole扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列"><span class="nav-number">8.2.2.</span> <span class="nav-text">消息队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见消息队列产品"><span class="nav-number">8.2.3.</span> <span class="nav-text">常见消息队列产品</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库层优化"><span class="nav-number">9.</span> <span class="nav-text">数据库层优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库缓存（Memache-Redis）"><span class="nav-number">9.1.</span> <span class="nav-text">数据库缓存（Memache, Redis）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Memcache缓存查询数据"><span class="nav-number">9.1.1.</span> <span class="nav-text">使用 Memcache缓存查询数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Redis绶存查询数据"><span class="nav-number">9.1.2.</span> <span class="nav-text">使用 Redis绶存查询数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据表数据类型优化"><span class="nav-number">9.2.</span> <span class="nav-text">数据表数据类型优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引优化"><span class="nav-number">9.3.</span> <span class="nav-text">索引优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL语句的优化"><span class="nav-number">9.4.</span> <span class="nav-text">SQL语句的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库服务器架构的优化"><span class="nav-number">9.5.</span> <span class="nav-text">数据库服务器架构的优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web服务器架构优化"><span class="nav-number">10.</span> <span class="nav-text">web服务器架构优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#七层负载均衡的实现"><span class="nav-number">10.1.</span> <span class="nav-text">七层负载均衡的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四层负载均衡的实现"><span class="nav-number">10.2.</span> <span class="nav-text">四层负载均衡的实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴军旗</span>
+</div>
+
+<div class="theme-info">
+	<div class="powered-by"></div>
+	<span class="post-count">博客全站共246.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

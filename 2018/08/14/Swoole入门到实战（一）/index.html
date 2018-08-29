@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="一、PHP7源码安装和Swoole源码编译安装1.1 PHP7源码安装1.1.1 获取源码与安装**获取PHP7源码：**`www.php.net`  tar -xzvf ... # 解压命令  ./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等 make # 编译 make install # 安装   源码执行文件放在：`bin`目录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swoole入门到实战（一）">
+<meta property="og:url" content="http://fanqieto.top/2018/08/14/Swoole入门到实战（一）/index.html">
+<meta property="og:site_name" content="番茄技术小栈">
+<meta property="og:description" content="一、PHP7源码安装和Swoole源码编译安装1.1 PHP7源码安装1.1.1 获取源码与安装**获取PHP7源码：**`www.php.net`  tar -xzvf ... # 解压命令  ./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等 make # 编译 make install # 安装   源码执行文件放在：`bin`目录">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://fanqieto.top/img/bV89Ga?w=504&h=151">
+<meta property="og:updated_time" content="2018-08-15T08:54:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swoole入门到实战（一）">
+<meta name="twitter:description" content="一、PHP7源码安装和Swoole源码编译安装1.1 PHP7源码安装1.1.1 获取源码与安装**获取PHP7源码：**`www.php.net`  tar -xzvf ... # 解压命令  ./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等 make # 编译 make install # 安装   源码执行文件放在：`bin`目录">
+<meta name="twitter:image" content="http://fanqieto.top/img/bV89Ga?w=504&h=151">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fanqieto.top/2018/08/14/Swoole入门到实战（一）/"/>
+
+
+
+
+
+  <title>Swoole入门到实战（一） | 番茄技术小栈</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+		<a href="https://github.com/wujunqi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄技术小栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成功来源于良好的自我管理和毅力</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fanqieto.top/2018/08/14/Swoole入门到实战（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴军旗">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄技术小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swoole入门到实战（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T21:44:30+08:00">
+                2018-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/14/Swoole入门到实战（一）/" class="leancloud_visitors" data-flag-title="Swoole入门到实战（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,763
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、PHP7源码安装和Swoole源码编译安装"><a href="#一、PHP7源码安装和Swoole源码编译安装" class="headerlink" title="一、PHP7源码安装和Swoole源码编译安装"></a>一、PHP7源码安装和Swoole源码编译安装</h1><h2 id="1-1-PHP7源码安装"><a href="#1-1-PHP7源码安装" class="headerlink" title="1.1 PHP7源码安装"></a>1.1 PHP7源码安装</h2><h3 id="1-1-1-获取源码与安装"><a href="#1-1-1-获取源码与安装" class="headerlink" title="1.1.1 获取源码与安装"></a>1.1.1 获取源码与安装</h3><pre><code>**获取PHP7源码：**`www.php.net`
+
+tar -xzvf ... # 解压命令
+
+./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等
+make # 编译
+make install # 安装
+
+
+源码执行文件放在：`bin`目录下
+
+php -m  # 查看 PHP 安装的扩展
+</code></pre><h3 id="1-1-2-简化PHP执行命令"><a href="#1-1-2-简化PHP执行命令" class="headerlink" title="1.1.2 简化PHP执行命令"></a>1.1.2 简化PHP执行命令</h3><pre><code>`alias` 命令=命令的绝对路径
+
+vim ~/.bash_profile
+alias php=/home/work/soft/php/bin/php # 添加
+source ~/.bash_profile # 注意
+
+
+**source FileName**  
+**作用:**在当前`bash`环境下读取并执行`FileName`中的命令。    用于重新执行刚修改的初始化文档，如 `.bash_profile` 和 `.profile` 等等  
+**注：**该命令通常用命令“`.`”来替代  
+**如：**`source /etc/profile` 与 `. /etc/profile`是等效的
+
+php -i | grep php.ini # 查找PHP的配置文件
+</code></pre><h2 id="1-2-Swoole源码编译安装"><a href="#1-2-Swoole源码编译安装" class="headerlink" title="1.2 Swoole源码编译安装"></a>1.2 Swoole源码编译安装</h2><p><strong>获取swoole源码：</strong><code>https://gitee.com/swoole/swoole.git</code></p>
+<p><code>phpize</code>是用来扩展<code>php</code>模块的，通过<code>phpize</code>可以建立<code>php</code>的外挂模块,解决没有<code>configure</code>问题</p>
+<pre><code>/usr/local/php/bin/phpize # 在需要执行的目录执行这行代码即可
+./configure --with-php-config=/usr/local/php/bin/php-config   
+
+
+ make
+ make install
+
+最后可以在`PHP`的扩展目录中看见`swoole.so` 扩展文件
+
+![clipboard.png](/img/bV842L?w=723&amp;h=162 &quot;clipboard.png&quot;)
+</code></pre><h2 id="1-3-双剑合璧，PHP7支持swoole"><a href="#1-3-双剑合璧，PHP7支持swoole" class="headerlink" title="1.3 双剑合璧，PHP7支持swoole"></a>1.3 双剑合璧，PHP7支持swoole</h2><pre><code>在`php.ini`文件中添加：`extension=swoole.so`  
+查看是否添加成功：`php -m`
+
+在`swoole/examples/server`下执行`php echo.php`  
+查看是否执行端口：`9501`
+
+netstat -anp|grep 9501
+</code></pre><h1 id="二、玩转网络通信引擎-非常重要"><a href="#二、玩转网络通信引擎-非常重要" class="headerlink" title="二、玩转网络通信引擎(非常重要)"></a>二、玩转网络通信引擎(<strong><code>非常重要</code></strong>)</h1><h2 id="2-1-TCP服务-amp-TCP客户端"><a href="#2-1-TCP服务-amp-TCP客户端" class="headerlink" title="2.1 TCP服务&amp;TCP客户端"></a>2.1 TCP服务&amp;TCP客户端</h2><h3 id="2-1-1-TCP服务"><a href="#2-1-1-TCP服务" class="headerlink" title="2.1.1 TCP服务"></a>2.1.1 TCP服务</h3><p><a href="https://wiki.swoole.com/wiki/page/476.html" target="_blank" rel="external">Swoole官网文档：创建TCP服务器</a> | <a href="https://wiki.swoole.com/wiki/page/477.html" target="_blank" rel="external">创建UDP服务器</a></p>
+<pre><code>//创建Server对象，监听 127.0.0.1:9501端口
+$serv = new swoole_server(&quot;127.0.0.1&quot;, 9501);
+//swoole_server-&gt;set函数用于设置swoole_server运行时的各项参数
+$serv-&gt;set([
+    &apos;worker_num&apos; =&gt; 6 , // worker进程数，cpu 1-4倍
+    &apos;max_request&apos; =&gt; 10000,
+]);
+/**
+ * 监听连接进入事件
+ * $fd 客户端连接的唯一标示
+ * $reactor_id 线程id
+ */
+$serv-&gt;on(&apos;connect&apos;, function ($serv, $fd, $reactor_id) {
+    echo &quot;Client: {$reactor_id} - {$fd}-Connect.\n&quot;;
+});
+/**
+ * 监听数据接收事件
+ * $reactor_id = $from_id
+ */
+$serv-&gt;on(&apos;receive&apos;, function ($serv, $fd, $reactor_id, $data) {
+    $serv-&gt;send($fd, &quot;Server: {$reactor_id} - {$fd}&quot;.$data);
+});
+//监听连接关闭事件
+$serv-&gt;on(&apos;close&apos;, function ($serv, $fd) {
+    echo &quot;Client: Close.\n&quot;;
+});
+//启动服务器
+$serv-&gt;start();
+
+**测试`tcp`服务器方法：**
+</code></pre><ol>
+<li><code>netstat -anp | grep 9501</code></li>
+<li>通过<code>telnet</code>方式登录远程主机:<code>telnet 127.0.0.1 9501</code></li>
+<li><p><code>tcp</code>客户端脚本</p>
+<p><strong>查看当前<code>worker</code>进程数：</strong><code>ps -aft | grep tcp_server.php</code></p>
+<p><img src="/img/bV89Ga?w=504&amp;h=151" alt="clipboard.png" title="clipboard.png"></p>
+<p><strong>Tips：</strong>为了保证程序执行的完整性，当修改<code>tcp</code>服务器脚本后最好设置平滑重启<code>worker</code>进程<br><a href="https://wiki.swoole.com/wiki/page/20.html" target="_blank" rel="external">平滑重启worker进程</a></p>
+</li>
+</ol>
+<h3 id="2-1-2-TCP客户端"><a href="#2-1-2-TCP客户端" class="headerlink" title="2.1.2 TCP客户端"></a>2.1.2 TCP客户端</h3><h4 id="阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional-headers-are-shown"><a href="#阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional-headers-are-shown" class="headerlink" title="阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional headers are shown"></a>阿里云服务器巨坑—-端口未对外打开！！！<a href="https://coding.imooc.com/learn/questiondetail/54202.html" target="_blank" rel="external">websocket连接不上服务器，提示Provisional headers are shown</a></h4><pre><code>![clipboard.png](/img/bV89Y0?w=448&amp;h=185 &quot;clipboard.png&quot;)
+
+&lt;?php
+// 连接 swoole tcp 服务
+$client = new swoole_client(SWOOLE_SOCK_TCP);
+
+if(!$client-&gt;connect(&quot;127.0.0.1&quot;, 9501)) {
+    echo &quot;连接失败&quot;;
+    exit;
+}
+
+// php cli常量
+fwrite(STDOUT, &quot;请输入消息:&quot;);
+$msg = trim(fgets(STDIN));
+
+// 发送消息给 tcp server服务器
+$client-&gt;send($msg);
+
+// 接受来自server 的数据
+$result = $client-&gt;recv();
+echo $result;
+</code></pre><h2 id="2-2-HTTP服务（常用）"><a href="#2-2-HTTP服务（常用）" class="headerlink" title="2.2 HTTP服务（常用）"></a>2.2 HTTP服务（<strong><code>常用</code></strong>）</h2><pre><code>![clipboard.png](/img/bV8906?w=400&amp;h=338 &quot;clipboard.png&quot;)
+
+$http = new swoole_http_server(&quot;0.0.0.0&quot;, 8811);
+
+//添加测试一：获取参数并打印出来
+//$http-&gt;on(&apos;request&apos;, function ($request, $response) {
+//    $response-&gt;cookie(&quot;singwa&quot;,&apos;xsssss&apos;, time() + 1800);
+//    $response-&gt;end(&apos;sss&apos;.json_encode($request-&gt;get));
+//});
+/**
+ * https://wiki.swoole.com/wiki/page/783.html
+ * 配置静态文件根目录，与enable_static_handler配合使用。
+ * 设置document_root并设置enable_static_handler为true后，
+ * 底层收到Http请求会先判断document_root路径下是否存在此文件，
+ * 如果存在会直接发送文件内容给客户端，不再触发onRequest回调。
+ */
+$http-&gt;set(
+    [
+        &apos;enable_static_handler&apos; =&gt; true,
+        &apos;document_root&apos; =&gt; &quot;/home/work/hdtocs/swoole_mooc/data&quot;,
+    ]
+);
+$http-&gt;on(&apos;request&apos;, function($request, $response) {
+    //print_r($request-&gt;get);
+    $content = [
+        &apos;date:&apos; =&gt; date(&quot;Ymd H:i:s&quot;),
+        &apos;get:&apos; =&gt; $request-&gt;get,
+        &apos;post:&apos; =&gt; $request-&gt;post,
+        &apos;header:&apos; =&gt; $request-&gt;header,
+    ];
+    swoole_async_writefile(__DIR__.&quot;/access.log&quot;, json_encode($content).PHP_EOL, function($filename){
+        // todo
+    }, FILE_APPEND);
+    $response-&gt;cookie(&quot;singwa&quot;, &quot;xsssss&quot;, time() + 1800);
+    $response-&gt;end(&quot;sss&quot;. json_encode($request-&gt;get));
+});
+
+$http-&gt;start();
+</code></pre><h2 id="2-3-WebSocket服务（重点）"><a href="#2-3-WebSocket服务（重点）" class="headerlink" title="2.3 WebSocket服务（重点）"></a>2.3 WebSocket服务（<strong>重点</strong>）</h2><h3 id="2-3-1-基本概述"><a href="#2-3-1-基本概述" class="headerlink" title="2.3.1 基本概述"></a>2.3.1 基本概述</h3><pre><code>`WebSocket`协议是基于`TCP`的一种新的网络协议。它实现了浏览器与服务器全双工（`full-duplex`）通信--`允许服务器主动发送信息给客户端`
+
+**为什么需要WebSocket**
+</code></pre><ul>
+<li><p>缺陷：<code>HTTP</code>的通信只能由客户端发起</p>
+<p><strong>WebSocket特点</strong></p>
+</li>
+</ul>
+<ol>
+<li>建立在<code>TCP</code>协议之上</li>
+<li>性能开销小通信高效</li>
+<li>客户端可以与任意服务器通信</li>
+<li>协议标识符<code>ws</code> <code>wss</code></li>
+<li>持久化网络通信协议</li>
+</ol>
+<h3 id="2-3-2-案例实现"><a href="#2-3-2-案例实现" class="headerlink" title="2.3.2 案例实现"></a>2.3.2 案例实现</h3><h4 id="2-3-2-1-服务端实现"><a href="#2-3-2-1-服务端实现" class="headerlink" title="2.3.2.1 服务端实现"></a>2.3.2.1 服务端实现</h4><pre><code>**1\. `面向过程：`procedure\_ws\_server.php**
+
+$server = new swoole_websocket_server(&quot;0.0.0.0&quot;, 9912);
+//配置静态文件根目录，可选
+$server-&gt;set(
+    [
+        &apos;enable_static_handler&apos; =&gt; true,
+        &apos;document_root&apos; =&gt; &quot;/home/wwwroot/www.lingyuan88.com/public/swoole/data&quot;,
+    ]
+);
+//监听websocket连接打开事件
+$server-&gt;on(&apos;open&apos;, &apos;onOpen&apos;);
+function onOpen($server, $request) {
+    print_r($request-&gt;fd);
+}
+// 监听ws消息事件
+$server-&gt;on(&apos;message&apos;, function (swoole_websocket_server $server, $frame) {
+    echo &quot;receive from {$frame-&gt;fd}:{$frame-&gt;data},opcode:{$frame-&gt;opcode},fin:{$frame-&gt;finish}\n&quot;;
+    $server-&gt;push($frame-&gt;fd, &quot;singwa-push-secesss&quot;);
+});
+$server-&gt;on(&apos;close&apos;, function ($ser, $fd) {
+    echo &quot;client {$fd} closed\n&quot;;
+});
+
+$server-&gt;start();
+
+**2\. WebSocket服务优化，基础类库`面向对象：`object\_ws\_server.php**
+
+class Ws {
+
+    CONST HOST = &quot;0.0.0.0&quot;;
+    CONST PORT = 9912;
+    public $ws = null;
+    public function __construct() {
+        $this-&gt;ws = new swoole_websocket_server(self::HOST, self::PORT);
+        //配置静态文件根目录，可选
+        $this-&gt;ws-&gt;set(
+            [
+                &apos;enable_static_handler&apos; =&gt; true,
+                &apos;document_root&apos; =&gt; &quot;/home/wwwroot/www.lingyuan88.com/public/swoole/data&quot;,
+            ]
+        );
+        $this-&gt;ws-&gt;on(&quot;open&quot;, [$this, &apos;onOpen&apos;]);
+        $this-&gt;ws-&gt;on(&quot;message&quot;, [$this, &apos;onMessage&apos;]);
+        $this-&gt;ws-&gt;on(&quot;close&quot;, [$this, &apos;onClose&apos;]);
+
+        $this-&gt;ws-&gt;start();
+    }
+    /**
+     * 监听ws连接事件
+     * @param $ws
+     * @param $request
+     */
+    public function onOpen($ws, $request) {
+        print_r($request-&gt;fd);
+    }
+    /**
+     * 监听ws消息事件
+     * @param $ws
+     * @param $frame
+     */
+    public function onMessage($ws, $frame) {
+        echo &quot;ser-push-message:{$frame-&gt;data}\n&quot;;
+        $ws-&gt;push($frame-&gt;fd, &quot;server-push:&quot;.date(&quot;Y-m-d H:i:s&quot;));
+    }
+    /**
+     * close
+     * @param $ws
+     * @param $fd
+     */
+    public function onClose($ws, $fd) {
+        echo &quot;clientid:{$fd}\n&quot;;
+    }
+}
+$obj = new Ws();
+</code></pre><h4 id="2-3-2-2-客户端实现"><a href="#2-3-2-2-客户端实现" class="headerlink" title="2.3.2.2 客户端实现"></a>2.3.2.2 客户端实现</h4><pre><code>**ws_client.html**
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;singwa-swoole-ws测试&lt;/h1&gt;
+  &lt;script&gt;
+    var wsUrl = &quot;ws://120.77.206.215:9912&quot;;
+    var websocket = new WebSocket(wsUrl);
+    //实例对象的onopen属性
+    websocket.onopen = function(evt) {
+      websocket.send(&quot;hello-sinwa&quot;);
+      console.log(&quot;conected-swoole-success&quot;);
+    }
+    // 实例化 onmessage
+    websocket.onmessage = function(evt) {
+      console.log(&quot;ws-server-return-data:&quot; + evt.data);
+    }
+    //onclose
+    websocket.onclose = function(evt) {
+      console.log(&quot;close&quot;);
+    }
+    //onerror
+    websocket.onerror = function(evt, e) {
+      console.log(&quot;error:&quot; + evt.data);
+    }
+ &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="2-3-2-3-测试"><a href="#2-3-2-3-测试" class="headerlink" title="2.3.2.3 测试"></a>2.3.2.3 测试</h4><pre><code>**1\. 通过`WebSocket`静态文件目录测试**
+
+![clipboard.png](/img/bV9fir?w=608&amp;h=443 &quot;clipboard.png&quot;)
+
+**2\. 通过`HTTP`服务测试**
+
+![clipboard.png](/img/bV9fgH?w=601&amp;h=443 &quot;clipboard.png&quot;)
+</code></pre><h2 id="2-4-异步Task任务使用（重点）"><a href="#2-4-异步Task任务使用（重点）" class="headerlink" title="2.4 异步Task任务使用（重点）"></a>2.4 异步Task任务使用（<strong>重点</strong>）</h2><pre><code>**使用场景**
+</code></pre><ul>
+<li><p>执行耗时的操作（发送邮件 广播等）</p>
+<p><strong>注意：</strong></p>
+</li>
+<li><p><strong>投递异步任务之后程序会<code>继续往下执行</code></strong>，不会等待任务执行完后再继续向下执行</p>
+<p>class Ws {</p>
+<pre><code>CONST HOST = &quot;0.0.0.0&quot;;
+CONST PORT = 9912;
+public $ws = null;
+public function __construct() {
+    $this-&gt;ws = new swoole_websocket_server(self::HOST, self::PORT);
+    $this-&gt;ws-&gt;set(
+        [
+            &apos;worker_num&apos; =&gt; 2,
+            &apos;task_worker_num&apos; =&gt; 2,
+        ]
+    );
+    //注册Server的事件回调函数
+    $this-&gt;ws-&gt;on(&quot;open&quot;, [$this, &apos;onOpen&apos;]);
+    $this-&gt;ws-&gt;on(&quot;message&quot;, [$this, &apos;onMessage&apos;]);
+    $this-&gt;ws-&gt;on(&quot;task&quot;, [$this, &apos;onTask&apos;]);
+    $this-&gt;ws-&gt;on(&quot;finish&quot;, [$this, &apos;onFinish&apos;]);
+    $this-&gt;ws-&gt;on(&quot;close&quot;, [$this, &apos;onClose&apos;]);
+    $this-&gt;ws-&gt;start();
+}
+/**
+ * 监听ws连接事件
+ * @param $ws
+ * @param $request
+ */
+public function onOpen($ws, $request) {
+    var_dump($request-&gt;fd);
+}
+/**
+ * 监听ws消息事件
+ * @param $ws
+ * @param $frame
+ */
+public function onMessage($ws, $frame) {
+    echo &quot;ser-push-message:{$frame-&gt;data}\n&quot;;
+    // todo 10s
+    $data = [
+        &apos;task&apos; =&gt; 1,
+        &apos;fd&apos; =&gt; $frame-&gt;fd,
+    ];
+    //投递异步任务
+    //注意：程序会继续往下执行，不会等待任务执行完后再继续向下执行
+    $ws-&gt;task($data);
+    //客户端会马上收到以下信息
+    $ws-&gt;push($frame-&gt;fd, &quot;server-push:&quot;.date(&quot;Y-m-d H:i:s&quot;));
+}
+/**
+ * @param $serv
+ * @param $taskId
+ * @param $workerId
+ * @param $data
+ * @return string
+ */
+public function onTask($serv, $taskId, $workerId, $data) {
+    print_r($data);
+    // 耗时场景 10s
+    sleep(10);
+    return &quot;on task finish&quot;; // 告诉worker，并返回给onFinish的$data
+}
+/**
+ * @param $serv
+ * @param $taskId
+ * @param $data
+ */
+public function onFinish($serv, $taskId, $data) {
+    echo &quot;taskId:{$taskId}\n&quot;;
+    echo &quot;finish-data-sucess:{$data}\n&quot;;
+}
+/**
+ * close
+ * @param $ws
+ * @param $fd
+ */
+public function onClose($ws, $fd) {
+    echo &quot;clientid:{$fd}\n&quot;;
+}
+</code></pre><p>}<br>$obj = new Ws();</p>
+</li>
+</ul>
+<h1 id="三、异步非堵塞IO场景"><a href="#三、异步非堵塞IO场景" class="headerlink" title="三、异步非堵塞IO场景"></a>三、异步非堵塞IO场景</h1><h2 id="3-1-异步、阻塞和IO模型（务必理解）"><a href="#3-1-异步、阻塞和IO模型（务必理解）" class="headerlink" title="3.1 异步、阻塞和IO模型（务必理解）"></a>3.1 异步、阻塞和IO模型（<strong><code>务必理解</code></strong>）</h2><h3 id="3-1-1-同步和异步"><a href="#3-1-1-同步和异步" class="headerlink" title="3.1.1 同步和异步"></a>3.1.1 同步和异步</h3><pre><code>**关注的是**`消息通知`机制；
+</code></pre><blockquote>
+<p><strong>同步：**</strong>调用发出之后<code>不会立即返回</code>**，但一旦返回，则返回最终结果；</p>
+<p><strong>异步：</strong>调用发出之后，<strong>被调用方<code>立即返回消息</code></strong>，<strong>但返回的并非最终结果</strong>。被调用者通过状态、通知机制等来通知调用者，或通过回调函数来处理结果；</p>
+</blockquote>
+<h3 id="3-1-2-阻塞-block-和非阻塞-nonblock"><a href="#3-1-2-阻塞-block-和非阻塞-nonblock" class="headerlink" title="3.1.2 阻塞(block)和非阻塞(nonblock)"></a>3.1.2 阻塞(block)和非阻塞(nonblock)</h3><pre><code>**关注的是**`调用者等待被调用者返回调用结果时的状态。`
+</code></pre><blockquote>
+<p><strong>阻塞：**</strong><code>调用结果返回之前，调用者会被挂起</code>**，调用者只有在得到返回结果之后才能继续。</p>
+<p><strong>非阻塞：</strong>调用者在结果返回之前，不会被挂起；</p>
+</blockquote>
+<h3 id="3-1-3-IO模型"><a href="#3-1-3-IO模型" class="headerlink" title="3.1.3 IO模型"></a>3.1.3 IO模型</h3><pre><code>blocking IO：阻塞式IO 
+nonblocking IO：非阻塞IO
+multiplexing IO：多路复用IO 
+signal driven IO：事件驱动式IO 
+asynchronous IO：异步IO 
+
+
+真正执行`IO`过程的阶段是**`内核内存数据`拷贝到`进程内存`**中
+</code></pre><h2 id="3-2-Swoole异步毫秒定时器"><a href="#3-2-Swoole异步毫秒定时器" class="headerlink" title="3.2 Swoole异步毫秒定时器"></a>3.2 Swoole异步毫秒定时器</h2><pre><code>**`异步`**高精度定时器，粒度为**毫秒级**
+
+//每隔2000ms触发一次
+swoole_timer_tick(2000, function ($timer_id) {
+    echo &quot;tick-2000ms\n&quot;;
+});
+
+//3000ms后执行此函数
+swoole_timer_after(3000, function () {
+    echo &quot;after 3000ms.\n&quot;;
+});
+</code></pre><h2 id="3-3-异步文件系统IO"><a href="#3-3-异步文件系统IO" class="headerlink" title="3.3 异步文件系统IO"></a>3.3 异步文件系统IO</h2><pre><code>[Swoole官网文档：异步文件系统IO](https://wiki.swoole.com/wiki/page/183.html)
+</code></pre><h3 id="3-3-1-异步读"><a href="#3-3-1-异步读" class="headerlink" title="3.3.1 异步读"></a>3.3.1 异步读</h3><pre><code>/**
+ * 读取文件
+ * __DIR__
+ * 文件不存在会返回false
+ * 成功打开文件立即返回true
+ * 数据读取完毕后会回调指定的callback函数。
+ */
+//函数风格
+$result = swoole_async_readfile(__DIR__.&quot;/1.txt&quot;, function($filename, $fileContent) {
+    echo &quot;filename:&quot;.$filename.PHP_EOL;  // \n \r\n
+    echo &quot;content:&quot;.$fileContent.PHP_EOL;
+});
+//命名空间风格
+$result = Swoole\Async::readfile(__DIR__.&quot;/1.txt&quot;, function($filename, $fileContent) {
+    echo &quot;filename:&quot;.$filename.PHP_EOL;  // \n \r\n
+    echo &quot;content:&quot;.$fileContent.PHP_EOL;
+});
+var_dump($result);
+echo &quot;start&quot;.PHP_EOL;
+</code></pre><h3 id="3-3-2-异步写（如日志）"><a href="#3-3-2-异步写（如日志）" class="headerlink" title="3.3.2 异步写（如日志）"></a>3.3.2 异步写（如日志）</h3><pre><code>$http-&gt;on(&apos;request&apos;, function($request, $response) {
+    $content = [
+        &apos;date:&apos; =&gt; date(&quot;Ymd H:i:s&quot;),
+        &apos;get:&apos; =&gt; $request-&gt;get,
+        &apos;post:&apos; =&gt; $request-&gt;post,
+        &apos;header:&apos; =&gt; $request-&gt;header,
+    ];
+    swoole_async_writefile(__DIR__.&quot;/access.log&quot;, json_encode($content).PHP_EOL, function($filename){
+        // todo
+    }, FILE_APPEND);
+    $response-&gt;end(&quot;response：&quot;. json_encode($request-&gt;get));
+});
+</code></pre><h2 id="3-4-异步MySQL详解"><a href="#3-4-异步MySQL详解" class="headerlink" title="3.4 异步MySQL详解"></a>3.4 异步MySQL详解</h2><pre><code>class AsyncMySql {
+    /**
+     * @var string
+     */
+    public $dbSource = &quot;&quot;;
+    /**
+     * mysql的配置
+     * @var array
+     */
+    public $dbConfig = [];
+    public function __construct() {
+        //new swoole_mysql;
+        $this-&gt;dbSource = new Swoole\Mysql;
+
+        $this-&gt;dbConfig = [
+            &apos;host&apos; =&gt; &apos;127.0.0.1&apos;,
+            &apos;port&apos; =&gt; 3306,
+            &apos;user&apos; =&gt; &apos;root&apos;,
+            &apos;password&apos; =&gt; &apos;test&apos;,
+            &apos;database&apos; =&gt; &apos;test&apos;,
+            &apos;charset&apos; =&gt; &apos;utf8&apos;,
+        ];
+    }
+    public function update() {}
+    public function add() {}
+    /**
+     * mysql 执行逻辑
+     * @param $id
+     * @param $username
+     * @return bool
+     */
+    public function execute($id, $username) {
+        $this-&gt;dbSource-&gt;connect($this-&gt;dbConfig, function($db, $result) use($id, $username)  {
+            echo &quot;mysql-connect&quot;.PHP_EOL;
+            if($result === false) {
+                var_dump($db-&gt;connect_error);
+                // todo
+            }
+            $sql = &quot;select * from cmf_user where id=1&quot;;
+            //$sql = &quot;update test set `username` = &apos;&quot;.$username.&quot;&apos; where id=&quot;.$id;
+            // insert into
+            // query (add select update delete)
+            $db-&gt;query($sql, function($db, $result){
+                // select =&gt; result返回的是 查询的结果内容
+                if($result === false) {
+                    // todo
+                    var_dump($db-&gt;error);
+                }elseif($result === true) {// add update delete
+                    // todo
+                    var_dump($db-&gt;affected_rows);
+                }else {
+                    print_r($result);
+                }
+                $db-&gt;close();
+            });
+
+        });
+        return true;
+    }
+}
+$obj = new AsyncMySql();
+$flag = $obj-&gt;execute(1, &apos;singwa-111112&apos;);
+var_dump($flag).PHP_EOL;
+echo &quot;start&quot;.PHP_EOL;
+
+![clipboard.png](/img/bV9idM?w=345&amp;h=198 &quot;clipboard.png&quot;)
+</code></pre><h2 id="3-5-异步Redis"><a href="#3-5-异步Redis" class="headerlink" title="3.5 异步Redis"></a>3.5 异步Redis</h2><h3 id="3-5-1-环境准备"><a href="#3-5-1-环境准备" class="headerlink" title="3.5.1 环境准备"></a>3.5.1 环境准备</h3><pre><code>**swoole使用redis的前置条件**
+</code></pre><ul>
+<li><code>redis</code>服务</li>
+<li><code>hiredis</code>库</li>
+<li><p>编译<code>swoole</code>需要加入 <code>-enable-async-redis</code></p>
+<p><strong>编译安装hiredis</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>使用<code>Redis</code>客户端，需要安装<code>hiredis</code>库,下载<code>hiredis</code>源码后，执行</p>
+</blockquote>
+<pre><code>make -j
+sudo make install
+sudo ldconfig
+
+[hiredis下载地址](https://github.com/redis/hiredis/releases)
+
+**启用异步Redis客户端**
+</code></pre><blockquote>
+<p>编译<code>swoole</code>时，在<code>configure</code>指令中加入<code>--enable-async-redis</code></p>
+</blockquote>
+<pre><code>[root@izwz93ee3z8wdxsujiec2oz swoole]# ./configure --with-php-config=/usr/local/php/bin/php-config --enable-async-redis
+make clean
+make -j
+sudo make install
+
+
+查看`PHP`的`swoole`扩展：`php -m`  
+查看`hiredis`是否编译安装成功：`php --ri swoole`
+</code></pre><h3 id="3-5-2-代码测试"><a href="#3-5-2-代码测试" class="headerlink" title="3.5.2 代码测试"></a>3.5.2 代码测试</h3><pre><code>$redisClient = new swoole_redis;// Swoole\Redis
+$redisClient-&gt;connect(&apos;127.0.0.1&apos;, 6379, function(swoole_redis $redisClient, $result) {
+    echo &quot;connect&quot;.PHP_EOL;
+    var_dump($result);
+
+    // 同步 redis (new Redis())-&gt;set(&apos;key&apos;,2);
+    /*$redisClient-&gt;set(&apos;singwa_1&apos;, time(), function(swoole_redis $redisClient, $result) {
+        var_dump($result);
+    });*/
+
+    /*$redisClient-&gt;get(&apos;singwa_1&apos;, function(swoole_redis $redisClient, $result) {
+        var_dump($result);
+        $redisClient-&gt;close();
+    });*/
+    $redisClient-&gt;keys(&apos;*gw*&apos;, function(swoole_redis $redisClient, $result) {
+        var_dump($result);
+        $redisClient-&gt;close();
+    });
+
+});
+echo &quot;start&quot;.PHP_EOL;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+	<div>
+		
+		<div>
+    
+	    <div style="text-align:center;color: #ccc;font-size:14px;">
+			-------------本文结束
+			<i class="fa fa-paw"></i>
+			感谢您的阅读-------------
+		</div>
+	
+</div>
+
+		
+	</div>
+
+	<div>
+		
+		
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+		<strong>本文标题：</strong>
+		Swoole入门到实战（一）
+	</li>
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      吴军旗
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://fanqieto.top/2018/08/14/Swoole入门到实战（一）/" title="Swoole入门到实战（一）">http://fanqieto.top/2018/08/14/Swoole入门到实战（一）/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+	  本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请保留原文链接及作者！
+    </li>
+  <ul>
+
+	<div style="margin-top:50px">
+		欢迎搜索及关注：番茄技术小栈,所有文章都将同步在公众号上!
+		<img src="http://otwbgbfg8.bkt.clouddn.com/15305785034493pp9x9ln.png" width="40%" height="40%"/>
+	</div>
+
+
+		
+	</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="吴军旗 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="吴军旗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/14/Swoole入门到实战（三）/" rel="next" title="Swoole入门到实战（三）">
+                <i class="fa fa-chevron-left"></i> Swoole入门到实战（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/17/nginx-conf文件路径/" rel="prev" title="nginx.conf文件路径">
+                nginx.conf文件路径 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="吴军旗" />
+          <p class="site-author-name" itemprop="name">吴军旗</p>
+           
+              <p class="site-description motion-element" itemprop="description">仰望星空的时候，一定要脚踏实地，勇敢一点，你可以的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wujunqi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5396675870" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/126946616" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/tian-ya-96-9-42" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-question"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.pureisle.net/" title="侯哥" target="_blank">侯哥</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PHP7源码安装和Swoole源码编译安装"><span class="nav-number">1.</span> <span class="nav-text">一、PHP7源码安装和Swoole源码编译安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-PHP7源码安装"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 PHP7源码安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-获取源码与安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 获取源码与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-简化PHP执行命令"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 简化PHP执行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Swoole源码编译安装"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Swoole源码编译安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-双剑合璧，PHP7支持swoole"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 双剑合璧，PHP7支持swoole</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、玩转网络通信引擎-非常重要"><span class="nav-number">2.</span> <span class="nav-text">二、玩转网络通信引擎(非常重要)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-TCP服务-amp-TCP客户端"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 TCP服务&TCP客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-TCP服务"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 TCP服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-TCP客户端"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 TCP客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional-headers-are-shown"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional headers are shown</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-HTTP服务（常用）"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 HTTP服务（常用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-WebSocket服务（重点）"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 WebSocket服务（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-基本概述"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 基本概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-案例实现"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 案例实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-服务端实现"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">2.3.2.1 服务端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-2-客户端实现"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">2.3.2.2 客户端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-3-测试"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">2.3.2.3 测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-异步Task任务使用（重点）"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 异步Task任务使用（重点）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、异步非堵塞IO场景"><span class="nav-number">3.</span> <span class="nav-text">三、异步非堵塞IO场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-异步、阻塞和IO模型（务必理解）"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 异步、阻塞和IO模型（务必理解）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-同步和异步"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 同步和异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-阻塞-block-和非阻塞-nonblock"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 阻塞(block)和非阻塞(nonblock)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-IO模型"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3 IO模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Swoole异步毫秒定时器"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Swoole异步毫秒定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-异步文件系统IO"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 异步文件系统IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-异步读"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 异步读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-异步写（如日志）"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 异步写（如日志）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-异步MySQL详解"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 异步MySQL详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-异步Redis"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 异步Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-环境准备"><span class="nav-number">3.5.1.</span> <span class="nav-text">3.5.1 环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-代码测试"><span class="nav-number">3.5.2.</span> <span class="nav-text">3.5.2 代码测试</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴军旗</span>
+</div>
+
+<div class="theme-info">
+	<div class="powered-by"></div>
+	<span class="post-count">博客全站共246.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kUBxlgVmQFRnWGN197VpHNuy-gzGzoHsz", "GqJb0jj2WDoQ0S3jzxF7OHWm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
