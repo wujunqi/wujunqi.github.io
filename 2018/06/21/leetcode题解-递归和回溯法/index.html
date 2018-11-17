@@ -71,25 +71,25 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="在计算机问题中，大量的问题都需要使用递归算法，上一篇博客我们介绍了一下二叉树中的递归问题。现在我们来看递归算法中非常经典的思想回溯法，这样的算法思想通常都应用在一类问题上，这类问题叫做树型问题，这类问题他本身没有定义在一颗二叉树中，但我们具体分析这个问题时就会发现解决这个问题的思路本质是一颗树的形状。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529979708134ig4xjh92.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529991117280zdc9pg43.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529997380155l47on9jo.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529997630277cgneghno.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529979708134ig4xjh92.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529991117280zdc9pg43.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529997380155l47on9jo.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529997630277cgneghno.png?imageslim">
 <meta property="og:image" content="http://oseihavwm.bkt.clouddn.com/Combinations.png">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15300071870429c28kkc9.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530007348138zh7pw23r.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530084637240jaqle0ia.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530084710371w95k023u.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530150678256d7nd9lv9.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530150755073clp4yhwc.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15301508434297dwk4rve.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530150915702369p2vnx.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15301509717245aul83h5.png?imageView/2/w/400/q/100">
-<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
+<meta property="og:image" content="http://fanqietotop.cn/15300071870429c28kkc9.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1530007348138zh7pw23r.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1530084637240jaqle0ia.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1530084710371w95k023u.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1530150678256d7nd9lv9.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1530150755073clp4yhwc.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/15301508434297dwk4rve.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1530150915702369p2vnx.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/15301509717245aul83h5.png?imageView/2/w/400/q/100">
+<meta property="og:updated_time" content="2018-11-17T16:19:53.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解(递归和回溯法)">
 <meta name="twitter:description" content="在计算机问题中，大量的问题都需要使用递归算法，上一篇博客我们介绍了一下二叉树中的递归问题。现在我们来看递归算法中非常经典的思想回溯法，这样的算法思想通常都应用在一类问题上，这类问题叫做树型问题，这类问题他本身没有定义在一颗二叉树中，但我们具体分析这个问题时就会发现解决这个问题的思路本质是一颗树的形状。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1529979708134ig4xjh92.png?imageslim">
+<meta name="twitter:image" content="http://fanqietotop.cn/1529979708134ig4xjh92.png?imageslim">
 
 
 
@@ -438,7 +438,7 @@
 <h2 id="树形问题"><a href="#树形问题" class="headerlink" title="树形问题"></a>树形问题</h2><blockquote>
 <p>现在我们来看递归算法中非常经典的思想回溯法，这样的算法思想通常都应用在一类问题上，这类问题叫做树型问题，这类问题他本身没有定义在一颗二叉树中，但我们具体分析这个问题时就会发现解决这个问题的思路本质是一颗树的形状。</p>
 </blockquote>
-<h3 id="leetcode-17-电话号码的字母组合"><a href="#leetcode-17-电话号码的字母组合" class="headerlink" title="leetcode 17. 电话号码的字母组合"></a>leetcode 17. 电话号码的字母组合</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529979708134ig4xjh92.png?imageslim" alt="paste image"></p>
+<h3 id="leetcode-17-电话号码的字母组合"><a href="#leetcode-17-电话号码的字母组合" class="headerlink" title="leetcode 17. 电话号码的字母组合"></a>leetcode 17. 电话号码的字母组合</h3><p><img src="http://fanqietotop.cn/1529979708134ig4xjh92.png?imageslim" alt="paste image"></p>
 <h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
 <p>比如我们输入的digits=“23”，2能代表abc三个字母，当2代表a时，3代表def，同理我们就可以画出一棵树。<br>递归过程：<br>digits是数字字符串<br>s(digits)是digits所能代表的字母字符串<br>s(digits[0…n-1]) = letter(digits[0]) + s(digits[1…n-1]) = letter(digits[0]) + letter(digits[1]) + s(digits[2…n-1]) = …</p>
 </blockquote>
@@ -451,7 +451,7 @@
 <li>leetcode 131</li>
 </ul>
 <hr>
-<h2 id="组合问题-Permutations"><a href="#组合问题-Permutations" class="headerlink" title="组合问题(Permutations)"></a>组合问题(Permutations)</h2><h3 id="leetcode-46-全排列"><a href="#leetcode-46-全排列" class="headerlink" title="leetcode 46. 全排列"></a>leetcode 46. 全排列</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529991117280zdc9pg43.png?imageslim" alt="paste image"></p>
+<h2 id="组合问题-Permutations"><a href="#组合问题-Permutations" class="headerlink" title="组合问题(Permutations)"></a>组合问题(Permutations)</h2><h3 id="leetcode-46-全排列"><a href="#leetcode-46-全排列" class="headerlink" title="leetcode 46. 全排列"></a>leetcode 46. 全排列</h3><p><img src="http://fanqietotop.cn/1529991117280zdc9pg43.png?imageslim" alt="paste image"></p>
 <h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
 <p>回溯算法能处理一类重要的问题是排列问题，如果我们要用1,2,3进行排列，我们可以先抽出一个元素，比如我们现在抽出1，那么我们下面要做的事就是使用2,3两个元素构造排列。我们又需要抽出一个元素，如果我们抽出2，我们剩下唯一的元素就是3，我们通过这个路径获得排列123，用23排列如果选3，那么就剩下2我们得到排列132。相应的我们考虑最开始选择2或者选择3。</p>
 <p>这也是一个树形问题<br>Perms(nums[0…n-1]) = {取出一个数字} + Perms(nums[{0…n-1} - 这个数字])</p>
@@ -463,8 +463,8 @@
 <h2 id="组合问题-Combinations"><a href="#组合问题-Combinations" class="headerlink" title="组合问题 Combinations"></a>组合问题 Combinations</h2><blockquote>
 <p>回溯的意思就是要回去，递归函数自动保证了回去，但是我们设置的其他变量如果有必要的话也必须要回到原位。</p>
 </blockquote>
-<h3 id="leetcode-77-组合"><a href="#leetcode-77-组合" class="headerlink" title="leetcode 77. 组合"></a>leetcode 77. 组合</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529997380155l47on9jo.png?imageslim" alt="paste image"></p>
-<h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529997630277cgneghno.png?imageslim" alt="paste image"></p>
+<h3 id="leetcode-77-组合"><a href="#leetcode-77-组合" class="headerlink" title="leetcode 77. 组合"></a>leetcode 77. 组合</h3><p><img src="http://fanqietotop.cn/1529997380155l47on9jo.png?imageslim" alt="paste image"></p>
+<h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://fanqietotop.cn/1529997630277cgneghno.png?imageslim" alt="paste image"></p>
 <blockquote>
 <p>我们在1，2，3，4中取出你两个数。在第一步时如果我们取1，那么接下来就在2，3，4中取一个数，我们可以得到组合12，13，14。如果第一步取2，那么第二步在3，4中取一个数，可以得到组合23，24。如果我们第一步取3，那么第二步只能取4，得到组合34。</p>
 </blockquote>
@@ -484,15 +484,15 @@
 <li>leetcode 401</li>
 </ul>
 <hr>
-<h2 id="二维平面上的回溯法"><a href="#二维平面上的回溯法" class="headerlink" title="二维平面上的回溯法"></a>二维平面上的回溯法</h2><h3 id="leetcode79-单词搜索"><a href="#leetcode79-单词搜索" class="headerlink" title="leetcode79. 单词搜索"></a>leetcode79. 单词搜索</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15300071870429c28kkc9.png?imageslim" alt="paste image"></p>
-<h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530007348138zh7pw23r.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h2 id="二维平面上的回溯法"><a href="#二维平面上的回溯法" class="headerlink" title="二维平面上的回溯法"></a>二维平面上的回溯法</h2><h3 id="leetcode79-单词搜索"><a href="#leetcode79-单词搜索" class="headerlink" title="leetcode79. 单词搜索"></a>leetcode79. 单词搜索</h3><p><img src="http://fanqietotop.cn/15300071870429c28kkc9.png?imageslim" alt="paste image"></p>
+<h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://fanqietotop.cn/1530007348138zh7pw23r.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <blockquote>
 <p>对于每一个位置，我们按照上右下左从四个方向寻找，当选择的方向匹配时，则选择这个位置继续进行上右下左寻找，如果四个方向都不匹配，则退回上一步的位置寻找下一个方向。</p>
 </blockquote>
 <h4 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"></div><div class="line"><span class="comment">//从board[startx][starty]开始， 寻找[index...word.size()]</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; visited;</div><div class="line">    <span class="keyword">int</span> m,n;<span class="comment">//行与列</span></div><div class="line">    <span class="keyword">int</span> d[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">-1</span>,<span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;&#125;;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> x &gt;= <span class="number">0</span> &amp;&amp; x &lt; m &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; y &lt; n;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">searchWord</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, <span class="built_in">string</span> word, <span class="keyword">int</span> index, <span class="keyword">int</span> startx, <span class="keyword">int</span> starty)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//寻找到最后一个元素了</span></div><div class="line">    <span class="keyword">if</span> (index == (word.size() <span class="number">-1</span>))&#123;</div><div class="line">        <span class="keyword">return</span> board[startx][starty] == word[index];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (board[startx][starty] == word[index])&#123;</div><div class="line">        visited[startx][starty] = <span class="literal">true</span>;</div><div class="line">        </div><div class="line">        <span class="comment">// 从startx, starty出发,向四个方向寻</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</div><div class="line">            <span class="keyword">int</span> newx = startx + d[i][<span class="number">0</span>];</div><div class="line">            <span class="keyword">int</span> newy = starty + d[i][<span class="number">1</span>];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(inArea(newx, newy) &amp;&amp; !visited[newx][newy])&#123;</div><div class="line">                <span class="keyword">if</span> (searchWord(board, word, index + <span class="number">1</span>, newx, newy))&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//回溯</span></div><div class="line">        visited[startx][starty] = <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">exist</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, <span class="built_in">string</span> word)</span> </span>&#123;</div><div class="line">        m = board.size();</div><div class="line">        assert(m &gt; <span class="number">0</span>);</div><div class="line">        n = board[<span class="number">0</span>].size();</div><div class="line">        </div><div class="line">        <span class="comment">//初始化visitor</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m ; i++)&#123;</div><div class="line">            visited.push_back(<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(n, <span class="literal">false</span>));</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</div><div class="line">                <span class="keyword">if</span> (searchWord(board, word, <span class="number">0</span>, i, j))&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <hr>
-<h2 id="floodfill算法，一类经典问题"><a href="#floodfill算法，一类经典问题" class="headerlink" title="floodfill算法，一类经典问题"></a>floodfill算法，一类经典问题</h2><h3 id="leetcode-200-岛屿的个数"><a href="#leetcode-200-岛屿的个数" class="headerlink" title="leetcode 200. 岛屿的个数"></a>leetcode 200. 岛屿的个数</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530084637240jaqle0ia.png?imageslim" alt="paste image"></p>
-<h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530084710371w95k023u.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<h2 id="floodfill算法，一类经典问题"><a href="#floodfill算法，一类经典问题" class="headerlink" title="floodfill算法，一类经典问题"></a>floodfill算法，一类经典问题</h2><h3 id="leetcode-200-岛屿的个数"><a href="#leetcode-200-岛屿的个数" class="headerlink" title="leetcode 200. 岛屿的个数"></a>leetcode 200. 岛屿的个数</h3><p><img src="http://fanqietotop.cn/1530084637240jaqle0ia.png?imageslim" alt="paste image"></p>
+<h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://fanqietotop.cn/1530084710371w95k023u.png?imageView/2/w/400/q/100" alt="paste image"></p>
 <blockquote>
 <p>首先我们从二维数组最开始的地方(0,0)找起，这个地方是1，我们就找到了一个新的岛屿，但我们需要标记和这块陆地同属于一个岛屿的陆地，当我们寻找下一个岛屿的时候才不会重复。那么这个过程就是floodfill过程。其实就是从初始点开始进行一次深度优先遍历，和上面那道题的寻找很相似，对每一个岛屿进行四个方向寻找。</p>
 </blockquote>
@@ -508,18 +508,18 @@
 <h2 id="回溯法是经典人工智能的基础"><a href="#回溯法是经典人工智能的基础" class="headerlink" title="回溯法是经典人工智能的基础"></a>回溯法是经典人工智能的基础</h2><blockquote>
 <p>回溯法师经典人工智能的基础</p>
 </blockquote>
-<h3 id="leetcode-51-N皇后"><a href="#leetcode-51-N皇后" class="headerlink" title="leetcode 51. N皇后"></a>leetcode 51. N皇后</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530150678256d7nd9lv9.png?imageslim" alt="paste image"></p>
-<h3 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530150755073clp4yhwc.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h3 id="leetcode-51-N皇后"><a href="#leetcode-51-N皇后" class="headerlink" title="leetcode 51. N皇后"></a>leetcode 51. N皇后</h3><p><img src="http://fanqietotop.cn/1530150678256d7nd9lv9.png?imageslim" alt="paste image"></p>
+<h3 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h3><p><img src="http://fanqietotop.cn/1530150755073clp4yhwc.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <p>**快速判断合法的情况</p>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/15301508434297dwk4rve.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/15301508434297dwk4rve.png?imageView/2/w/400/q/100" alt="paste image"></p>
 <ul>
 <li>dia1: 横纵坐标相加相同</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1530150915702369p2vnx.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1530150915702369p2vnx.png?imageView/2/w/400/q/100" alt="paste image"></p>
 <ul>
 <li>dia2:横坐标-纵坐标相同</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/15301509717245aul83h5.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/15301509717245aul83h5.png?imageView/2/w/400/q/100" alt="paste image"></p>
 <blockquote>
 <p>对于四皇后为例看一下如何递归回溯。首先肯定每行都应该有一个皇后，否则就会有一行出现多个皇后。那么第二行只能在第三个位置或第四个位置，考虑第三个位置。那么第三行无论在哪都会有冲突。说明我们第二行的皇后不能放在第三个位置，我们回溯，在第四个位置放置皇后。<br>每一次在一行中尝试摆放一个皇后，来看我们能不能摆下这个皇后，如果不能摆下，回去上一行重新摆放上一行皇后的位置，直到我们在四行都摆放皇后。  </p>
 </blockquote>
@@ -745,7 +745,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -886,7 +886,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共240.4k字</span>
+	<span class="post-count">博客全站共240.3k字</span>
 </div>
 
         

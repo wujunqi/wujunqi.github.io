@@ -70,20 +70,20 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="查找，是使用计算机处理问题时的一个最基本的任务，因此也是面试中非常常见的一类问题。很多算法问题的本质，就是要能够高效查找。学会使用系统库中的map和set，就已经成功了一半。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529394598441n9z9igu9.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15293960784422x2jh5za.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529394598441n9z9igu9.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/15293960784422x2jh5za.png?imageslim">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-b167da61ea9bbc7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/393">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1779926-405ebd21f45a6f92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/68">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529459651173z3s8aahm.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529461918249ml0c5fcn.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529465308641g3ark9t5.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529467659407modz27uh.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1529475128185mioy9j4y.png?imageslim">
-<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
+<meta property="og:image" content="http://fanqietotop.cn/1529459651173z3s8aahm.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529461918249ml0c5fcn.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529465308641g3ark9t5.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529467659407modz27uh.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1529475128185mioy9j4y.png?imageslim">
+<meta property="og:updated_time" content="2018-11-17T16:19:53.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解(查找表问题)">
 <meta name="twitter:description" content="查找，是使用计算机处理问题时的一个最基本的任务，因此也是面试中非常常见的一类问题。很多算法问题的本质，就是要能够高效查找。学会使用系统库中的map和set，就已经成功了一半。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1529394598441n9z9igu9.png?imageslim">
+<meta name="twitter:image" content="http://fanqietotop.cn/1529394598441n9z9igu9.png?imageslim">
 
 
 
@@ -422,13 +422,13 @@
 <li>erase:删除</li>
 <li>change (map)</li>
 </ul>
-<h3 id="leetcode349-两个数组的交集"><a href="#leetcode349-两个数组的交集" class="headerlink" title="leetcode349. 两个数组的交集"></a>leetcode349. 两个数组的交集</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529394598441n9z9igu9.png?imageslim" alt="paste image"></p>
+<h3 id="leetcode349-两个数组的交集"><a href="#leetcode349-两个数组的交集" class="headerlink" title="leetcode349. 两个数组的交集"></a>leetcode349. 两个数组的交集</h3><p><img src="http://fanqietotop.cn/1529394598441n9z9igu9.png?imageslim" alt="paste image"></p>
 <ul>
 <li>结果中每个元素只能出现一次</li>
 <li>出现的顺序可以是任意的</li>
 </ul>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">// 349. Intersection of Two Arrays</span></div><div class="line">    <span class="comment">// 时间复杂度：O(nlogn)</span></div><div class="line">    <span class="comment">// 空间复杂度：O(n)</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="keyword">public</span>:</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersection(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line">            <span class="comment">//O(nlogn)</span></div><div class="line">    </div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; record;</div><div class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums1.size() ; i ++ )</div><div class="line">                record.insert(nums1[i]);</div><div class="line">            <span class="comment">//O(nlogn)</span></div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; resultSet;</div><div class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">                <span class="keyword">if</span>( record.find( nums2[i] ) != record.end() )</div><div class="line">                    resultSet.insert( nums2[i] );</div><div class="line">            <span class="comment">//o(n)</span></div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; resultVector;</div><div class="line">            <span class="keyword">for</span>(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = resultSet.begin() ; iter != resultSet.end() ; iter ++ )</div><div class="line">                resultVector.push_back( *iter );</div><div class="line">    </div><div class="line">            <span class="keyword">return</span> resultVector;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line"></div><div class="line">改写程序:</div><div class="line"></div><div class="line">    <span class="comment">// 349. Intersection of Two Arrays</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="keyword">public</span>:</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersection(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line">    </div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; record(nums1.begin(), nums1.end());</div><div class="line">    </div><div class="line">            <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; resultSet;</div><div class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">                <span class="keyword">if</span>( record.find( nums2[i] ) != record.end() )</div><div class="line">                    resultSet.insert( nums2[i] );</div><div class="line">    </div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(resultSet.begin(), resultSet.end());</div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
-<h2 id="map的使用"><a href="#map的使用" class="headerlink" title="map的使用"></a>map的使用</h2><h3 id="leetcode350-两个数组的交集-II"><a href="#leetcode350-两个数组的交集-II" class="headerlink" title="leetcode350. 两个数组的交集 II"></a>leetcode350. 两个数组的交集 II</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15293960784422x2jh5za.png?imageslim" alt="paste image"></p>
+<h2 id="map的使用"><a href="#map的使用" class="headerlink" title="map的使用"></a>map的使用</h2><h3 id="leetcode350-两个数组的交集-II"><a href="#leetcode350-两个数组的交集-II" class="headerlink" title="leetcode350. 两个数组的交集 II"></a>leetcode350. 两个数组的交集 II</h3><p><img src="http://fanqietotop.cn/15293960784422x2jh5za.png?imageslim" alt="paste image"></p>
 <h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 350. Intersection of Two Arrays II</span></div><div class="line"><span class="comment">// 时间复杂度：O(nlogn)</span></div><div class="line"><span class="comment">// 空间复杂度：O(n)</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersect(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; record;</div><div class="line">        <span class="comment">//O(nlogn)</span></div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums1.size() ; i ++ )</div><div class="line">            record[nums1[i]] += <span class="number">1</span>;</div><div class="line"></div><div class="line">        <span class="comment">//o(nlogn)</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; resultVector;</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums2.size() ; i ++ )</div><div class="line">            <span class="keyword">if</span>( record[ nums2[i] ] &gt; <span class="number">0</span> )&#123;</div><div class="line">                resultVector.push_back( nums2[i] );</div><div class="line">                record[nums2[i]] --;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> resultVector;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p><strong>思考</strong></p>
 <ul>
@@ -507,7 +507,7 @@
 <p>给定一个字符串，按照字母出现频率的倒序重组整个字符串</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">如“tree”，返回“eert”</div><div class="line">如“cccaaa”，返回“cccaaa”</div><div class="line">如“Aabb”，返回“bbAa”</div><div class="line">对于相同频次的字母，顺序任意。大小写敏感。</div></pre></td></tr></table></figure>
-<h2 id="一个使用查找表的经典问题"><a href="#一个使用查找表的经典问题" class="headerlink" title="一个使用查找表的经典问题"></a>一个使用查找表的经典问题</h2><h3 id="leetcode1-两数之和"><a href="#leetcode1-两数之和" class="headerlink" title="leetcode1 两数之和"></a>leetcode1 两数之和</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529459651173z3s8aahm.png?imageslim" alt="paste image"></p>
+<h2 id="一个使用查找表的经典问题"><a href="#一个使用查找表的经典问题" class="headerlink" title="一个使用查找表的经典问题"></a>一个使用查找表的经典问题</h2><h3 id="leetcode1-两数之和"><a href="#leetcode1-两数之和" class="headerlink" title="leetcode1 两数之和"></a>leetcode1 两数之和</h3><p><img src="http://fanqietotop.cn/1529459651173z3s8aahm.png?imageslim" alt="paste image"></p>
 <p><strong>注意</strong></p>
 <ul>
 <li>索引从0开始计算还是从1开始计算？  </li>
@@ -548,7 +548,7 @@
 <li><p>如果没解？（可不可能没解？）</p>
 </li>
 </ul>
-<h2 id="灵活选择键值"><a href="#灵活选择键值" class="headerlink" title="灵活选择键值"></a>灵活选择键值</h2><h3 id="leetcode454-4Sum-II"><a href="#leetcode454-4Sum-II" class="headerlink" title="leetcode454 4Sum II"></a>leetcode454 4Sum II</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529461918249ml0c5fcn.png?imageslim" alt="paste image"></p>
+<h2 id="灵活选择键值"><a href="#灵活选择键值" class="headerlink" title="灵活选择键值"></a>灵活选择键值</h2><h3 id="leetcode454-4Sum-II"><a href="#leetcode454-4Sum-II" class="headerlink" title="leetcode454 4Sum II"></a>leetcode454 4Sum II</h3><p><img src="http://fanqietotop.cn/1529461918249ml0c5fcn.png?imageslim" alt="paste image"></p>
 <h4 id="暴力解法：O-n-4"><a href="#暴力解法：O-n-4" class="headerlink" title="暴力解法：O(n^4)"></a>暴力解法：O(n^4)</h4><p>500^4 = 625,0000,0000</p>
 <h4 id="将D中的元素放入查找表：O-n-3"><a href="#将D中的元素放入查找表：O-n-3" class="headerlink" title="将D中的元素放入查找表：O(n^3)"></a>将D中的元素放入查找表：O(n^3)</h4><p>500^3 = 1,2500,0000</p>
 <h4 id="将C-D的每一种可能放入查找表：O-n-2"><a href="#将C-D的每一种可能放入查找表：O-n-2" class="headerlink" title="将C+D的每一种可能放入查找表：O(n^2)"></a>将C+D的每一种可能放入查找表：O(n^2)</h4><ul>
@@ -572,7 +572,7 @@
 <li>字符集  </li>
 <li>大小写敏感</li>
 </ul>
-<h2 id="灵活选择键值2"><a href="#灵活选择键值2" class="headerlink" title="灵活选择键值2"></a>灵活选择键值2</h2><h3 id="leetcode447-回旋镖的数量-Number-of-Boomerangs"><a href="#leetcode447-回旋镖的数量-Number-of-Boomerangs" class="headerlink" title="leetcode447 回旋镖的数量(Number of Boomerangs)"></a>leetcode447 回旋镖的数量(Number of Boomerangs)</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529465308641g3ark9t5.png?imageslim" alt="paste image"></p>
+<h2 id="灵活选择键值2"><a href="#灵活选择键值2" class="headerlink" title="灵活选择键值2"></a>灵活选择键值2</h2><h3 id="leetcode447-回旋镖的数量-Number-of-Boomerangs"><a href="#leetcode447-回旋镖的数量-Number-of-Boomerangs" class="headerlink" title="leetcode447 回旋镖的数量(Number of Boomerangs)"></a>leetcode447 回旋镖的数量(Number of Boomerangs)</h3><p><img src="http://fanqietotop.cn/1529465308641g3ark9t5.png?imageslim" alt="paste image"></p>
 <h4 id="暴力解法：O-n-3"><a href="#暴力解法：O-n-3" class="headerlink" title="暴力解法：O(n^3)"></a>暴力解法：O(n^3)</h4><ul>
 <li>三重循环枚举所有的可能性。</li>
 </ul>
@@ -589,7 +589,7 @@
 <li>点坐标的范围</li>
 <li>点坐标的表示（整数？浮点数？浮点误差？）</li>
 </ul>
-<h2 id="查找表和滑动窗口"><a href="#查找表和滑动窗口" class="headerlink" title="查找表和滑动窗口"></a>查找表和滑动窗口</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529467659407modz27uh.png?imageslim" alt="paste image"></p>
+<h2 id="查找表和滑动窗口"><a href="#查找表和滑动窗口" class="headerlink" title="查找表和滑动窗口"></a>查找表和滑动窗口</h2><p><img src="http://fanqietotop.cn/1529467659407modz27uh.png?imageslim" alt="paste image"></p>
 <h3 id="暴力解法：O-n-2-1"><a href="#暴力解法：O-n-2-1" class="headerlink" title="暴力解法：O(n^2)"></a>暴力解法：O(n^2)</h3><ul>
 <li>时间性能不满足</li>
 </ul>
@@ -603,11 +603,12 @@
 <blockquote>
 <p>给出一个整形数组，若数组中存在相同的元素，则返回true，否则返回false.</p>
 </blockquote>
-<h2 id="二分搜索树底层实现的顺序性"><a href="#二分搜索树底层实现的顺序性" class="headerlink" title="二分搜索树底层实现的顺序性"></a>二分搜索树底层实现的顺序性</h2><h3 id="leetcode220-存在重复元素-III"><a href="#leetcode220-存在重复元素-III" class="headerlink" title="leetcode220. 存在重复元素 III"></a>leetcode220. 存在重复元素 III</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1529475128185mioy9j4y.png?imageslim" alt="paste image"></p>
+<h2 id="二分搜索树底层实现的顺序性"><a href="#二分搜索树底层实现的顺序性" class="headerlink" title="二分搜索树底层实现的顺序性"></a>二分搜索树底层实现的顺序性</h2><h3 id="leetcode220-存在重复元素-III"><a href="#leetcode220-存在重复元素-III" class="headerlink" title="leetcode220. 存在重复元素 III"></a>leetcode220. 存在重复元素 III</h3><p><img src="http://fanqietotop.cn/1529475128185mioy9j4y.png?imageslim" alt="paste image"></p>
 <h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><blockquote>
 <p>维持滑动窗的大小为k<br>遍历每一个元素，在活动窗口中寻找|v-nums[i]| &lt; t， 即窗口中的元素范围为：[v-t…v+t]之间。采用ceil和floor可以实现</p>
 </blockquote>
 <h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 时间复杂度: O(nlogn)</span></div><div class="line"><span class="comment">// 空间复杂度: O(k)</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="built_in">set</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; record;</div><div class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.size() ; i ++ )&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( record.lower_bound( (<span class="keyword">long</span> <span class="keyword">long</span>)nums[i] - (<span class="keyword">long</span> <span class="keyword">long</span>)t ) != record.end() &amp;&amp;</div><div class="line">                *record.lower_bound( (<span class="keyword">long</span> <span class="keyword">long</span>)nums[i] - (<span class="keyword">long</span> <span class="keyword">long</span>)t ) &lt;= (<span class="keyword">long</span> <span class="keyword">long</span>)nums[i] + (<span class="keyword">long</span> <span class="keyword">long</span>)t )</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line"></div><div class="line">            record.insert( nums[i] );</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( record.size() == k + <span class="number">1</span> )</div><div class="line">                record.erase( nums[i-k] );</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -817,7 +818,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -958,7 +959,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共240.4k字</span>
+	<span class="post-count">博客全站共240.3k字</span>
 </div>
 
         

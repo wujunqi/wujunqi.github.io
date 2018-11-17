@@ -70,17 +70,17 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="前面的博文介绍了堆的实现堆的介绍，今天主要主要介绍索引堆，以及索引堆的优化。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528538623023j9ww5r6s.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15285402286105ivxq2zd.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528541597844xsylxscb.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528541773405q5gncejn.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528542343543wnv7kvli.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1528542588187xkqwm1ou.png?imageView/2/w/600/q/100">
-<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
+<meta property="og:image" content="http://fanqietotop.cn/1528538623023j9ww5r6s.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/15285402286105ivxq2zd.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1528541597844xsylxscb.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1528541773405q5gncejn.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1528542343543wnv7kvli.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1528542588187xkqwm1ou.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-11-17T16:19:53.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="索引堆">
 <meta name="twitter:description" content="前面的博文介绍了堆的实现堆的介绍，今天主要主要介绍索引堆，以及索引堆的优化。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1528538623023j9ww5r6s.png?imageView/2/w/400/q/100">
+<meta name="twitter:image" content="http://fanqietotop.cn/1528538623023j9ww5r6s.png?imageView/2/w/400/q/100">
 
 
 
@@ -412,7 +412,7 @@
 <h2 id="如何做到的？"><a href="#如何做到的？" class="headerlink" title="如何做到的？"></a>如何做到的？</h2><p>索引堆使用了一个新的int类型的数组，用于存放索引信息。部分代码如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 属性</span></div><div class="line">$data = <span class="keyword">array</span>();<span class="comment">// 存放数据的数组 datas[1..n]</span></div><div class="line">$indexes = <span class="keyword">array</span>(); <span class="comment">// 索引数组</span></div></pre></td></tr></table></figure>
 <p>这里这个indexes数组，存放的是什么信息呢？它是如何工作的呢？假如我们有这样一个最小堆：</p>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528538623023j9ww5r6s.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1528538623023j9ww5r6s.png?imageView/2/w/400/q/100" alt="paste image"></p>
 <p>那么用数组表示就是：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">datas: [-, <span class="number">1</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">34</span>, <span class="number">7</span>]</div></pre></td></tr></table></figure>
 <p>现在要维护最小堆的有序性，就需要交换15和7这两个元素。交换之后的元素数组是：</p>
@@ -437,19 +437,19 @@
 <p>进而推导出：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">reverses[indexes[i]] = i;</div><div class="line">indexes[reverses[i]] = i;</div></pre></td></tr></table></figure>
 <p>看这个例子：</p>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/15285402286105ivxq2zd.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/15285402286105ivxq2zd.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <p>indexes[1] = 10;<br>而reverses[1]存储的是在indexes数组中值为10的索引1在indexes中的位置，它的值为8,有<br>reverses[1] = 8;代表index数组中第8个</p>
 <h3 id="反向索引的维护"><a href="#反向索引的维护" class="headerlink" title="反向索引的维护"></a>反向索引的维护</h3><p>虽然使用反向索引提高了某些时候的查询效率，但会使得程序变得更加复杂。因为在插入和删除时都要维护这个数组。</p>
 <h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>核心思想是：不管任何操作，都要维护indexes数组和reverse数组的性质。</p>
 <h2 id="和堆相关的一些问题"><a href="#和堆相关的一些问题" class="headerlink" title="和堆相关的一些问题"></a>和堆相关的一些问题</h2><h3 id="使用堆实现优先队列"><a href="#使用堆实现优先队列" class="headerlink" title="使用堆实现优先队列"></a>使用堆实现优先队列</h3><ul>
 <li>动态选择优先级最高的任务执行</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528541597844xsylxscb.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1528541597844xsylxscb.png?imageslim" alt="paste image"></p>
 <p>像操作系统的进程管理：每次都使用堆找到优先级最高的进程执行，如果来了新的进程只需要将其插入堆中，如果需要更改进行的优先级，只需要使用change函数进行更改</p>
 <ul>
 <li>在游戏中选择攻击的对象</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528541773405q5gncejn.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1528541773405q5gncejn.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <p>可以将需要攻击的敌人放入堆中，使用堆选择最需要攻击的敌人。如果有新的敌人进入则插入堆。</p>
 <ul>
 <li><p>在100万个元素中选出前100名（在N个元素中选出前M个元素）</p>
@@ -464,13 +464,13 @@
 <li><p>多路归并排序</p>
 </li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528542343543wnv7kvli.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1528542343543wnv7kvli.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <pre><code>* merge的时候，将各个分割的字块的第一个元素形成一个最小堆，每次取堆顶元素进行merge
 * 如果n个元素进行n路归并，其实归并算法就成了，堆排序算法。
 </code></pre><ul>
 <li>d叉堆 d-ary heap</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1528542588187xkqwm1ou.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1528542588187xkqwm1ou.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <h2 id="堆的实现细节优化"><a href="#堆的实现细节优化" class="headerlink" title="堆的实现细节优化"></a>堆的实现细节优化</h2><ul>
 <li>shiftup 和shiftDown 中使用复制操作替换swap操作</li>
 </ul>
@@ -684,7 +684,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -825,7 +825,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共240.4k字</span>
+	<span class="post-count">博客全站共240.3k字</span>
 </div>
 
         

@@ -70,20 +70,20 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="动态规划本质依然是递归算法，只不过是满足特定条件的递归算法；动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530175872347v6g6udoj.png?imageView/2/w/500/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1530175872347v6g6udoj.png?imageView/2/w/500/q/100">
 <meta property="og:image" content="http://oseihavwm.bkt.clouddn.com/Fibonacci.png">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530175984893am8xva83.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15301760281729lc21hxy.png?imageView/2/w/500/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15302650052271elvu2y2.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530265086925w5acn39q.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530265178661v1cq9obf.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1530364803408dv08o8dg.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1530175984893am8xva83.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/15301760281729lc21hxy.png?imageView/2/w/500/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/15302650052271elvu2y2.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1530265086925w5acn39q.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1530265178661v1cq9obf.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1530364803408dv08o8dg.png?imageslim">
 <meta property="og:image" content="http://oseihavwm.bkt.clouddn.com/House%20Robber.png">
-<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
+<meta property="og:updated_time" content="2018-11-17T16:19:53.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解(动态规划)">
 <meta name="twitter:description" content="动态规划本质依然是递归算法，只不过是满足特定条件的递归算法；动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1530175872347v6g6udoj.png?imageView/2/w/500/q/100">
+<meta name="twitter:image" content="http://fanqietotop.cn/1530175872347v6g6udoj.png?imageView/2/w/500/q/100">
 
 
 
@@ -408,7 +408,7 @@
 <h2 id="什么是动态规划"><a href="#什么是动态规划" class="headerlink" title="什么是动态规划"></a>什么是动态规划</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
 <p>将原问题拆解成若干子问题，同时保存子问题的答案，使得每个子问题只求解一次，最终获得原问题的答案。</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1530175872347v6g6udoj.png?imageView/2/w/500/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1530175872347v6g6udoj.png?imageView/2/w/500/q/100" alt="paste image"></p>
 <ul>
 <li>我们先解决小数据量的问题，之后层层递推来解决更大数据量的问题，通常这个过程就叫做动态规划。这个时间和记忆化搜索的时间复杂度是相当的，不过动态规划没有递归的调用，不需要额外调用和栈空间。</li>
 <li>动态规划是一个设计感比较强，艺术感比较强的一种算法设计思想。</li>
@@ -428,11 +428,11 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">// 动态规划</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">( <span class="keyword">int</span> n )</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; memo(n+<span class="number">1</span>, <span class="number">-1</span>);</div><div class="line"></div><div class="line">    memo[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">    memo[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">2</span> ; i &lt;= n ; i ++ )</div><div class="line">        memo[i] = memo[i<span class="number">-1</span>] + memo[i<span class="number">-2</span>];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> memo[n];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 结果会溢出,这里只看性能</span></div><div class="line">    <span class="keyword">int</span> n = <span class="number">1000</span>;</div><div class="line"></div><div class="line">    <span class="keyword">time_t</span> startTime = clock();</div><div class="line">    <span class="keyword">int</span> res = fib(n);</div><div class="line">    <span class="keyword">time_t</span> endTime = clock();</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"fib("</span>&lt;&lt;n&lt;&lt;<span class="string">") = "</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"time : "</span>&lt;&lt;<span class="keyword">double</span>(endTime-startTime)/CLOCKS_PER_SEC&lt;&lt;<span class="string">" s"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
-<h2 id="第一个动态规划问题"><a href="#第一个动态规划问题" class="headerlink" title="第一个动态规划问题"></a>第一个动态规划问题</h2><h3 id="leetcode-70-爬楼梯"><a href="#leetcode-70-爬楼梯" class="headerlink" title="leetcode 70. 爬楼梯"></a>leetcode 70. 爬楼梯</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530175984893am8xva83.png?imageslim" alt="paste image"></p>
+<h2 id="第一个动态规划问题"><a href="#第一个动态规划问题" class="headerlink" title="第一个动态规划问题"></a>第一个动态规划问题</h2><h3 id="leetcode-70-爬楼梯"><a href="#leetcode-70-爬楼梯" class="headerlink" title="leetcode 70. 爬楼梯"></a>leetcode 70. 爬楼梯</h3><p><img src="http://fanqietotop.cn/1530175984893am8xva83.png?imageslim" alt="paste image"></p>
 <h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
 <p>我们来看一下递归的思路，把一个大的问题分解成小的问题。</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/15301760281729lc21hxy.png?imageView/2/w/500/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/15301760281729lc21hxy.png?imageView/2/w/500/q/100" alt="paste image"></p>
 <h4 id="代码实现（递归）"><a href="#代码实现（递归）" class="headerlink" title="代码实现（递归）"></a>代码实现（递归）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line">    </div><div class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">    </div><div class="line">    <span class="comment">// 记忆化搜索</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="keyword">private</span>:</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; memo;</div><div class="line">    </div><div class="line">        <span class="function"><span class="keyword">int</span> <span class="title">calcWays</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">    </div><div class="line">            <span class="keyword">if</span>( n == <span class="number">0</span> || n == <span class="number">1</span>)</div><div class="line">                <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    </div><div class="line">            <span class="keyword">if</span>( memo[n] == <span class="number">-1</span> )</div><div class="line">                memo[n] = calcWays(n<span class="number">-1</span>) + calcWays(n<span class="number">-2</span>);</div><div class="line">    </div><div class="line">            <span class="keyword">return</span> memo[n];</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">public</span>:</div><div class="line">        <span class="function"><span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    </div><div class="line">            memo = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>,<span class="number">-1</span>);</div><div class="line">            <span class="keyword">return</span> calcWays(n);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
 <h4 id="代码实现（动态规划）"><a href="#代码实现（动态规划）" class="headerlink" title="代码实现（动态规划）"></a>代码实现（动态规划）</h4><blockquote>
 <p>我们会发现和上面斐波那契一样，很轻易可以转化为动态规划解法。</p>
@@ -443,13 +443,13 @@
 <li>leetcode 64</li>
 </ul>
 <hr>
-<h2 id="发现重叠子问题"><a href="#发现重叠子问题" class="headerlink" title="发现重叠子问题"></a>发现重叠子问题</h2><h3 id="leetcode-343-整数拆分"><a href="#leetcode-343-整数拆分" class="headerlink" title="leetcode 343. 整数拆分"></a>leetcode 343. 整数拆分</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/15302650052271elvu2y2.png?imageslim" alt="paste image"></p>
-<h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530265086925w5acn39q.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<h2 id="发现重叠子问题"><a href="#发现重叠子问题" class="headerlink" title="发现重叠子问题"></a>发现重叠子问题</h2><h3 id="leetcode-343-整数拆分"><a href="#leetcode-343-整数拆分" class="headerlink" title="leetcode 343. 整数拆分"></a>leetcode 343. 整数拆分</h3><p><img src="http://fanqietotop.cn/15302650052271elvu2y2.png?imageslim" alt="paste image"></p>
+<h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><p><img src="http://fanqietotop.cn/1530265086925w5acn39q.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <blockquote>
 <p>对于一个问题如果没有思路时，我们可以先考虑暴力解法。话句话说，我们使用什么样的方式，才能把正整数n的所有分割枚举出来，我们无法知道有几重循环，通常我们需要使用递归的手段。<br>暴力解法：回溯遍历将一个数做分割的所有可能性。O(2^n)</p>
 <p>之所以递归树存在，是因为它有最优子结构<br>通过求子问题的最优解，可以获得原问题的最优解。</p>
 </blockquote>
-<h4 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h4><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530265178661v1cq9obf.png?imageView/2/w/400/q/100" alt="paste image"></p>
+<h4 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h4><p><img src="http://fanqietotop.cn/1530265178661v1cq9obf.png?imageView/2/w/400/q/100" alt="paste image"></p>
 <ul>
 <li>通过求子问题的最优解， 可以获得原问题的最优解</li>
 </ul>
@@ -469,7 +469,7 @@
 <li>leetcode 63</li>
 </ul>
 <hr>
-<h2 id="状态的定义和状态转移"><a href="#状态的定义和状态转移" class="headerlink" title="状态的定义和状态转移"></a>状态的定义和状态转移</h2><h3 id="leetcode-198-打家劫舍"><a href="#leetcode-198-打家劫舍" class="headerlink" title="leetcode 198. 打家劫舍"></a>leetcode 198. 打家劫舍</h3><p><img src="http://otwbgbfg8.bkt.clouddn.com/1530364803408dv08o8dg.png?imageslim" alt="paste image"></p>
+<h2 id="状态的定义和状态转移"><a href="#状态的定义和状态转移" class="headerlink" title="状态的定义和状态转移"></a>状态的定义和状态转移</h2><h3 id="leetcode-198-打家劫舍"><a href="#leetcode-198-打家劫舍" class="headerlink" title="leetcode 198. 打家劫舍"></a>leetcode 198. 打家劫舍</h3><p><img src="http://fanqietotop.cn/1530364803408dv08o8dg.png?imageslim" alt="paste image"></p>
 <h3 id="状态的定义"><a href="#状态的定义" class="headerlink" title="状态的定义"></a>状态的定义</h3><blockquote>
 <p>考虑偷取[x…n-1]范围里的房子（函数定义）</p>
 </blockquote>
@@ -707,7 +707,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -848,7 +848,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共240.4k字</span>
+	<span class="post-count">博客全站共240.3k字</span>
 </div>
 
         

@@ -71,16 +71,16 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="主要是关于归并排序算法，以及一些优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515373992335os3txamp.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374072648rlc1m5fh.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374096162vzhpwkqx.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374114159fvwypu9m.png?imageView/2/w/600/q/100">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1515374131467deo1aet9.png?imageView/2/w/600/q/100">
-<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
+<meta property="og:image" content="http://fanqietotop.cn/1515373992335os3txamp.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1515374072648rlc1m5fh.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1515374096162vzhpwkqx.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1515374114159fvwypu9m.png?imageView/2/w/600/q/100">
+<meta property="og:image" content="http://fanqietotop.cn/1515374131467deo1aet9.png?imageView/2/w/600/q/100">
+<meta property="og:updated_time" content="2018-11-17T16:19:53.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法与数据结构高级排序算法之归并排序">
 <meta name="twitter:description" content="主要是关于归并排序算法，以及一些优化">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/1515373992335os3txamp.png?imageView/2/w/600/q/100">
+<meta name="twitter:image" content="http://fanqietotop.cn/1515373992335os3txamp.png?imageView/2/w/600/q/100">
 
 
 
@@ -444,15 +444,15 @@
 <ul>
 <li>首先将数据2分为两步分，直到不可划分为止</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1515373992335os3txamp.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1515373992335os3txamp.png?imageView/2/w/600/q/100" alt="paste image"></p>
 <ul>
-<li><p>然后从下往上依次将已经排好序的左右两边数组进行归并<br><img src="http://otwbgbfg8.bkt.clouddn.com/1515374072648rlc1m5fh.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<li><p>然后从下往上依次将已经排好序的左右两边数组进行归并<br><img src="http://fanqietotop.cn/1515374072648rlc1m5fh.png?imageView/2/w/600/q/100" alt="paste image"></p>
 </li>
-<li><p>步骤3：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1515374096162vzhpwkqx.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<li><p>步骤3：<br><img src="http://fanqietotop.cn/1515374096162vzhpwkqx.png?imageView/2/w/600/q/100" alt="paste image"></p>
 </li>
-<li><p>步骤4：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1515374114159fvwypu9m.png?imageView/2/w/600/q/100" alt="paste image"></p>
+<li><p>步骤4：<br><img src="http://fanqietotop.cn/1515374114159fvwypu9m.png?imageView/2/w/600/q/100" alt="paste image"></p>
 </li>
-<li>步骤5：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1515374131467deo1aet9.png?imageView/2/w/600/q/100" alt="paste image"></li>
+<li>步骤5：<br><img src="http://fanqietotop.cn/1515374131467deo1aet9.png?imageView/2/w/600/q/100" alt="paste image"></li>
 </ul>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">// require('../Library/SortTestHelper.php');</span></div><div class="line"><span class="keyword">require</span>(<span class="string">'../SortingBasic/InsertionSort.php'</span>);</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [merge 合并两个有序的数组：arr[$l...$mid]和arr[$mid+1, $r]]</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  [type] $arr [description]</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  [type] $l   [description]</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  [type] $mid [description]</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  [type] $r   [description]</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> [type]      [description]</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span><span class="params">(&amp;$arr, $l, $mid, $r)</span></span>&#123;</div><div class="line">	$tmp = <span class="keyword">array</span>();</div><div class="line">	$tmp = array_slice($arr, $l, $r-$l+<span class="number">1</span>, <span class="keyword">true</span>);</div><div class="line"></div><div class="line">	<span class="comment">//tmp现在为$arr的副本，以tmp为轴，重新赋值$arr</span></div><div class="line">	$i = $l;</div><div class="line">	$j = $mid+<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> ($k=$l; $k &lt;= $r; $k++) &#123;</div><div class="line">		<span class="keyword">if</span> ($i &gt; $mid) &#123;</div><div class="line">			$arr[$k] = $tmp[$j];</div><div class="line">			$j++;</div><div class="line">		&#125;<span class="keyword">elseif</span> ($j &gt; $r) &#123;</div><div class="line">			$arr[$k] = $tmp[$i];</div><div class="line">			$i++;</div><div class="line">		&#125;<span class="keyword">elseif</span>($tmp[$i] &lt; $tmp[$j])&#123;</div><div class="line">			$arr[$k] = $tmp[$i];</div><div class="line">			$i++;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			$arr[$k] = $tmp[$j];</div><div class="line">			$j++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * [__mergeSort 对区间为[l,r]的元素进行归并排序]</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  [type] $arr [description]</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  [type] $l   [description]</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  [type] $r   [description]</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> [type]      [description]</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__mergeSort</span><span class="params">(&amp;$arr, $l, $r)</span></span>&#123;</div><div class="line">	<span class="comment">//此时为一个元素，不需要进行归并</span></div><div class="line">	<span class="keyword">if</span> ($l &gt;= $r) &#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	$mid = (int)(($l + $r) / <span class="number">2</span>);</div><div class="line">	<span class="comment">// print_r($arr);var_dump($l, $mid, $r);die;</span></div><div class="line">	<span class="comment">//对[l, mid]数组进行归并</span></div><div class="line">	__mergeSort($arr, $l, $mid);</div><div class="line">	<span class="comment">//对[mid+1, $r]数组进行归并</span></div><div class="line">	__mergeSort($arr, $mid+<span class="number">1</span>, $r);</div><div class="line"></div><div class="line">	merge($arr, $l, $mid, $r);</div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span><span class="params">(&amp;$arr, $n)</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//对0到n-1的元素今夕归并</span></div><div class="line">	__mergeSort($arr, <span class="number">0</span>, $n<span class="number">-1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$n = <span class="number">10000</span>;</div><div class="line">$arr = generateRandomArray($n, <span class="number">0</span>, $n);</div><div class="line"><span class="comment">// $arr = generateNearlyOrderedArray($n, 100);</span></div><div class="line">$copy_arr = $arr;</div><div class="line">testSort(<span class="string">"mergeSort"</span>, <span class="string">"mergeSort"</span>, $arr, $n);</div><div class="line">testSort(<span class="string">"insertSortSeo"</span>, <span class="string">"insertSortSeo"</span>, $copy_arr, $n);</div></pre></td></tr></table></figure>
@@ -694,7 +694,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -835,7 +835,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共240.4k字</span>
+	<span class="post-count">博客全站共240.3k字</span>
 </div>
 
         

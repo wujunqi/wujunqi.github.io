@@ -71,16 +71,16 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1520939843100vgelfape.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim">
-<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
+<meta property="og:image" content="http://fanqietotop.cn/15072013264988kqhx4n4.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1507202029826zgyypz70.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1507202122524inmjxesl.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1520939843100vgelfape.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1507393164629e3b6o5eb.png?imageslim">
+<meta property="og:updated_time" content="2018-11-17T16:19:53.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用docker搭建yaf">
 <meta name="twitter:description" content="下面先简单介绍一下docker，然后记录下自己如何在docker下搭建lnmp(linux,nginx,mysql,php)环境，并安装php的扩展yaf。">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim">
+<meta name="twitter:image" content="http://fanqietotop.cn/15072013264988kqhx4n4.png?imageslim">
 
 
 
@@ -442,9 +442,9 @@
 <li>可以粗略的理解为轻量级的虚拟机</li>
 <li>开挂的chroot</li>
 </ul>
-<h2 id="VM-vs-Docker"><a href="#VM-vs-Docker" class="headerlink" title="VM vs Docker"></a>VM vs Docker</h2><p><img src="http://otwbgbfg8.bkt.clouddn.com/15072013264988kqhx4n4.png?imageslim" alt="paste image"></p>
-<h1 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h1><h2 id="for-mac"><a href="#for-mac" class="headerlink" title="for mac"></a>for mac</h2><p>首先在<a href="docker for mac">https://store.docker.com/editions/community/docker-ce-desktop-mac</a>官网进行下载，安装和安装普通mac软件一样。<br>安装完毕后在右上角有一个小船的标示。<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202029826zgyypz70.png?imageslim" alt="paste image"></p>
-<p>当然可以在命令行中输入：<code>docder info</code>显示<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507202122524inmjxesl.png?imageslim" alt="paste image"></p>
+<h2 id="VM-vs-Docker"><a href="#VM-vs-Docker" class="headerlink" title="VM vs Docker"></a>VM vs Docker</h2><p><img src="http://fanqietotop.cn/15072013264988kqhx4n4.png?imageslim" alt="paste image"></p>
+<h1 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h1><h2 id="for-mac"><a href="#for-mac" class="headerlink" title="for mac"></a>for mac</h2><p>首先在<a href="docker for mac">https://store.docker.com/editions/community/docker-ce-desktop-mac</a>官网进行下载，安装和安装普通mac软件一样。<br>安装完毕后在右上角有一个小船的标示。<br><img src="http://fanqietotop.cn/1507202029826zgyypz70.png?imageslim" alt="paste image"></p>
+<p>当然可以在命令行中输入：<code>docder info</code>显示<br><img src="http://fanqietotop.cn/1507202122524inmjxesl.png?imageslim" alt="paste image"></p>
 <p>表示安装成功！</p>
 <h1 id="docker-基本概念"><a href="#docker-基本概念" class="headerlink" title="docker 基本概念"></a>docker 基本概念</h1><h2 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h2><p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:14.04 就包含了完整的一套 Ubuntu 14.04 最小系统的 root 文件系统。</p>
 <p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
@@ -536,18 +536,19 @@
 <ul>
 <li>#include enable-php.conf; 改成 include enable-php-pathinfo.conf;</li>
 </ul>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1520939843100vgelfape.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1520939843100vgelfape.png?imageslim" alt="paste image"></p>
 <ul>
 <li>nginx的配置文件，覆盖了php.ini的配置</li>
 </ul>
 <p>在使用LNMP包安装PHP时，发现直接修改php.ini的配置是无法生效的，其原因竟然是因为nginx的配置文件，覆盖了php.ini的配置。<br>——————————————————————–<br>LNMP 1.4上如果不想用防跨目录还需要将 /usr/local/nginx/conf/fastcgi.conf 里面的fastcgi_param PHP_ADMIN_VALUE “open_basedir=$document_root/:/tmp/:/proc/”; 删除，需要重启nginx。<br>LNMP 1.4上也可以直接使用lnmp1.4/tools/ 目录下的 ./remove_open_basedir_restriction.sh 进行移除。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /home/work/imooc/</div><div class="line">mkdir tmp</div><div class="line">wget https://github.com/laruence/yaf/archive/master.zip</div><div class="line">unzip master.zip </div><div class="line">cd yaf-master/tools/cg/</div><div class="line">./yaf_cg imooc</div><div class="line">cp -rf tmp/yaf-master/tools/cg/output/imooc/* ./ (在imooc目录下）</div></pre></td></tr></table></figure>
-<p>最后的代码项目结果为：<br><img src="http://otwbgbfg8.bkt.clouddn.com/1507393164629e3b6o5eb.png?imageslim" alt="paste image"></p>
+<p>最后的代码项目结果为：<br><img src="http://fanqietotop.cn/1507393164629e3b6o5eb.png?imageslim" alt="paste image"></p>
 <ul>
 <li>今后在这个基础上编写代码：</li>
 </ul>
 <p>可以使用sublime 直接编写啦！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 8001:8001 -p 8000:8000 -p 80:80 --name lnmp_yaf -v /Users/junqi1/yaf_code:/home/work lnmp/yaf:v1 /sbin/init</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -763,7 +764,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -904,7 +905,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共240.4k字</span>
+	<span class="post-count">博客全站共240.3k字</span>
 </div>
 
         

@@ -70,17 +70,17 @@
 <meta property="og:site_name" content="番茄技术小栈">
 <meta property="og:description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要介绍leetcode中典型的数组类问题，主要介绍这类问题的一些常用解法：做好初始定义；基础算法思想应用；对撞指针；滑动窗口法等。所有题解代码采用python实现。 做好初始定义 做数组类算法问题的时候，我们常常需要定义一个变量">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15326930809478w4vc5mm.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1532695395109wc5a52nv.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1532699856414ncf2me16.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15327003342201w29cjac.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/15327009287108px1ox15.png?imageslim">
-<meta property="og:image" content="http://otwbgbfg8.bkt.clouddn.com/1532701891207tnyu99z0.png?imageslim">
-<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
+<meta property="og:image" content="http://fanqietotop.cn/15326930809478w4vc5mm.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1532695395109wc5a52nv.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1532699856414ncf2me16.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/15327003342201w29cjac.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/15327009287108px1ox15.png?imageslim">
+<meta property="og:image" content="http://fanqietotop.cn/1532701891207tnyu99z0.png?imageslim">
+<meta property="og:updated_time" content="2018-11-17T16:19:53.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode数组类算法精析">
 <meta name="twitter:description" content="面试中的算法问题，有很多并不需要复杂的数据结构支撑。就是用数组，就能考察出很多东西了。其实，经典的排序问题，二分搜索等等问题，就是在数组这种最基础的结构中处理问题的，今天主要介绍leetcode中典型的数组类问题，主要介绍这类问题的一些常用解法：做好初始定义；基础算法思想应用；对撞指针；滑动窗口法等。所有题解代码采用python实现。 做好初始定义 做数组类算法问题的时候，我们常常需要定义一个变量">
-<meta name="twitter:image" content="http://otwbgbfg8.bkt.clouddn.com/15326930809478w4vc5mm.png?imageslim">
+<meta name="twitter:image" content="http://fanqietotop.cn/15326930809478w4vc5mm.png?imageslim">
 
 
 
@@ -420,7 +420,7 @@
 <h4 id="直观解题思路"><a href="#直观解题思路" class="headerlink" title="直观解题思路"></a>直观解题思路</h4><blockquote>
 <p>首先遍历一遍数列，用另个数列按顺序存储所有非0的元素，在将存储的非零元素按顺序复制到原数列中，空位补0即可</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/15326930809478w4vc5mm.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/15326930809478w4vc5mm.png?imageslim" alt="paste image"></p>
 <p>直观的解题思路新建额外的数组，不符合要求，但是对于我们下面的优化算法很有起始</p>
 <h4 id="简单的优化"><a href="#简单的优化" class="headerlink" title="简单的优化"></a>简单的优化</h4><blockquote>
 <p>只要把数组中所有的非零元素，按顺序给数组的前段元素位赋值，剩下的全部直接赋值0。我们定义一个nums<a href="初始i=-1">0…i</a>表示为非0元素的数组，之后在遍历数列的时候不断维护这个定义</p>
@@ -471,7 +471,7 @@
 <h5 id="三路快速排序方法"><a href="#三路快速排序方法" class="headerlink" title="三路快速排序方法"></a>三路快速排序方法</h5><blockquote>
 <p>设置三个lt, gt, i 定义：nums[0…lt] == 0, nums[lt+1…i-1] = 1, nums[gt…n-1] == 2, 遍历一遍改数列保持这个定义。</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1532695395109wc5a52nv.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1532695395109wc5a52nv.png?imageslim" alt="paste image"></p>
 <h4 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortColors</span><span class="params">(self, nums)</span>:</span></div><div class="line">        n = len(nums)</div><div class="line"></div><div class="line">        lt = <span class="number">-1</span></div><div class="line">        gt = n</div><div class="line">        i = <span class="number">0</span></div><div class="line"></div><div class="line">        <span class="keyword">while</span> i &lt; gt:</div><div class="line">            <span class="keyword">if</span> nums[i] == <span class="number">0</span>:</div><div class="line">                lt += <span class="number">1</span></div><div class="line">                nums[lt], nums[i] = nums[i], nums[lt]</div><div class="line">                i += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> nums[i] == <span class="number">2</span>:</div><div class="line">                gt -= <span class="number">1</span></div><div class="line">                nums[gt], nums[i] = nums[i], nums[gt]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                i += <span class="number">1</span></div></pre></td></tr></table></figure>
 <h3 id="leetcode-215-数组中的第K个最大元素"><a href="#leetcode-215-数组中的第K个最大元素" class="headerlink" title="leetcode 215. 数组中的第K个最大元素"></a>leetcode 215. 数组中的第K个最大元素</h3><h4 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
 <p>在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。</p>
@@ -524,12 +524,12 @@
 <h4 id="二分搜索法"><a href="#二分搜索法" class="headerlink" title="二分搜索法"></a>二分搜索法</h4><blockquote>
 <p>遍历每个nums[i], 在剩余数组中查找target-nums[i]的值，时间复杂度为O(NlogN)</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1532699856414ncf2me16.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1532699856414ncf2me16.png?imageslim" alt="paste image"></p>
 <p>有兴趣的读者可以用这种方法尝试一下，应该也是可以AC的， 本文采用对撞指针法。</p>
 <h4 id="对撞指针法"><a href="#对撞指针法" class="headerlink" title="对撞指针法"></a>对撞指针法</h4><blockquote>
 <p>们首先判断首尾两项的和是不是target，如果比target小，那么我们左边(i)+1位置的数（比左边位置的数大）再和右相相加，继续判断。如果比target大，那么我们右边(j)-1位置的数（比右边位置的数小）再和左相相加，继续判断。我们通过这样不断放缩的过程，就可以在O(n)的时间复杂度内找到对应的坐标位置。</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/15327003342201w29cjac.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/15327003342201w29cjac.png?imageslim" alt="paste image"></p>
 <h4 id="代码实现-7"><a href="#代码实现-7" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, numbers, target)</span>:</span></div><div class="line">        n = len(numbers)</div><div class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>):</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = n<span class="number">-1</span></div><div class="line">        <span class="keyword">while</span> i &lt; j:</div><div class="line">            <span class="keyword">if</span> numbers[i] + numbers[j] == target:</div><div class="line">                <span class="keyword">return</span> [i+<span class="number">1</span>,j+<span class="number">1</span>]</div><div class="line">            <span class="keyword">elif</span> numbers[i] + numbers[j] &lt; target:</div><div class="line">                i += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                j -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> []</div></pre></td></tr></table></figure>
 <h3 id="相似题目-1"><a href="#相似题目-1" class="headerlink" title="相似题目"></a>相似题目</h3><h3 id="leetcode-125-验证回文串"><a href="#leetcode-125-验证回文串" class="headerlink" title="leetcode 125. 验证回文串"></a>leetcode 125. 验证回文串</h3><h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><blockquote>
 <p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。</p>
@@ -560,7 +560,7 @@
 <p>说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">你不能倾斜容器，且 n 的值至少为 2。</div></pre></td></tr></table></figure></p>
 <p>图示</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/15327009287108px1ox15.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/15327009287108px1ox15.png?imageslim" alt="paste image"></p>
 <h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
 <p>我们在由线段长度构成的数组中使用两个指针，一个放在开始，一个置于末尾。 此外，我们会使用变量 maxareamaxarea 来持续存储到目前为止所获得的最大面积。 在每一步中，我们会找出指针所指向的两条线段形成的区域，更新 maxareamaxarea，并将指向较短线段的指针向较长线段那端移动一步。</p>
 </blockquote>
@@ -575,7 +575,7 @@
 <h4 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
 <p>要求是连续子数组，所以我们必须定义i，j两个指针，i向前遍历，j向后遍历，相当与一个滑块，这样所有的子数组都会在[i…j]中出现，如果nums[i..j]的和小于目标值s,那么j向后移一位，再次比较，直到大于目标值s之后，i向前移动一位，缩小数组的长度。遍历到i到数组的最末端，就算结束了，如果不存在符合条件的就返回0.</p>
 </blockquote>
-<p><img src="http://otwbgbfg8.bkt.clouddn.com/1532701891207tnyu99z0.png?imageslim" alt="paste image"></p>
+<p><img src="http://fanqietotop.cn/1532701891207tnyu99z0.png?imageslim" alt="paste image"></p>
 <h4 id="代码实现-11"><a href="#代码实现-11" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: wujunqi</span></div><div class="line"><span class="string">@email: jun_qi_wu@163.com</span></div><div class="line"><span class="string">@desc: </span></div><div class="line"><span class="string">'''</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSubArrayLen</span><span class="params">(self, s, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type s: int</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :rtype: int</span></div><div class="line"><span class="string">        """</span></div><div class="line">        </div><div class="line">        n = len(nums)</div><div class="line">        <span class="keyword">if</span> (n &lt; <span class="number">1</span> <span class="keyword">or</span> sum(nums) &lt; s):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        </div><div class="line">        <span class="comment"># 维护一个滑动窗口nums[i,j], nums[i...j] &lt; s</span></div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = <span class="number">-1</span></div><div class="line">        total = <span class="number">0</span></div><div class="line">        res = n + <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> i &lt;= n<span class="number">-1</span>:</div><div class="line">            <span class="keyword">if</span> (j + <span class="number">1</span> &lt; n) <span class="keyword">and</span> total &lt; s:</div><div class="line">                j += <span class="number">1</span></div><div class="line">                total += nums[j]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                total -= nums[i]</div><div class="line">                i += <span class="number">1</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> (total &gt;= s):</div><div class="line">                res = min(res, j-i+<span class="number">1</span>)</div><div class="line">        <span class="keyword">if</span> res == n+<span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
 <p>我们知道在准备面试的时候，刷算法题是一种捷径，特别是刷leetcode，但是不能一味的刷题，我们需要总结和思考，对于一些相似的题目我们应该多想想他们的思想，其实很多题的解题思路都是相近的。</p>
@@ -790,7 +790,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -931,7 +931,7 @@
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共240.4k字</span>
+	<span class="post-count">博客全站共240.3k字</span>
 </div>
 
         
