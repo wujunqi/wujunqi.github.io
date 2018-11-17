@@ -63,18 +63,18 @@
 
 
 
-<meta name="description" content="一、PHP7源码安装和Swoole源码编译安装1.1 PHP7源码安装1.1.1 获取源码与安装**获取PHP7源码：**`www.php.net`  tar -xzvf ... # 解压命令  ./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等 make # 编译 make install # 安装   源码执行文件放在：`bin`目录">
+<meta name="description" content="PHP7源码安装和Swoole源码编译安装PHP7源码安装1.1.1 获取源码与安装 获取PHP7源码：www.php.net  tar -xzvf … # 解压命令  ./configure –prefix=/home/study/php # 安装至某个路径，提前安装gcc等  make # 编译 make install # 安装  源码执行文件放在：bin目录下 php -m  # 查看 P">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swoole入门到实战（一）">
 <meta property="og:url" content="http://fanqieto.top/2018/08/14/Swoole入门到实战（一）/index.html">
 <meta property="og:site_name" content="番茄技术小栈">
-<meta property="og:description" content="一、PHP7源码安装和Swoole源码编译安装1.1 PHP7源码安装1.1.1 获取源码与安装**获取PHP7源码：**`www.php.net`  tar -xzvf ... # 解压命令  ./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等 make # 编译 make install # 安装   源码执行文件放在：`bin`目录">
+<meta property="og:description" content="PHP7源码安装和Swoole源码编译安装PHP7源码安装1.1.1 获取源码与安装 获取PHP7源码：www.php.net  tar -xzvf … # 解压命令  ./configure –prefix=/home/study/php # 安装至某个路径，提前安装gcc等  make # 编译 make install # 安装  源码执行文件放在：bin目录下 php -m  # 查看 P">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://fanqieto.top/img/bV89Ga?w=504&h=151">
-<meta property="og:updated_time" content="2018-08-15T08:54:55.000Z">
+<meta property="og:updated_time" content="2018-09-10T18:42:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swoole入门到实战（一）">
-<meta name="twitter:description" content="一、PHP7源码安装和Swoole源码编译安装1.1 PHP7源码安装1.1.1 获取源码与安装**获取PHP7源码：**`www.php.net`  tar -xzvf ... # 解压命令  ./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等 make # 编译 make install # 安装   源码执行文件放在：`bin`目录">
+<meta name="twitter:description" content="PHP7源码安装和Swoole源码编译安装PHP7源码安装1.1.1 获取源码与安装 获取PHP7源码：www.php.net  tar -xzvf … # 解压命令  ./configure –prefix=/home/study/php # 安装至某个路径，提前安装gcc等  make # 编译 make install # 安装  源码执行文件放在：bin目录下 php -m  # 查看 P">
 <meta name="twitter:image" content="http://fanqieto.top/img/bV89Ga?w=504&h=151">
 
 
@@ -362,7 +362,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,763
+                  2,740
                 </span>
               
 
@@ -396,32 +396,27 @@
       
 
       
-        <h1 id="一、PHP7源码安装和Swoole源码编译安装"><a href="#一、PHP7源码安装和Swoole源码编译安装" class="headerlink" title="一、PHP7源码安装和Swoole源码编译安装"></a>一、PHP7源码安装和Swoole源码编译安装</h1><h2 id="1-1-PHP7源码安装"><a href="#1-1-PHP7源码安装" class="headerlink" title="1.1 PHP7源码安装"></a>1.1 PHP7源码安装</h2><h3 id="1-1-1-获取源码与安装"><a href="#1-1-1-获取源码与安装" class="headerlink" title="1.1.1 获取源码与安装"></a>1.1.1 获取源码与安装</h3><pre><code>**获取PHP7源码：**`www.php.net`
-
-tar -xzvf ... # 解压命令
-
-./configure --prefix=/home/study/php # 安装至某个路径，提前安装gcc等
-make # 编译
-make install # 安装
-
-
-源码执行文件放在：`bin`目录下
-
-php -m  # 查看 PHP 安装的扩展
-</code></pre><h3 id="1-1-2-简化PHP执行命令"><a href="#1-1-2-简化PHP执行命令" class="headerlink" title="1.1.2 简化PHP执行命令"></a>1.1.2 简化PHP执行命令</h3><pre><code>`alias` 命令=命令的绝对路径
-
-vim ~/.bash_profile
+        <h1 id="PHP7源码安装和Swoole源码编译安装"><a href="#PHP7源码安装和Swoole源码编译安装" class="headerlink" title="PHP7源码安装和Swoole源码编译安装"></a>PHP7源码安装和Swoole源码编译安装</h1><h2 id="PHP7源码安装"><a href="#PHP7源码安装" class="headerlink" title="PHP7源码安装"></a>PHP7源码安装</h2><h3 id="1-1-1-获取源码与安装"><a href="#1-1-1-获取源码与安装" class="headerlink" title="1.1.1 获取源码与安装"></a>1.1.1 获取源码与安装</h3><ul>
+<li><p>获取PHP7源码：<code>www.php.net</code></p>
+</li>
+<li><p>tar -xzvf … # 解压命令</p>
+</li>
+<li><p>./configure –prefix=/home/study/php # 安装至某个路径，提前安装gcc等</p>
+</li>
+<li>make # 编译</li>
+<li>make install # 安装</li>
+</ul>
+<p><strong>源码执行文件放在：<code>bin</code>目录下</strong></p>
+<p>php -m  # 查看 PHP 安装的扩展</p>
+<h3 id="1-1-2-简化PHP执行命令"><a href="#1-1-2-简化PHP执行命令" class="headerlink" title="1.1.2 简化PHP执行命令"></a>1.1.2 简化PHP执行命令</h3><p><code>alias</code> 命令=命令的绝对路径</p>
+<pre><code>vim ~/.bash_profile
 alias php=/home/work/soft/php/bin/php # 添加
 source ~/.bash_profile # 注意
-
-
-**source FileName**  
-**作用:**在当前`bash`环境下读取并执行`FileName`中的命令。    用于重新执行刚修改的初始化文档，如 `.bash_profile` 和 `.profile` 等等  
-**注：**该命令通常用命令“`.`”来替代  
-**如：**`source /etc/profile` 与 `. /etc/profile`是等效的
-
-php -i | grep php.ini # 查找PHP的配置文件
-</code></pre><h2 id="1-2-Swoole源码编译安装"><a href="#1-2-Swoole源码编译安装" class="headerlink" title="1.2 Swoole源码编译安装"></a>1.2 Swoole源码编译安装</h2><p><strong>获取swoole源码：</strong><code>https://gitee.com/swoole/swoole.git</code></p>
+</code></pre><p><strong>source FileName的作用</strong>  </p>
+<p>在当前<code>bash</code>环境下读取并执行<code>FileName</code>中的命令。用于重新执行刚修改的初始化文档，如 <code>.bash_profile</code> 和 <code>.profile</code> 等等  </p>
+<p><strong>查找php配置文件</strong></p>
+<p>php -i | grep php.ini # 查找PHP的配置文件</p>
+<h2 id="Swoole源码编译安装"><a href="#Swoole源码编译安装" class="headerlink" title="Swoole源码编译安装"></a>Swoole源码编译安装</h2><p><strong>获取swoole源码：</strong><code>https://gitee.com/swoole/swoole.git</code></p>
 <p><code>phpize</code>是用来扩展<code>php</code>模块的，通过<code>phpize</code>可以建立<code>php</code>的外挂模块,解决没有<code>configure</code>问题</p>
 <pre><code>/usr/local/php/bin/phpize # 在需要执行的目录执行这行代码即可
 ./configure --with-php-config=/usr/local/php/bin/php-config   
@@ -433,7 +428,7 @@ php -i | grep php.ini # 查找PHP的配置文件
 最后可以在`PHP`的扩展目录中看见`swoole.so` 扩展文件
 
 ![clipboard.png](/img/bV842L?w=723&amp;h=162 &quot;clipboard.png&quot;)
-</code></pre><h2 id="1-3-双剑合璧，PHP7支持swoole"><a href="#1-3-双剑合璧，PHP7支持swoole" class="headerlink" title="1.3 双剑合璧，PHP7支持swoole"></a>1.3 双剑合璧，PHP7支持swoole</h2><pre><code>在`php.ini`文件中添加：`extension=swoole.so`  
+</code></pre><h2 id="双剑合璧，PHP7支持swoole"><a href="#双剑合璧，PHP7支持swoole" class="headerlink" title="双剑合璧，PHP7支持swoole"></a>双剑合璧，PHP7支持swoole</h2><pre><code>在`php.ini`文件中添加：`extension=swoole.so`  
 查看是否添加成功：`php -m`
 
 在`swoole/examples/server`下执行`php echo.php`  
@@ -1141,7 +1136,7 @@ echo &quot;start&quot;.PHP_EOL;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1152,7 +1147,7 @@ echo &quot;start&quot;.PHP_EOL;
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1163,7 +1158,7 @@ echo &quot;start&quot;.PHP_EOL;
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1250,7 +1245,7 @@ echo &quot;start&quot;.PHP_EOL;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、PHP7源码安装和Swoole源码编译安装"><span class="nav-number">1.</span> <span class="nav-text">一、PHP7源码安装和Swoole源码编译安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-PHP7源码安装"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 PHP7源码安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-获取源码与安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 获取源码与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-简化PHP执行命令"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 简化PHP执行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Swoole源码编译安装"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Swoole源码编译安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-双剑合璧，PHP7支持swoole"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 双剑合璧，PHP7支持swoole</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、玩转网络通信引擎-非常重要"><span class="nav-number">2.</span> <span class="nav-text">二、玩转网络通信引擎(非常重要)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-TCP服务-amp-TCP客户端"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 TCP服务&TCP客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-TCP服务"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 TCP服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-TCP客户端"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 TCP客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional-headers-are-shown"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional headers are shown</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-HTTP服务（常用）"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 HTTP服务（常用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-WebSocket服务（重点）"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 WebSocket服务（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-基本概述"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 基本概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-案例实现"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 案例实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-服务端实现"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">2.3.2.1 服务端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-2-客户端实现"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">2.3.2.2 客户端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-3-测试"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">2.3.2.3 测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-异步Task任务使用（重点）"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 异步Task任务使用（重点）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、异步非堵塞IO场景"><span class="nav-number">3.</span> <span class="nav-text">三、异步非堵塞IO场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-异步、阻塞和IO模型（务必理解）"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 异步、阻塞和IO模型（务必理解）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-同步和异步"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 同步和异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-阻塞-block-和非阻塞-nonblock"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 阻塞(block)和非阻塞(nonblock)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-IO模型"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3 IO模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Swoole异步毫秒定时器"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Swoole异步毫秒定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-异步文件系统IO"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 异步文件系统IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-异步读"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 异步读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-异步写（如日志）"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 异步写（如日志）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-异步MySQL详解"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 异步MySQL详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-异步Redis"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 异步Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-环境准备"><span class="nav-number">3.5.1.</span> <span class="nav-text">3.5.1 环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-代码测试"><span class="nav-number">3.5.2.</span> <span class="nav-text">3.5.2 代码测试</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP7源码安装和Swoole源码编译安装"><span class="nav-number">1.</span> <span class="nav-text">PHP7源码安装和Swoole源码编译安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP7源码安装"><span class="nav-number">1.1.</span> <span class="nav-text">PHP7源码安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-获取源码与安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 获取源码与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-简化PHP执行命令"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 简化PHP执行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swoole源码编译安装"><span class="nav-number">1.2.</span> <span class="nav-text">Swoole源码编译安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双剑合璧，PHP7支持swoole"><span class="nav-number">1.3.</span> <span class="nav-text">双剑合璧，PHP7支持swoole</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、玩转网络通信引擎-非常重要"><span class="nav-number">2.</span> <span class="nav-text">二、玩转网络通信引擎(非常重要)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-TCP服务-amp-TCP客户端"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 TCP服务&TCP客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-TCP服务"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 TCP服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-TCP客户端"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 TCP客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional-headers-are-shown"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">阿里云服务器巨坑—-端口未对外打开！！！websocket连接不上服务器，提示Provisional headers are shown</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-HTTP服务（常用）"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 HTTP服务（常用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-WebSocket服务（重点）"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 WebSocket服务（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-基本概述"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 基本概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-案例实现"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 案例实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-服务端实现"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">2.3.2.1 服务端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-2-客户端实现"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">2.3.2.2 客户端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-3-测试"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">2.3.2.3 测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-异步Task任务使用（重点）"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 异步Task任务使用（重点）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、异步非堵塞IO场景"><span class="nav-number">3.</span> <span class="nav-text">三、异步非堵塞IO场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-异步、阻塞和IO模型（务必理解）"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 异步、阻塞和IO模型（务必理解）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-同步和异步"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 同步和异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-阻塞-block-和非阻塞-nonblock"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 阻塞(block)和非阻塞(nonblock)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-IO模型"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3 IO模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Swoole异步毫秒定时器"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Swoole异步毫秒定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-异步文件系统IO"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 异步文件系统IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-异步读"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 异步读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-异步写（如日志）"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 异步写（如日志）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-异步MySQL详解"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 异步MySQL详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-异步Redis"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 异步Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-环境准备"><span class="nav-number">3.5.1.</span> <span class="nav-text">3.5.1 环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-代码测试"><span class="nav-number">3.5.2.</span> <span class="nav-text">3.5.2 代码测试</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1282,7 +1277,7 @@ echo &quot;start&quot;.PHP_EOL;
 
 <div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共242.7k字</span>
+	<span class="post-count">博客全站共246.5k字</span>
 </div>
 
         
