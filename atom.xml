@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>悠悠的技术小栈</title>
+  
+  <subtitle>只写用心的、高质量博文,每天进步一点点</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://fanqietotop.cn/"/>
+  <updated>2022-03-09T12:41:31.573Z</updated>
+  <id>http://fanqietotop.cn/</id>
+  
+  <author>
+    <name>youyou</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test_img</title>
+    <link href="http://fanqietotop.cn/2022/03/09/test-img/"/>
+    <id>http://fanqietotop.cn/2022/03/09/test-img/</id>
+    <published>2022-03-09T11:45:42.000Z</published>
+    <updated>2022-03-09T12:41:31.573Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>我要飞得很高</p><img src="/2022/03/09/test-img/background.jpg" class="" width="500" height="400" title="abc" alt="abc">]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h1&gt;&lt;p&gt;我要飞得很高&lt;/p&gt;
+&lt;img src=&quot;/2022/03/09/test-img/background.jpg&quot; class=&quot;&quot; wid
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://fanqietotop.cn/2022/03/09/test/"/>
+    <id>http://fanqietotop.cn/2022/03/09/test/</id>
+    <published>2022-03-09T10:32:13.000Z</published>
+    <updated>2022-03-09T11:37:31.726Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="linux" scheme="http://fanqietotop.cn/categories/linux/"/>
+    
+    
+      <category term="code" scheme="http://fanqietotop.cn/tags/code/"/>
+    
+      <category term="linux" scheme="http://fanqietotop.cn/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://fanqietotop.cn/2022/03/09/hello-world/"/>
+    <id>http://fanqietotop.cn/2022/03/09/hello-world/</id>
+    <published>2022-03-09T06:24:36.113Z</published>
+    <updated>2022-03-09T06:24:36.113Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
