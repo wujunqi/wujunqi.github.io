@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fanqietotop.cn/"/>
-  <updated>2022-03-09T15:42:34.285Z</updated>
+  <updated>2022-03-14T13:50:21.988Z</updated>
   <id>http://fanqietotop.cn/</id>
   
   <author>
@@ -17,65 +17,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test_img</title>
-    <link href="http://fanqietotop.cn/2022/03/09/test-img/"/>
-    <id>http://fanqietotop.cn/2022/03/09/test-img/</id>
-    <published>2022-03-09T11:45:42.000Z</published>
-    <updated>2022-03-09T15:42:34.285Z</updated>
+    <title>golang如何写出优雅的单测</title>
+    <link href="http://fanqietotop.cn/2022/03/14/golang%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%BC%98%E9%9B%85%E7%9A%84%E5%8D%95%E6%B5%8B/"/>
+    <id>http://fanqietotop.cn/2022/03/14/golang如何写出优雅的单测/</id>
+    <published>2022-03-14T13:34:29.000Z</published>
+    <updated>2022-03-14T13:50:21.988Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h1><p>我要飞得很高</p><h2 id="副标题1"><a href="#副标题1" class="headerlink" title="副标题1"></a>副标题1</h2><h1 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h1><p>我要飞得很高</p><h2 id="副标题2"><a href="#副标题2" class="headerlink" title="副标题2"></a>副标题2</h2><img src="/2022/03/09/test-img/background.jpg" class="" width="500" height="400" title="abc" alt="abc">]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;标题1&quot;&gt;&lt;a href=&quot;#标题1&quot; class=&quot;headerlink&quot; title=&quot;标题1&quot;&gt;&lt;/a&gt;标题1&lt;/h1&gt;&lt;p&gt;我要飞得很高&lt;/p&gt;
-&lt;h2 id=&quot;副标题1&quot;&gt;&lt;a href=&quot;#副标题1&quot; class=&quot;headerlink&quot; title=
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://fanqietotop.cn/2022/03/09/test/"/>
-    <id>http://fanqietotop.cn/2022/03/09/test/</id>
-    <published>2022-03-09T10:32:13.000Z</published>
-    <updated>2022-03-09T11:37:31.726Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="linux" scheme="http://fanqietotop.cn/categories/linux/"/>
-    
-    
-      <category term="code" scheme="http://fanqietotop.cn/tags/code/"/>
-    
-      <category term="linux" scheme="http://fanqietotop.cn/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://fanqietotop.cn/2022/03/09/hello-world/"/>
-    <id>http://fanqietotop.cn/2022/03/09/hello-world/</id>
-    <published>2022-03-09T06:24:36.113Z</published>
-    <updated>2022-03-09T06:24:36.113Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h1><p>测试是自动化测试的简称，即编写简单的程序来确保程序在该测试中针对特定输入产生预期的输出。这些测试通常要么是经过精心设计之后用来检测某种功能，要么是随机性的，用来扩大测试的覆盖面。单元测试是针对程序的最小单元进行正确性的测试工作。一个单元可能是单个程序、类、对象、方法等。测试某个具体的函数，是否符合编写者的预期。对于 Gopher 来说，写出好的测试代码要熟练使用相关测试框架，好的测试代码同时会给 Gopher 带来方便，包括：</p><ul><li>验证功能，减少bug，减少调试时间。</li><li>提高程序员自信心，提高团队自信心。 </li><li>单元测试结合 “code coverage” 会让提升你软件的质量</li><li>不再需要手工测试，而且代码变动后只关注单元测试并且查看红&#x2F;绿栏即可</li></ul><h1 id="二、基本用法"><a href="#二、基本用法" class="headerlink" title="二、基本用法"></a>二、基本用法</h1><p>go test 子命令是Go语言包的测试驱动程序，这些包根据默写约定组织在一起。在一个包目录中，以_test.go结尾的文件不是 go build 命令编译的目标，而是 go test 编译的目标。</p><ul><li>文件格式:  以_test.go为后缀，源文件在执行go build时不会被构建成包的一部分。</li><li>函数格式：每个测试的函数都是以Test、 Benchmark、Example为函数名的前缀</li><li>函数都必须导入testing包</li></ul><h2 id="一个栗子"><a href="#一个栗子" class="headerlink" title="一个栗子"></a>一个栗子</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 两个字符串切片是否相等</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StringSliceEqual</span><span class="params">(a, b []<span class="type">string</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(a) != <span class="built_in">len</span>(b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> i, v := <span class="keyword">range</span> a &#123;</span><br><span class="line">        <span class="keyword">if</span> v != b[i] &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>StringSliceEqual的单测可以写成：</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestStringSliceEqual</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">    a, b := []<span class="type">string</span>&#123;<span class="string">&quot;hello&quot;</span>&#125;, []<span class="type">string</span>&#123;<span class="string">&quot;hello&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">if</span> StringSliceEqual(a, b) != <span class="literal">true</span> &#123;</span><br><span class="line">        t.Fatalf(<span class="string">&quot;a,b not equal, a: %v, b:%v&quot;</span>, a, b)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>StringSliceEqual的Example可以写成：</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ExampleStringSliceEqual</span><span class="params">()</span></span> &#123;</span><br><span class="line">    a, b := []<span class="type">string</span>&#123;<span class="string">&quot;hello&quot;</span>&#125;, []<span class="type">string</span>&#123;<span class="string">&quot;hello&quot;</span>&#125;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;StringSliceEqual result is %v&quot;</span>, StringSliceEqual(a, b))</span><br><span class="line">    <span class="comment">// Output:</span></span><br><span class="line">    <span class="comment">// StringSliceEqual result is true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>StringSliceEqual的Benchmark可以写成:</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BenchmarkStringSliceEqual</span><span class="params">(b *testing.B)</span></span> &#123;</span><br><span class="line">    a1, b1 := []<span class="type">string</span>&#123;<span class="string">&quot;hello&quot;</span>&#125;, []<span class="type">string</span>&#123;<span class="string">&quot;hello&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; b.N; i++ &#123;</span><br><span class="line">        StringSliceEqual(a1, b1)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for
+        &lt;h1 id=&quot;一、引言&quot;&gt;&lt;a href=&quot;#一、引言&quot; class=&quot;headerlink&quot; title=&quot;一、引言&quot;&gt;&lt;/a&gt;一、引言&lt;/h1&gt;&lt;p&gt;测试是自动化测试的简称，即编写简单的程序来确保程序在该测试中针对特定输入产生预期的输出。这些测试通常要么是经过精心设计之后用
       
     
     </summary>
     
+      <category term="golang" scheme="http://fanqietotop.cn/categories/golang/"/>
+    
+    
+      <category term="单测" scheme="http://fanqietotop.cn/tags/%E5%8D%95%E6%B5%8B/"/>
     
   </entry>
   
